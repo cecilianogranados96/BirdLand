@@ -3,7 +3,7 @@
 <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Animal Details - Zoo</title>
+        <title>BirdLand - Un mundo completo que observar</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="shortcut icon" type="image/x-icon" href="?pag=images/favicon.ico"> 
@@ -34,7 +34,7 @@
                         <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
                             <div class="header-top-right">
                                 <nav>
-                                    <ul>
+                                    <ul> <!--ESTA SECCION PUEDE SERVIR PARA EL PANEL ADMIN-->
                                         <li><a href="?pag=#">Ticket</a></li>
                                         <li><a href="?pag=#">Membership</a></li>
                                         <li><a href="?pag=sponser">Donate</a></li>
@@ -50,12 +50,7 @@
                     <div class="main-header">
                         <nav>
                             <ul>
-                                <li><a href="?pag=index">Home</a></li>
-                                <li><a href="?pag=know">Know the zoo</a></li>
-                                <li class="active"><a href="?pag=rules">Rules</a></li>
-                                <li><a href="?pag=faq">FAQ</a></li>
-                                <li><a href="?pag=rate">Rates & Bookings</a></li>
-                                <li><a href="?pag=contact">Directions & Contact</a></li>
+                                <?php echo $menu; ?>
                             </ul>
                         </nav>
                     </div>
@@ -69,12 +64,7 @@
                         <div class="mobile-menu">
                           <nav id="dropdown">
                             <ul>
-                                <li class="active"><a href="?pag=index">Home</a></li>
-                                <li><a href="?pag=?pag=know">Know the zoo</a></li>
-                                <li><a href="?pag=rules">Rules</a></li>
-                                <li><a href="?pag=faq">Faq</a></li>
-                                <li><a href="?pag=rate">Rates & Bookings</a></li>
-                                <li><a href="?pag=contact">Directions & Contact</a></li>
+                                <?php echo $menu; ?>
                             </ul>
                           </nav>
                         </div>          
@@ -90,7 +80,7 @@
                               <form>
                                   <div class="col-sm-12">
                                       <div class="form-group">
-                                          <input type="text" class="form-control" placeholder="Search Here...">
+                                          <input type="text" class="form-control" placeholder="Busca un ave...">
                                           <a href="?pag=#"><i class="fa fa-search" aria-hidden="true"></i></a>
                                       </div>
                                   </div>

@@ -1,4 +1,5 @@
 <?php 
+    include "PHP/header.php";
     include "HTML/header.php";
     if(isset($_GET['pag'])){
         if (file_exists("PHP/".$_GET['pag'].".php")) {
@@ -10,7 +11,6 @@
             include "HTML/inicio.php";
         }  
     }else{
-        include "PHP/inicio.php";
         include "HTML/inicio.php";    
     }
     include "HTML/fotter.php";
