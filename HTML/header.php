@@ -1,13 +1,12 @@
-<!doctype html>
-<html class="no-js" lang="en">
-<head>
+<html class="no-js" lang="es">
+    <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <title>BirdLand - Un mundo completo que observar</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="shortcut icon" type="image/x-icon" href="?pag=images/favicon.ico"> 
-        <link rel="apple-touch-icon" href="?pag=images/favicon.ico">
+        <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico"> 
+        <link rel="apple-touch-icon" href="images/favicon.ico">
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/flaticon.css">
         <link rel="stylesheet" href="css/animate.css">
@@ -38,8 +37,18 @@
                                         <li><a href="?pag=#">Ticket</a></li>
                                         <li><a href="?pag=#">Membership</a></li>
                                         <li><a href="?pag=sponser">Donate</a></li>
+                                        <li>
+                                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                                          <ul class="dropdown-menu" style="background-color: black">
+                                            <li><a href="#">Action</a></li>
+                                            <li><a href="#">Another action</a></li>
+                                            <li><a href="#">Something else here</a></li>
+                                            <li><a href="#">Separated link</a></li>
+                                            <li><a href="#">One more separated link</a></li>
+                                          </ul>
+                                        </li>                                        
                                         <li><a href="#" class="search-icon"><i class="fa fa-search" aria-hidden="true"></i></a></li>
-                                        <li class="schedule"><a href="?pag=plan">
+                                        <li class="schedule"><a href="?pag=login">
                                             <i class="fa fa-sign-in" aria-hidden="true"></i> Login
                                         </a></li>
                                     </ul>

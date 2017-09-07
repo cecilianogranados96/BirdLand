@@ -118,13 +118,13 @@
                                             <div class="media">
                                               <div class="media-body">
                                                   <center>
-                                                <h4 class="media-heading"><a href="#">Rowan: an orangutan known</a></h4>
-                                                <a href="#">
+                                                <h4 class="media-heading"><a href="?pag=ave-detalle">Rowan: an orangutan known</a></h4>
+                                                <a href="?pag=ave-detalle">
                                                   <img class="media-object" src="images/blog/1.png" alt="Generic placeholder image">
                                                 </a>
                                                       <br>
                                                 <div class="read-more">
-                                                    <a href="#">Ver Ficha</a>
+                                                    <a href="?pag=ave-detalle">Ver Ficha</a>
                                                 </div>
                                                   </center>
                                               </div>
