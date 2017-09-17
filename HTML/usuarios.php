@@ -57,7 +57,7 @@
                                             <div class="user">
                                                 <img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
                                                 alt="">
-                                                <h3 class="lead" align="center">
+                                                <h3 class="lead" align="center"> <a href="?pag=usuario-detalle">
                                                     User name
                                                 </h3>
                                             </div>

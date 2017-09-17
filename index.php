@@ -1,6 +1,7 @@
 <?php 
     include "PHP/header.php";
     include "HTML/header.php";
+
     if(isset($_GET['pag'])){
         if (file_exists("PHP/".$_GET['pag'].".php")) {
            include "PHP/".$_GET['pag'].".php";

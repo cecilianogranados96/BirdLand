@@ -34,12 +34,12 @@
                             </div>
                             <div class="zooks-social-connect-area">
                                 <ul>
-                                    <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-tumblr" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-facebook" aria-hidden="true" style="margin-top: 20px;"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-twitter" aria-hidden="true" style="margin-top: 20px;"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-instagram" aria-hidden="true" style="margin-top: 20px;"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-tumblr" aria-hidden="true" style="margin-top: 20px;"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-pinterest-p" aria-hidden="true" style="margin-top: 20px;"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-youtube" aria-hidden="true" style="margin-top: 20px;"></i></a></li>
                                 </ul>
                             </div>
                             <p>Diseño y programación : Jose Ceciliano & Silvia Calderón - Tecnológico de Costa Rica - 2017</p>

@@ -17,7 +17,7 @@
         <div class="row latest-news">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
                 <div class="section-title">  <br><br>
-                    <h2>Filtro de usuarios</h2>
+                    <h2>Filtro de Aves</h2>
                 </div>
             </div>
 

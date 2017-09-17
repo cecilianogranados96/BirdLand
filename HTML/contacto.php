@@ -1,6 +1,3 @@
-
-        <!-- Header End Here -->
-        <!-- Breadcumb Area Start Here -->
         <div class="breadcumb-area three">
             <div class="container">
                 <div class="row">
@@ -10,11 +7,6 @@
                 </div>
             </div>
         </div>
-        <!-- Breadcumb Area End Here -->
-        <!-- Where We Are Start Here -->
-
-        <!-- Where We Are End Here -->
-        <!-- Form Area Start Here -->
         <div class="contact-form">
           <div class="container">
             <div class="row">
@@ -57,48 +49,33 @@
             
             <br><br><br>  
             <div class="row">
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                   <div class="single-contact">
                     <div class="media">
                       <a class="pull-left" href="#">
                         <img class="media-object" src="images/map/6.png" alt="Generic placeholder image">
                       </a>
                       <div class="media-body">
-                        <h4 class="media-heading">Address:</h4>
-                        <p>219 Mesa Driving Las Vegas, <br/>NV 89104</p>
+                        <h4 class="media-heading">Direccion:</h4>
+                        <p>San Jose, Costa Rica, Tecnologico de Costa Rica <br/>Barrio Amon</p>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                   <div class="single-contact">
                     <div class="media">
                       <a class="pull-left" href="#">
                         <img class="media-object" src="images/map/7.png" alt="Generic placeholder image">
                       </a>
                       <div class="media-body">
-                        <h4 class="media-heading">Phone & Fax</h4>
-                        <p>(012) 345 6789 <br/>(012) 555-6631</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                  <div class="single-contact">
-                    <div class="media">
-                      <a class="pull-left" href="#">
-                        <img class="media-object" src="images/map/8.png" alt="Generic placeholder image">
-                      </a>
-                      <div class="media-body">
-                        <h4 class="media-heading">GPS Coordinates</h4>
-                        <p>32º 20 ' 11.52'' N , <br/>3º 21' 13.06 ''E</p>
+                        <h4 class="media-heading">Telefono</h4>
+                        <p>(506) 2550 5000 </p>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-              
-          </div>
-        </div>
+            </div>        
+</div>
        
