@@ -63,37 +63,68 @@
                                     <input id="textinput" name="textinput" type="text" placeholder="Nombre del ave" class="form-control input-md">
                                 </td>
                                 <td>
-                                    <select id="selectbasic" name="selectbasic" class="form-control">
+
+                                    
+                                    
+                                    
+                                    <select class="form-control" onchange="window.location.href = '?pag=<?php echo $_GET['pag']; ?>&clase='+this.value;">
+                                       
+                                    <?php
+                                    if(isset($_GET['clase'])){
+                                        $stid = oci_parse($conn, 'select * from clase where id_clase = '.$_GET['clase'].'');
+                                        oci_execute($stid);
+                                        $row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS);
+                                        echo  '<option value="'.$row['ID_CLASE'].'"> '.$row['NOMBRE'].'</option>';                            
+                                    }else{
+                                        echo  '<option value="0">Selecciona una opcion</option>';     
+                                    }
+                                    $stid = oci_parse($conn, 'select * from clase order by nombre');
+                                    oci_execute($stid);
+                                    while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
+                                       echo   '<option value="'.$row['ID_CLASE'].'"> '.$row['NOMBRE'].'</option>';
+                                    }
+                                    ?>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select name="selectbasic" class="form-control" <?php if(!isset($_GET['clase'])){ echo "disabled"; $clase = "";} else { $clase = $_GET['clase'];  }?>   onchange="window.location.href = '?pag=<?php echo $_GET['pag']; ?>&orden='+this.value+'&clase=<?php echo $clase; ?>';">
+                                    <?php
+                                    if(isset($_GET['orden'])){
+                                        $stid = oci_parse($conn, 'select * from orden where id_orden = '.$_GET['orden'].'');
+                                        oci_execute($stid);
+                                        $row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS);
+                                        echo  '<option value="'.$row['ID_ORDEN'].'"> '.$row['NOMBRE'].'</option>';                            
+                                    }else{
+                                        echo  '<option value="0">Selecciona una opcion</option>';     
+                                    }
+                                    $stid = oci_parse($conn, 'select * from orden order by nombre');
+                                    oci_execute($stid);
+                                    while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
+                                       echo   '<option value="'.$row['ID_ORDEN'].'"> '.$row['NOMBRE'].'</option>';
+                                    }
+                                    ?>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select name="selectbasic" class="form-control" disabled>
                                       <option value="1">Option one</option>
                                       <option value="2">Option two</option>
                                     </select>
                                 </td>
                                 <td>
-                                    <select id="selectbasic" name="selectbasic" class="form-control">
+                                    <select name="selectbasic" class="form-control">
                                       <option value="1">Option one</option>
                                       <option value="2">Option two</option>
                                     </select>
                                 </td>
                                 <td>
-                                    <select id="selectbasic" name="selectbasic" class="form-control">
+                                    <select name="selectbasic" class="form-control">
                                       <option value="1">Option one</option>
                                       <option value="2">Option two</option>
                                     </select>
                                 </td>
                                 <td>
-                                    <select id="selectbasic" name="selectbasic" class="form-control">
-                                      <option value="1">Option one</option>
-                                      <option value="2">Option two</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select id="selectbasic" name="selectbasic" class="form-control">
-                                      <option value="1">Option one</option>
-                                      <option value="2">Option two</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select id="selectbasic" name="selectbasic" class="form-control">
+                                    <select name="selectbasic" class="form-control">
                                       <option value="1">Option one</option>
                                       <option value="2">Option two</option>
                                     </select>

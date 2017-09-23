@@ -1,3 +1,5 @@
+
+
 <style>
 .header-content {
   padding: 50px 0;
@@ -57,6 +59,8 @@
   font-weight: 500;
 }
 </style>
+
+
 <div class="breadcumb-area two twooo">
                 <div class="breadcumb-two-overlay">
                     <div class="container">
@@ -84,22 +88,31 @@
                                     <div class="form-block">
                                       <h2>Registrarse</h2>
                                       <div class="form">
-                                        <form action="/action_page.php">
+                                        <form action="?pag=<?php echo $_GET['pag']; ?>&nuevo=1" method="post" >
                                             <div class="form-group">
-                                                <input type="text" class="form-control" placeholder="Nombre" name="first-name" required>
+                                                <input type="text" class="form-control" placeholder="Nombre" name="nombre" required>
                                             </div>
                                             <div class="form-group">
-                                                <input type="text" class="form-control" placeholder="Apellido" name="last-name" required>
+                                                <input type="text" class="form-control" placeholder="Apellido" name="apellido" required>
                                             </div>
                                             <div class="form-group">
                                                 <input type="email" class="form-control" placeholder="Email" name="email" required>
                                             </div>
                                             <div class="form-group">
-                                                <input type="text" class="form-control" placeholder="Usuario" name="password" required>
+                                                Fecha de Nacimiento:
+                                                <input type="date" class="form-control" placeholder="fecha" name="fecha" required>
                                             </div>
                                             <div class="form-group">
-                                                <input type="password" class="form-control" placeholder="Contraseña" name="repeat-password" required>
+                                                <input type="text" class="form-control" placeholder="Profecion" name="profesion" required>
                                             </div>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" placeholder="Usuario" name="user" required>
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <input type="password" class="form-control" placeholder="Contraseña" name="pass" required>
+                                            </div>
+                                            
                                             <button type="submit" class="btn btn-default custom-btn">Enviar</button>
                                         </form>
                                       </div>
@@ -109,12 +122,12 @@
                                     <div class="form-block">
                                        <h2>Login</h2>
                                        <div class="form">
-                                        <form action="/action_page.php">
+                                           <form action="?pag=<?php echo $_GET['pag']; ?>&verificar=1" method="post" >
                                             <div class="form-group">
-                                                <input type="email" class="form-control" id="email" placeholder="Usuario" name="email">
+                                                <input type="text" class="form-control" id="email" placeholder="Usuario" name="user">
                                             </div>
                                             <div class="form-group">
-                                                <input type="password" class="form-control" id="pwd" placeholder="Contraseña" name="pwd">
+                                                <input type="password" class="form-control" id="pwd" placeholder="Contraseña" name="pass">
                                             </div>
                                             <button type="submit" class="btn btn-default custom-btn">Entrar</button>
                                         </form>

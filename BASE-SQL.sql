@@ -1,6 +1,6 @@
 
 CREATE TABLESPACE BL_Data
-  DATAFILE 'C:\app\Jose\oradata\demo\BLdata01.dbf'
+  DATAFILE 'C:\app\Administrator\oradata\BirdLand\BLdata01.dbf'
   SIZE 10M
   REUSE
   AUTOEXTEND ON
@@ -8,36 +8,88 @@ CREATE TABLESPACE BL_Data
   MAXSIZE 200M;
   
 CREATE TABLESPACE BL_Ind
-  DATAFILE 'C:\app\Jose\oradata\demo\BLind01.dbf'
+  DATAFILE 'C:\app\Administrator\oradata\BirdLand\BLind01.dbf'
   SIZE 10M
   REUSE
   AUTOEXTEND ON
   NEXT 512k
   MAXSIZE 200M;
-  
+    
+
 CREATE USER BL
       IDENTIFIED BY BL123
       DEFAULT TABLESPACE BL_data
       QUOTA 10M on BL_data
       TEMPORARY TABLESPACE temp
       QUOTA 5M ON system;
+      
+    
+CREATE SEQUENCE sq_clase MINVALUE 0 START WITH 0 INCREMENT BY 1 CACHE 20;
+CREATE SEQUENCE sq_orden MINVALUE 0 START WITH 0 INCREMENT BY 1 CACHE 20;
+CREATE SEQUENCE sq_suborden MINVALUE 0 START WITH 0 INCREMENT BY 1 CACHE 20;
+CREATE SEQUENCE sq_familia MINVALUE 0 START WITH 0 INCREMENT BY 1 CACHE 20;
+CREATE SEQUENCE sq_genero MINVALUE 0 START WITH 0 INCREMENT BY 1 CACHE 20;
+CREATE SEQUENCE sq_especie MINVALUE 0 START WITH 0 INCREMENT BY 1 CACHE 20;
+CREATE SEQUENCE sq_continente MINVALUE 0 START WITH 0 INCREMENT BY 1 CACHE 20;
+CREATE SEQUENCE sq_pais MINVALUE 0 START WITH 0 INCREMENT BY 1 CACHE 20;
+CREATE SEQUENCE sq_provincia MINVALUE 0 START WITH 0 INCREMENT BY 1 CACHE 20;
+CREATE SEQUENCE sq_canton MINVALUE 0 START WITH 0 INCREMENT BY 1 CACHE 20;
+CREATE SEQUENCE sq_ubicacion MINVALUE 0 START WITH 0 INCREMENT BY 1 CACHE 20;
+CREATE SEQUENCE sq_tipo MINVALUE 0 START WITH 0 INCREMENT BY 1 CACHE 20;
+CREATE SEQUENCE sq_color MINVALUE 0 START WITH 0 INCREMENT BY 1 CACHE 20;
+CREATE SEQUENCE sq_ave MINVALUE 0 START WITH 0 INCREMENT BY 1 CACHE 20;
+CREATE SEQUENCE sq_persona MINVALUE 0 START WITH 0 INCREMENT BY 1 CACHE 20;
+CREATE SEQUENCE sq_usuario MINVALUE 0 START WITH 0 INCREMENT BY 1 CACHE 20;
+CREATE SEQUENCE sq_bitacora MINVALUE 0 START WITH 0 INCREMENT BY 1 CACHE 20;
+CREATE SEQUENCE sq_foto MINVALUE 0 START WITH 0 INCREMENT BY 1 CACHE 20;
+CREATE SEQUENCE sq_avistamiento MINVALUE 0 START WITH 0 INCREMENT BY 1 CACHE 20; 
+CREATE SEQUENCE sq_puntos MINVALUE 0 START WITH 0 INCREMENT BY 1 CACHE 20;
+CREATE SEQUENCE sq_parametro MINVALUE 0 START WITH 0 INCREMENT BY 1 CACHE 20;
+ 
 
+GRANT ALL PRIVILEGES ON  sq_clase TO BL;
+GRANT ALL PRIVILEGES ON  sq_orden TO BL;
+GRANT ALL PRIVILEGES ON  sq_suborden TO BL;
+GRANT ALL PRIVILEGES ON  sq_familia TO BL;
+GRANT ALL PRIVILEGES ON  sq_genero TO BL;
+GRANT ALL PRIVILEGES ON  sq_especie TO BL;
+GRANT ALL PRIVILEGES ON  sq_continente TO BL;
+GRANT ALL PRIVILEGES ON  sq_pais TO BL;
+GRANT ALL PRIVILEGES ON  sq_provincia TO BL;
+GRANT ALL PRIVILEGES ON  sq_canton TO BL;
+GRANT ALL PRIVILEGES ON  sq_ubicacion TO BL;
+GRANT ALL PRIVILEGES ON  sq_tipo TO BL;
+GRANT ALL PRIVILEGES ON  sq_color TO BL;
+GRANT ALL PRIVILEGES ON  sq_ave TO BL;
+GRANT ALL PRIVILEGES ON  sq_persona TO BL;
+GRANT ALL PRIVILEGES ON  sq_usuario TO BL;
+GRANT ALL PRIVILEGES ON  sq_bitacora TO BL;
+GRANT ALL PRIVILEGES ON  sq_foto TO BL;
+GRANT ALL PRIVILEGES ON  sq_avistamiento TO BL;
+GRANT ALL PRIVILEGES ON  sq_puntos TO BL;
+GRANT ALL PRIVILEGES ON  sq_parametro TO BL;
+
+GRANT SELECT ON sq_clase TO BL
+ 
 /* REVISAR CON CUIDADO */
+GRANT ALL PRIVILEGES TO BL;
 
 GRANT CONNECT TO BL;
 GRANT CREATE TABLE TO BL;
 GRANT CREATE PUBLIC SYNONYM TO BL;
-CREATE ROLE BL IDENTIFIED BY BL;
---GRANT SELECT,INSERT,UPDATE, DELETE ON BL.employee to BL;
 GRANT CREATE VIEW TO BL;
 GRANT CREATE ANY INDEX TO BL;
 GRANT UNLIMITED TABLESPACE TO BL;
+GRANT CREATE PROCEDURE to BL;
 
 
+
+                                   
+-- ********************************************************************************************** --
 CREATE TABLE clase
 (    
     id_clase NUMBER(11),
-    nombre VARCHAR2(100) CONSTRAINT clase_nombre_nn NOT NULL,
+    nombre VARCHAR2(100) CONSTRAINT clase_nombre_nn NOT NULL
 ) ;
     -- PK 
         ALTER TABLE clase ADD CONSTRAINT pk_clase PRIMARY KEY (id_clase) 
@@ -45,27 +97,14 @@ CREATE TABLE clase
     -- FK   
     -- COMMENTS
 		COMMENT ON TABLE clase IS 'Clases de aves';
-        COMMENT ON COLUMN clase.id_clase IS 'Identificador Ãºnico de la clase';
-		COMMENT ON COLUMN clase.nombre IS 'Nombre cientÃ­fico de la clase';
-	-- SEQUENCE
-		CREATE SEQUENCE seq_clase_id_clase --nombre de la secuencia
-		START WITH 1 --la secuencia empieza por 1
-		INCREMENT BY 1 --se incrementa de uno en uno
-		NOMAXVALUE; --no tiene valor maximo
-	-- TRIGGERS
-		CREATE TRIGGER trig_clase_seq
-		BEFORE INSERT ON clase
-		FOR EACH ROW
-		BEGIN
-		SELECT seq_clase_id_clase.nextval INTO :new.clase_id FROM dual;
-		END;
-    
+    COMMENT ON COLUMN clase.id_clase IS 'Identificador único de la clase';
+		COMMENT ON COLUMN clase.nombre IS 'Nombre científico de la clase';    
 -- ********************************************************************************************* --     
 CREATE TABLE orden
 (    
     id_orden NUMBER(11),
     id_clase NUMBER(11),
-    nombre VARCHAR2(100) CONSTRAINT orden_nombre_nn NOT NULL,
+    nombre VARCHAR2(100) CONSTRAINT orden_nombre_nn NOT NULL
 ) ;
     -- PK 
         ALTER TABLE orden ADD CONSTRAINT pk_orden PRIMARY KEY (id_orden) 
@@ -74,35 +113,57 @@ CREATE TABLE orden
         ALTER TABLE orden ADD CONSTRAINT fk_clase
         FOREIGN KEY (id_clase) REFERENCES clase(id_clase);
 	-- COMMENTS
-		COMMENT ON TABLE orde IS 'Clasificaciones de ordenes';
-		COMMENT ON COLUMN orden.id_orden IS 'Identificador Ãºnico del orden';
-		COMMENT ON COLUMN orden.id_clase IS 'Llave forÃ¡nea que relaciona la clase con el orden';
-		COMMENT ON COLUMN orden.nombre IS 'Nombre cientÃ­fico del orden';
-		
--- ********************************************************************************************* --    
+		COMMENT ON TABLE orden IS 'Clasificaciones de ordenes';
+		COMMENT ON COLUMN orden.id_orden IS 'Identificador único del orden';
+		COMMENT ON COLUMN orden.id_clase IS 'Llave foránea que relaciona la clase con el orden';
+		COMMENT ON COLUMN orden.nombre IS 'Nombre científico del orden';
+ 
+    
+-- ********************************************************************************************* --     
+CREATE TABLE suborden
+(    
+    id_suborden NUMBER(11),
+    id_orden NUMBER(11),
+    nombre VARCHAR2(100) CONSTRAINT suborden_nombre_nn NOT NULL
+) ;
+    -- PK 
+        ALTER TABLE suborden ADD CONSTRAINT pk_suborden PRIMARY KEY (id_suborden) 
+        USING INDEX TABLESPACE BL_IND PCTFREE 20 STORAGE(INITIAL 10K NEXT 10K PCTINCREASE 0) ;
+    -- FK
+        ALTER TABLE suborden ADD CONSTRAINT fk_suborden
+        FOREIGN KEY (id_orden) REFERENCES orden(id_orden);
+	-- COMMENTS
+		COMMENT ON TABLE suborden IS 'Clasificaciones de ordenes';
+		COMMENT ON COLUMN suborden.id_suborden IS 'Identificador único del suborden';
+		COMMENT ON COLUMN suborden.id_orden IS 'Llave foránea que relaciona la orden con el suborden';
+		COMMENT ON COLUMN suborden.nombre IS 'Nombre científico del suborden';
+    -- FUNTIONS
+    
+-- ********************************************************************************************* --  
+
 CREATE TABLE familia
 (    
     id_familia NUMBER(11),
-    id_orden NUMBER(11),
-    nombre VARCHAR2(100) CONSTRAINT familia_nombre_nn NOT NULL,
+    id_suborden NUMBER(11),
+    nombre VARCHAR2(100) CONSTRAINT familia_nombre_nn NOT NULL
 ) ;
     -- PK 
         ALTER TABLE familia ADD CONSTRAINT pk_familia PRIMARY KEY (id_familia) 
         USING INDEX TABLESPACE BL_IND PCTFREE 20 STORAGE(INITIAL 10K NEXT 10K PCTINCREASE 0) ;
     -- FK
-        ALTER TABLE familia ADD CONSTRAINT fk_orden
-        FOREIGN KEY (id_orden) REFERENCES orden(id_orden);
+        ALTER TABLE familia ADD CONSTRAINT fk_suborden_f
+        FOREIGN KEY (id_suborden) REFERENCES suborden(id_suborden);
 	-- COMMENTS
 		COMMENT ON TABLE familia IS 'Clasificaciones de familias';
-		COMMENT ON COLUMN familia.id_familia IS 'Identificador Ãºnico de la familia';
-		COMMENT ON COLUMN familia.id_orden IS 'Llave forÃ¡nea que relaciona el orden con la familia';
-		COMMENT ON COLUMN familia.nombre IS 'Nombre cientÃ­fico de la familia';
+		COMMENT ON COLUMN familia.id_familia IS 'Identificador único de la familia';
+		COMMENT ON COLUMN familia.id_suborden IS 'Llave foránea que relaciona el orden con la familia';
+		COMMENT ON COLUMN familia.nombre IS 'Nombre científico de la familia';
 -- ********************************************************************************************* --  
 CREATE TABLE genero
 (    
     id_genero NUMBER(11),
     id_familia NUMBER(11),
-    nombre VARCHAR2(100) CONSTRAINT genero_nombre_nn NOT NULL,
+    nombre VARCHAR2(100) CONSTRAINT genero_nombre_nn NOT NULL
 ) ;
     -- PK 
         ALTER TABLE genero ADD CONSTRAINT pk_genero PRIMARY KEY (id_genero) 
@@ -111,16 +172,16 @@ CREATE TABLE genero
         ALTER TABLE genero ADD CONSTRAINT fk_familia
         FOREIGN KEY (id_familia) REFERENCES familia(id_familia);
 	-- COMMENTS
-		COMMENT ON TABLE generos IS 'Clasificaciones de generos';
-		COMMENT ON COLUMN genero.id_genero IS 'Identificador Ãºnico del gÃ©nero';
-		COMMENT ON COLUMN genero.id_familia IS 'Llave forÃ¡nea que relaciona el gÃ©nero con la familia';
-		COMMENT ON COLUMN genero.nombre IS 'Nombre cientÃ­fico del gÃ©nero';
+		COMMENT ON TABLE genero IS 'Clasificaciones de generos';
+		COMMENT ON COLUMN genero.id_genero IS 'Identificador único del género';
+		COMMENT ON COLUMN genero.id_familia IS 'Llave foránea que relaciona el género con la familia';
+		COMMENT ON COLUMN genero.nombre IS 'Nombre científico del género';
 -- ********************************************************************************************* --   
 CREATE TABLE especie
 (    
     id_especie NUMBER(11),
     id_genero NUMBER(11),
-    nombre VARCHAR2(100) CONSTRAINT especie_nombre_nn NOT NULL,
+    nombre VARCHAR2(100) CONSTRAINT especie_nombre_nn NOT NULL
 ) ;
     -- PK 
         ALTER TABLE especie ADD CONSTRAINT pk_especie PRIMARY KEY (id_especie) 
@@ -130,14 +191,14 @@ CREATE TABLE especie
         FOREIGN KEY (id_genero) REFERENCES genero(id_genero);
 	-- COMMENTS
 		COMMENT ON TABLE especie IS 'Clasificaciones de especies';
-		COMMENT ON COLUMN especie.id_especie IS 'Identificador Ãºnico de la especie';
-		COMMENT ON COLUMN especie.id_genero IS 'Llave forÃ¡nea que relaciona el gÃ©nero con la especie';
-		COMMENT ON COLUMN especie.nombre IS 'Nombre cientÃ­fico de la especie';	
+		COMMENT ON COLUMN especie.id_especie IS 'Identificador único de la especie';
+		COMMENT ON COLUMN especie.id_genero IS 'Llave foránea que relaciona el género con la especie';
+		COMMENT ON COLUMN especie.nombre IS 'Nombre científico de la especie';	
 -- ********************************************************************************************* --  
 CREATE TABLE continente
 (    
     id_continente NUMBER(11),
-    nombre VARCHAR2(100) CONSTRAINT continente_nombre_nn NOT NULL,
+    nombre VARCHAR2(100) CONSTRAINT continente_nombre_nn NOT NULL
 ) ;
     -- PK 
         ALTER TABLE continente ADD CONSTRAINT pk_continente PRIMARY KEY (id_continente) 
@@ -145,14 +206,14 @@ CREATE TABLE continente
     -- FK
 	-- COMMENTS
 		COMMENT ON TABLE continente IS 'Continentes del mundo';
-		COMMENT ON COLUMN continente.id_continente IS 'Identificador Ãºnico del continente';
+		COMMENT ON COLUMN continente.id_continente IS 'Identificador único del continente';
 		COMMENT ON COLUMN continente.nombre IS 'Nombre del continente';
 -- ********************************************************************************************* --  
 CREATE TABLE pais
 (    
     id_pais NUMBER(11),
     id_continente NUMBER(11),
-    nombre VARCHAR2(100) CONSTRAINT pais_nombre_nn NOT NULL,
+    nombre VARCHAR2(100) CONSTRAINT pais_nombre_nn NOT NULL
 ) ;
     -- PK 
         ALTER TABLE pais ADD CONSTRAINT pk_pais PRIMARY KEY (id_pais) 
@@ -161,16 +222,16 @@ CREATE TABLE pais
         ALTER TABLE pais ADD CONSTRAINT fk_continente
         FOREIGN KEY (id_continente) REFERENCES continente(id_continente);
 	-- COMMENTS
-		COMMENT ON TABLE pais IS 'PaÃ­ses de cada continente';
-		COMMENT ON COLUMN pais.id_pais IS 'Identificador Ãºnico del paÃ­s';
-		COMMENT ON COLUMN pais.id_continente IS 'Llave forÃ¡nea que relaciona el continente con el paÃ­s';
-		COMMENT ON COLUMN pais.nombre IS 'Nombre del paÃ­s';
+		COMMENT ON TABLE pais IS 'Países de cada continente';
+		COMMENT ON COLUMN pais.id_pais IS 'Identificador único del país';
+		COMMENT ON COLUMN pais.id_continente IS 'Llave foránea que relaciona el continente con el país';
+		COMMENT ON COLUMN pais.nombre IS 'Nombre del país';
 -- ********************************************************************************************* --  
 CREATE TABLE provincia
 (    
     id_provincia NUMBER(11),
     id_pais NUMBER(11),
-    nombre VARCHAR2(100) CONSTRAINT provincia_nombre_nn NOT NULL,
+    nombre VARCHAR2(100) CONSTRAINT provincia_nombre_nn NOT NULL
 ) ;
     -- PK 
         ALTER TABLE provincia ADD CONSTRAINT pk_provincia PRIMARY KEY (id_provincia) 
@@ -179,9 +240,9 @@ CREATE TABLE provincia
         ALTER TABLE provincia ADD CONSTRAINT fk_pais
         FOREIGN KEY (id_pais) REFERENCES pais(id_pais);
 	-- COMMENTS
-		COMMENT ON TABLE provincia IS 'Provincias de cada paÃ­s';
-		COMMENT ON COLUMN provincia.id_provincia IS 'Identificador Ãºnico de la provincia';
-		COMMENT ON COLUMN provincia.id_pais IS 'Llave forÃ¡nea que relaciona la provincia con el paÃ­s';
+		COMMENT ON TABLE provincia IS 'Provincias de cada país';
+		COMMENT ON COLUMN provincia.id_provincia IS 'Identificador único de la provincia';
+		COMMENT ON COLUMN provincia.id_pais IS 'Llave foránea que relaciona la provincia con el país';
 		COMMENT ON COLUMN provincia.nombre IS 'Nombre de la provincia';
 		
 -- ********************************************************************************************* --  
@@ -189,7 +250,7 @@ CREATE TABLE canton
 (    
     id_canton NUMBER(11),
     id_provincia NUMBER(11),
-    nombre VARCHAR2(100) CONSTRAINT canton_nombre_nn NOT NULL,
+    nombre VARCHAR2(100) CONSTRAINT canton_nombre_nn NOT NULL
 ) ;
     -- PK 
         ALTER TABLE canton ADD CONSTRAINT pk_canton PRIMARY KEY (id_canton) 
@@ -199,14 +260,14 @@ CREATE TABLE canton
         FOREIGN KEY (id_provincia) REFERENCES provincia(id_provincia);
 	-- COMMENTS
 		COMMENT ON TABLE canton IS 'Cantones de las provinicias';
-		COMMENT ON COLUMN canton.id_canton IS 'Identificador Ãºnico del cantÃ³n';
-		COMMENT ON COLUMN canton.id_provincia IS 'Llave forÃ¡nea que relaciona la provincia con el cantÃ³n';
-		COMMENT ON COLUMN canton.nombre IS 'Nombre del cantÃ³n';
+		COMMENT ON COLUMN canton.id_canton IS 'Identificador único del cantón';
+		COMMENT ON COLUMN canton.id_provincia IS 'Llave foránea que relaciona la provincia con el cantón';
+		COMMENT ON COLUMN canton.nombre IS 'Nombre del cantón';
 -- ********************************************************************************************* --  
 CREATE TABLE color
 (    
     id_color NUMBER(11),
-    nombre VARCHAR2(100) CONSTRAINT color_nombre_nn NOT NULL,
+    nombre VARCHAR2(100) CONSTRAINT color_nombre_nn NOT NULL
 ) ;
     -- PK 
         ALTER TABLE color ADD CONSTRAINT pk_color PRIMARY KEY (id_color) 
@@ -214,7 +275,7 @@ CREATE TABLE color
     -- FK    	
 	-- COMMENTS
 		COMMENT ON TABLE color IS 'Colores de las aves';
-		COMMENT ON COLUMN color.id_color IS 'Identificador Ãºnico del color';
+		COMMENT ON COLUMN color.id_color IS 'Identificador único del color';
 		COMMENT ON COLUMN color.nombre IS 'Nombre del color';
 -- ********************************************************************************************* --    
 CREATE TABLE persona
@@ -227,8 +288,8 @@ CREATE TABLE persona
 		CONSTRAINT persona_email_uk unique (email),
     profesion VARCHAR2(100) CONSTRAINT persona_profesion_nn NOT NULL,
     tipo VARCHAR2(100) CONSTRAINT persona_tipo_nn NOT NULL, --revisar
-		CONSTRAINT persona_tipo_ck CHECK (tipo= '1' OR tipo= '2' OR tipo= '3'); 
-    imagen VARCHAR2(100) CONSTRAINT persona_imagen_nn NOT NULL, 
+		CONSTRAINT persona_tipo_ck CHECK (tipo= '1' OR tipo= '2' OR tipo= '3'),
+    imagen VARCHAR2(100) CONSTRAINT persona_imagen_nn NOT NULL
     --puntos NUMBER(100) CONSTRAINT persona_puntos NOT NULL --revisar
 ) ;
     -- PK 
@@ -237,21 +298,37 @@ CREATE TABLE persona
     -- FK
 	-- COMMENTS
 		COMMENT ON TABLE persona IS 'Personas registradas en el sistema';
-		COMMENT ON COLUMN persona.id_persona IS 'Identificador Ãºnico de la persona';
+		COMMENT ON COLUMN persona.id_persona IS 'Identificador único de la persona';
 		COMMENT ON COLUMN persona.nombre IS 'Primer nombre de la persona';
 		COMMENT ON COLUMN persona.apellido IS 'Apellido de la persona';
 		COMMENT ON COLUMN persona.fecha_nacimiento IS 'Fecha de nacimiento de la persona';
-		COMMENT ON COLUMN persona.email IS 'Email de la persona, debe ser Ãºnico';
+		COMMENT ON COLUMN persona.email IS 'Email de la persona, debe ser único';
 		COMMENT ON COLUMN persona.profesion IS 'Profesion de la persona';
-		COMMENT ON COLUMN persona.tipo IS 'Tipo de persona, puede ser 1, 2 o 3. El 1 es un administrador, 2 un ornitÃ³logo, y 3 aficionado';
+		COMMENT ON COLUMN persona.tipo IS 'Tipo de persona, puede ser 1, 2 o 3. El 1 es un administrador, 2 un ornitólogo, y 3 aficionado';
 		COMMENT ON COLUMN persona.imagen IS 'Imagen de perfil de la persona';
 -- ********************************************************************************************* --  
+CREATE TABLE estado
+(    
+    id_estado NUMBER(11),
+    descripcion VARCHAR2(100) CONSTRAINT estado_nombre_nn NOT NULL
+) ;
+    -- PK 
+        ALTER TABLE estado ADD CONSTRAINT pk_estado PRIMARY KEY (id_estado) 
+        USING INDEX TABLESPACE BL_IND PCTFREE 20 STORAGE(INITIAL 10K NEXT 10K PCTINCREASE 0) ;
+    -- FK
+	-- COMMENTS
+		COMMENT ON TABLE estado IS 'Estados posibles de las poblaciones de aves';
+		COMMENT ON COLUMN estado.id_estado IS 'Identificador único del estado';
+		COMMENT ON COLUMN estado.descripcion IS 'Descripción del estado de la población del ave, respecto a su tamaño';
+
+-- ********************************************************************************************* --  
+
 CREATE TABLE ave
 (    
     id_ave NUMBER(11),
     id_especie NUMBER(11),
     id_color NUMBER(11),
-	id_estado VARCHAR2(100),
+	  id_estado NUMBER(11),
     nombre_comun VARCHAR2(100) CONSTRAINT ave_nombreComun_nn NOT NULL,
     tamano VARCHAR2(100) CONSTRAINT ave_tamano_nn NOT NULL,
     imagen VARCHAR2(100) CONSTRAINT ave_imagen_nn NOT NULL    
@@ -267,30 +344,17 @@ CREATE TABLE ave
         FOREIGN KEY (id_color) REFERENCES color(id_color);
 		
 		ALTER TABLE ave ADD CONSTRAINT fk_estado
-        FOREIGN KEY (id_estado) REFERENCES color(id_estado);
+        FOREIGN KEY (id_estado) REFERENCES estado(id_estado);
 	-- COMMENTS
 		COMMENT ON TABLE ave IS 'Aves registradas en el sistema';
-		COMMENT ON COLUMN ave.id_ave IS 'Identificador Ãºnico del ave';
-		COMMENT ON COLUMN ave.id_especie IS 'Llave forÃ¡nea que relaciona el ave con la especie a la que pertenece';
-		COMMENT ON COLUMN ave.id_color IS 'Llave forÃ¡nea que relaciona el ave con el color de su plumaje';
-		COMMENT ON COLUMN ave.id_estado IS 'Llave forÃ¡nea que relaciona el ave con su estado, respecto a la cantidad de poblaciÃ³n';
-		COMMENT ON COLUMN ave.nombre_comun IS 'Nombre comÃºn con el cuÃ¡l se le conoce al ave';
-		COMMENT ON COLUMN ave.tamano IS 'TamaÃ±o promedio del ave';
+		COMMENT ON COLUMN ave.id_ave IS 'Identificador único del ave';
+		COMMENT ON COLUMN ave.id_especie IS 'Llave foránea que relaciona el ave con la especie a la que pertenece';
+		COMMENT ON COLUMN ave.id_color IS 'Llave foránea que relaciona el ave con el color de su plumaje';
+		COMMENT ON COLUMN ave.id_estado IS 'Llave foránea que relaciona el ave con su estado, respecto a la cantidad de población';
+		COMMENT ON COLUMN ave.nombre_comun IS 'Nombre común con el cuál se le conoce al ave';
+		COMMENT ON COLUMN ave.tamano IS 'Tamaño promedio del ave';
 		COMMENT ON COLUMN ave.imagen IS 'Imagen de referencia del ave';
--- ********************************************************************************************* --  
-CREATE TABLE estado
-(    
-    id_estado NUMBER(11),
-    descripcion VARCHAR2(100) CONSTRAINT estado_nombre_nn NOT NULL,	
-) ;
-    -- PK 
-        ALTER TABLE estado ADD CONSTRAINT pk_estado PRIMARY KEY (id_estado) 
-        USING INDEX TABLESPACE BL_IND PCTFREE 20 STORAGE(INITIAL 10K NEXT 10K PCTINCREASE 0) ;
-    -- FK
-	-- COMMENTS
-		COMMENT ON TABLE estado IS 'Estados posibles de las poblaciones de aves';
-		COMMENT ON COLUMN estado.id_estado IS 'Identificador Ãºnico del estado';
-		COMMENT ON COLUMN estado.descripcion IS 'DescripciÃ³n del estado de la poblaciÃ³n del ave, respecto a su tamaÃ±o';
+
 -- ********************************************************************************************* --  
 CREATE TABLE avistamiento
 (    
@@ -298,7 +362,7 @@ CREATE TABLE avistamiento
     id_persona NUMBER(11),
     id_ave NUMBER(11),
     latitud NUMBER(20,20) CONSTRAINT avistamiento_latitud_nn NOT NULL,
-    longitud NUMBER(20,20) CONSTRAINT avistamiento_longitud_nn NOT NULL,
+    longitud NUMBER(20,20) CONSTRAINT avistamiento_longitud_nn NOT NULL
 ) ;
     -- PK 
         ALTER TABLE avistamiento ADD CONSTRAINT pk_avistamiento PRIMARY KEY (id_avistamiento) 
@@ -311,17 +375,17 @@ CREATE TABLE avistamiento
         FOREIGN KEY (id_ave) REFERENCES ave(id_ave);
 	-- COMMENTS
 		COMMENT ON TABLE avistamiento IS 'Avistamientos de las aves';
-		COMMENT ON COLUMN avistamiento.id_avistamiento IS 'Identificador Ãºnico del avistamiento';
-		COMMENT ON COLUMN avistamiento.id_persona IS 'Llave forÃ¡nea que relaciona el avistamiento con la persona que la realizÃ³';
-		COMMENT ON COLUMN avistamiento.id_ave IS 'Llave forÃ¡nea que relaciona el avistamiento con el ave vista';
-		COMMENT ON COLUMN avistamiento.latitud IS 'Es la latitud de la localizaciÃ³n donde se hizo el avistamiento';
-		COMMENT ON COLUMN avistamiento.longitud IS 'Es la longitud de la localizaciÃ³n donde se hizo el avistamiento';
+		COMMENT ON COLUMN avistamiento.id_avistamiento IS 'Identificador único del avistamiento';
+		COMMENT ON COLUMN avistamiento.id_persona IS 'Llave foránea que relaciona el avistamiento con la persona que la realizó';
+		COMMENT ON COLUMN avistamiento.id_ave IS 'Llave foránea que relaciona el avistamiento con el ave vista';
+		COMMENT ON COLUMN avistamiento.latitud IS 'Es la latitud de la localización donde se hizo el avistamiento';
+		COMMENT ON COLUMN avistamiento.longitud IS 'Es la longitud de la localización donde se hizo el avistamiento';
 -- ********************************************************************************************* --  
 CREATE TABLE foto
 (    
     id_foto NUMBER(11),
     id_avistamiento NUMBER(11),
-    url VARCHAR2(100) CONSTRAINT foto_url_nn NOT NULL,
+    url VARCHAR2(100) CONSTRAINT foto_url_nn NOT NULL
 ) ;
     -- PK 
         ALTER TABLE foto ADD CONSTRAINT pk_foto PRIMARY KEY (id_foto) 
@@ -331,35 +395,35 @@ CREATE TABLE foto
         FOREIGN KEY (id_avistamiento) REFERENCES avistamiento(id_avistamiento);
 	-- COMMENTS
 		COMMENT ON TABLE foto IS 'Fotos de las aves por avistamiento';
-		COMMENT ON COLUMN foto.id_foto IS 'Identificador Ãºnico de la foto';
-		COMMENT ON COLUMN foto.id_avistamiento IS 'Llave forÃ¡nea que relaciona la foto con el avistamiento donde se publicÃ³';
-		COMMENT ON COLUMN foto.url IS 'Es la direcciÃ³n de donde estÃ¡ guardada la foto afuera de la base';
+		COMMENT ON COLUMN foto.id_foto IS 'Identificador único de la foto';
+		COMMENT ON COLUMN foto.id_avistamiento IS 'Llave foránea que relaciona la foto con el avistamiento donde se publicó';
+		COMMENT ON COLUMN foto.url IS 'Es la dirección de donde está guardada la foto afuera de la base';
 -- ********************************************************************************************* --  
 CREATE TABLE usuario
 (    
     id_usuario NUMBER(11),
 	id_persona NUMBER(11),
-    nombre VARCHAR2(100) CONSTRAINT nombre NOT NULL,
+    usuario VARCHAR2(100) CONSTRAINT nombre NOT NULL,
     contrasena VARCHAR2(100) CONSTRAINT usuario_contrasena_nn NOT NULL
 ) ;
     -- PK 
         ALTER TABLE usuario ADD CONSTRAINT pk_usuario PRIMARY KEY (id_usuario) 
         USING INDEX TABLESPACE BL_IND PCTFREE 20 STORAGE(INITIAL 10K NEXT 10K PCTINCREASE 0) ;
     -- FK
-        ALTER TABLE usuario ADD CONSTRAINT fk_persona
+        ALTER TABLE usuario ADD CONSTRAINT fk_persona_usuario
         FOREIGN KEY (id_persona) REFERENCES persona(id_persona);
 	-- COMMENTS
 		COMMENT ON TABLE usuario IS 'Usuarios de las personas registradas';
-		COMMENT ON COLUMN usuario.id_usuario IS 'Identificador Ãºnico del usuario';
-		COMMENT ON COLUMN usuario.id_persona IS 'Llave forÃ¡nea que relaciona el usuario con la persona a la que le pertenece';
+		COMMENT ON COLUMN usuario.id_usuario IS 'Identificador único del usuario';
+		COMMENT ON COLUMN usuario.id_persona IS 'Llave foránea que relaciona el usuario con la persona a la que le pertenece';
 		COMMENT ON COLUMN usuario.nombre IS 'Nombre del usuario';
-		COMMENT ON COLUMN usuario.contrasena IS 'ContraseÃ±a del usuario, debe estar encriptada';
+		COMMENT ON COLUMN usuario.contrasena IS 'Contraseña del usuario, debe estar encriptada';
 -- ********************************************************************************************* --  
 CREATE TABLE bitacora
 (    
     id_bitacora NUMBER(11),
     id_usuario NUMBER(11),
-    contrasena VARCHAR2(100) CONSTRAINT bitacora_contrasena_nn NOT NULL, 
+    contrasena VARCHAR2(100) CONSTRAINT bitacora_contrasena_nn NOT NULL
 ) ;
     -- PK 
         ALTER TABLE bitacora ADD CONSTRAINT pk_bitacora PRIMARY KEY (id_bitacora) 
@@ -369,9 +433,9 @@ CREATE TABLE bitacora
         FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario); 
 	-- COMMENTS
 		COMMENT ON TABLE bitacora IS 'Bitacora de los cambios de clave por usuario';
-		COMMENT ON COLUMN bitacora.id_bitacora IS 'Identificador Ãºnico de la bitÃ¡cora';
-		COMMENT ON COLUMN bitacora.id_usuario IS 'Llave forÃ¡nea que relaciona la bitÃ¡cora con el usuario que realizÃ³ el cambiÃ³';
-		COMMENT ON COLUMN bitacora.contrasena IS 'Nueva contraseÃ±a del usuario';
+		COMMENT ON COLUMN bitacora.id_bitacora IS 'Identificador único de la bitácora';
+		COMMENT ON COLUMN bitacora.id_usuario IS 'Llave foránea que relaciona la bitácora con el usuario que realizó el cambió';
+		COMMENT ON COLUMN bitacora.contrasena IS 'Nueva contraseña del usuario';
 
 -- ********************************************************************************************* --  
 CREATE TABLE ubicacion
@@ -384,16 +448,16 @@ CREATE TABLE ubicacion
         ALTER TABLE ubicacion ADD CONSTRAINT pk_ubicacion PRIMARY KEY (id_ubicacion) 
         USING INDEX TABLESPACE BL_IND PCTFREE 20 STORAGE(INITIAL 10K NEXT 10K PCTINCREASE 0) ;
     -- FK
-        ALTER TABLE ubicacion ADD CONSTRAINT fk_ave
+        ALTER TABLE ubicacion ADD CONSTRAINT fk_ave_ubicacion
         FOREIGN KEY (id_ave) REFERENCES ave(id_ave);
     
         ALTER TABLE ubicacion ADD CONSTRAINT fk_canton
         FOREIGN KEY (id_canton) REFERENCES canton(id_canton);
 	-- COMMENTS
 		COMMENT ON TABLE ubicacion IS 'Ubicaciones en las que se encuentran cada tipo de ave';
-		COMMENT ON COLUMN ubicacion.id_ubicacion IS 'Identificador Ãºnico de la ubicaciÃ³n del ave';
-		COMMENT ON COLUMN ubicacion.id_ave IS 'Llave forÃ¡nea que relaciona la ubicaciÃ³n con el ave que habita en la zona';
-		COMMENT ON COLUMN ubicacion.id_canton IS 'Llave forÃ¡nea que relaciona la ubicaciÃ³n con el cantÃ³n';
+		COMMENT ON COLUMN ubicacion.id_ubicacion IS 'Identificador único de la ubicación del ave';
+		COMMENT ON COLUMN ubicacion.id_ave IS 'Llave foránea que relaciona la ubicación con el ave que habita en la zona';
+		COMMENT ON COLUMN ubicacion.id_canton IS 'Llave foránea que relaciona la ubicación con el cantón';
 -- ********************************************************************************************* --  
 CREATE TABLE puntaje
 (    
@@ -405,16 +469,16 @@ CREATE TABLE puntaje
         ALTER TABLE puntaje ADD CONSTRAINT pk_puntaje PRIMARY KEY (id_puntaje) 
         USING INDEX TABLESPACE BL_IND PCTFREE 20 STORAGE(INITIAL 10K NEXT 10K PCTINCREASE 0) ;
     -- FK
-        ALTER TABLE puntaje ADD CONSTRAINT fk_avistamiento
+        ALTER TABLE puntaje ADD CONSTRAINT fk_avistamiento_puntaje
         FOREIGN KEY (id_avistamiento) REFERENCES avistamiento(id_avistamiento);
         
-        ALTER TABLE puntaje ADD CONSTRAINT fk_persona
+        ALTER TABLE puntaje ADD CONSTRAINT fk_persona_puntaje
         FOREIGN KEY (id_persona) REFERENCES persona(id_persona);
 	-- COMMENTS
-		COMMENT ON TABLE puntaje IS 'CalificaciÃ³n binaria que una persona da a un avistamiento';
-		COMMENT ON COLUMN puntaje.id_puntaje IS 'Identificador Ãºnico del puntaje';
-		COMMENT ON COLUMN puntaje.id_avistamiento IS 'Llave forÃ¡nea que relaciona el puntaje con el avistamiento calificado';
-		COMMENT ON COLUMN puntaje.id_persona IS 'Llave forÃ¡nea que relaciona el puntaje con la persona que realizÃ³la calificaciÃ³n';
+		COMMENT ON TABLE puntaje IS 'Calificación binaria que una persona da a un avistamiento';
+		COMMENT ON COLUMN puntaje.id_puntaje IS 'Identificador único del puntaje';
+		COMMENT ON COLUMN puntaje.id_avistamiento IS 'Llave foránea que relaciona el puntaje con el avistamiento calificado';
+		COMMENT ON COLUMN puntaje.id_persona IS 'Llave foránea que relaciona el puntaje con la persona que realizóla calificación';
 -- ********************************************************************************************* --  
 CREATE TABLE parametro
 (    
@@ -427,8 +491,30 @@ CREATE TABLE parametro
         USING INDEX TABLESPACE BL_IND PCTFREE 20 STORAGE(INITIAL 10K NEXT 10K PCTINCREASE 0) ;
     -- FK
 	-- COMMENTS
-		COMMENT ON TABLE parametro IS 'ParÃ¡metros del sistema que un administrador puede modificar';
-		COMMENT ON COLUMN parametro.id_parametro IS 'Identificador Ãºnico del parÃ¡metro';
-		COMMENT ON COLUMN parametro.nombre IS 'Nombre del parÃ¡metro';
-		COMMENT ON COLUMN parametro.descripcion IS 'Descripcion del parÃ¡metro';
+		COMMENT ON TABLE parametro IS 'Parámetros del sistema que un administrador puede modificar';
+		COMMENT ON COLUMN parametro.id_parametro IS 'Identificador único del parámetro';
+		COMMENT ON COLUMN parametro.nombre IS 'Nombre del parámetro';
+		COMMENT ON COLUMN parametro.descripcion IS 'Descripcion del parámetro';
+    
+    
+-- ************************************************************ --
+
+-- ************************************************************ --
+
+-- ************************************************************ --
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 		

@@ -39,18 +39,19 @@
                                            <ul class="dropdown-menu" style="background-color: black;margin-top: -3%;margin-left: 30%;">
                                               <li><a href="?pag=admin/clase">Aves en peligro</a></li>
                                               <li><a href="?pag=admin/orden">Bitacora</a></li>
+                                               <li><a href="?pag=admin/clase">Usuarios</a></li>
                                           </ul>
                                         </li> 
                                         <li>
-                                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Avistamientos<span class="caret"></span></a>
+                                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Aves<span class="caret"></span></a>
                                           <ul class="dropdown-menu" style="background-color: black;margin-top: -3%;margin-left: 30%;">
-                                              <li><a href="?pag=admin/clase">Usuarios</a></li>
+                                                <li><a href="?pag=sponser">Aves</a></li>
                                               <li><a href="?pag=admin/orden">Avistamientos</a></li>
                                           </ul>
                                         </li>  
                                     
                                         <li>
-                                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Mantenimiento<span class="caret"></span></a>
+                                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Catalogos<span class="caret"></span></a>
                                            <ul class="dropdown-menu" style="background-color: black;margin-top: -3%;margin-left: 30%;">
                                               <li><a href="?pag=admin/clase">Clase</a></li>
                                               <li><a href="?pag=admin/orden">Orden</a></li>
@@ -58,16 +59,27 @@
                                               <li><a href="?pag=admin/familia">Familia</a></li>
                                               <li><a href="?pag=admin/genero">Genero</a></li>
                                               <li><a href="?pag=admin/especie">Especie</a></li>
+                                              <br>
+                                              <li><a href="?pag=admin/continente">Continentes</a></li>
+                                              <li><a href="?pag=admin/pais">Pais</a></li>
+                                              <li><a href="?pag=admin/provincia">Provincia</a></li>
+                                              <li><a href="?pag=admin/canton">Canton</a></li>
+                                              <br>
+                                              <li><a href="?pag=admin/color">Color</a></li>
+                                              <li><a href="?pag=admin/tipo">Tipo</a></li>
+                                               
                                           </ul>
                                         </li>  
-                                          <li><a href="?pag=sponser">Aves</a></li>
                                         
-                                    
+                                     
+                                   
                                         
                                         <li><a href="#" class="search-icon"><i class="fa fa-search" aria-hidden="true"></i></a></li>
-                                        <li class="schedule"><a href="?pag=login">
-                                            <i class="fa fa-sign-in" aria-hidden="true"></i> Login
-                                        </a></li>
+                                        
+                                        <?php echo $login; ?>
+                                        
+                                        
+                                        
                                     </ul>
                                 </nav>
                             </div>
