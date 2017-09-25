@@ -275,7 +275,7 @@
                                                 <h4 class="media-heading">
                                                     <a href="?pag=ave-detalle&id='.$row['ID_AVE'].'">'.$row['NOMBRE_COMUN'].'</a>
                                                 </h4>
-                                                <a href="?pag=ave-detalle">
+                                                <a href="?pag=ave-detalle&id='.$row['ID_AVE'].'">
                                                   <img class="media-object" src="images/aves/'.$row['IMAGEN'].'">
                                                 </a>
                                                 <br>

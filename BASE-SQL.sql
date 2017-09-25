@@ -503,36 +503,106 @@ CREATE TABLE parametro
 
 -- ************************************************************ --
 
-select ave.id_ave,ave.nombre_comun,genero.nombre genero, especie.nombre especie, familia.nombre familia,suborden.nombre suborden, orden.nombre orden,clase.nombre clase from ave 
-inner join especie on ave.id_especie = especie.id_especie
-inner join genero on especie.id_genero = genero.id_genero
-inner join familia on genero.id_familia = familia.id_familia
-inner join suborden on familia.id_suborden = suborden.id_suborden
-inner join orden on suborden.id_orden = orden.id_orden
-inner join clase on orden.id_clase = clase.id_clase
+CREATE OR REPLACE PACKAGE pck_avistamiento IS
+          PROCEDURE delete_avistamiento (pId NUMBER);
+          PROCEDURE update_avistamiento (pid_avistamiento number,pid_persona NUMBER,pid_ave NUMBER,platitud NUMBER,plongitud number,pfoto varchar2);
+          PROCEDURE insert_avistamiento (pid_persona NUMBER,pid_ave NUMBER,platitud NUMBER,plongitud number,pfoto varchar2);
+END;
+
+CREATE OR REPLACE PACKAGE BODY pck_avistamiento AS
+             -- ********************************************************* --
+              PROCEDURE delete_avistamiento (pId NUMBER) is
+              BEGIN
+                    Delete from avistamiento where id_avistamiento = pId;
+                    Commit;
+              END;
+             -- ********************************************************* --
+              PROCEDURE update_avistamiento (pid_avistamiento number,pid_persona NUMBER,pid_ave NUMBER,platitud NUMBER,plongitud number,pfoto varchar2) is
+              BEGIN
+                    UPDATE avistamiento SET
+                    id_persona = pid_persona,
+                    id_ave = pid_ave,
+                    latitud = platitud,
+                    longitud = plongitud,
+                    foto = pfoto
+                    WHERE id_avistamiento = pid_avistamiento;
+                    Commit;
+              END;
+             -- ********************************************************* --
+              PROCEDURE insert_avistamiento (pid_persona NUMBER,pid_ave NUMBER,platitud NUMBER,plongitud number,pfoto varchar2) is
+              BEGIN
+                    INSERT INTO avistamiento (id_avistamiento,id_persona,id_ave,latitud,longitud,foto)
+                    VALUES (sq_avistamiento.NEXTVAL,pid_persona,pid_ave,platitud,plongitud,pfoto);
+                    Commit;
+              END;
+              -- ********************************************************* --
+ END;
+
+  -- ********************************************************* --
+
+CREATE OR REPLACE PACKAGE pck_puntaje IS
+          PROCEDURE delete_puntaje (pid_persona NUMBER,pid_avistamiento NUMBER);
+          PROCEDURE insert_puntaje (pid_persona NUMBER,pid_avistamiento NUMBER);
+END;
+
+CREATE OR REPLACE PACKAGE BODY pck_puntaje AS
+             -- ********************************************************* --
+              PROCEDURE delete_puntaje (pid_persona NUMBER,pid_avistamiento NUMBER) is
+              BEGIN
+                    Delete from puntaje where id_persona = pid_persona and id_avistamiento =pid_avistamiento;
+                    Commit;
+              END;
+
+             -- ********************************************************* --
+              PROCEDURE insert_puntaje (pid_persona NUMBER,pid_avistamiento NUMBER) is
+              BEGIN
+                    INSERT INTO puntaje (id_puntaje,id_persona,id_avistamiento)
+                    VALUES (sq_puntos.NEXTVAL,pid_persona,pid_avistamiento);
+                    Commit;
+              END;
+              -- ********************************************************* --
+ END;
+  -- ********************************************************* --
+    -- ********************************************************* --
+      -- ********************************************************* --
+CREATE OR REPLACE PACKAGE pck_ubicaciones IS
+          PROCEDURE insert_ubicacion (pid_canton NUMBER);
+            PROCEDURE delete_ubicacion (pid_ave NUMBER);
+END;
+
+CREATE OR REPLACE PACKAGE BODY pck_ubicaciones AS
+             -- ********************************************************* --
+              PROCEDURE delete_ubicacion (pid_ave NUMBER) is
+              BEGIN
+                    Delete from ubicacion where id_ave = pid_ave;
+                    Commit;
+              END;
+
+             -- ********************************************************* --
+              PROCEDURE insert_ubicacion (pid_canton NUMBER) is
+              BEGIN
+                    INSERT INTO ubicacion (id_ubicacion,id_ave,id_canton)
+                    VALUES (sq_ubicacion.NEXTVAL,sq_ave.currval,pid_canton);
+                    Commit;
+              END;
+              -- ********************************************************* --
+ END;
+
+
+  -- ********************************************************* --
+  -- ********************************************************* --
+  -- ********************************************************* --
+select * from puntaje
+
+
+
+SELECT  id_puntaje, COUNT(*) id_persona FROM puntaje 
+WHERE ROWNUM <= 10 GROUP BY id_puntaje HAVING COUNT(*) > 0  order by id_persona
 
 
 
 
 
-create or replace type t_persona AS OBJECT
-(
-nombre varchar2(100), apellido varchar2(100)
-);
-  
-create or replace type emp_record as table of t_persona;
 
-create or replace function get_emps (p_dept in number) return emp_record
-    as
-       l_emps  emp_record := emp_record();
-    begin
-         for i in (select nombre,apellido from persona ) loop
-                l_emps.EXTEND;
-                l_emps(l_emps.count) := (t_persona(i.nombre, i.apellido)) ;
-       end loop;
-        return l_emps;
-   end;
-  
-select * from table(get_emps(1));
 
 

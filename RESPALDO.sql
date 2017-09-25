@@ -1,11 +1,309 @@
 --------------------------------------------------------
--- Archivo creado  - domingo-septiembre-24-2017   
+-- Archivo creado  - lunes-septiembre-25-2017   
 --------------------------------------------------------
 --------------------------------------------------------
---  DDL for Type EMP_RECORD
+--  DDL for Type AVE_RECORD
 --------------------------------------------------------
 
-  CREATE OR REPLACE TYPE "BL"."EMP_RECORD" as table of t_persona
+  CREATE OR REPLACE TYPE "BL"."AVE_RECORD" AS TABLE OF t_ave
+
+/
+--------------------------------------------------------
+--  DDL for Type AVISTAMIENTO_RECORD
+--------------------------------------------------------
+
+  CREATE OR REPLACE TYPE "BL"."AVISTAMIENTO_RECORD" AS TABLE OF t_avistamiento
+
+/
+--------------------------------------------------------
+--  DDL for Type BITACORA_RECORD
+--------------------------------------------------------
+
+  CREATE OR REPLACE TYPE "BL"."BITACORA_RECORD" AS TABLE OF t_bitacora
+
+/
+--------------------------------------------------------
+--  DDL for Type CANTON_RECORD
+--------------------------------------------------------
+
+  CREATE OR REPLACE TYPE "BL"."CANTON_RECORD" AS TABLE OF t_canton
+
+/
+--------------------------------------------------------
+--  DDL for Type CLASE_RECORD
+--------------------------------------------------------
+
+  CREATE OR REPLACE TYPE "BL"."CLASE_RECORD" AS TABLE OF t_clase
+
+/
+--------------------------------------------------------
+--  DDL for Type COLOR_RECORD
+--------------------------------------------------------
+
+  CREATE OR REPLACE TYPE "BL"."COLOR_RECORD" AS TABLE OF t_color
+
+/
+--------------------------------------------------------
+--  DDL for Type CONTINENTE_RECORD
+--------------------------------------------------------
+
+  CREATE OR REPLACE TYPE "BL"."CONTINENTE_RECORD" AS TABLE OF t_continente
+
+/
+--------------------------------------------------------
+--  DDL for Type ESPECIE_RECORD
+--------------------------------------------------------
+
+  CREATE OR REPLACE TYPE "BL"."ESPECIE_RECORD" AS TABLE OF t_especie
+
+/
+--------------------------------------------------------
+--  DDL for Type FAMILIA_RECORD
+--------------------------------------------------------
+
+  CREATE OR REPLACE TYPE "BL"."FAMILIA_RECORD" AS TABLE OF t_familia
+
+/
+--------------------------------------------------------
+--  DDL for Type FOTO_RECORD
+--------------------------------------------------------
+
+  CREATE OR REPLACE TYPE "BL"."FOTO_RECORD" AS TABLE OF t_foto
+
+/
+--------------------------------------------------------
+--  DDL for Type GENERO_RECORD
+--------------------------------------------------------
+
+  CREATE OR REPLACE TYPE "BL"."GENERO_RECORD" AS TABLE OF t_genero
+
+/
+--------------------------------------------------------
+--  DDL for Type ORDEN_RECORD
+--------------------------------------------------------
+
+  CREATE OR REPLACE TYPE "BL"."ORDEN_RECORD" AS TABLE OF t_orden
+
+/
+--------------------------------------------------------
+--  DDL for Type PAIS_RECORD
+--------------------------------------------------------
+
+  CREATE OR REPLACE TYPE "BL"."PAIS_RECORD" AS TABLE OF t_pais
+
+/
+--------------------------------------------------------
+--  DDL for Type PARAMETRO_RECORD
+--------------------------------------------------------
+
+  CREATE OR REPLACE TYPE "BL"."PARAMETRO_RECORD" AS TABLE OF t_parametro
+
+/
+--------------------------------------------------------
+--  DDL for Type PERSONA_RECORD
+--------------------------------------------------------
+
+  CREATE OR REPLACE TYPE "BL"."PERSONA_RECORD" AS TABLE OF t_persona
+
+/
+--------------------------------------------------------
+--  DDL for Type PROVINCIA_RECORD
+--------------------------------------------------------
+
+  CREATE OR REPLACE TYPE "BL"."PROVINCIA_RECORD" AS TABLE OF t_provincia
+
+/
+--------------------------------------------------------
+--  DDL for Type PUNTAJE_RECORD
+--------------------------------------------------------
+
+  CREATE OR REPLACE TYPE "BL"."PUNTAJE_RECORD" AS TABLE OF t_puntaje
+
+/
+--------------------------------------------------------
+--  DDL for Type SUBORDEN_RECORD
+--------------------------------------------------------
+
+  CREATE OR REPLACE TYPE "BL"."SUBORDEN_RECORD" AS TABLE OF t_suborden
+
+/
+--------------------------------------------------------
+--  DDL for Type T_AVE
+--------------------------------------------------------
+
+  CREATE OR REPLACE TYPE "BL"."T_AVE" AS OBJECT
+(
+    "ID_AVE" NUMBER(11,0),
+  "ID_ESPECIE" NUMBER(11,0),
+  "ID_COLOR" NUMBER(11,0),
+  "ID_ESTADO" NUMBER(11,0),
+  "NOMBRE_COMUN" VARCHAR2(100 BYTE),
+  "TAMANO" VARCHAR2(100 BYTE),
+  "IMAGEN" VARCHAR2(100 BYTE)
+)
+
+/
+--------------------------------------------------------
+--  DDL for Type T_AVISTAMIENTO
+--------------------------------------------------------
+
+  CREATE OR REPLACE TYPE "BL"."T_AVISTAMIENTO" AS OBJECT
+(
+    "ID_AVISTAMIENTO" NUMBER(11,0),
+  "ID_PERSONA" NUMBER(11,0),
+  "ID_AVE" NUMBER(11,0),
+  "LATITUD" NUMBER(20,20),
+  "LONGITUD" NUMBER(20,20),
+  "FOTO" VARCHAR2(20 BYTE)
+)
+
+/
+--------------------------------------------------------
+--  DDL for Type T_BITACORA
+--------------------------------------------------------
+
+  CREATE OR REPLACE TYPE "BL"."T_BITACORA" AS OBJECT
+(
+    "ID_BITACORA" NUMBER(11,0),
+  "ID_USUARIO" NUMBER(11,0),
+  "CONTRASENA" VARCHAR2(100 BYTE)
+)
+
+/
+--------------------------------------------------------
+--  DDL for Type T_CANTON
+--------------------------------------------------------
+
+  CREATE OR REPLACE TYPE "BL"."T_CANTON" AS OBJECT
+(
+    "ID_CANTON" NUMBER(11,0),
+  "ID_PROVINCIA" NUMBER(11,0),
+  "NOMBRE" VARCHAR2(100 BYTE)
+)
+
+/
+--------------------------------------------------------
+--  DDL for Type T_CLASE
+--------------------------------------------------------
+
+  CREATE OR REPLACE TYPE "BL"."T_CLASE" AS OBJECT
+(
+    "ID_CLASE" NUMBER(11,0),
+  "NOMBRE" VARCHAR2(100 BYTE)
+)
+
+/
+--------------------------------------------------------
+--  DDL for Type T_COLOR
+--------------------------------------------------------
+
+  CREATE OR REPLACE TYPE "BL"."T_COLOR" AS OBJECT
+(
+    "ID_COLOR" NUMBER(11,0),
+  "NOMBRE" VARCHAR2(100 BYTE)
+)
+
+/
+--------------------------------------------------------
+--  DDL for Type T_CONTINENTE
+--------------------------------------------------------
+
+  CREATE OR REPLACE TYPE "BL"."T_CONTINENTE" AS OBJECT
+(
+    "ID_CONTINENTE" NUMBER(11,0),
+  "NOMBRE" VARCHAR2(100 BYTE)
+)
+
+/
+--------------------------------------------------------
+--  DDL for Type T_ESPECIE
+--------------------------------------------------------
+
+  CREATE OR REPLACE TYPE "BL"."T_ESPECIE" AS OBJECT
+(
+    "ID_ESPECIE" NUMBER(11,0),
+  "ID_GENERO" NUMBER(11,0),
+  "NOMBRE" VARCHAR2(100 BYTE)
+)
+
+/
+--------------------------------------------------------
+--  DDL for Type T_FAMILIA
+--------------------------------------------------------
+
+  CREATE OR REPLACE TYPE "BL"."T_FAMILIA" AS OBJECT
+(
+    "ID_FAMILIA" NUMBER(11,0),
+  "ID_SUBORDEN" NUMBER(11,0),
+  "NOMBRE" VARCHAR2(100 BYTE)
+)
+
+/
+--------------------------------------------------------
+--  DDL for Type T_FOTO
+--------------------------------------------------------
+
+  CREATE OR REPLACE TYPE "BL"."T_FOTO" AS OBJECT
+(
+    "ID_FOTO" NUMBER(11,0),
+  "ID_AVISTAMIENTO" NUMBER(11,0),
+  "URL" VARCHAR2(100 BYTE)
+)
+
+/
+--------------------------------------------------------
+--  DDL for Type T_GENERO
+--------------------------------------------------------
+
+  CREATE OR REPLACE TYPE "BL"."T_GENERO" AS OBJECT
+(
+    "ID_GENERO" NUMBER(11,0),
+  "ID_FAMILIA" NUMBER(11,0),
+  "NOMBRE" VARCHAR2(100 BYTE)
+)
+
+/
+--------------------------------------------------------
+--  DDL for Type TIPO_RECORD
+--------------------------------------------------------
+
+  CREATE OR REPLACE TYPE "BL"."TIPO_RECORD" AS TABLE OF t_tipo
+
+/
+--------------------------------------------------------
+--  DDL for Type T_ORDEN
+--------------------------------------------------------
+
+  CREATE OR REPLACE TYPE "BL"."T_ORDEN" AS OBJECT
+(
+    "ID_ORDEN" NUMBER(11,0),
+  "ID_CLASE" NUMBER(11,0),
+  "NOMBRE" VARCHAR2(100 BYTE)
+)
+
+/
+--------------------------------------------------------
+--  DDL for Type T_PAIS
+--------------------------------------------------------
+
+  CREATE OR REPLACE TYPE "BL"."T_PAIS" AS OBJECT
+(
+    "ID_PAIS" NUMBER(11,0),
+  "ID_CONTINENTE" NUMBER(11,0),
+  "NOMBRE" VARCHAR2(100 BYTE)
+)
+
+/
+--------------------------------------------------------
+--  DDL for Type T_PARAMETRO
+--------------------------------------------------------
+
+  CREATE OR REPLACE TYPE "BL"."T_PARAMETRO" AS OBJECT
+(
+    "ID_PARAMETRO" NUMBER(11,0),
+  "NOMBRE" VARCHAR2(100 BYTE),
+  "DESCRIPCION" VARCHAR2(1000 BYTE)
+)
 
 /
 --------------------------------------------------------
@@ -14,8 +312,101 @@
 
   CREATE OR REPLACE TYPE "BL"."T_PERSONA" AS OBJECT
 (
-nombre varchar2(100), apellido varchar2(100)
-);
+    "ID_PERSONA" NUMBER(11,0),
+  "NOMBRE" VARCHAR2(100 BYTE),
+  "APELLIDO" VARCHAR2(100 BYTE),
+  "FECHA_NACIMIENTO" DATE,
+  "EMAIL" VARCHAR2(100 BYTE),
+  "PROFESION" VARCHAR2(100 BYTE),
+  "TIPO" VARCHAR2(100 BYTE),
+  "FOTO" VARCHAR2(50 BYTE)
+)
+
+/
+--------------------------------------------------------
+--  DDL for Type T_PROVINCIA
+--------------------------------------------------------
+
+  CREATE OR REPLACE TYPE "BL"."T_PROVINCIA" AS OBJECT
+(
+    "ID_PROVINCIA" NUMBER(11,0),
+  "ID_PAIS" NUMBER(11,0),
+  "NOMBRE" VARCHAR2(100 BYTE)
+)
+
+/
+--------------------------------------------------------
+--  DDL for Type T_PUNTAJE
+--------------------------------------------------------
+
+  CREATE OR REPLACE TYPE "BL"."T_PUNTAJE" AS OBJECT
+(
+    "ID_PUNTAJE" NUMBER(11,0),
+  "ID_AVISTAMIENTO" NUMBER(11,0),
+  "ID_PERSONA" NUMBER(11,0)
+)
+
+/
+--------------------------------------------------------
+--  DDL for Type T_SUBORDEN
+--------------------------------------------------------
+
+  CREATE OR REPLACE TYPE "BL"."T_SUBORDEN" AS OBJECT
+(
+    "ID_SUBORDEN" NUMBER(11,0),
+  "ID_ORDEN" NUMBER(11,0),
+  "NOMBRE" VARCHAR2(100 BYTE)
+)
+
+/
+--------------------------------------------------------
+--  DDL for Type T_TIPO
+--------------------------------------------------------
+
+  CREATE OR REPLACE TYPE "BL"."T_TIPO" AS OBJECT
+(
+    "ID_TIPO" NUMBER(11,0),
+  "NOMBRE" VARCHAR2(100 BYTE)
+)
+
+/
+--------------------------------------------------------
+--  DDL for Type T_UBICACION
+--------------------------------------------------------
+
+  CREATE OR REPLACE TYPE "BL"."T_UBICACION" AS OBJECT
+(
+    "ID_UBICACION" NUMBER(11,0),
+  "ID_AVE" NUMBER(11,0),
+  "ID_CANTON" NUMBER(11,0)
+)
+
+/
+--------------------------------------------------------
+--  DDL for Type T_USUARIO
+--------------------------------------------------------
+
+  CREATE OR REPLACE TYPE "BL"."T_USUARIO" AS OBJECT
+(
+    "ID_USUARIO" NUMBER(11,0),
+  "ID_PERSONA" NUMBER(11,0),
+  "USUARIO" VARCHAR2(100 BYTE),
+  "CONTRASENA" VARCHAR2(100 BYTE)
+)
+
+/
+--------------------------------------------------------
+--  DDL for Type UBICACION_RECORD
+--------------------------------------------------------
+
+  CREATE OR REPLACE TYPE "BL"."UBICACION_RECORD" AS TABLE OF t_ubicacion
+
+/
+--------------------------------------------------------
+--  DDL for Type USUARIO_RECORD
+--------------------------------------------------------
+
+  CREATE OR REPLACE TYPE "BL"."USUARIO_RECORD" AS TABLE OF t_usuario
 
 /
 --------------------------------------------------------
@@ -60,11 +451,13 @@ nombre varchar2(100), apellido varchar2(100)
    (	"ID_AVISTAMIENTO" NUMBER(11,0), 
 	"ID_PERSONA" NUMBER(11,0), 
 	"ID_AVE" NUMBER(11,0), 
-	"LATITUD" NUMBER(20,20), 
-	"LONGITUD" NUMBER(20,20), 
+	"LATITUD" VARCHAR2(50 BYTE), 
+	"LONGITUD" VARCHAR2(50 BYTE), 
 	"FOTO" VARCHAR2(20 BYTE)
-   ) SEGMENT CREATION DEFERRED 
+   ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "BL_DATA" ;
  
 
@@ -225,26 +618,6 @@ nombre varchar2(100), apellido varchar2(100)
  
    COMMENT ON TABLE "BL"."FAMILIA"  IS 'Clasificaciones de familias';
 --------------------------------------------------------
---  DDL for Table FOTO
---------------------------------------------------------
-
-  CREATE TABLE "BL"."FOTO" 
-   (	"ID_FOTO" NUMBER(11,0), 
-	"ID_AVISTAMIENTO" NUMBER(11,0), 
-	"URL" VARCHAR2(100 BYTE)
-   ) SEGMENT CREATION DEFERRED 
-  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
-  TABLESPACE "BL_DATA" ;
- 
-
-   COMMENT ON COLUMN "BL"."FOTO"."ID_FOTO" IS 'Identificador único de la foto';
- 
-   COMMENT ON COLUMN "BL"."FOTO"."ID_AVISTAMIENTO" IS 'Llave foránea que relaciona la foto con el avistamiento donde se publicó';
- 
-   COMMENT ON COLUMN "BL"."FOTO"."URL" IS 'Es la dirección de donde está guardada la foto afuera de la base';
- 
-   COMMENT ON TABLE "BL"."FOTO"  IS 'Fotos de las aves por avistamiento';
---------------------------------------------------------
 --  DDL for Table GENERO
 --------------------------------------------------------
 
@@ -397,8 +770,10 @@ nombre varchar2(100), apellido varchar2(100)
    (	"ID_PUNTAJE" NUMBER(11,0), 
 	"ID_AVISTAMIENTO" NUMBER(11,0), 
 	"ID_PERSONA" NUMBER(11,0)
-   ) SEGMENT CREATION DEFERRED 
+   ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "BL_DATA" ;
  
 
@@ -458,8 +833,10 @@ nombre varchar2(100), apellido varchar2(100)
    (	"ID_UBICACION" NUMBER(11,0), 
 	"ID_AVE" NUMBER(11,0), 
 	"ID_CANTON" NUMBER(11,0)
-   ) SEGMENT CREATION DEFERRED 
+   ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "BL_DATA" ;
  
 
@@ -499,12 +876,12 @@ nombre varchar2(100), apellido varchar2(100)
 --  DDL for Sequence SQ_AVE
 --------------------------------------------------------
 
-   CREATE SEQUENCE  "BL"."SQ_AVE"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 20 CACHE 20 NOORDER  NOCYCLE ;
+   CREATE SEQUENCE  "BL"."SQ_AVE"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 40 CACHE 20 NOORDER  NOCYCLE ;
 --------------------------------------------------------
 --  DDL for Sequence SQ_AVISTAMIENTO
 --------------------------------------------------------
 
-   CREATE SEQUENCE  "BL"."SQ_AVISTAMIENTO"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 0 CACHE 20 NOORDER  NOCYCLE ;
+   CREATE SEQUENCE  "BL"."SQ_AVISTAMIENTO"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 20 CACHE 20 NOORDER  NOCYCLE ;
 --------------------------------------------------------
 --  DDL for Sequence SQ_BITACORA
 --------------------------------------------------------
@@ -514,7 +891,7 @@ nombre varchar2(100), apellido varchar2(100)
 --  DDL for Sequence SQ_CANTON
 --------------------------------------------------------
 
-   CREATE SEQUENCE  "BL"."SQ_CANTON"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 20 CACHE 20 NOORDER  NOCYCLE ;
+   CREATE SEQUENCE  "BL"."SQ_CANTON"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 40 CACHE 20 NOORDER  NOCYCLE ;
 --------------------------------------------------------
 --  DDL for Sequence SQ_CLASE
 --------------------------------------------------------
@@ -569,17 +946,17 @@ nombre varchar2(100), apellido varchar2(100)
 --  DDL for Sequence SQ_PERSONA
 --------------------------------------------------------
 
-   CREATE SEQUENCE  "BL"."SQ_PERSONA"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 20 CACHE 20 NOORDER  NOCYCLE ;
+   CREATE SEQUENCE  "BL"."SQ_PERSONA"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 40 CACHE 20 NOORDER  NOCYCLE ;
 --------------------------------------------------------
 --  DDL for Sequence SQ_PROVINCIA
 --------------------------------------------------------
 
-   CREATE SEQUENCE  "BL"."SQ_PROVINCIA"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 20 CACHE 20 NOORDER  NOCYCLE ;
+   CREATE SEQUENCE  "BL"."SQ_PROVINCIA"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 40 CACHE 20 NOORDER  NOCYCLE ;
 --------------------------------------------------------
 --  DDL for Sequence SQ_PUNTOS
 --------------------------------------------------------
 
-   CREATE SEQUENCE  "BL"."SQ_PUNTOS"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 0 CACHE 20 NOORDER  NOCYCLE ;
+   CREATE SEQUENCE  "BL"."SQ_PUNTOS"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 80 CACHE 20 NOORDER  NOCYCLE ;
 --------------------------------------------------------
 --  DDL for Sequence SQ_SUBORDEN
 --------------------------------------------------------
@@ -594,23 +971,28 @@ nombre varchar2(100), apellido varchar2(100)
 --  DDL for Sequence SQ_UBICACION
 --------------------------------------------------------
 
-   CREATE SEQUENCE  "BL"."SQ_UBICACION"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 0 CACHE 20 NOORDER  NOCYCLE ;
+   CREATE SEQUENCE  "BL"."SQ_UBICACION"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 20 CACHE 20 NOORDER  NOCYCLE ;
 --------------------------------------------------------
 --  DDL for Sequence SQ_USUARIO
 --------------------------------------------------------
 
-   CREATE SEQUENCE  "BL"."SQ_USUARIO"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 20 CACHE 20 NOORDER  NOCYCLE ;
+   CREATE SEQUENCE  "BL"."SQ_USUARIO"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 40 CACHE 20 NOORDER  NOCYCLE ;
 REM INSERTING into BL.AVE
 SET DEFINE OFF;
 Insert into BL.AVE (ID_AVE,ID_ESPECIE,ID_COLOR,ID_ESTADO,NOMBRE_COMUN,TAMANO,IMAGEN) values ('7','8','21','1','NOMBRE COMUN','11','14logo.png');
-Insert into BL.AVE (ID_AVE,ID_ESPECIE,ID_COLOR,ID_ESTADO,NOMBRE_COMUN,TAMANO,IMAGEN) values ('4','9','1','1','NOMBRE','12','14Jose.png');
+Insert into BL.AVE (ID_AVE,ID_ESPECIE,ID_COLOR,ID_ESTADO,NOMBRE_COMUN,TAMANO,IMAGEN) values ('4','9','1','20','NOMBRE','12','14Jose.png');
 REM INSERTING into BL.AVISTAMIENTO
 SET DEFINE OFF;
+Insert into BL.AVISTAMIENTO (ID_AVISTAMIENTO,ID_PERSONA,ID_AVE,LATITUD,LONGITUD,FOTO) values ('2','14','7','9.521189760201944','-84.53971435937501','14159logo.png');
+Insert into BL.AVISTAMIENTO (ID_AVISTAMIENTO,ID_PERSONA,ID_AVE,LATITUD,LONGITUD,FOTO) values ('3','14','7','9.521189760201944','-83.53971435937501','1426092logo.png');
+Insert into BL.AVISTAMIENTO (ID_AVISTAMIENTO,ID_PERSONA,ID_AVE,LATITUD,LONGITUD,FOTO) values ('4','14','4','9.939431129748815','-84.08103516015626','1426146logo2.png');
 REM INSERTING into BL.BITACORA
 SET DEFINE OFF;
 REM INSERTING into BL.CANTON
 SET DEFINE OFF;
-Insert into BL.CANTON (ID_CANTON,ID_PROVINCIA,NOMBRE) values ('1','1','Aserri2');
+Insert into BL.CANTON (ID_CANTON,ID_PROVINCIA,NOMBRE) values ('1','1','Aserri');
+Insert into BL.CANTON (ID_CANTON,ID_PROVINCIA,NOMBRE) values ('20','1','Desamparados');
+Insert into BL.CANTON (ID_CANTON,ID_PROVINCIA,NOMBRE) values ('21','25','Central');
 REM INSERTING into BL.CLASE
 SET DEFINE OFF;
 Insert into BL.CLASE (ID_CLASE,NOMBRE) values ('20','CLASE #2');
@@ -632,8 +1014,6 @@ REM INSERTING into BL.FAMILIA
 SET DEFINE OFF;
 Insert into BL.FAMILIA (ID_FAMILIA,ID_SUBORDEN,NOMBRE) values ('2','24','Familia #1');
 Insert into BL.FAMILIA (ID_FAMILIA,ID_SUBORDEN,NOMBRE) values ('3','23','Familia #2');
-REM INSERTING into BL.FOTO
-SET DEFINE OFF;
 REM INSERTING into BL.GENERO
 SET DEFINE OFF;
 Insert into BL.GENERO (ID_GENERO,ID_FAMILIA,NOMBRE) values ('1','2','Genero #1');
@@ -654,11 +1034,21 @@ Insert into BL.PARAMETRO (ID_PARAMETRO,NOMBRE,DESCRIPCION) values ('6','Cantidad
 REM INSERTING into BL.PERSONA
 SET DEFINE OFF;
 Insert into BL.PERSONA (ID_PERSONA,NOMBRE,APELLIDO,FECHA_NACIMIENTO,EMAIL,PROFESION,TIPO,FOTO) values ('14','Jose Andres','Ceciliano Granados',to_date('15/11/96','DD/MM/RR'),'cecilianogranados96@hotmail.com','In Compu','1','14logo.png');
+Insert into BL.PERSONA (ID_PERSONA,NOMBRE,APELLIDO,FECHA_NACIMIENTO,EMAIL,PROFESION,TIPO,FOTO) values ('20','Usuario','Usuario',to_date('12/11/96','DD/MM/RR'),'cecilianogranados90@hotmail.com','Ing.Compu','3','default.png');
 REM INSERTING into BL.PROVINCIA
 SET DEFINE OFF;
 Insert into BL.PROVINCIA (ID_PROVINCIA,ID_PAIS,NOMBRE) values ('1','2','San Jose');
+Insert into BL.PROVINCIA (ID_PROVINCIA,ID_PAIS,NOMBRE) values ('20','2','Alajuela');
+Insert into BL.PROVINCIA (ID_PROVINCIA,ID_PAIS,NOMBRE) values ('21','2','Limon');
+Insert into BL.PROVINCIA (ID_PROVINCIA,ID_PAIS,NOMBRE) values ('22','2','Cartago');
+Insert into BL.PROVINCIA (ID_PROVINCIA,ID_PAIS,NOMBRE) values ('23','2','Guanacaste');
+Insert into BL.PROVINCIA (ID_PROVINCIA,ID_PAIS,NOMBRE) values ('24','2','Puntarenas');
+Insert into BL.PROVINCIA (ID_PROVINCIA,ID_PAIS,NOMBRE) values ('25','2','Heredia');
 REM INSERTING into BL.PUNTAJE
 SET DEFINE OFF;
+Insert into BL.PUNTAJE (ID_PUNTAJE,ID_AVISTAMIENTO,ID_PERSONA) values ('59','2','14');
+Insert into BL.PUNTAJE (ID_PUNTAJE,ID_AVISTAMIENTO,ID_PERSONA) values ('57','3','14');
+Insert into BL.PUNTAJE (ID_PUNTAJE,ID_AVISTAMIENTO,ID_PERSONA) values ('61','4','20');
 REM INSERTING into BL.SUBORDEN
 SET DEFINE OFF;
 Insert into BL.SUBORDEN (ID_SUBORDEN,ID_ORDEN,NOMBRE) values ('23','2','SubOrden #2');
@@ -669,9 +1059,13 @@ Insert into BL.TIPO (ID_TIPO,NOMBRE) values ('1','En peligro');
 Insert into BL.TIPO (ID_TIPO,NOMBRE) values ('20','Estable');
 REM INSERTING into BL.UBICACION
 SET DEFINE OFF;
+Insert into BL.UBICACION (ID_UBICACION,ID_AVE,ID_CANTON) values ('5','7','21');
+Insert into BL.UBICACION (ID_UBICACION,ID_AVE,ID_CANTON) values ('6','7','1');
+Insert into BL.UBICACION (ID_UBICACION,ID_AVE,ID_CANTON) values ('7','7','20');
 REM INSERTING into BL.USUARIO
 SET DEFINE OFF;
 Insert into BL.USUARIO (ID_USUARIO,ID_PERSONA,USUARIO,CONTRASENA) values ('3','14','ceciliano','21232f297a57a5a743894a0e4a801fc3');
+Insert into BL.USUARIO (ID_USUARIO,ID_PERSONA,USUARIO,CONTRASENA) values ('20','20','user','21232f297a57a5a743894a0e4a801fc3');
 --------------------------------------------------------
 --  DDL for Index PK_COLOR
 --------------------------------------------------------
@@ -745,15 +1139,6 @@ Insert into BL.USUARIO (ID_USUARIO,ID_PERSONA,USUARIO,CONTRASENA) values ('3','1
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "BL_IND" ;
 --------------------------------------------------------
---  DDL for Index PK_FOTO
---------------------------------------------------------
-
-  CREATE UNIQUE INDEX "BL"."PK_FOTO" ON "BL"."FOTO" ("ID_FOTO") 
-  PCTFREE 20 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS NOCOMPRESS LOGGING
-  STORAGE( INITIAL 16384 NEXT 16384
-  PCTINCREASE 0)
-  TABLESPACE "BL_IND" ;
---------------------------------------------------------
 --  DDL for Index PK_TIPO
 --------------------------------------------------------
 
@@ -767,18 +1152,18 @@ Insert into BL.USUARIO (ID_USUARIO,ID_PERSONA,USUARIO,CONTRASENA) values ('3','1
 --------------------------------------------------------
 
   CREATE UNIQUE INDEX "BL"."PK_PUNTAJE" ON "BL"."PUNTAJE" ("ID_PUNTAJE") 
-  PCTFREE 20 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS NOCOMPRESS LOGGING
-  STORAGE( INITIAL 16384 NEXT 16384
-  PCTINCREASE 0)
+  PCTFREE 20 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 16384 NEXT 16384 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "BL_IND" ;
 --------------------------------------------------------
 --  DDL for Index PK_UBICACION
 --------------------------------------------------------
 
   CREATE UNIQUE INDEX "BL"."PK_UBICACION" ON "BL"."UBICACION" ("ID_UBICACION") 
-  PCTFREE 20 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS NOCOMPRESS LOGGING
-  STORAGE( INITIAL 16384 NEXT 16384
-  PCTINCREASE 0)
+  PCTFREE 20 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 16384 NEXT 16384 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "BL_IND" ;
 --------------------------------------------------------
 --  DDL for Index PK_AVE
@@ -812,9 +1197,9 @@ Insert into BL.USUARIO (ID_USUARIO,ID_PERSONA,USUARIO,CONTRASENA) values ('3','1
 --------------------------------------------------------
 
   CREATE UNIQUE INDEX "BL"."PK_AVISTAMIENTO" ON "BL"."AVISTAMIENTO" ("ID_AVISTAMIENTO") 
-  PCTFREE 20 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS NOCOMPRESS LOGGING
-  STORAGE( INITIAL 16384 NEXT 16384
-  PCTINCREASE 0)
+  PCTFREE 20 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 16384 NEXT 16384 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "BL_IND" ;
 --------------------------------------------------------
 --  DDL for Index PK_BITACORA
@@ -879,6 +1264,17 @@ Insert into BL.USUARIO (ID_USUARIO,ID_PERSONA,USUARIO,CONTRASENA) values ('3','1
           PROCEDURE update_ave (pid_ave number,pid_color NUMBER,pid_estado NUMBER,pnombre varchar2,ptamano varchar2,pimagen varchar2);
           PROCEDURE update_ave_especie (pid_ave number,pid_especie NUMBER);
           PROCEDURE insert_ave (pid_especie NUMBER,pid_color NUMBER,pid_estado NUMBER,pnombre varchar2,ptamano varchar2,pimagen varchar2);
+END;
+
+/
+--------------------------------------------------------
+--  DDL for Package PCK_AVISTAMIENTO
+--------------------------------------------------------
+
+  CREATE OR REPLACE PACKAGE "BL"."PCK_AVISTAMIENTO" IS
+          PROCEDURE delete_avistamiento (pId NUMBER);
+          PROCEDURE update_avistamiento (pid_avistamiento number,pid_persona NUMBER,pid_ave NUMBER,platitud NUMBER,plongitud number,pfoto varchar2);
+          PROCEDURE insert_avistamiento (pid_persona NUMBER,pid_ave NUMBER,platitud NUMBER,plongitud number,pfoto varchar2);
 END;
 
 /
@@ -1041,6 +1437,16 @@ END;
 
 /
 --------------------------------------------------------
+--  DDL for Package PCK_PUNTAJE
+--------------------------------------------------------
+
+  CREATE OR REPLACE PACKAGE "BL"."PCK_PUNTAJE" IS
+          PROCEDURE delete_puntaje (pid_persona NUMBER,pid_avistamiento NUMBER);
+          PROCEDURE insert_puntaje (pid_persona NUMBER,pid_avistamiento NUMBER);
+END;
+
+/
+--------------------------------------------------------
 --  DDL for Package PCK_SUBORDEN
 --------------------------------------------------------
 
@@ -1063,6 +1469,16 @@ END;
           PROCEDURE update_tipo (pId NUMBER,pnombre VARCHAR2);
           PROCEDURE insert_tipo (pnombre VARCHAR2);
           FUNCTION tipo_nombre (pId NUMBER) RETURN VARCHAR2;
+END;
+
+/
+--------------------------------------------------------
+--  DDL for Package PCK_UBICACIONES
+--------------------------------------------------------
+
+  CREATE OR REPLACE PACKAGE "BL"."PCK_UBICACIONES" IS
+          PROCEDURE insert_ubicacion (pid_ave NUMBER,pid_canton NUMBER);
+            PROCEDURE delete_ubicacion (pid_ave NUMBER);
 END;
 
 /
@@ -1104,6 +1520,41 @@ END;
               END insert_ave;
               -- ********************************************************* --
               
+ END;
+
+/
+--------------------------------------------------------
+--  DDL for Package Body PCK_AVISTAMIENTO
+--------------------------------------------------------
+
+  CREATE OR REPLACE PACKAGE BODY "BL"."PCK_AVISTAMIENTO" AS
+             -- ********************************************************* --
+              PROCEDURE delete_avistamiento (pId NUMBER) is
+              BEGIN
+                    Delete from avistamiento where id_avistamiento = pId;
+                    Commit;
+              END;
+             -- ********************************************************* --
+              PROCEDURE update_avistamiento (pid_avistamiento number,pid_persona NUMBER,pid_ave NUMBER,platitud NUMBER,plongitud number,pfoto varchar2) is
+              BEGIN
+                    UPDATE avistamiento SET
+                    id_persona = pid_persona,
+                    id_ave = pid_ave,
+                    latitud = platitud,
+                    longitud = plongitud,
+                    foto = pfoto
+                    WHERE id_avistamiento = pid_avistamiento;
+                    Commit;
+              END;
+             -- ********************************************************* --
+              PROCEDURE insert_avistamiento (pid_persona NUMBER,pid_ave NUMBER,platitud NUMBER,plongitud number,pfoto varchar2) is
+              BEGIN
+                    INSERT INTO avistamiento (id_avistamiento,id_persona,id_ave,latitud,longitud,foto)
+                    VALUES (sq_avistamiento.NEXTVAL,pid_persona,pid_ave,platitud,plongitud,pfoto);
+                    Commit;
+              END;
+              -- ********************************************************* --
+
  END;
 
 /
@@ -1611,7 +2062,7 @@ END;
              -- ********************************************************* --
               PROCEDURE update_p (pid_persona NUMBER,pnombre VARCHAR2,papellido VARCHAR2,pemail VARCHAR2,pprofesion VARCHAR2,ptipo NUMBER,pfecha_nacimiento date,pfoto VARCHAR2,puser VARCHAR2,ppass VARCHAR2) is
               BEGIN
-                UPDATE persona SET nombre = pnombre,apellido= papellido,fecha_nacimiento = pfecha_nacimiento,email = pemail,profesion = pprofesion, foto = pfoto
+                UPDATE persona SET nombre = pnombre,apellido= papellido,fecha_nacimiento = pfecha_nacimiento,email = pemail,profesion = pprofesion, foto = pfoto,tipo = ptipo
                 WHERE id_persona = pid_persona;
                 UPDATE usuario SET usuario = puser,contrasena= ppass
                 WHERE id_persona = pid_persona;
@@ -1621,7 +2072,7 @@ END;
               PROCEDURE insert_p (pnombre VARCHAR2,papellido VARCHAR2,pemail VARCHAR2,pprofesion VARCHAR2,ptipo NUMBER,pfecha_nacimiento date,puser VARCHAR2,ppass VARCHAR2) is
               BEGIN
                     INSERT INTO persona (id_persona, nombre,apellido,fecha_nacimiento,email,profesion,tipo) 
-                    VALUES (sq_persona.NEXTVAL,pnombre,papellido,pfecha_nacimiento,pemail,pprofesion,1);
+                    VALUES (sq_persona.NEXTVAL,pnombre,papellido,pfecha_nacimiento,pemail,pprofesion,ptipo);
                     INSERT INTO usuario (id_Usuario,id_persona,usuario,contrasena) VALUES
                     (sq_usuario.nextval,sq_persona.currval,puser,ppass);
                     
@@ -1726,6 +2177,29 @@ END;
 
 /
 --------------------------------------------------------
+--  DDL for Package Body PCK_PUNTAJE
+--------------------------------------------------------
+
+  CREATE OR REPLACE PACKAGE BODY "BL"."PCK_PUNTAJE" AS
+             -- ********************************************************* --
+              PROCEDURE delete_puntaje (pid_persona NUMBER,pid_avistamiento NUMBER) is
+              BEGIN
+                    Delete from puntaje where id_persona = pid_persona and id_avistamiento =pid_avistamiento;
+                    Commit;
+              END;
+
+             -- ********************************************************* --
+              PROCEDURE insert_puntaje (pid_persona NUMBER,pid_avistamiento NUMBER) is
+              BEGIN
+                    INSERT INTO puntaje (id_puntaje,id_persona,id_avistamiento)
+                    VALUES (sq_puntos.NEXTVAL,pid_persona,pid_avistamiento);
+                    Commit;
+              END;
+              -- ********************************************************* --
+ END;
+
+/
+--------------------------------------------------------
 --  DDL for Package Body PCK_SUBORDEN
 --------------------------------------------------------
 
@@ -1824,19 +2298,363 @@ END;
 
 /
 --------------------------------------------------------
---  DDL for Function GET_EMPS
+--  DDL for Package Body PCK_UBICACIONES
 --------------------------------------------------------
 
-  CREATE OR REPLACE FUNCTION "BL"."GET_EMPS" (p_dept in number) return t_persona
-    as
-       l_emps  t_persona;
-    begin
-         for i in (select nombre,apellido from persona ) loop
-                l_emps.EXTEND;
-                l_emps(l_emps.count) := (t_persona(i.nombre, i.apellido)) ;
-       end loop;
-        return l_emps;
-   end;
+  CREATE OR REPLACE PACKAGE BODY "BL"."PCK_UBICACIONES" AS
+             -- ********************************************************* --
+              PROCEDURE delete_ubicacion (pid_ave NUMBER) is
+              BEGIN
+                    Delete from ubicacion where id_ave = pid_ave;
+                    Commit;
+              END;
+
+             -- ********************************************************* --
+              PROCEDURE insert_ubicacion (pid_ave NUMBER,pid_canton NUMBER) is
+              BEGIN
+                    INSERT INTO ubicacion (id_ubicacion,id_ave,id_canton)
+                    VALUES (sq_ubicacion.NEXTVAL,pid_ave,pid_canton);
+                    Commit;
+              END;
+              -- ********************************************************* --
+ END;
+ 
+
+/
+--------------------------------------------------------
+--  DDL for Function GET_AVE
+--------------------------------------------------------
+
+  CREATE OR REPLACE FUNCTION "BL"."GET_AVE" RETURN ave_record
+    AS
+       l_aves  ave_record := ave_record();
+    BEGIN
+         FOR I IN (SELECT ID_AVE, ID_ESPECIE, ID_COLOR, ID_ESTADO, NOMBRE_COMUN, TAMANO, IMAGEN  FROM ave) LOOP
+                l_aves.EXTEND;
+                l_aves(l_aves.COUNT) := (t_ave(i.ID_AVE, i.ID_ESPECIE, i.ID_COLOR, i.ID_ESTADO, i.NOMBRE_COMUN, i.TAMANO, i.IMAGEN)) ;
+       END LOOP;
+        RETURN l_aves;
+END;
+
+/
+--------------------------------------------------------
+--  DDL for Function GET_AVISTAMIENTO
+--------------------------------------------------------
+
+  CREATE OR REPLACE FUNCTION "BL"."GET_AVISTAMIENTO" RETURN avistamiento_record
+    AS
+       l_avistamiento avistamiento_record := avistamiento_record();
+    BEGIN
+         FOR I IN (SELECT ID_AVISTAMIENTO, ID_PERSONA, ID_AVE, LATITUD, LONGITUD,FOTO  FROM avistamiento) LOOP
+                l_avistamiento.EXTEND;
+                l_avistamiento(l_avistamiento.COUNT) := (t_avistamiento(i.ID_AVISTAMIENTO, i.ID_PERSONA, i.ID_AVE, i.LATITUD, i.LONGITUD, i.FOTO)) ;
+       END LOOP;
+        RETURN l_avistamiento;
+END;
+
+/
+--------------------------------------------------------
+--  DDL for Function GET_BITACORA
+--------------------------------------------------------
+
+  CREATE OR REPLACE FUNCTION "BL"."GET_BITACORA" RETURN bitacora_record
+    AS
+       l_bitacoras  bitacora_record := bitacora_record();
+    BEGIN
+         FOR I IN (SELECT ID_BITACORA, ID_USUARIO, CONTRASENA   FROM bitacora) LOOP
+                l_bitacoras.EXTEND;
+                l_bitacoras(l_bitacoras.COUNT) := (t_bitacora(i.ID_BITACORA, i.ID_USUARIO , i.CONTRASENA)) ;
+       END LOOP;
+        RETURN l_bitacoras;
+END;
+
+/
+--------------------------------------------------------
+--  DDL for Function GET_CANTON
+--------------------------------------------------------
+
+  CREATE OR REPLACE FUNCTION "BL"."GET_CANTON" RETURN canton_record
+    AS
+       l_canton canton_record := canton_record();
+    BEGIN
+         FOR I IN (SELECT ID_CANTON, ID_PROVINCIA, NOMBRE FROM canton) LOOP
+                l_canton.EXTEND;
+                l_canton(l_canton.COUNT) := (t_canton(i.ID_CANTON, i.ID_PROVINCIA, i.NOMBRE)) ;
+       END LOOP;
+        RETURN l_canton;
+END;
+
+/
+--------------------------------------------------------
+--  DDL for Function GET_CLASE
+--------------------------------------------------------
+
+  CREATE OR REPLACE FUNCTION "BL"."GET_CLASE" RETURN clase_record
+    AS
+       l_clase  clase_record := clase_record();
+    BEGIN
+         FOR I IN (SELECT ID_CLASE, NOMBRE FROM clase) LOOP
+                l_clase.EXTEND;
+                l_clase(l_clase.COUNT) := (t_clase(i.id_clase, i.nombre)) ;
+       END LOOP;
+        RETURN l_clase;
+END;
+
+/
+--------------------------------------------------------
+--  DDL for Function GET_COLOR
+--------------------------------------------------------
+
+  CREATE OR REPLACE FUNCTION "BL"."GET_COLOR" RETURN color_record
+    AS
+       l_color  color_record := color_record();
+    BEGIN
+         FOR I IN (SELECT ID_COLOR, NOMBRE  FROM color) LOOP
+                l_color.EXTEND;
+                l_color(l_color.COUNT) := (t_color(i.ID_COLOR, i.NOMBRE)) ;
+       END LOOP;
+        RETURN l_color;
+END;
+
+/
+--------------------------------------------------------
+--  DDL for Function GET_CONTINENTE
+--------------------------------------------------------
+
+  CREATE OR REPLACE FUNCTION "BL"."GET_CONTINENTE" RETURN continente_record
+    AS
+       l_continente continente_record := continente_record();
+    BEGIN
+         FOR I IN (SELECT ID_CONTINENTE, NOMBRE FROM continente) LOOP
+                l_continente.EXTEND;
+                l_continente(l_continente.COUNT) := (t_continente(i.ID_CONTINENTE, i.NOMBRE)) ;
+       END LOOP;
+        RETURN l_continente;
+END;
+
+/
+--------------------------------------------------------
+--  DDL for Function GET_ESPECIE
+--------------------------------------------------------
+
+  CREATE OR REPLACE FUNCTION "BL"."GET_ESPECIE" RETURN especie_record
+    AS
+       l_especie especie_record := especie_record();
+    BEGIN
+         FOR I IN (SELECT ID_ESPECIE, ID_GENERO, NOMBRE FROM especie) LOOP
+                l_especie.EXTEND;
+                l_especie(l_especie.COUNT) := (t_especie(i.ID_ESPECIE, i.ID_GENERO, i.NOMBRE)) ;
+       END LOOP;
+        RETURN l_especie;
+END;
+
+/
+--------------------------------------------------------
+--  DDL for Function GET_FAMILIA
+--------------------------------------------------------
+
+  CREATE OR REPLACE FUNCTION "BL"."GET_FAMILIA" RETURN familia_record
+    AS
+       l_familia familia_record := familia_record();
+    BEGIN
+         FOR I IN (SELECT id_familia, id_suborden, nombre FROM familia) LOOP
+                l_familia.EXTEND;
+                l_familia(l_familia.COUNT) := (t_familia(i.id_familia, i.id_suborden, i.nombre)) ;
+       END LOOP;
+        RETURN l_familia;
+END;
+
+/
+--------------------------------------------------------
+--  DDL for Function GET_FOTO
+--------------------------------------------------------
+
+  CREATE OR REPLACE FUNCTION "BL"."GET_FOTO" RETURN foto_record
+    AS
+       l_foto foto_record := foto_record();
+    BEGIN
+         FOR I IN (SELECT id_foto, id_avistamiento, url FROM foto) LOOP
+                l_foto.EXTEND;
+                l_foto(l_foto.COUNT) := (t_foto(i.id_foto, i.id_avistamiento, i.url)) ;
+       END LOOP;
+        RETURN l_foto;
+END;
+
+/
+--------------------------------------------------------
+--  DDL for Function GET_GENERO
+--------------------------------------------------------
+
+  CREATE OR REPLACE FUNCTION "BL"."GET_GENERO" RETURN genero_record
+    AS
+       l_genero  genero_record := genero_record();
+    BEGIN
+         FOR I IN (SELECT id_genero, id_familia, nombre FROM genero) LOOP
+                l_genero.EXTEND;
+                l_genero(l_genero.COUNT) := (t_genero(i.id_genero, i.id_familia, i.nombre)) ;
+       END LOOP;
+        RETURN l_genero;
+END;
+
+/
+--------------------------------------------------------
+--  DDL for Function GET_ORDEN
+--------------------------------------------------------
+
+  CREATE OR REPLACE FUNCTION "BL"."GET_ORDEN" RETURN orden_record
+    AS
+       l_orden  orden_record := orden_record();
+    BEGIN
+         FOR I IN (SELECT ID_ORDEN, ID_CLASE, NOMBRE  FROM orden) LOOP
+                l_orden.EXTEND;
+                l_orden(l_orden.COUNT) := (t_orden(i.ID_ORDEN, i.ID_CLASE, i.NOMBRE)) ;
+       END LOOP;
+        RETURN l_orden;
+END;
+
+/
+--------------------------------------------------------
+--  DDL for Function GET_PAIS
+--------------------------------------------------------
+
+  CREATE OR REPLACE FUNCTION "BL"."GET_PAIS" RETURN pais_record
+    AS
+       l_pais pais_record := pais_record();
+    BEGIN
+         FOR I IN (SELECT ID_PAIS,ID_CONTINENTE, NOMBRE FROM pais) LOOP
+                l_pais.EXTEND;
+                l_pais(l_pais.COUNT) := (t_pais(i.ID_PAIS, i.ID_CONTINENTE, i.NOMBRE)) ;
+       END LOOP;
+        RETURN l_pais;
+END;
+
+/
+--------------------------------------------------------
+--  DDL for Function GET_PARAMETRO
+--------------------------------------------------------
+
+  CREATE OR REPLACE FUNCTION "BL"."GET_PARAMETRO" RETURN parametro_record
+    AS
+       l_parametro parametro_record := parametro_record();
+    BEGIN
+         FOR I IN (SELECT ID_PARAMETRO, NOMBRE, DESCRIPCION FROM parametro) LOOP
+                l_parametro.EXTEND;
+                l_parametro(l_parametro.COUNT) := (t_parametro(i.ID_PARAMETRO, i.NOMBRE, i.DESCRIPCION)) ;
+       END LOOP;
+        RETURN l_parametro;
+END;
+
+/
+--------------------------------------------------------
+--  DDL for Function GET_PERSONA
+--------------------------------------------------------
+
+  CREATE OR REPLACE FUNCTION "BL"."GET_PERSONA" RETURN persona_record
+    AS
+       l_persona persona_record := persona_record();
+    BEGIN
+         FOR I IN (SELECT ID_PERSONA, NOMBRE, APELLIDO, FECHA_NACIMIENTO, EMAIL, PROFESION, TIPO, FOTO FROM persona) LOOP
+                l_persona.EXTEND;
+                l_persona(l_persona.COUNT) := (t_persona(i.ID_PERSONA, i.NOMBRE, i.APELLIDO, i.FECHA_NACIMIENTO, i.EMAIL, i.PROFESION, i.TIPO, i.FOTO)) ;
+       END LOOP;
+        RETURN l_persona;
+END;
+
+/
+--------------------------------------------------------
+--  DDL for Function GET_PROVINCIA
+--------------------------------------------------------
+
+  CREATE OR REPLACE FUNCTION "BL"."GET_PROVINCIA" RETURN provincia_record
+    AS
+       l_provincia  provincia_record := provincia_record();
+    BEGIN
+         FOR I IN (SELECT ID_PROVINCIA, ID_PAIS, NOMBRE FROM provincia) LOOP
+                l_provincia.EXTEND;
+                l_provincia(l_provincia.COUNT) := (t_provincia(i.ID_PROVINCIA, i.ID_PAIS, i.NOMBRE)) ;
+       END LOOP;
+        RETURN l_provincia;
+END;
+
+/
+--------------------------------------------------------
+--  DDL for Function GET_PUNTAJE
+--------------------------------------------------------
+
+  CREATE OR REPLACE FUNCTION "BL"."GET_PUNTAJE" RETURN puntaje_record
+    AS
+       l_puntaje puntaje_record := puntaje_record();
+    BEGIN
+         FOR I IN (SELECT ID_PUNTAJE, ID_AVISTAMIENTO, ID_PERSONA FROM puntaje) LOOP
+                l_puntaje.EXTEND;
+                l_puntaje(l_puntaje.COUNT) := (t_puntaje(i.ID_PUNTAJE, i.ID_AVISTAMIENTO, i.ID_PERSONA)) ;
+       END LOOP;
+        RETURN l_puntaje;
+END;
+
+/
+--------------------------------------------------------
+--  DDL for Function GET_SUBORDEN
+--------------------------------------------------------
+
+  CREATE OR REPLACE FUNCTION "BL"."GET_SUBORDEN" RETURN suborden_record
+    AS
+       l_suborden suborden_record := suborden_record();
+    BEGIN
+         FOR I IN (SELECT ID_SUBORDEN, ID_ORDEN, NOMBRE FROM suborden) LOOP
+                l_suborden.EXTEND;
+                l_suborden(l_suborden.COUNT) := (t_suborden(i.ID_SUBORDEN, i.ID_ORDEN, i.NOMBRE)) ;
+       END LOOP;
+        RETURN l_suborden;
+END;
+
+/
+--------------------------------------------------------
+--  DDL for Function GET_TIPO
+--------------------------------------------------------
+
+  CREATE OR REPLACE FUNCTION "BL"."GET_TIPO" RETURN tipo_record
+    AS
+       l_tipo tipo_record := tipo_record();
+    BEGIN
+         FOR I IN (SELECT ID_TIPO, NOMBRE FROM tipo) LOOP
+                l_tipo.EXTEND;
+                l_tipo(l_tipo.COUNT) := (t_tipo(i.ID_TIPO, i.NOMBRE)) ;
+       END LOOP;
+        RETURN l_tipo;
+END;
+
+/
+--------------------------------------------------------
+--  DDL for Function GET_UBICACION
+--------------------------------------------------------
+
+  CREATE OR REPLACE FUNCTION "BL"."GET_UBICACION" RETURN ubicacion_record
+    AS
+       l_ubicacion  ubicacion_record := ubicacion_record();
+    BEGIN
+         FOR I IN (SELECT ID_UBICACION, ID_AVE, ID_CANTON FROM ubicacion) LOOP
+                l_ubicacion.EXTEND;
+                l_ubicacion(l_ubicacion.COUNT) := (t_ubicacion(i.ID_UBICACION, i.ID_AVE, i.ID_CANTON)) ;
+       END LOOP;
+        RETURN l_ubicacion;
+END;
+
+/
+--------------------------------------------------------
+--  DDL for Function GET_USUARIO
+--------------------------------------------------------
+
+  CREATE OR REPLACE FUNCTION "BL"."GET_USUARIO" RETURN usuario_record
+    AS
+       l_usuario usuario_record := usuario_record();
+    BEGIN
+         FOR I IN (SELECT ID_USUARIO, ID_PERSONA, USUARIO, CONTRASENA FROM usuario) LOOP
+                l_usuario.EXTEND;
+                l_usuario(l_usuario.COUNT) := (t_usuario(i.ID_USUARIO, i.ID_PERSONA, i.USUARIO, i.CONTRASENA)) ;
+       END LOOP;
+        RETURN l_usuario;
+END;
 
 /
 --------------------------------------------------------
@@ -1844,9 +2662,9 @@ END;
 --------------------------------------------------------
 
   ALTER TABLE "BL"."UBICACION" ADD CONSTRAINT "PK_UBICACION" PRIMARY KEY ("ID_UBICACION")
-  USING INDEX PCTFREE 20 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS NOCOMPRESS LOGGING
-  STORAGE( INITIAL 16384 NEXT 16384
-  PCTINCREASE 0)
+  USING INDEX PCTFREE 20 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 16384 NEXT 16384 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "BL_IND"  ENABLE;
 --------------------------------------------------------
 --  Constraints for Table FAMILIA
@@ -1901,9 +2719,9 @@ END;
   ALTER TABLE "BL"."AVISTAMIENTO" MODIFY ("LONGITUD" CONSTRAINT "AVISTAMIENTO_LONGITUD_NN" NOT NULL ENABLE);
  
   ALTER TABLE "BL"."AVISTAMIENTO" ADD CONSTRAINT "PK_AVISTAMIENTO" PRIMARY KEY ("ID_AVISTAMIENTO")
-  USING INDEX PCTFREE 20 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS NOCOMPRESS LOGGING
-  STORAGE( INITIAL 16384 NEXT 16384
-  PCTINCREASE 0)
+  USING INDEX PCTFREE 20 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 16384 NEXT 16384 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "BL_IND"  ENABLE;
  
   ALTER TABLE "BL"."AVISTAMIENTO" MODIFY ("FOTO" NOT NULL ENABLE);
@@ -1965,17 +2783,6 @@ END;
   USING INDEX PCTFREE 20 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
   STORAGE(INITIAL 16384 NEXT 16384 MINEXTENTS 1 MAXEXTENTS 2147483645
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
-  TABLESPACE "BL_IND"  ENABLE;
---------------------------------------------------------
---  Constraints for Table FOTO
---------------------------------------------------------
-
-  ALTER TABLE "BL"."FOTO" MODIFY ("URL" CONSTRAINT "FOTO_URL_NN" NOT NULL ENABLE);
- 
-  ALTER TABLE "BL"."FOTO" ADD CONSTRAINT "PK_FOTO" PRIMARY KEY ("ID_FOTO")
-  USING INDEX PCTFREE 20 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS NOCOMPRESS LOGGING
-  STORAGE( INITIAL 16384 NEXT 16384
-  PCTINCREASE 0)
   TABLESPACE "BL_IND"  ENABLE;
 --------------------------------------------------------
 --  Constraints for Table AVE
@@ -2072,9 +2879,9 @@ END;
 --------------------------------------------------------
 
   ALTER TABLE "BL"."PUNTAJE" ADD CONSTRAINT "PK_PUNTAJE" PRIMARY KEY ("ID_PUNTAJE")
-  USING INDEX PCTFREE 20 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS NOCOMPRESS LOGGING
-  STORAGE( INITIAL 16384 NEXT 16384
-  PCTINCREASE 0)
+  USING INDEX PCTFREE 20 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 16384 NEXT 16384 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "BL_IND"  ENABLE;
 --------------------------------------------------------
 --  Constraints for Table PROVINCIA
@@ -2143,12 +2950,6 @@ END;
 
   ALTER TABLE "BL"."FAMILIA" ADD CONSTRAINT "FK_SUBORDEN_F" FOREIGN KEY ("ID_SUBORDEN")
 	  REFERENCES "BL"."SUBORDEN" ("ID_SUBORDEN") ENABLE;
---------------------------------------------------------
---  Ref Constraints for Table FOTO
---------------------------------------------------------
-
-  ALTER TABLE "BL"."FOTO" ADD CONSTRAINT "FK_AVISTAMIENTO" FOREIGN KEY ("ID_AVISTAMIENTO")
-	  REFERENCES "BL"."AVISTAMIENTO" ("ID_AVISTAMIENTO") ENABLE;
 --------------------------------------------------------
 --  Ref Constraints for Table GENERO
 --------------------------------------------------------

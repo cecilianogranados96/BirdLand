@@ -10,6 +10,7 @@
         <div class="animal-details">
             <div class="container">
                 <div class="row">
+                    <?php if (isset($mensaje)) {echo $mensaje;} ?>
                     <center>
                             <form action="?pag=<?php echo $_GET['pag']; ?>&nuevo=1" method="post" enctype="multipart/form-data" >
                                 <table class="table">

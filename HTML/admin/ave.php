@@ -1,4 +1,7 @@
-        <div class="breadcumb-area eight">
+    
+<script src="http://fabianlindfors.se/multijs/multi.min.js"></script>
+<link rel="stylesheet" type="text/css" href="http://fabianlindfors.se/multijs/multi.min.css">
+<div class="breadcumb-area eight">
             <div class="container">
                 <div class="row">
                     <div class="breadcumb">
@@ -278,7 +281,14 @@
                                         </td>
                                     </tr>
                                     
-                                    
+                                       <tr>
+                                        <td>
+                                            Ubicaciones:
+                                            <select multiple="multiple" name="ubicaciones[]" id="ubicaciones">
+                                                <?php echo $ubicaciones; ?>
+                                            </select>
+                                        </td>
+                                    </tr>
                                     <tr>
                                         <td> 
                                             <center>
@@ -288,6 +298,16 @@
                                     </tr>
                                     
                                          </form>
+                         
+                             	<script>
+                                            var select = document.getElementById( 'ubicaciones' );
+                                            multi( select, {
+                                                search_placeholder: 'Buscar ciudades...',
+                                            });
+                                        </script>
+                         
+                         
+                         
                                     <?php } ?>
                                     
                                     

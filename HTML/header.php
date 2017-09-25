@@ -1,4 +1,4 @@
-<html class="no-js" lang="es">
+<html lang="es">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -33,13 +33,16 @@
                         <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
                             <div class="header-top-right">
                                 <nav>
-                                    <ul> <!--ESTA SECCION PUEDE SERVIR PARA EL PANEL ADMIN-->
+                                    <ul> 
+                                        <?php if(isset($_SESSION['tipo'])) { 
+                                        if($_SESSION['tipo'] == 1) 
+                                        ?> 
                                         <li>
                                           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Reportes<span class="caret"></span></a>
                                            <ul class="dropdown-menu" style="background-color: black;margin-top: -3%;margin-left: 30%;">
-                                              <li><a href="?pag=admin/clase">Aves en peligro</a></li>
-                                              <li><a href="?pag=admin/orden">Bitacora</a></li>
-                                               <li><a href="?pag=admin/clase">Usuarios</a></li>
+                                              <li><a href="?pag=admin/ave_peligro">Aves en peligro</a></li>
+                                              <li><a href="?pag=admin/bitacora">Bitacora</a></li>
+                                               <li><a href="?pag=admin/usuarios">Usuarios</a></li>
                                           </ul>
                                         </li> 
                                         <li>
@@ -48,7 +51,7 @@
                                                 <li><a href="?pag=admin/nueva-ave">Nueva ave</a></li>
                                               <li><a href="?pag=admin/ave">Aves</a></li>
                                               <br>
-                                              <li><a href="?pag=admin/orden">Avistamientos</a></li>
+                                              <li><a href="?pag=admin/avistamientos">Avistamientos</a></li>
                                               
                                           </ul>
                                         </li>  
@@ -75,16 +78,10 @@
                                                
                                           </ul>
                                         </li>  
-                                        
-                                     
-                                   
-                                        
+                                        <?php } ?>
+
                                         <li><a href="#" class="search-icon"><i class="fa fa-search" aria-hidden="true"></i></a></li>
-                                        
                                         <?php echo $login; ?>
-                                        
-                                        
-                                        
                                     </ul>
                                 </nav>
                             </div>

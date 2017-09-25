@@ -79,7 +79,7 @@
                     <section clas="main-container">
                         <div class="container">
                             <center>
-                            <form action="?pag=<?php echo $_GET['pag']; ?>&edit=1" method="POST"  enctype="multipart/form-data">
+                            <form action="?pag=<?php echo $_GET['pag']; ?>&edit=1<?php echo $url; ?>" method="POST"  enctype="multipart/form-data">
                             <div class="row">
                             <div class="form-block">
                      
@@ -133,6 +133,16 @@
                                                 Nueva contraseña:
                                                 <input type="password" class="form-control"  name="pass">
                                             </div>
+                                          
+                                            <div class="form-group" <?php if($_SESSION['tipo'] != 1) { echo "style='display:none;'"; } ?> >
+                                                Tipo:
+                                                <select name="tipo" class="form-group">
+                                                    <option value="1" <?php if($persona['TIPO'] == 1) { echo "selected"; } ?>>Administrador</option>
+                                                    <option value="3" <?php if($persona['TIPO'] == 3) { echo "selected"; } ?>>Usuario</option>
+                                                </select>
+                                            </div>
+                                       
+                                          
                                         </div>
                                      </div>  
                                 </div>

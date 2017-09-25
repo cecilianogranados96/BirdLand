@@ -83,21 +83,26 @@
                     <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 col-md-offset-1">
                         <div class="total-area">
                             
-                           <?php for ($x =0; $x<6;$x++){
+                           <?php 
+                                 
+                        $stid = oci_parse($conn, 'select * from ave ');
+                        oci_execute($stid);
+                        while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
                             echo '
                                 
                             <div class="singla-animal">
                                 <div class="image">
-                                    <a href="single-animal.html"><img src="images/animal/1.png" alt=""></a>
+                                    <a href="?pag=ave-detalle&id='.$row['ID_AVE'].'"><img src="images/aves/'.$row['IMAGEN'].'" ></a>
                                     <div class="overley">
                                         <div class="button">
-                                            <a href="single-details.html">Ver ficha</a>
+                                            <a href="?pag=ave-detalle&id='.$row['ID_AVE'].'">Ver ficha</a>
                                         </div>
                                     </div>
                                 </div>
-                                <h4><a href="single-animal.html">Nombre del ave</a></h4>
+                                <h4><a href="single-animal.html">'.$row['NOMBRE_COMUN'].'</a></h4>
                             </div>';
-                            }
+                        }
+                            
                             ?>
                         </div>
                     </div>
@@ -115,26 +120,37 @@
                     </div>
                 </div>
                 <div class="row">
-                    <?php 
-                        for ($x =0; $x<6;$x++){
-                            echo '
-                                <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">
+    <?php                
+        $stid = oci_parse($conn, " SELECT  id_ave, COUNT(*) cantidad FROM avistamiento WHERE ROWNUM <= 10 GROUP BY id_ave HAVING COUNT(*) > 0  order by cantidad");
+        oci_execute($stid);
+
+        while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
+            
+            
+            $stid1 = oci_parse($conn, "SELECT * from avistamiento inner join ave on ave.id_ave = avistamiento.id_ave WHERE avistamiento.id_ave = ".$row['ID_AVE']." ");
+            oci_execute($stid1);
+            $ave = oci_fetch_array($stid1, OCI_ASSOC+OCI_RETURN_NULLS);
+            
+           echo  ' 
+            
+            <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">
                                     <div class="single-plan">
-                                        <div class="plan-icon">
-                                            <a href="#"><i class="fa fa-clock-o" aria-hidden="true"></i></a>
-                                        </div>
+                                        
+                                         <a href="?pag=ave-detalle&id='.$row['ID_AVE'].'"><img src="images/avistamientos/'.$ave['FOTO'].'" style="width: 200px;height: 150px;" class="img-thumbnail"></a>
+                                            
+                                      
                                         <div class="plan-details">
-                                            <h3><a href="plan.html">Nombre</a></h3>
-                                            <p>Avistamientos: 40</p>
+                                            <h3><a href="plan.html">'.$ave['NOMBRE_COMUN'].'</a></h3>
+                                            <p>Avistamientos: '.$row['CANTIDAD'].'</p>
                                             <div class="read-more">
                                                 <a href="?page=usuarios">Ver mas</a>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            ';
-                        }
-                    ?>
+                                </div>';
+        }
+?>
+
                 </div>
             </div>
         </div>

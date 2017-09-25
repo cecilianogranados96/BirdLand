@@ -1,4 +1,8 @@
-        <div class="breadcumb-area eight">
+                                         
+
+<script src="http://fabianlindfors.se/multijs/multi.min.js"></script>
+<link rel="stylesheet" type="text/css" href="http://fabianlindfors.se/multijs/multi.min.css">
+<div class="breadcumb-area eight">
             <div class="container">
                 <div class="row">
                     <div class="breadcumb">
@@ -25,114 +29,168 @@
                                     
                                     <tr>
                                         <td>
-                                            Clase:
-                                            <select class="form-control" onchange="window.location.href = '?pag=<?php echo $_GET['pag']; ?>&clase='+this.value;">
-                                            <?php
+                                       <center>
+                                                <div style="width: 35%;">
+                                    <?php 
+                                    
+                                    $url_base = "?pag=".$_GET['pag']."";
+                                    
+                                    if(isset($_GET['clase'])){
+                                         $url_base .= "&clase=".$_GET['clase']."";
+                                    }
+                                    if(isset($_GET['orden'])){
+                                         $url_base .= "&orden=".$_GET['orden']."";
+                                    }
+                                    if(isset($_GET['suborden'])){
+                                         $url_base .= "&suborden=".$_GET['suborden']."";
+                                    }
+                                    if(isset($_GET['familia'])){
+                                         
+                                         $url_base .= "&familia=".$_GET['familia']."";
+                                     }
+                                    if(isset($_GET['genero'])){     
+                                         $url_base .= "&genero=".$_GET['genero']."";
+                                     }
+                                      if(isset($_GET['especie'])){
+                                         $url_base .= "&especie=".$_GET['especie']."";
+                                     }
+                                    
+                                    ?>
+                                    
+                                    
+                                    <center>Clase</center>
+                                    <select class="form-control" onchange="window.location.href='<?php echo $url_base; ?>&clase='+this.value;">
+                                    <?php
+                                        echo  '<option value="0">Selecciona una opcion</option>';  
+                                        $stid = oci_parse($conn, 'select * from clase order by nombre');
+                                        oci_execute($stid);
+                                        while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
                                             if(isset($_GET['clase'])){
-                                                $stid = oci_parse($conn, 'select * from clase where id_clase = '.$_GET['clase'].'');
-                                                oci_execute($stid);
-                                                $row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS);
-                                                echo  '<option value="'.$row['ID_CLASE'].'"> '.$row['NOMBRE'].'</option>';                            
+                                                if ($_GET['clase'] == $row['ID_CLASE']){
+                                                    $select = "selected";
+                                                }else{
+                                                    $select = ""; 
+                                                }
                                             }else{
-                                                echo  '<option value="0">Selecciona una opcion</option>';     
+                                                 $select = ""; 
                                             }
-                                            $stid = oci_parse($conn, 'select * from clase order by nombre');
+                                            echo '<option value="'.$row['ID_CLASE'].'" '.$select.'> '.$row['NOMBRE'].'</option>';
+                                        }
+                                    ?>
+                                    </select>
+                                 <center>Orden</center>
+                                    <select onchange="window.location.href='<?php echo $url_base; ?>&orden='+this.value;" class="form-control" <?php if(!isset($_GET['clase'])) {echo "disabled"; }?>>
+                                    <?php
+                                        echo  '<option value="0">Selecciona una opcion</option>';  
+                                         if(isset($_GET['clase'])){
+                                            $stid = oci_parse($conn, 'select * from orden where id_clase = '.$_GET['clase'].' order by nombre');
                                             oci_execute($stid);
                                             while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
-                                               echo   '<option value="'.$row['ID_CLASE'].'"> '.$row['NOMBRE'].'</option>';
+                                                if(isset($_GET['orden'])){
+                                                    if ($_GET['orden'] == $row['ID_ORDEN']){
+                                                        $select = "selected";
+                                                    }else{
+                                                        $select = ""; 
+                                                    }
+                                                }else{
+                                                     $select = ""; 
+                                                }
+                                                echo '<option value="'.$row['ID_ORDEN'].'" '.$select.'> '.$row['NOMBRE'].'</option>';
                                             }
-                                            ?>
-                                            </select>
-                                            Orden
-                                            <select name="selectbasic" class="form-control" <?php if(!isset($_GET['clase'])){ echo "disabled"; $clase = "";} else { $clase = $_GET['clase'];  }?>   onchange="window.location.href = '?pag=<?php echo $_GET['pag']; ?>&orden='+this.value+'&clase=<?php echo $clase; ?>';">
-                                            <?php
-                                            if(isset($_GET['orden'])){
-                                                $stid = oci_parse($conn, 'select * from orden where id_orden = '.$_GET['orden'].'');
-                                                oci_execute($stid);
-                                                $row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS);
-                                                echo  '<option value="'.$row['ID_ORDEN'].'"> '.$row['NOMBRE'].'</option>';                            
-                                            }else{
-                                                echo  '<option value="0">Selecciona una opcion</option>';     
-                                            }
-                                            $stid = oci_parse($conn, 'select * from orden order by nombre');
+                                         }
+                                    ?>
+                                    </select>
+                                <center>SubOrden</center>
+                                    <select onchange="window.location.href='<?php echo $url_base; ?>&suborden='+this.value;" class="form-control" <?php if(!isset($_GET['orden'])) {echo "disabled"; }?>>
+                                    <?php
+                                        echo  '<option value="0">Selecciona una opcion</option>';  
+                                         if(isset($_GET['orden'])){
+                                            $stid = oci_parse($conn, 'select * from suborden where id_orden = '.$_GET['orden'].' order by nombre');
                                             oci_execute($stid);
                                             while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
-                                               echo   '<option value="'.$row['ID_ORDEN'].'"> '.$row['NOMBRE'].'</option>';
+                                                if(isset($_GET['suborden'])){
+                                                    if ($_GET['suborden'] == $row['ID_SUBORDEN']){
+                                                        $select = "selected";
+                                                    }else{
+                                                        $select = ""; 
+                                                    }
+                                                }else{
+                                                     $select = ""; 
+                                                }
+                                                echo '<option value="'.$row['ID_SUBORDEN'].'" '.$select.'> '.$row['NOMBRE'].'</option>';
                                             }
-                                            ?>
-                                            </select>
-                                            SubOrden
-                                            <select name="selectbasic" class="form-control" <?php if(!isset($_GET['orden'])){ echo "disabled"; $orden = "";} else { $orden = $_GET['orden'];  }?>   onchange="window.location.href = '?pag=<?php echo $_GET['pag']; ?>&suborden='+this.value+'&orden=<?php echo $orden; ?>&clase=<?php echo $clase; ?>';">
-                                            <?php
-                                            if(isset($_GET['suborden'])){
-                                                $stid = oci_parse($conn, 'select * from suborden where id_suborden = '.$_GET['suborden'].'');
-                                                oci_execute($stid);
-                                                $row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS);
-                                                echo  '<option value="'.$row['ID_SUBORDEN'].'"> '.$row['NOMBRE'].'</option>';                            
-                                            }else{
-                                                echo  '<option value="0">Selecciona una opcion</option>';     
-                                            }
-                                            $stid = oci_parse($conn, 'select * from suborden order by nombre');
+                                         }
+                                    ?>
+                                    </select>
+                                 <center>Familia</center>
+                                    <select onchange="window.location.href='<?php echo $url_base; ?>&familia='+this.value;" class="form-control" <?php if(!isset($_GET['suborden'])) {echo "disabled"; }?> >
+                                    <?php
+                                        echo  '<option value="0">Selecciona una opcion</option>';  
+                                         if(isset($_GET['suborden'])){
+                                            $stid = oci_parse($conn, 'select * from familia where id_suborden = '.$_GET['suborden'].' order by nombre');
                                             oci_execute($stid);
                                             while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
-                                               echo   '<option value="'.$row['ID_SUBORDEN'].'"> '.$row['NOMBRE'].'</option>';
+                                                if(isset($_GET['familia'])){
+                                                    if ($_GET['familia'] == $row['ID_FAMILIA']){
+                                                        $select = "selected";
+                                                    }else{
+                                                        $select = ""; 
+                                                    }
+                                                }else{
+                                                     $select = ""; 
+                                                }
+                                                echo '<option value="'.$row['ID_FAMILIA'].'" '.$select.'> '.$row['NOMBRE'].'</option>';
                                             }
-                                            ?>
-                                            </select>
-                                            Familia
-                                             <select name="selectbasic" class="form-control" <?php if(!isset($_GET['suborden'])){ echo "disabled"; $suborden = "";} else { $suborden = $_GET['suborden'];  }?>   onchange="window.location.href = '?pag=<?php echo $_GET['pag']; ?>&familia='+this.value+'&suborden=<?php echo $suborden; ?>&orden=<?php echo $orden; ?>&clase=<?php echo $clase; ?>';">
-                                            <?php
-                                            if(isset($_GET['familia'])){
-                                                $stid = oci_parse($conn, 'select * from familia where id_familia = '.$_GET['familia'].'');
-                                                oci_execute($stid);
-                                                $row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS);
-                                                echo  '<option value="'.$row['ID_FAMILIA'].'"> '.$row['NOMBRE'].'</option>';                            
-                                            }else{
-                                                echo  '<option value="0">Selecciona una opcion</option>';     
-                                            }
-                                            $stid = oci_parse($conn, 'select * from familia order by nombre');
+                                         }
+                                    ?>
+                                    </select>
+                                 <center>Genero</center>
+                                    <select onchange="window.location.href='<?php echo $url_base; ?>&genero='+this.value;" class="form-control" <?php if(!isset($_GET['familia'])) {echo "disabled"; }?> >
+                                    <?php
+                                        echo  '<option value="0">Selecciona una opcion</option>';  
+                                         if(isset($_GET['familia'])){
+                                            $stid = oci_parse($conn, 'select * from genero where id_familia = '.$_GET['familia'].' order by nombre');
                                             oci_execute($stid);
                                             while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
-                                               echo   '<option value="'.$row['ID_FAMILIA'].'"> '.$row['NOMBRE'].'</option>';
+                                                if(isset($_GET['genero'])){
+                                                    if ($_GET['genero'] == $row['ID_GENERO']){
+                                                        $select = "selected";
+                                                    }else{
+                                                        $select = ""; 
+                                                    }
+                                                }else{
+                                                     $select = ""; 
+                                                }
+                                                echo '<option value="'.$row['ID_GENERO'].'" '.$select.'> '.$row['NOMBRE'].'</option>';
                                             }
-                                            ?>
-                                            </select>
-                                            Genero:
-                                            <select name="selectbasic" class="form-control" <?php if(!isset($_GET['familia'])){ echo "disabled"; $familia = "";} else { $familia = $_GET['familia'];  }?>   onchange="window.location.href = '?pag=<?php echo $_GET['pag']; ?>&genero='+this.value+'&familia=<?php echo $familia; ?>&suborden=<?php echo $suborden; ?>&orden=<?php echo $orden; ?>&clase=<?php echo $clase; ?>';">
-                                            <?php
-                                            if(isset($_GET['genero'])){
-                                                $stid = oci_parse($conn, 'select * from genero where id_genero = '.$_GET['genero'].'');
-                                                oci_execute($stid);
-                                                $row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS);
-                                                echo  '<option value="'.$row['ID_GENERO'].'"> '.$row['NOMBRE'].'</option>';                            
-                                            }else{
-                                                echo  '<option value="0">Selecciona una opcion</option>';     
-                                            }
-                                            $stid = oci_parse($conn, 'select * from genero order by nombre');
+                                         }
+                                    ?>
+                                    </select>
+                                    
+                                 <center>Especie</center>
+                                      <select onchange="window.location.href='<?php echo $url_base; ?>&especie='+this.value;" class="form-control" <?php if(!isset($_GET['genero'])) {echo "disabled"; }?>>
+                                    <?php
+                                        echo  '<option value="0">Selecciona una opcion</option>';  
+                                         if(isset($_GET['genero'])){
+                                            $stid = oci_parse($conn, 'select * from especie where id_genero = '.$_GET['genero'].' order by nombre');
                                             oci_execute($stid);
                                             while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
-                                               echo   '<option value="'.$row['ID_GENERO'].'"> '.$row['NOMBRE'].'</option>';
+                                                if(isset($_GET['especie'])){
+                                                    if ($_GET['especie'] == $row['ID_ESPECIE']){
+                                                        $select = "selected";
+                                                    }else{
+                                                        $select = ""; 
+                                                    }
+                                                }else{
+                                                     $select = ""; 
+                                                }
+                                                echo '<option value="'.$row['ID_ESPECIE'].'" '.$select.'> '.$row['NOMBRE'].'</option>';
                                             }
-                                            ?>
-                                            </select>
-                                            Especie:
-                                            <select name="especie" class="form-control" <?php if(!isset($_GET['genero'])){ echo "disabled"; $genero = "";} else { $genero = $_GET['genero'];  }?>   onchange="window.location.href = '?pag=<?php echo $_GET['pag']; ?>&especie='+this.value+'&genero=<?php echo $genero; ?>&familia=<?php echo $familia; ?>&suborden=<?php echo $suborden; ?>&orden=<?php echo $orden; ?>&clase=<?php echo $clase; ?>';">
-                                            <?php
-                                            if(isset($_GET['especie'])){
-                                                $stid = oci_parse($conn, 'select * from especie where id_especie = '.$_GET['especie'].'');
-                                                oci_execute($stid);
-                                                $row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS);
-                                                echo  '<option value="'.$row['ID_ESPECIE'].'"> '.$row['NOMBRE'].'</option>';                            
-                                            }else{
-                                                echo  '<option value="0">Selecciona una opcion</option>';     
-                                            }
-                                            $stid = oci_parse($conn, 'select * from especie order by nombre');
-                                            oci_execute($stid);
-                                            while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
-                                               echo   '<option value="'.$row['ID_ESPECIE'].'"> '.$row['NOMBRE'].'</option>';
-                                            }
-                                            ?>
-                                            </select>
+                                         }
+                                    ?>
+                                    </select>
+                                                </div>
+                                                </center>
                                         </td>            
                                     </tr>
                                     
@@ -175,13 +233,23 @@
                                             
                                         </td>
                                     </tr>
-                                      <tr>
+                                    
+                                    <tr>
                                         <td>
                                             Tamaño (CM):
                                             <input  name="tamano" type="number" placeholder="Tamaño del ave" class="form-control" required> 
                                         </td>
                                     </tr>
+                                    <tr>
+                                        <td>
+                                            Ubicaciones:
+                                            <select multiple="multiple" name="ubicaciones[]" id="ubicaciones">
+                                                <?php echo $ubicaciones; ?>
+                                            </select>
+                                        </td>
+                                    </tr>
                                     
+                        
                                     
                                     <tr>
                                         <td> 
@@ -191,6 +259,14 @@
                                         </td>
                                     </tr>
                                     
+              
+                                    	<script>
+                                            var select = document.getElementById( 'ubicaciones' );
+                                            multi( select, {
+                                                search_placeholder: 'Buscar ciudades...',
+                                            });
+                                        </script>
+
                                     
                                     <?php } ?>
                                     

@@ -27,50 +27,27 @@
   <body>
     <div id="map"></div>
     <script>
-      function initMap() {
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom:8,
-          center: {lat: 9.6620154, lng: -83.891521}
-        });
-        var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+var marker;
 
+function initMap() {
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 8,
+    center: {lat: 9.6620154, lng: -83.891521}
+  });
 
-        var markers = locations.map(function(location, i) {
-          return new google.maps.Marker({
-            position: location,
-            label: labels[i % labels.length]
-          });
-        });
-
-        // Add a marker clusterer to manage the markers.
-        var markerCluster = new MarkerClusterer(map, markers,
-            {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
-      }
-      var locations = [
-        {lat: -31.563910, lng: 147.154312},
-        {lat: -33.718234, lng: 150.363181},
-        {lat: -33.727111, lng: 150.371124},
-        {lat: -33.848588, lng: 151.209834},
-        {lat: -33.851702, lng: 151.216968},
-        {lat: -34.671264, lng: 150.863657},
-        {lat: -35.304724, lng: 148.662905},
-        {lat: -36.817685, lng: 175.699196},
-        {lat: -36.828611, lng: 175.790222},
-        {lat: -37.750000, lng: 145.116667},
-        {lat: -37.759859, lng: 145.128708},
-        {lat: -37.765015, lng: 145.133858},
-        {lat: -37.770104, lng: 145.143299},
-        {lat: -37.773700, lng: 145.145187},
-        {lat: -37.774785, lng: 145.137978},
-        {lat: -37.819616, lng: 144.968119},
-        {lat: -38.330766, lng: 144.695692},
-        {lat: -39.927193, lng: 175.053218},
-        {lat: -41.330162, lng: 174.865694},
-        {lat: -42.734358, lng: 147.439506},
-        {lat: -42.734358, lng: 147.501315},
-        {lat: -42.735258, lng: 147.438000},
-        {lat: -43.999792, lng: 170.463352}
-      ]
+    <?php                
+        $stid = oci_parse($conn, " select * from avistamiento inner join ave on avistamiento.ID_AVE = ave.ID_AVE");
+        oci_execute($stid);
+        while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
+            echo '  
+            marker = new google.maps.Marker({
+                map: map,
+                position: {lat: '.$row['LATITUD'].', lng: '.$row['LONGITUD'].'},
+                label: "'.$row['NOMBRE_COMUN'].'"
+              });';
+        }
+    ?> 
+}
     </script>
     <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
     </script>
@@ -92,76 +69,209 @@
                                         <legend>Filtro</legend>
 
 
-                                        <div class="form-group">
-                                          <label class="col-md-4 control-label" for="textinput">Nombre</label>  
+                                       
+
+                                    <?php 
+                                    
+                                    $url_base = "?pag=".$_GET['pag']."";
+                                    
+                                    if(isset($_GET['clase'])){
+                                         $url_base .= "&clase=".$_GET['clase']."";
+                                    }
+                                    if(isset($_GET['orden'])){
+                                         $url_base .= "&orden=".$_GET['orden']."";
+                                    }
+                                    if(isset($_GET['suborden'])){
+                                         $url_base .= "&suborden=".$_GET['suborden']."";
+                                    }
+                                    if(isset($_GET['familia'])){
+                                         
+                                         $url_base .= "&familia=".$_GET['familia']."";
+                                     }
+                                    if(isset($_GET['genero'])){     
+                                         $url_base .= "&genero=".$_GET['genero']."";
+                                     }
+                                      if(isset($_GET['especie'])){
+                                         $url_base .= "&especie=".$_GET['especie']."";
+                                     }
+                                  
+                                    
+                                    ?>
+                                    
+                                     <div class="form-group">
+                                          <label class="col-md-4 control-label" for="textinput">Clase</label>  
                                           <div class="col-md-4">
-                                          <input id="textinput" name="textinput" type="text" placeholder="Nombre del ave" class="form-control input-md">
-                                          </div>
+                                         
+                                    
+                                    <select class="form-control" onchange="window.location.href='<?php echo $url_base; ?>&clase='+this.value+'#map'">
+                                    <?php
+                                        echo  '<option value="0">Selecciona una opcion</option>';  
+                                        $stid = oci_parse($conn, 'select * from clase order by nombre');
+                                        oci_execute($stid);
+                                        while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
+                                            if(isset($_GET['clase'])){
+                                                if ($_GET['clase'] == $row['ID_CLASE']){
+                                                    $select = "selected";
+                                                }else{
+                                                    $select = ""; 
+                                                }
+                                            }else{
+                                                 $select = ""; 
+                                            }
+                                            echo '<option value="'.$row['ID_CLASE'].'" '.$select.'> '.$row['NOMBRE'].'</option>';
+                                        }
+                                    ?>
+                                    </select>
+            </div>
                                         </div>
-
-
-                                        <div class="form-group">
-                                          <label class="col-md-4 control-label" for="selectbasic">Clase</label>
+                                          
+                                             <div class="form-group">
+                                          <label class="col-md-4 control-label" for="textinput">Orden</label>  
                                           <div class="col-md-4">
-                                            <select id="selectbasic" name="selectbasic" class="form-control">
-                                              <option value="1">Option one</option>
-                                              <option value="2">Option two</option>
-                                            </select>
-                                          </div>
-                                        </div>
-
-
-                                        <div class="form-group">
-                                          <label class="col-md-4 control-label" for="selectbasic">Orden</label>
+                                          
+                               
+                                    <select onchange="window.location.href='<?php echo $url_base; ?>&orden='+this.value+'#map'" class="form-control" <?php if(!isset($_GET['clase'])) {echo "disabled"; }?>>
+                                    <?php
+                                        echo  '<option value="0">Selecciona una opcion</option>';  
+                                         if(isset($_GET['clase'])){
+                                            $stid = oci_parse($conn, 'select * from orden where id_clase = '.$_GET['clase'].' order by nombre');
+                                            oci_execute($stid);
+                                            while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
+                                                if(isset($_GET['orden'])){
+                                                    if ($_GET['orden'] == $row['ID_ORDEN']){
+                                                        $select = "selected";
+                                                    }else{
+                                                        $select = ""; 
+                                                    }
+                                                }else{
+                                                     $select = ""; 
+                                                }
+                                                echo '<option value="'.$row['ID_ORDEN'].'" '.$select.'> '.$row['NOMBRE'].'</option>';
+                                            }
+                                         }
+                                    ?>
+                                    </select>
+                                           </div>
+                                        </div>       
+                                                  <div class="form-group">
+                                          <label class="col-md-4 control-label" for="textinput">SubOrden</label>  
                                           <div class="col-md-4">
-                                            <select id="selectbasic" name="selectbasic" class="form-control">
-                                              <option value="1">Option one</option>
-                                              <option value="2">Option two</option>
-                                            </select>
-                                          </div>
+                                         
+                         
+                                    <select onchange="window.location.href='<?php echo $url_base; ?>&suborden='+this.value+'#map'" class="form-control" <?php if(!isset($_GET['orden'])) {echo "disabled"; }?>>
+                                    <?php
+                                        echo  '<option value="0">Selecciona una opcion</option>';  
+                                         if(isset($_GET['orden'])){
+                                            $stid = oci_parse($conn, 'select * from suborden where id_orden = '.$_GET['orden'].' order by nombre');
+                                            oci_execute($stid);
+                                            while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
+                                                if(isset($_GET['suborden'])){
+                                                    if ($_GET['suborden'] == $row['ID_SUBORDEN']){
+                                                        $select = "selected";
+                                                    }else{
+                                                        $select = ""; 
+                                                    }
+                                                }else{
+                                                     $select = ""; 
+                                                }
+                                                echo '<option value="'.$row['ID_SUBORDEN'].'" '.$select.'> '.$row['NOMBRE'].'</option>';
+                                            }
+                                         }
+                                    ?>
+                                    </select>    </div>
                                         </div>
-
-
-                                        <div class="form-group">
-                                          <label class="col-md-4 control-label" for="selectbasic">SubOrden</label>
+                                              
+                                                  <div class="form-group">
+                                          <label class="col-md-4 control-label" for="textinput">Familia</label>  
                                           <div class="col-md-4">
-                                            <select id="selectbasic" name="selectbasic" class="form-control">
-                                              <option value="1">Option one</option>
-                                              <option value="2">Option two</option>
-                                            </select>
-                                          </div>
+                          
+                                    <select onchange="window.location.href='<?php echo $url_base; ?>&familia='+this.value+'#map'" class="form-control" <?php if(!isset($_GET['suborden'])) {echo "disabled"; }?> >
+                                    <?php
+                                        echo  '<option value="0">Selecciona una opcion</option>';  
+                                         if(isset($_GET['suborden'])){
+                                            $stid = oci_parse($conn, 'select * from familia where id_suborden = '.$_GET['suborden'].' order by nombre');
+                                            oci_execute($stid);
+                                            while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
+                                                if(isset($_GET['familia'])){
+                                                    if ($_GET['familia'] == $row['ID_FAMILIA']){
+                                                        $select = "selected";
+                                                    }else{
+                                                        $select = ""; 
+                                                    }
+                                                }else{
+                                                     $select = ""; 
+                                                }
+                                                echo '<option value="'.$row['ID_FAMILIA'].'" '.$select.'> '.$row['NOMBRE'].'</option>';
+                                            }
+                                         }
+                                    ?>
+                                    </select>    </div>
                                         </div>
-
-
-                                        <div class="form-group">
-                                          <label class="col-md-4 control-label" for="selectbasic">Genero</label>
+                                              
+                                              
+                                                  <div class="form-group">
+                                          <label class="col-md-4 control-label" for="textinput">Genero</label>  
                                           <div class="col-md-4">
-                                            <select id="selectbasic" name="selectbasic" class="form-control">
-                                              <option value="1">Option one</option>
-                                              <option value="2">Option two</option>
-                                            </select>
-                                          </div>
+                                         
+                              
+                                    <select onchange="window.location.href='<?php echo $url_base; ?>&genero='+this.value+'#map'" class="form-control" <?php if(!isset($_GET['familia'])) {echo "disabled"; }?> >
+                                    <?php
+                                        echo  '<option value="0">Selecciona una opcion</option>';  
+                                         if(isset($_GET['familia'])){
+                                            $stid = oci_parse($conn, 'select * from genero where id_familia = '.$_GET['familia'].' order by nombre');
+                                            oci_execute($stid);
+                                            while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
+                                                if(isset($_GET['genero'])){
+                                                    if ($_GET['genero'] == $row['ID_GENERO']){
+                                                        $select = "selected";
+                                                    }else{
+                                                        $select = ""; 
+                                                    }
+                                                }else{
+                                                     $select = ""; 
+                                                }
+                                                echo '<option value="'.$row['ID_GENERO'].'" '.$select.'> '.$row['NOMBRE'].'</option>';
+                                            }
+                                         }
+                                    ?>
+                                    </select>    </div>
                                         </div>
-
-
-                                        <div class="form-group">
-                                          <label class="col-md-4 control-label" for="selectbasic">Especie</label>
+                                    
+                                              
+                                                  <div class="form-group">
+                                          <label class="col-md-4 control-label" for="textinput">Especie</label>  
                                           <div class="col-md-4">
-                                            <select id="selectbasic" name="selectbasic" class="form-control">
-                                              <option value="1">Option one</option>
-                                              <option value="2">Option two</option>
-                                            </select>
-                                          </div>
+                                     
+                                      <select onchange="window.location.href='<?php echo $url_base; ?>&especie='+this.value+'#map'" class="form-control" <?php if(!isset($_GET['genero'])) {echo "disabled"; }?>>
+                                    <?php
+                                        echo  '<option value="0">Selecciona una opcion</option>';  
+                                         if(isset($_GET['genero'])){
+                                            $stid = oci_parse($conn, 'select * from especie where id_genero = '.$_GET['genero'].' order by nombre');
+                                            oci_execute($stid);
+                                            while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
+                                                if(isset($_GET['especie'])){
+                                                    if ($_GET['especie'] == $row['ID_ESPECIE']){
+                                                        $select = "selected";
+                                                    }else{
+                                                        $select = ""; 
+                                                    }
+                                                }else{
+                                                     $select = ""; 
+                                                }
+                                                echo '<option value="'.$row['ID_ESPECIE'].'" '.$select.'> '.$row['NOMBRE'].'</option>';
+                                            }
+                                         }
+                                    ?>
+                                    </select>    </div>
                                         </div>
-
+                                                
 
                                         <div class="form-group">
                                             <center>
                                                 <button id="singlebutton" name="singlebutton" class="btn btn-primary">Filtrar</button>
                                             </center>
                                         </div>
-
-                                        </fieldset>
+</div>
                                         </form>
                                   </div>
                                 </div>

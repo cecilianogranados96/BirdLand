@@ -233,22 +233,32 @@
                         
                         
                     
-                        <?php 
-                         $stid = oci_parse($conn, '
-declare 
- 
-v_OutputStr NUMBER;
-vnombre VARCHAR2(100);
-cursor c1 is select id_persona,nombre from persona; 
-begin
-  for i in c1 LOOP
-       dbms_output.put_line(i.id_persona ||','|| i.nombre);
-  END LOOP;
-end;
-
-');
-                                            oci_execute($stid);
-                        $row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS);
+                        
+                        
+                              <button type="button" id="#p7" class="btn btn-default" onclick='votar(1,2,this);' >
+                                    <span class="fa fa-heart" aria-hidden="true"></span> Me gusta
+                              </button>
+                        
+                        
+                        
+                            <script>
+                            function votar(ppersona,pavistamiento,id){
+                                $(id).removeClass("btn-default");
+                                $(id).addClass("btn-danger");
+                                $(id).removeAttr("onclick");
+                                $.post( "?pag=registrar_voto", { persona: ppersona, avistamiento: pavistamiento } );
+                                
+                            }
                             
-                        print_r($row);
-                    ?>
+                            </script>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        

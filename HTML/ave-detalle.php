@@ -7,44 +7,58 @@
                 </div>
             </div>
         </div>
-        <!-- Breadcumb Area End Here -->
-        <!-- Animal Details Area Start Here -->
+  
         <div class="animal-details">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
                         <div class="animal-content">
+                            
                             <div class="statas">
-                                <h1>Status</h1>
+                                <h1>Datos generales</h1>
                                 <ul class="statas-list">
-                                    <li>Avistada</li>
-                                    <li>Estable</li>
-                                    <li>En peligro</li>
+                                    <li><?php echo $ave['NOMBRE_COMUN']; ?></li>
+                                    <li><?php echo $ave['NOMBRE_CIENTIFICO']; ?></li>
+
                                 </ul>
- 
                             </div>
-                            <div class="statas-content">
-                                <h1>Datos tecnicos:</h1>
-                                <ul>
-                                    <li>Clase: <a href="#">Adopt Me</a> </li><br><br>
-                                    <li>Orden: <a href="#">Adopt Me</a> </li><br><br>
-                                    <li>SubOrden: <a href="#">Adopt Me</a> </li><br><br>
-                                    <li>Familia: <a href="#">Adopt Me</a> </li><br><br>
-                                    <li>Genero: <a href="#">Adopt Me</a> </li><br><br>
-                                    <li>Especie: <a href="#">Adopt Me</a> </li>        
+                            <div class="statas">
+                                <h1>Datos tecnicos</h1>
+                                <ul class="statas-list">
+                                    <li>Clase: <?php echo $ave['CLASE']; ?></li>
+                                    <li>Orden: <?php echo $ave['ORDEN']; ?></li><br><br>
+                                    <li>SubOrden: <?php echo $ave['SUBORDEN']; ?></li>
+                                    <li>Familia: <?php echo $ave['FAMILIA']; ?></li><br><br>
+                                    <li>Genero: <?php echo $ave['GENERO']; ?></li>
+                                    <li>Especie: <?php echo $ave['ESPECIE']; ?></li>  
                                 </ul>
-                                <p></p>
                             </div>
+                            <div class="statas">
+                                <h1>Avistamiento</h1>
+                                <center>
+                                    <ul class="statas-list">
+                                        <li><?php echo $ave['TIPO']; ?> </li>
+                                    </ul>
+                                </center>
+                            </div>
+                             <div class="statas">
+                                <h1>Ubicaciones</h1>
+                                <center>
+                                    <ul class="statas-list">
+                                       <?php echo $locaciones; ?>
+                                    </ul>
+                                </center>
+                            </div>
+                            
+          
+                         
                         </div>
                     </div>
                     <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
                         <div class="animal-image">
                             <div class="image">
-                                <img src="images/single-animal.png" alt="">
-                                <div class="image-content">
-                                  <h1>Nombre del ave</h1>
-                                  <h2>Nombre cientifico</h2> 
-                                </div>
+                                <img src="images/aves/<?php echo $ave['IMAGEN']; ?>" alt="">
+                           
                             </div>
                         </div>
                     </div>
@@ -59,83 +73,91 @@
                         <br><br><hr><h2 class="titulo">Fotografias de Avistamientos</h2>
                     </div>
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:3%;">
+                        
                                 <?php 
-                                for ($x =0; $x<6;$x++){
-                                    echo '
+                        
+$stid1 = oci_parse($conn, "
+select avistamiento.foto,avistamiento.id_ave,persona.nombre,persona.apellido,avistamiento.id_avistamiento,avistamiento.id_persona from avistamiento INNER JOIN persona on avistamiento.ID_PERSONA = persona.ID_PERSONA where id_ave = ".$_GET['id']." ");
+oci_execute($stid1);
+        
+while ($row = oci_fetch_array($stid1, OCI_ASSOC+OCI_RETURN_NULLS)) {
+    
+    $stid = oci_parse($conn, "select count(*) total from puntaje where id_avistamiento = ".$row['ID_AVISTAMIENTO']." and id_persona = ".$_SESSION['id_persona']." ");
+    oci_execute($stid);
+    $total = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS);
+
+    $stid = oci_parse($conn, "select count(*) puntos from puntaje where id_avistamiento = ".$row['ID_AVISTAMIENTO']." ");
+    oci_execute($stid);
+    $puntos = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS);
+   
+    if ($total['TOTAL'] >= 1){
+        $datos = 'class="btn btn-danger" onclick="votar('.$_SESSION['id_persona'].','.$row['ID_AVISTAMIENTO'].',this,2);"';
+        $label = '<span class="fa fa-heart" aria-hidden="true"></span> NO GUSTA';
+    }else{
+        $datos = 'class="btn btn-default" onclick="votar('.$_SESSION['id_persona'].','.$row['ID_AVISTAMIENTO'].',this,1);" ';
+        $label = '<span class="fa fa-heart" aria-hidden="true"></span> ME GUSTA';
+    }
+    
+    echo '
                                         <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-4 filter hdpe">
-                                            <img src="http://fakeimg.pl/365x365/" class="img-responsive">
+                                            <img src="images/avistamientos/'.$row['FOTO'].'" class="img-responsive img-thumbnail">
                                              <center>
-                                             <span class="label label-success">Usuario</span>
-                                              <span class="label label-success"> <span class="fa fa-heart" aria-hidden="true"></span> ##</span>
-                                              <div class="btn-toolbar demoPadder" role="toolbar">
-                                                <button type="button" class="btn btn-default">
-                                                  <span class="fa fa-heart" aria-hidden="true"></span>Me gusta</button>
-                                                </div>
+                                             <span class="label label-success">'.$row['NOMBRE'].' '.$row['APELLIDO'].' </span><br><br>
+                                              <span class="label label-success" style="font-size: 120%;"> 
+                                                <span class="fa fa-heart" aria-hidden="true" > '.$puntos['PUNTOS'].'</span> </span>
+                                              <div class="btn-toolbar demoPadder" role="toolbar">';
+                                                if (isset($_SESSION['id_persona'])){
+                                                echo '<button type="button" id="#p'.$row['ID_AVISTAMIENTO'].'" '.$datos.' >'.$label.'</button>';
+                                                }
+                                        echo '</div>
                                              </center>
-                                        </div>   
-                                    '; }?>        
+                                        </div>'; 
+    
+} ?>        
                     </div>
                     <hr>
-                    
-                    
+                    <script>
+                            function votar(ppersona,pavistamiento,id,ptipo){
+                                $.post( "?pag=registrar_voto", { persona: ppersona, avistamiento: pavistamiento , tipo: ptipo } );
+                                if (ptipo == 1){
+                                    $(id).removeClass("btn-default");
+                                    $(id).addClass("btn-danger");
+                                    $(id).attr("onclick","votar("+ppersona+","+pavistamiento+",this,2);");
+                                    $(id).html('<span class="fa fa-heart" aria-hidden="true"></span> NO GUSTA');
 
-                    
-                    
-                    
-                    
-    <script>
-      function initMap() {
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom:8,
-          center: {lat: 9.6620154, lng: -83.891521}
-        });
-        var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                                }else{
+                                    $(id).removeClass("btn-danger");
+                                    $(id).addClass("btn-default");
+                                    $(id).attr("onclick","votar("+ppersona+","+pavistamiento+",this,1);");
+                                    $(id).html('<span class="fa fa-heart" aria-hidden="true"></span> ME GUSTA');   
+                                }   
+                            }
+                    </script>
+                    <script>
+                      function initMap() {
+                        var map = new google.maps.Map(document.getElementById('map'), {
+                          zoom:8,
+                          center: {lat: 9.6620154, lng: -83.891521}
+                        });
+                        var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                        var markers = locations.map(function(location, i) {
+                          return new google.maps.Marker({
+                            position: location,
+                            label: labels[i % labels.length]
+                          });
+                        });
 
-
-        var markers = locations.map(function(location, i) {
-          return new google.maps.Marker({
-            position: location,
-            label: labels[i % labels.length]
-          });
-        });
-
-        // Add a marker clusterer to manage the markers.
-        var markerCluster = new MarkerClusterer(map, markers,
-            {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
-      }
-      var locations = [
-        {lat: -31.563910, lng: 147.154312},
-        {lat: -33.718234, lng: 150.363181},
-        {lat: -33.727111, lng: 150.371124},
-        {lat: -33.848588, lng: 151.209834},
-        {lat: -33.851702, lng: 151.216968},
-        {lat: -34.671264, lng: 150.863657},
-        {lat: -35.304724, lng: 148.662905},
-        {lat: -36.817685, lng: 175.699196},
-        {lat: -36.828611, lng: 175.790222},
-        {lat: -37.750000, lng: 145.116667},
-        {lat: -37.759859, lng: 145.128708},
-        {lat: -37.765015, lng: 145.133858},
-        {lat: -37.770104, lng: 145.143299},
-        {lat: -37.773700, lng: 145.145187},
-        {lat: -37.774785, lng: 145.137978},
-        {lat: -37.819616, lng: 144.968119},
-        {lat: -38.330766, lng: 144.695692},
-        {lat: -39.927193, lng: 175.053218},
-        {lat: -41.330162, lng: 174.865694},
-        {lat: -42.734358, lng: 147.439506},
-        {lat: -42.734358, lng: 147.501315},
-        {lat: -42.735258, lng: 147.438000},
-        {lat: -43.999792, lng: 170.463352}
-      ]
-    </script>
-         <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWqHd142DIknn374Y48LxrttUsgde0g0Q&callback=initMap"> </script>
-
-                    
-                    
+                        // Add a marker clusterer to manage the markers.
+                        var markerCluster = new MarkerClusterer(map, markers,
+                            {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+                      }
+                      var locations = [
+                        <?php echo $ubicaciones; ?>
+                        {lat: 0, lng: 0}
+                      ]
+                    </script>
+                    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+                    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWqHd142DIknn374Y48LxrttUsgde0g0Q&callback=initMap"> </script>  
                 </div>
             </div>
         </div>
-  
-    
