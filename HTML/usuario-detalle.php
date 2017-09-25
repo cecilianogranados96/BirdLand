@@ -14,7 +14,10 @@
                 <div class="row latest-news">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
                         <div class="section-title">  <br><br>
-                            <h2>JOSE ANDRES CECILIANO GRANADOS</h2>
+                            <h2><?php echo $persona['NOMBRE']." ".$persona['APELLIDO'] ; ?></h2>
+                            <?php if(isset($_SESSION['id_persona'])) {
+                                echo '<center><a href="?pag=salir" class="btn btn-warning"> <i class="fa fa-sign-in" aria-hidden="true"></i> Salir: '.$nombre[0].'</a></center><br><br>';
+                            }?>
                         </div>
                     </div>
               
@@ -30,7 +33,10 @@
                 <div class="panel-body">
                     <div class="media">
                         <div align="center">
-                            <img class="thumbnail img-responsive" src="https://lut.im/7JCpw12uUT/mY0Mb78SvSIcjvkf.png" width="300px" height="300px">
+                            <img class="thumbnail img-responsive" src="images/users/<?php echo $persona['FOTO']; ?>" width="300px" height="300px">
+                                <?php if(isset($_SESSION['id_persona'])) {
+                                echo '<p><center><a href="?pag=editar_usuario" class="btn btn-success">Editar perfil de: '.$nombre_largo.'</a></center></p> ';
+                            }?>
                         </div>
                         <div class="media-body">
                             <hr>
@@ -41,10 +47,13 @@
                             <p>##</p>
                             <hr>
                             <h3><strong>Profesion</strong></h3>
-                            <p>Unknown</p>
+                            <p><?php echo $persona['PROFESION']; ?></p>
                             <hr>
                             <h3><strong>Cumpleaños</strong></h3>
-                            <p>January 01 1901</p>
+                            <p><?php echo $persona['FECHA_NACIMIENTO']; ?></p>
+                        
+                          
+                            
                         </div>
                     </div>
                 </div>

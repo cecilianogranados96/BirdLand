@@ -45,8 +45,11 @@
                                         <li>
                                           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Aves<span class="caret"></span></a>
                                           <ul class="dropdown-menu" style="background-color: black;margin-top: -3%;margin-left: 30%;">
-                                                <li><a href="?pag=sponser">Aves</a></li>
+                                                <li><a href="?pag=admin/nueva-ave">Nueva ave</a></li>
+                                              <li><a href="?pag=admin/ave">Aves</a></li>
+                                              <br>
                                               <li><a href="?pag=admin/orden">Avistamientos</a></li>
+                                              
                                           </ul>
                                         </li>  
                                     
@@ -67,6 +70,8 @@
                                               <br>
                                               <li><a href="?pag=admin/color">Color</a></li>
                                               <li><a href="?pag=admin/tipo">Tipo</a></li>
+                                              <br>
+                                               <li><a href="?pag=admin/parametro">Parametros</a></li>
                                                
                                           </ul>
                                         </li>  

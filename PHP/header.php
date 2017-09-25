@@ -1,7 +1,8 @@
 <?php
 
 //#################### Escribe menu ################################
-$array = ["Inicio:index","Mapa:mapa", "Aves:aves","Usuarios:usuarios","Estadisticas:estadisticas", "Contacto:contacto"];
+$array = ["Inicio:index","Mapa:mapa", "Aves:aves","Usuarios:usuarios","Estadisticas:estadisticas"];
+//"Contacto:contacto"
 $menu  = "";
 foreach ($array as $i => $value) {    
     $pag = explode(":", $array[$i]); 
@@ -43,13 +44,13 @@ if(!isset($_SESSION['id_persona'])) {
     $login .= '
 
         <li class="schedule"><a href="?pag=nuevo-avistamiento">
-            <i class="fa fa-sign-in" aria-hidden="true"></i> NUEVO
+            <i class="fa fa-sign-in" aria-hidden="true"></i> Nuevo
         </a></li>
-        <li class="schedule"><a href="?pag=salir">
-            <i class="fa fa-sign-in" aria-hidden="true"></i> Salir: '.$nombre[0].'
-        </a></li>';
+             <li class="schedule"><a href="?pag=usuario-detalle">
+            <i class="fa fa-sign-in" aria-hidden="true"></i> Perfil
+        </a></li>
+       ';
 
 }
-
 
 ?>                             

@@ -503,200 +503,48 @@ CREATE TABLE parametro
 
 -- ************************************************************ --
 
-
-CREATE OR REPLACE PACKAGE pck_clase IS
-          PROCEDURE delete_clase (pId NUMBER);
-          PROCEDURE update_clase (pId NUMBER,pnombre VARCHAR2);
-          PROCEDURE insert_clase (pnombre VARCHAR2);
-          FUNCTION clase_nombre (pId NUMBER) RETURN VARCHAR2;
-END;
-CREATE OR REPLACE PACKAGE BODY pck_clase AS
-             -- ********************************************************* --
-              PROCEDURE delete_clase (pId NUMBER) is
-              BEGIN
-                    Delete from clase where id_clase = pId;
-                    Commit;
-              END delete_clase;
-             -- ********************************************************* --
-              PROCEDURE update_clase (pId NUMBER,pNombre VARCHAR2) is
-              BEGIN
-                    UPDATE clase SET nombre = pNombre WHERE id_clase = pId;
-                    Commit;
-              END update_clase;
-             -- ********************************************************* --
-              PROCEDURE insert_clase (pNombre VARCHAR2) is
-              BEGIN
-                    INSERT INTO clase (id_clase, nombre) VALUES (sq_clase.NEXTVAL,pnombre);
-                    Commit;
-              END insert_clase;
-              -- ********************************************************* --
-              FUNCTION clase_nombre(pId NUMBER) return VARCHAR2 
-              IS
-                    vname varchar2(30);
-              BEGIN
-                    SELECT nombre
-                    INTO vname
-                    from clase
-                    where id_clase = pId;
-                    RETURN(vname);
-              END;
- END pck_clase;
- 
- -- ********************************************************* --
- -- ********************************************************* --
- CREATE OR REPLACE PACKAGE pck_orden IS
-          PROCEDURE delete_orden (pId NUMBER);
-          PROCEDURE update_orden (pId NUMBER,pnombre VARCHAR2,pIdC NUMBER);
-          PROCEDURE insert_orden (pnombre VARCHAR2,pIdC NUMBER);
-          FUNCTION orden_nombre (pId NUMBER) RETURN VARCHAR2;
-          FUNCTION clase_id (pId NUMBER) RETURN VARCHAR2;
-END;
+select ave.id_ave,ave.nombre_comun,genero.nombre genero, especie.nombre especie, familia.nombre familia,suborden.nombre suborden, orden.nombre orden,clase.nombre clase from ave 
+inner join especie on ave.id_especie = especie.id_especie
+inner join genero on especie.id_genero = genero.id_genero
+inner join familia on genero.id_familia = familia.id_familia
+inner join suborden on familia.id_suborden = suborden.id_suborden
+inner join orden on suborden.id_orden = orden.id_orden
+inner join clase on orden.id_clase = clase.id_clase
 
 
-CREATE OR REPLACE PACKAGE BODY pck_orden AS
-             -- ********************************************************* --
-              PROCEDURE delete_orden (pId NUMBER) is
-              BEGIN
-                    Delete from orde where id_orden = pId;
-                    Commit;
-              END;
-             -- ********************************************************* --
-              PROCEDURE update_orden (pId NUMBER,pNombre VARCHAR2,pIdC NUMBER) is
-              BEGIN
-                    UPDATE clase SET nombre = pNombre,id_clase = pIdC WHERE id_clase = pId;
-                    Commit;
-              END;
-             -- ********************************************************* --
-              PROCEDURE insert_orden (pNombre VARCHAR2,pIdC NUMBER) is
-              BEGIN
-                    INSERT INTO clase (id_orden, nombre,id_clase) VALUES (sq_orden.NEXTVAL,pnombre,pIdC);
-                    Commit;
-              END;
-              -- ********************************************************* --
-              FUNCTION orden_nombre(pId NUMBER) return VARCHAR2 
-              IS
-                    vname varchar2(30);
-              BEGIN
-                    SELECT nombre
-                    INTO vname
-                    from orden
-                    where id_orden = pId;
-                    RETURN(vname);
-              END;
-              -- ********************************************************* --
-              FUNCTION clase_id(pId NUMBER) return VARCHAR2 
-              IS
-                    vid NUMBER(11);
-              BEGIN
-                    SELECT id_clase
-                    INTO vid
-                    from orden
-                    where id_orden = pId;
-                    RETURN(vid);
-              END;
- END pck_orden;
 
--- ********************************************************* --
--- ********************************************************* --
+v_OutputStr NUMBER;
+vnombre VARCHAR2(100);
+SELECT id_persona,nombre INTO v_OutputStr,vnomber FROM persona;
+DBMS_OUTPUT.PUT_LINE(v_OutputStr);
 
 
-    
-    
-    
-    
-CREATE OR REPLACE PACKAGE pck_suborden IS
-          PROCEDURE delete_suborden (pId NUMBER);
-          PROCEDURE update_suborden (pId NUMBER,pnombre VARCHAR2,pIdC NUMBER);
-          PROCEDURE insert_suborden (pnombre VARCHAR2,pIdC NUMBER);
-          FUNCTION suborden_nombre (pId NUMBER) RETURN VARCHAR2;
-          FUNCTION orden_id (pId NUMBER) RETURN VARCHAR2;
-          FUNCTION nombre_orden(pId NUMBER) RETURN VARCHAR2; 
-END;
-CREATE OR REPLACE PACKAGE BODY pck_suborden AS
-             -- ********************************************************* --
-              PROCEDURE delete_suborden (pId NUMBER) is
-              BEGIN
-                    Delete from suborden where id_suborden = pId;
-                    Commit;
-              END;
-             -- ********************************************************* --
-              PROCEDURE update_suborden (pId NUMBER,pNombre VARCHAR2,pIdC NUMBER) is
-              BEGIN
-                    UPDATE suborden SET nombre = pNombre,id_clase = pIdC WHERE id_suborden = pId;
-                    Commit;
-              END;
-             -- ********************************************************* --
-              PROCEDURE insert_suborden (pNombre VARCHAR2,pIdC NUMBER) is
-              BEGIN
-                    INSERT INTO suborden (id_suborden, nombre,id_orden) VALUES (sq_suborden.NEXTVAL,pnombre,pIdC);
-                    Commit;
-              END;
-              -- ********************************************************* --
-              FUNCTION orden_nombre(pId NUMBER) return VARCHAR2
-              IS
-                    vname varchar2(30);
-              BEGIN
-                    SELECT nombre
-                    INTO vname
-                    from orden
-                    where id_orden = pId;
-                    RETURN(vname);
-              END;
-             
-              -- ********************************************************* --
-              FUNCTION clase_id(pId NUMBER) return VARCHAR2
-              IS
-                    vid NUMBER(11);
-              BEGIN
-                    SELECT id_clase
-                    INTO vid
-                    from orden
-                    where id_orden = pId;
-                    RETURN(vid);
-              END;
-              -- ********************************************************* --
-              FUNCTION nombre_clase(pId NUMBER) return VARCHAR2
-              IS
-                    vname varchar2(30);
-              BEGIN
-                 SELECT clase.nombre
-                  INTO vname 
-                  FROM orden
-                  INNER JOIN clase ON orden.id_clase = clase.id_clase and orden.id_orden = pId;
-                 RETURN(vname);
-              END;
- END pck_suborden;
 
-    
-    
-    
-    select * from suborden 
-    
-    
-      SELECT orden.nombre
-                  
-                  FROM orden
-                  INNER JOIN suborden ON suborden.id_orden = orden.id_orden and suborden.id_suborden = 23;
-                  
-    commit 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-		
+
+create or replace type t_persona
+(
+nombre varchar2(20)
+, apellido varchar2(20)
+)
+
+create or replace function get_employee (loc in number)
+return t_persona
+as  
+   emp_record t_persona;
+begin
+   select a.first_name, a.last_name, b.department_name into emp_record 
+   from employees a, departments b 
+   where a.department_id=b.department_id and location_id=loc;
+
+   return(emp_record);  
+end;
+
+
+
+
+
+
+
+
+
+

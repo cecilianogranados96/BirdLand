@@ -51,22 +51,25 @@
                     <div class="container">
                         <div class="row">
                             <?php 
-                                for ($x =0; $x<20;$x++){
-                                    echo '
+                              $stid = oci_parse($conn, 'select * from persona order by nombre');
+                                            oci_execute($stid);
+                                            while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
+                                                echo '
                                         <div class="col-xs-2">
                                             <div class="user">
-                                                <img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
+                                                <img class="profile-img" src="images/users/'.$row['FOTO'].'"
                                                 alt="">
-                                                <h3 class="lead" align="center"> <a href="?pag=usuario-detalle">
-                                                    User name
+                                                <h3 class="lead" align="center"> <a href="?pag=usuario-detalle&id='.$row['ID_PERSONA'].'">
+                                                    '.$row['NOMBRE'].' 
                                                 </h3>
                                             </div>
                                         </div>';
-                                }
+                                            }
+                                
                             ?>        
                         </div>
                     </div>
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                   <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
                          <div class="container">
                             <ul class="pagination">
                               <li class="disabled"><a href="#">«</a></li>
@@ -79,6 +82,7 @@
                             </ul>
                         </div>
                     </div>
+-->
                     
                 </div>
             </div>

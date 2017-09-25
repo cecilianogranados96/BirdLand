@@ -15,29 +15,50 @@
                                 <table class="table">
                                     <tr>
                                         <td colspan="3" class="titulo">
-                                            <center><h2>Seleccione el ave</h2></center>
+                                            <center><h2>1- Seleccione el ave</h2></center>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
                                             <center>
                                             <select id="ave" name="ave" class="form-control"  style="width: 35%;">
+                                                <option>Selecciona una opcion</option>
                                                 <?php
-                                                echo $opciones;
+                                                echo $aves;
                                                 ?>
                                             </select>
                                             </center>
                                         </td>
                                     </tr>
+                                    
+                                    <tr>
+                                        <td colspan="3" class="titulo">
+                                            <center><h2>2- Sube una imagen</h2></center>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <center>
+                                                <input type="file" class="form-control" name="foto" style="width: 35%;" required>
+                                            </center>
+                                        </td>
+                                    </tr>
+                                    
+                                    
                                     <td colspan="3" class="titulo">
-                                        <center><h2>Mueva la posicion</h2></center>
+                                        <center><h2>3- Mueva la posicion</h2></center>
                                     </td>
                                     </table>
                                     <div id="map" style="height: 80%;"></div> 
-                     
                                     <input type="text" id="LAT" name="lat" hidden/>
                                     <input type="text" id="LON" name="lon" hidden/>
                                 <br>
+                                
+                  
+                                
+                        <br><br>
+                                
+                                
                                  <center>
                                         <button type="submit" class="btn btn-lg btn-success">Enviar</button>               
                                 </center>
@@ -107,5 +128,5 @@ function toggleBounce() {
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWqHd142DIknn374Y48LxrttUsgde0g0Q&callback=initMap">
     </script>
 
-AIzaSyAWqHd142DIknn374Y48LxrttUsgde0g0Q
+
   

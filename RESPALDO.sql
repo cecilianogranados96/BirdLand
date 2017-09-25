@@ -1,75 +1,23 @@
 --------------------------------------------------------
--- Archivo creado  - viernes-septiembre-22-2017   
+-- Archivo creado  - domingo-septiembre-24-2017   
 --------------------------------------------------------
-DROP TABLE "BL"."AVE" cascade constraints;
-DROP TABLE "BL"."AVISTAMIENTO" cascade constraints;
-DROP TABLE "BL"."BITACORA" cascade constraints;
-DROP TABLE "BL"."CANTON" cascade constraints;
-DROP TABLE "BL"."CLASE" cascade constraints;
-DROP TABLE "BL"."COLOR" cascade constraints;
-DROP TABLE "BL"."CONTINENTE" cascade constraints;
-DROP TABLE "BL"."ESPECIE" cascade constraints;
-DROP TABLE "BL"."ESTADO" cascade constraints;
-DROP TABLE "BL"."FAMILIA" cascade constraints;
-DROP TABLE "BL"."FOTO" cascade constraints;
-DROP TABLE "BL"."GENERO" cascade constraints;
-DROP TABLE "BL"."ORDEN" cascade constraints;
-DROP TABLE "BL"."PAIS" cascade constraints;
-DROP TABLE "BL"."PARAMETRO" cascade constraints;
-DROP TABLE "BL"."PERSONA" cascade constraints;
-DROP TABLE "BL"."PROVINCIA" cascade constraints;
-DROP TABLE "BL"."PUNTAJE" cascade constraints;
-DROP TABLE "BL"."SUBORDEN" cascade constraints;
-DROP TABLE "BL"."TIPO" cascade constraints;
-DROP TABLE "BL"."UBICACION" cascade constraints;
-DROP TABLE "BL"."USUARIO" cascade constraints;
-DROP SEQUENCE "BL"."SQ_AVE";
-DROP SEQUENCE "BL"."SQ_AVISTAMIENTO";
-DROP SEQUENCE "BL"."SQ_BITACORA";
-DROP SEQUENCE "BL"."SQ_CANTON";
-DROP SEQUENCE "BL"."SQ_CLASE";
-DROP SEQUENCE "BL"."SQ_COLOR";
-DROP SEQUENCE "BL"."SQ_CONTINENTE";
-DROP SEQUENCE "BL"."SQ_ESPECIE";
-DROP SEQUENCE "BL"."SQ_FAMILIA";
-DROP SEQUENCE "BL"."SQ_FOTO";
-DROP SEQUENCE "BL"."SQ_GENERO";
-DROP SEQUENCE "BL"."SQ_ORDEN";
-DROP SEQUENCE "BL"."SQ_PAIS";
-DROP SEQUENCE "BL"."SQ_PARAMETRO";
-DROP SEQUENCE "BL"."SQ_PERSONA";
-DROP SEQUENCE "BL"."SQ_PROVINCIA";
-DROP SEQUENCE "BL"."SQ_PUNTOS";
-DROP SEQUENCE "BL"."SQ_SUBORDEN";
-DROP SEQUENCE "BL"."SQ_TIPO";
-DROP SEQUENCE "BL"."SQ_UBICACION";
-DROP SEQUENCE "BL"."SQ_USUARIO";
-DROP PACKAGE "BL"."PCK_CANTON";
-DROP PACKAGE "BL"."PCK_CLASE";
-DROP PACKAGE "BL"."PCK_COLOR";
-DROP PACKAGE "BL"."PCK_CONTINENTE";
-DROP PACKAGE "BL"."PCK_ESPECIE";
-DROP PACKAGE "BL"."PCK_FAMILIA";
-DROP PACKAGE "BL"."PCK_GENERO";
-DROP PACKAGE "BL"."PCK_ORDEN";
-DROP PACKAGE "BL"."PCK_PAIS";
-DROP PACKAGE "BL"."PCK_PERSONA";
-DROP PACKAGE "BL"."PCK_PROVINCIA";
-DROP PACKAGE "BL"."PCK_SUBORDEN";
-DROP PACKAGE "BL"."PCK_TIPO";
-DROP PACKAGE BODY "BL"."PCK_CANTON";
-DROP PACKAGE BODY "BL"."PCK_CLASE";
-DROP PACKAGE BODY "BL"."PCK_COLOR";
-DROP PACKAGE BODY "BL"."PCK_CONTINENTE";
-DROP PACKAGE BODY "BL"."PCK_ESPECIE";
-DROP PACKAGE BODY "BL"."PCK_FAMILIA";
-DROP PACKAGE BODY "BL"."PCK_GENERO";
-DROP PACKAGE BODY "BL"."PCK_ORDEN";
-DROP PACKAGE BODY "BL"."PCK_PAIS";
-DROP PACKAGE BODY "BL"."PCK_PERSONA";
-DROP PACKAGE BODY "BL"."PCK_PROVINCIA";
-DROP PACKAGE BODY "BL"."PCK_SUBORDEN";
-DROP PACKAGE BODY "BL"."PCK_TIPO";
+--------------------------------------------------------
+--  DDL for Type EMP_RECORD
+--------------------------------------------------------
+
+  CREATE OR REPLACE TYPE "BL"."EMP_RECORD" as table of t_persona
+
+/
+--------------------------------------------------------
+--  DDL for Type T_PERSONA
+--------------------------------------------------------
+
+  CREATE OR REPLACE TYPE "BL"."T_PERSONA" AS OBJECT
+(
+nombre varchar2(100), apellido varchar2(100)
+);
+
+/
 --------------------------------------------------------
 --  DDL for Table AVE
 --------------------------------------------------------
@@ -82,8 +30,10 @@ DROP PACKAGE BODY "BL"."PCK_TIPO";
 	"NOMBRE_COMUN" VARCHAR2(100 BYTE), 
 	"TAMANO" VARCHAR2(100 BYTE), 
 	"IMAGEN" VARCHAR2(100 BYTE)
-   ) SEGMENT CREATION DEFERRED 
+   ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "BL_DATA" ;
  
 
@@ -111,7 +61,8 @@ DROP PACKAGE BODY "BL"."PCK_TIPO";
 	"ID_PERSONA" NUMBER(11,0), 
 	"ID_AVE" NUMBER(11,0), 
 	"LATITUD" NUMBER(20,20), 
-	"LONGITUD" NUMBER(20,20)
+	"LONGITUD" NUMBER(20,20), 
+	"FOTO" VARCHAR2(20 BYTE)
    ) SEGMENT CREATION DEFERRED 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
   TABLESPACE "BL_DATA" ;
@@ -126,6 +77,8 @@ DROP PACKAGE BODY "BL"."PCK_TIPO";
    COMMENT ON COLUMN "BL"."AVISTAMIENTO"."LATITUD" IS 'Es la latitud de la localización donde se hizo el avistamiento';
  
    COMMENT ON COLUMN "BL"."AVISTAMIENTO"."LONGITUD" IS 'Es la longitud de la localización donde se hizo el avistamiento';
+ 
+   COMMENT ON COLUMN "BL"."AVISTAMIENTO"."FOTO" IS 'Fotografia del avistamiento';
  
    COMMENT ON TABLE "BL"."AVISTAMIENTO"  IS 'Avistamientos de las aves';
 --------------------------------------------------------
@@ -250,23 +203,6 @@ DROP PACKAGE BODY "BL"."PCK_TIPO";
  
    COMMENT ON TABLE "BL"."ESPECIE"  IS 'Clasificaciones de especies';
 --------------------------------------------------------
---  DDL for Table ESTADO
---------------------------------------------------------
-
-  CREATE TABLE "BL"."ESTADO" 
-   (	"ID_ESTADO" NUMBER(11,0), 
-	"DESCRIPCION" VARCHAR2(100 BYTE)
-   ) SEGMENT CREATION DEFERRED 
-  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
-  TABLESPACE "BL_DATA" ;
- 
-
-   COMMENT ON COLUMN "BL"."ESTADO"."ID_ESTADO" IS 'Identificador único del estado';
- 
-   COMMENT ON COLUMN "BL"."ESTADO"."DESCRIPCION" IS 'Descripción del estado de la población del ave, respecto a su tamaño';
- 
-   COMMENT ON TABLE "BL"."ESTADO"  IS 'Estados posibles de las poblaciones de aves';
---------------------------------------------------------
 --  DDL for Table FAMILIA
 --------------------------------------------------------
 
@@ -381,9 +317,11 @@ DROP PACKAGE BODY "BL"."PCK_TIPO";
   CREATE TABLE "BL"."PARAMETRO" 
    (	"ID_PARAMETRO" NUMBER(11,0), 
 	"NOMBRE" VARCHAR2(100 BYTE), 
-	"DESCRIPCION" LONG RAW
-   ) SEGMENT CREATION DEFERRED 
+	"DESCRIPCION" VARCHAR2(1000 BYTE)
+   ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "BL_DATA" ;
  
 
@@ -405,7 +343,8 @@ DROP PACKAGE BODY "BL"."PCK_TIPO";
 	"FECHA_NACIMIENTO" DATE, 
 	"EMAIL" VARCHAR2(100 BYTE), 
 	"PROFESION" VARCHAR2(100 BYTE), 
-	"TIPO" VARCHAR2(100 BYTE)
+	"TIPO" VARCHAR2(100 BYTE), 
+	"FOTO" VARCHAR2(50 BYTE) DEFAULT 'default.png'
    ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
@@ -560,7 +499,7 @@ DROP PACKAGE BODY "BL"."PCK_TIPO";
 --  DDL for Sequence SQ_AVE
 --------------------------------------------------------
 
-   CREATE SEQUENCE  "BL"."SQ_AVE"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 0 CACHE 20 NOORDER  NOCYCLE ;
+   CREATE SEQUENCE  "BL"."SQ_AVE"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 20 CACHE 20 NOORDER  NOCYCLE ;
 --------------------------------------------------------
 --  DDL for Sequence SQ_AVISTAMIENTO
 --------------------------------------------------------
@@ -585,7 +524,7 @@ DROP PACKAGE BODY "BL"."PCK_TIPO";
 --  DDL for Sequence SQ_COLOR
 --------------------------------------------------------
 
-   CREATE SEQUENCE  "BL"."SQ_COLOR"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 20 CACHE 20 NOORDER  NOCYCLE ;
+   CREATE SEQUENCE  "BL"."SQ_COLOR"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 40 CACHE 20 NOORDER  NOCYCLE ;
 --------------------------------------------------------
 --  DDL for Sequence SQ_CONTINENTE
 --------------------------------------------------------
@@ -625,7 +564,7 @@ DROP PACKAGE BODY "BL"."PCK_TIPO";
 --  DDL for Sequence SQ_PARAMETRO
 --------------------------------------------------------
 
-   CREATE SEQUENCE  "BL"."SQ_PARAMETRO"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 0 CACHE 20 NOORDER  NOCYCLE ;
+   CREATE SEQUENCE  "BL"."SQ_PARAMETRO"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 20 CACHE 20 NOORDER  NOCYCLE ;
 --------------------------------------------------------
 --  DDL for Sequence SQ_PERSONA
 --------------------------------------------------------
@@ -650,7 +589,7 @@ DROP PACKAGE BODY "BL"."PCK_TIPO";
 --  DDL for Sequence SQ_TIPO
 --------------------------------------------------------
 
-   CREATE SEQUENCE  "BL"."SQ_TIPO"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 20 CACHE 20 NOORDER  NOCYCLE ;
+   CREATE SEQUENCE  "BL"."SQ_TIPO"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 40 CACHE 20 NOORDER  NOCYCLE ;
 --------------------------------------------------------
 --  DDL for Sequence SQ_UBICACION
 --------------------------------------------------------
@@ -663,6 +602,8 @@ DROP PACKAGE BODY "BL"."PCK_TIPO";
    CREATE SEQUENCE  "BL"."SQ_USUARIO"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 20 CACHE 20 NOORDER  NOCYCLE ;
 REM INSERTING into BL.AVE
 SET DEFINE OFF;
+Insert into BL.AVE (ID_AVE,ID_ESPECIE,ID_COLOR,ID_ESTADO,NOMBRE_COMUN,TAMANO,IMAGEN) values ('7','8','21','1','NOMBRE COMUN','11','14logo.png');
+Insert into BL.AVE (ID_AVE,ID_ESPECIE,ID_COLOR,ID_ESTADO,NOMBRE_COMUN,TAMANO,IMAGEN) values ('4','9','1','1','NOMBRE','12','14Jose.png');
 REM INSERTING into BL.AVISTAMIENTO
 SET DEFINE OFF;
 REM INSERTING into BL.BITACORA
@@ -673,11 +614,12 @@ Insert into BL.CANTON (ID_CANTON,ID_PROVINCIA,NOMBRE) values ('1','1','Aserri2')
 REM INSERTING into BL.CLASE
 SET DEFINE OFF;
 Insert into BL.CLASE (ID_CLASE,NOMBRE) values ('20','CLASE #2');
-Insert into BL.CLASE (ID_CLASE,NOMBRE) values ('21','CLASE #3');
 Insert into BL.CLASE (ID_CLASE,NOMBRE) values ('5','CLASE #1');
 REM INSERTING into BL.COLOR
 SET DEFINE OFF;
 Insert into BL.COLOR (ID_COLOR,NOMBRE) values ('1','Morado');
+Insert into BL.COLOR (ID_COLOR,NOMBRE) values ('21','Verde');
+Insert into BL.COLOR (ID_COLOR,NOMBRE) values ('20','Azul');
 REM INSERTING into BL.CONTINENTE
 SET DEFINE OFF;
 Insert into BL.CONTINENTE (ID_CONTINENTE,NOMBRE) values ('1','America');
@@ -686,8 +628,6 @@ REM INSERTING into BL.ESPECIE
 SET DEFINE OFF;
 Insert into BL.ESPECIE (ID_ESPECIE,ID_GENERO,NOMBRE) values ('8','1','Especie #1');
 Insert into BL.ESPECIE (ID_ESPECIE,ID_GENERO,NOMBRE) values ('9','2','Especie #2');
-REM INSERTING into BL.ESTADO
-SET DEFINE OFF;
 REM INSERTING into BL.FAMILIA
 SET DEFINE OFF;
 Insert into BL.FAMILIA (ID_FAMILIA,ID_SUBORDEN,NOMBRE) values ('2','24','Familia #1');
@@ -696,22 +636,24 @@ REM INSERTING into BL.FOTO
 SET DEFINE OFF;
 REM INSERTING into BL.GENERO
 SET DEFINE OFF;
-Insert into BL.GENERO (ID_GENERO,ID_FAMILIA,NOMBRE) values ('1','3','Genero #1');
-Insert into BL.GENERO (ID_GENERO,ID_FAMILIA,NOMBRE) values ('2','2','Genero #2');
+Insert into BL.GENERO (ID_GENERO,ID_FAMILIA,NOMBRE) values ('1','2','Genero #1');
+Insert into BL.GENERO (ID_GENERO,ID_FAMILIA,NOMBRE) values ('2','3','Genero #2');
 REM INSERTING into BL.ORDEN
 SET DEFINE OFF;
-Insert into BL.ORDEN (ID_ORDEN,ID_CLASE,NOMBRE) values ('1','21','Orden #1');
+Insert into BL.ORDEN (ID_ORDEN,ID_CLASE,NOMBRE) values ('1','5','Orden #1');
 Insert into BL.ORDEN (ID_ORDEN,ID_CLASE,NOMBRE) values ('2','20','Orden #2');
-Insert into BL.ORDEN (ID_ORDEN,ID_CLASE,NOMBRE) values ('3','5','Orden #3');
 REM INSERTING into BL.PAIS
 SET DEFINE OFF;
 Insert into BL.PAIS (ID_PAIS,ID_CONTINENTE,NOMBRE) values ('2','1','Costa Rica');
 Insert into BL.PAIS (ID_PAIS,ID_CONTINENTE,NOMBRE) values ('4','1','Nicaragua');
 REM INSERTING into BL.PARAMETRO
 SET DEFINE OFF;
+Insert into BL.PARAMETRO (ID_PARAMETRO,NOMBRE,DESCRIPCION) values ('5','Email de cumpleaños','EMAIL
+');
+Insert into BL.PARAMETRO (ID_PARAMETRO,NOMBRE,DESCRIPCION) values ('6','Cantidad por pagina','20');
 REM INSERTING into BL.PERSONA
 SET DEFINE OFF;
-Insert into BL.PERSONA (ID_PERSONA,NOMBRE,APELLIDO,FECHA_NACIMIENTO,EMAIL,PROFESION,TIPO) values ('14','Jose Andres','Ceciliano Granados',to_date('15/11/96','DD/MM/RR'),'cecilianogranados96@hotmail.com','In','1');
+Insert into BL.PERSONA (ID_PERSONA,NOMBRE,APELLIDO,FECHA_NACIMIENTO,EMAIL,PROFESION,TIPO,FOTO) values ('14','Jose Andres','Ceciliano Granados',to_date('15/11/96','DD/MM/RR'),'cecilianogranados96@hotmail.com','In Compu','1','14logo.png');
 REM INSERTING into BL.PROVINCIA
 SET DEFINE OFF;
 Insert into BL.PROVINCIA (ID_PROVINCIA,ID_PAIS,NOMBRE) values ('1','2','San Jose');
@@ -719,11 +661,12 @@ REM INSERTING into BL.PUNTAJE
 SET DEFINE OFF;
 REM INSERTING into BL.SUBORDEN
 SET DEFINE OFF;
-Insert into BL.SUBORDEN (ID_SUBORDEN,ID_ORDEN,NOMBRE) values ('23','1','SubOrden #2');
+Insert into BL.SUBORDEN (ID_SUBORDEN,ID_ORDEN,NOMBRE) values ('23','2','SubOrden #2');
 Insert into BL.SUBORDEN (ID_SUBORDEN,ID_ORDEN,NOMBRE) values ('24','1','SubOrden #1');
 REM INSERTING into BL.TIPO
 SET DEFINE OFF;
 Insert into BL.TIPO (ID_TIPO,NOMBRE) values ('1','En peligro');
+Insert into BL.TIPO (ID_TIPO,NOMBRE) values ('20','Estable');
 REM INSERTING into BL.UBICACION
 SET DEFINE OFF;
 REM INSERTING into BL.USUARIO
@@ -779,9 +722,9 @@ Insert into BL.USUARIO (ID_USUARIO,ID_PERSONA,USUARIO,CONTRASENA) values ('3','1
 --------------------------------------------------------
 
   CREATE UNIQUE INDEX "BL"."PK_PARAMETRO" ON "BL"."PARAMETRO" ("ID_PARAMETRO") 
-  PCTFREE 20 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS NOCOMPRESS LOGGING
-  STORAGE( INITIAL 16384 NEXT 16384
-  PCTINCREASE 0)
+  PCTFREE 20 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 16384 NEXT 16384 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "BL_IND" ;
 --------------------------------------------------------
 --  DDL for Index PK_CONTINENTE
@@ -829,15 +772,6 @@ Insert into BL.USUARIO (ID_USUARIO,ID_PERSONA,USUARIO,CONTRASENA) values ('3','1
   PCTINCREASE 0)
   TABLESPACE "BL_IND" ;
 --------------------------------------------------------
---  DDL for Index PK_ESTADO
---------------------------------------------------------
-
-  CREATE UNIQUE INDEX "BL"."PK_ESTADO" ON "BL"."ESTADO" ("ID_ESTADO") 
-  PCTFREE 20 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS NOCOMPRESS LOGGING
-  STORAGE( INITIAL 16384 NEXT 16384
-  PCTINCREASE 0)
-  TABLESPACE "BL_IND" ;
---------------------------------------------------------
 --  DDL for Index PK_UBICACION
 --------------------------------------------------------
 
@@ -851,9 +785,9 @@ Insert into BL.USUARIO (ID_USUARIO,ID_PERSONA,USUARIO,CONTRASENA) values ('3','1
 --------------------------------------------------------
 
   CREATE UNIQUE INDEX "BL"."PK_AVE" ON "BL"."AVE" ("ID_AVE") 
-  PCTFREE 20 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS NOCOMPRESS LOGGING
-  STORAGE( INITIAL 16384 NEXT 16384
-  PCTINCREASE 0)
+  PCTFREE 20 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 16384 NEXT 16384 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "BL_IND" ;
 --------------------------------------------------------
 --  DDL for Index PK_FAMILIA
@@ -936,6 +870,18 @@ Insert into BL.USUARIO (ID_USUARIO,ID_PERSONA,USUARIO,CONTRASENA) values ('3','1
   STORAGE(INITIAL 16384 NEXT 16384 MINEXTENTS 1 MAXEXTENTS 2147483645
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "BL_IND" ;
+--------------------------------------------------------
+--  DDL for Package PCK_AVE
+--------------------------------------------------------
+
+  CREATE OR REPLACE PACKAGE "BL"."PCK_AVE" IS
+          PROCEDURE delete_ave (pId NUMBER);
+          PROCEDURE update_ave (pid_ave number,pid_color NUMBER,pid_estado NUMBER,pnombre varchar2,ptamano varchar2,pimagen varchar2);
+          PROCEDURE update_ave_especie (pid_ave number,pid_especie NUMBER);
+          PROCEDURE insert_ave (pid_especie NUMBER,pid_color NUMBER,pid_estado NUMBER,pnombre varchar2,ptamano varchar2,pimagen varchar2);
+END;
+
+/
 --------------------------------------------------------
 --  DDL for Package PCK_CANTON
 --------------------------------------------------------
@@ -1057,16 +1003,26 @@ END;
 
 /
 --------------------------------------------------------
+--  DDL for Package PCK_PARAMETRO
+--------------------------------------------------------
+
+  CREATE OR REPLACE PACKAGE "BL"."PCK_PARAMETRO" IS
+          PROCEDURE update_parametro (pid_parametro number,pdescripcion VARCHAR);
+END;
+
+/
+--------------------------------------------------------
 --  DDL for Package PCK_PERSONA
 --------------------------------------------------------
 
   CREATE OR REPLACE PACKAGE "BL"."PCK_PERSONA" IS
           PROCEDURE delete_p (pId NUMBER);
-          PROCEDURE update_p (pId NUMBER,pnombre VARCHAR2,pIdC NUMBER);
+          PROCEDURE update_p (pid_persona NUMBER,pnombre VARCHAR2,papellido VARCHAR2,pemail VARCHAR2,pprofesion VARCHAR2,ptipo NUMBER,pfecha_nacimiento date,pfoto VARCHAR2,puser VARCHAR2,ppass VARCHAR2);
           PROCEDURE insert_p (pnombre VARCHAR2,papellido VARCHAR2,pemail VARCHAR2,pprofesion VARCHAR2,ptipo NUMBER,pfecha_nacimiento date,puser VARCHAR2,ppass VARCHAR2);
           FUNCTION tipo_persona (pusuario VARCHAR2,pcontrasena VARCHAR2) RETURN NUMBER;
           FUNCTION id_persona (pusuario VARCHAR2,pcontrasena VARCHAR2) RETURN NUMBER;
           FUNCTION obtener_nombre (pId NUMBER) RETURN VARCHAR2;
+         
 END;
 
 /
@@ -1108,6 +1064,47 @@ END;
           PROCEDURE insert_tipo (pnombre VARCHAR2);
           FUNCTION tipo_nombre (pId NUMBER) RETURN VARCHAR2;
 END;
+
+/
+--------------------------------------------------------
+--  DDL for Package Body PCK_AVE
+--------------------------------------------------------
+
+  CREATE OR REPLACE PACKAGE BODY "BL"."PCK_AVE" AS
+             -- ********************************************************* --
+              PROCEDURE delete_ave (pId NUMBER) is
+              BEGIN
+                    Delete from ave where id_ave = pId;
+                    Commit;
+              END delete_ave;
+             -- ********************************************************* --
+              PROCEDURE update_ave (pid_ave NUMBER,pid_color NUMBER,pid_estado NUMBER,pnombre varchar2,ptamano varchar2,pimagen varchar2) is
+              BEGIN
+                    UPDATE ave SET
+                    id_color = pid_color,
+                    id_estado = pid_estado,
+                    nombre_comun = pnombre,
+                    tamano = ptamano,
+                    imagen = pimagen
+                    WHERE id_ave = pid_ave;
+                    Commit;
+              END update_ave;
+             -- ********************************************************* --
+              PROCEDURE update_ave_especie (pid_ave NUMBER,pid_especie NUMBER) is
+              BEGIN
+                    UPDATE ave SET id_especie = pid_especie WHERE id_ave = pid_ave;
+                    Commit;
+              END update_ave_especie;
+             -- ********************************************************* --
+              PROCEDURE insert_ave (pid_especie NUMBER,pid_color NUMBER,pid_estado NUMBER,pnombre varchar2,ptamano varchar2,pimagen varchar2) is
+              BEGIN
+                    INSERT INTO ave (id_ave, id_especie,id_color,id_estado,nombre_comun,tamano,imagen) 
+                    VALUES (sq_ave.NEXTVAL,pid_especie,pid_color,pid_estado,pnombre,ptamano,pimagen);
+                    Commit;
+              END insert_ave;
+              -- ********************************************************* --
+              
+ END;
 
 /
 --------------------------------------------------------
@@ -1585,6 +1582,22 @@ END;
 
 /
 --------------------------------------------------------
+--  DDL for Package Body PCK_PARAMETRO
+--------------------------------------------------------
+
+  CREATE OR REPLACE PACKAGE BODY "BL"."PCK_PARAMETRO" AS
+             -- ********************************************************* --
+              PROCEDURE update_parametro (pid_parametro number,pdescripcion VARCHAR) is
+              BEGIN
+                    UPDATE parametro SET
+                    descripcion = pdescripcion
+                    WHERE id_parametro = pid_parametro;
+                    Commit;
+              END update_parametro;
+ END;
+
+/
+--------------------------------------------------------
 --  DDL for Package Body PCK_PERSONA
 --------------------------------------------------------
 
@@ -1596,10 +1609,13 @@ END;
                     Commit;
               END;
              -- ********************************************************* --
-              PROCEDURE update_p (pId NUMBER,pNombre VARCHAR2,pIdC NUMBER) is
+              PROCEDURE update_p (pid_persona NUMBER,pnombre VARCHAR2,papellido VARCHAR2,pemail VARCHAR2,pprofesion VARCHAR2,ptipo NUMBER,pfecha_nacimiento date,pfoto VARCHAR2,puser VARCHAR2,ppass VARCHAR2) is
               BEGIN
-                    UPDATE clase SET nombre = pNombre,id_clase = pIdC WHERE id_clase = pId;
-                    Commit;
+                UPDATE persona SET nombre = pnombre,apellido= papellido,fecha_nacimiento = pfecha_nacimiento,email = pemail,profesion = pprofesion, foto = pfoto
+                WHERE id_persona = pid_persona;
+                UPDATE usuario SET usuario = puser,contrasena= ppass
+                WHERE id_persona = pid_persona;
+                Commit;
               END;
              -- ********************************************************* --
               PROCEDURE insert_p (pnombre VARCHAR2,papellido VARCHAR2,pemail VARCHAR2,pprofesion VARCHAR2,ptipo NUMBER,pfecha_nacimiento date,puser VARCHAR2,ppass VARCHAR2) is
@@ -1643,6 +1659,9 @@ END;
                      
                     RETURN(vpersona);
               END;
+               -- ********************************************************* --
+             
+                         
  END;
 
 /
@@ -1805,6 +1824,22 @@ END;
 
 /
 --------------------------------------------------------
+--  DDL for Function GET_EMPS
+--------------------------------------------------------
+
+  CREATE OR REPLACE FUNCTION "BL"."GET_EMPS" (p_dept in number) return t_persona
+    as
+       l_emps  t_persona;
+    begin
+         for i in (select nombre,apellido from persona ) loop
+                l_emps.EXTEND;
+                l_emps(l_emps.count) := (t_persona(i.nombre, i.apellido)) ;
+       end loop;
+        return l_emps;
+   end;
+
+/
+--------------------------------------------------------
 --  Constraints for Table UBICACION
 --------------------------------------------------------
 
@@ -1870,6 +1905,8 @@ END;
   STORAGE( INITIAL 16384 NEXT 16384
   PCTINCREASE 0)
   TABLESPACE "BL_IND"  ENABLE;
+ 
+  ALTER TABLE "BL"."AVISTAMIENTO" MODIFY ("FOTO" NOT NULL ENABLE);
 --------------------------------------------------------
 --  Constraints for Table ORDEN
 --------------------------------------------------------
@@ -1925,9 +1962,9 @@ END;
   ALTER TABLE "BL"."PARAMETRO" MODIFY ("NOMBRE" CONSTRAINT "PARAMETRO_NOMBRE_NN" NOT NULL ENABLE);
  
   ALTER TABLE "BL"."PARAMETRO" ADD CONSTRAINT "PK_PARAMETRO" PRIMARY KEY ("ID_PARAMETRO")
-  USING INDEX PCTFREE 20 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS NOCOMPRESS LOGGING
-  STORAGE( INITIAL 16384 NEXT 16384
-  PCTINCREASE 0)
+  USING INDEX PCTFREE 20 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 16384 NEXT 16384 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "BL_IND"  ENABLE;
 --------------------------------------------------------
 --  Constraints for Table FOTO
@@ -1951,9 +1988,9 @@ END;
   ALTER TABLE "BL"."AVE" MODIFY ("TAMANO" CONSTRAINT "AVE_TAMANO_NN" NOT NULL ENABLE);
  
   ALTER TABLE "BL"."AVE" ADD CONSTRAINT "PK_AVE" PRIMARY KEY ("ID_AVE")
-  USING INDEX PCTFREE 20 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS NOCOMPRESS LOGGING
-  STORAGE( INITIAL 16384 NEXT 16384
-  PCTINCREASE 0)
+  USING INDEX PCTFREE 20 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 16384 NEXT 16384 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "BL_IND"  ENABLE;
 --------------------------------------------------------
 --  Constraints for Table TIPO
@@ -1989,17 +2026,6 @@ END;
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "BL_IND"  ENABLE;
 --------------------------------------------------------
---  Constraints for Table ESTADO
---------------------------------------------------------
-
-  ALTER TABLE "BL"."ESTADO" MODIFY ("DESCRIPCION" CONSTRAINT "ESTADO_NOMBRE_NN" NOT NULL ENABLE);
- 
-  ALTER TABLE "BL"."ESTADO" ADD CONSTRAINT "PK_ESTADO" PRIMARY KEY ("ID_ESTADO")
-  USING INDEX PCTFREE 20 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS NOCOMPRESS LOGGING
-  STORAGE( INITIAL 16384 NEXT 16384
-  PCTINCREASE 0)
-  TABLESPACE "BL_IND"  ENABLE;
---------------------------------------------------------
 --  Constraints for Table PERSONA
 --------------------------------------------------------
 
@@ -2028,6 +2054,8 @@ END;
   STORAGE(INITIAL 16384 NEXT 16384 MINEXTENTS 1 MAXEXTENTS 2147483645
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "BL_IND"  ENABLE;
+ 
+  ALTER TABLE "BL"."PERSONA" MODIFY ("FOTO" NOT NULL ENABLE);
 --------------------------------------------------------
 --  Constraints for Table GENERO
 --------------------------------------------------------
@@ -2081,7 +2109,7 @@ END;
 	  REFERENCES "BL"."ESPECIE" ("ID_ESPECIE") ENABLE;
  
   ALTER TABLE "BL"."AVE" ADD CONSTRAINT "FK_ESTADO" FOREIGN KEY ("ID_ESTADO")
-	  REFERENCES "BL"."ESTADO" ("ID_ESTADO") ENABLE;
+	  REFERENCES "BL"."TIPO" ("ID_TIPO") ENABLE;
 --------------------------------------------------------
 --  Ref Constraints for Table AVISTAMIENTO
 --------------------------------------------------------
@@ -2121,6 +2149,12 @@ END;
 
   ALTER TABLE "BL"."FOTO" ADD CONSTRAINT "FK_AVISTAMIENTO" FOREIGN KEY ("ID_AVISTAMIENTO")
 	  REFERENCES "BL"."AVISTAMIENTO" ("ID_AVISTAMIENTO") ENABLE;
+--------------------------------------------------------
+--  Ref Constraints for Table GENERO
+--------------------------------------------------------
+
+  ALTER TABLE "BL"."GENERO" ADD CONSTRAINT "FK_FAMILIA" FOREIGN KEY ("ID_FAMILIA")
+	  REFERENCES "BL"."FAMILIA" ("ID_FAMILIA") ENABLE;
 --------------------------------------------------------
 --  Ref Constraints for Table ORDEN
 --------------------------------------------------------

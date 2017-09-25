@@ -503,18 +503,36 @@ CREATE TABLE parametro
 
 -- ************************************************************ --
 
+select ave.id_ave,ave.nombre_comun,genero.nombre genero, especie.nombre especie, familia.nombre familia,suborden.nombre suborden, orden.nombre orden,clase.nombre clase from ave 
+inner join especie on ave.id_especie = especie.id_especie
+inner join genero on especie.id_genero = genero.id_genero
+inner join familia on genero.id_familia = familia.id_familia
+inner join suborden on familia.id_suborden = suborden.id_suborden
+inner join orden on suborden.id_orden = orden.id_orden
+inner join clase on orden.id_clase = clase.id_clase
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-		
+
+
+
+
+create or replace type t_persona AS OBJECT
+(
+nombre varchar2(100), apellido varchar2(100)
+);
+  
+create or replace type emp_record as table of t_persona;
+
+create or replace function get_emps (p_dept in number) return emp_record
+    as
+       l_emps  emp_record := emp_record();
+    begin
+         for i in (select nombre,apellido from persona ) loop
+                l_emps.EXTEND;
+                l_emps(l_emps.count) := (t_persona(i.nombre, i.apellido)) ;
+       end loop;
+        return l_emps;
+   end;
+  
+select * from table(get_emps(1));
+
+

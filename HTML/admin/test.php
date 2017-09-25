@@ -1,22 +1,16 @@
-        <div class="breadcumb-area two twooo">
-                <div class="breadcumb-two-overlay">
-                    <div class="container">
-                        <div class="row">
-                            <div class="breadcumb">
-                                <center><h2>Aves</h2></center>
-                            </div>
-                        </div>
+         <div class="breadcumb-area eight">
+            <div class="container">
+                <div class="row">
+                    <div class="breadcumb">
+                        <center><h2>Nuevo Avistamiento</h2></center>
                     </div>
                 </div>
+            </div>
         </div>
-        <div class="our-video-content-area">
+        <div class="animal-details">
             <div class="container">
-                <div class="row latest-news">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
-                        <div class="section-title">  <br><br>
-                            <h2>Filtrar aves</h2>
-                        </div>
-                    </div>
+                <div class="row">
+                    
                     
                     
                     <form action="" method="post" enctype="multipart/form-data">
@@ -234,82 +228,27 @@
                                     
                             </tr>
                         </table>
+                        
+                        
+                        
+                        
                     
+                        <?php 
+                         $stid = oci_parse($conn, '
+declare 
+ 
+v_OutputStr NUMBER;
+vnombre VARCHAR2(100);
+cursor c1 is select id_persona,nombre from persona; 
+begin
+  for i in c1 LOOP
+       dbms_output.put_line(i.id_persona ||','|| i.nombre);
+  END LOOP;
+end;
 
-                    
-                    <?php
-                        $consulta = "";
-                        if (isset($_GET['clase'])){
-                            $consulta .= "clase = ".$_GET['clase']." ";
-                        }
-                        if (isset($_GET['orden'])){
-                                $consulta .= "and orden = ".$_GET['orden']." ";
-                            }
-                        if (isset($_GET['suborden'])){
-                                $consulta .= "and suborden = ".$_GET['suborden']." ";
-                            }
-                        if (isset($_GET['familia'])){
-                                $consulta .= "and familia = ".$_GET['familia']." ";
-                            }
-                        if (isset($_GET['genero'])){
-                                $consulta .= "and genero = ".$_GET['genero']." ";
-                            }
-                        if (isset($_GET['especie'])){
-                                $consulta .= "and especie = ".$_GET['especie']." ";
-                            }
-                            echo $consulta;
-                    
-                        
-                        
-                        
-                        
-                        $stid = oci_parse($conn, 'select * from ave');
-                        oci_execute($stid);
-                        while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
-                            echo '
-                                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                                    <div class="single-news-area">
-                                        <div class="media">
-                                          <div class="media-body">
-                                            <center>
-                                                <h4 class="media-heading">
-                                                    <a href="?pag=ave-detalle&id='.$row['ID_AVE'].'">'.$row['NOMBRE_COMUN'].'</a>
-                                                </h4>
-                                                <a href="?pag=ave-detalle">
-                                                  <img class="media-object" src="images/aves/'.$row['IMAGEN'].'">
-                                                </a>
-                                                <br>
-                                                <div class="read-more">
-                                                    <a href="?pag=ave-detalle&id='.$row['ID_AVE'].'">Ver Ficha</a>
-                                                </div>
-                                              </center>
-                                          </div>
-                                        </div>
-                                    </div>
-                                </div>';
-                        }
-                        
-                        
-                        
-                                
-                    
+');
+                                            oci_execute($stid);
+                        $row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS);
+                            
+                        print_r($row);
                     ?>
-                    <!--                
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
-                         <div class="container">
-                            <ul class="pagination">
-                              <li class="disabled"><a href="#">«</a></li>
-                              <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-                              <li><a href="#">2</a></li>
-                              <li><a href="#">3</a></li>
-                              <li><a href="#">4</a></li>
-                              <li><a href="#">5</a></li>
-                              <li><a href="#">»</a></li>
-                            </ul>
-                        </div>
-                    </div>
--->
-                    
-                
-            </div>
-        </div>
