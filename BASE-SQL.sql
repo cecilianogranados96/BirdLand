@@ -592,17 +592,15 @@ CREATE OR REPLACE PACKAGE BODY pck_ubicaciones AS
   -- ********************************************************* --
   -- ********************************************************* --
   -- ********************************************************* --
-select * from puntaje
+select ave.id_ave,ave.nombre_comun,genero.nombre ||' ' || nombre_cientifico
+from ave 
+inner join especie on ave.id_especie = especie.id_especie
+inner join genero on especie.id_genero = genero.id_genero
+inner join familia on genero.id_familia = familia.id_familia
+inner join suborden on familia.id_suborden = suborden.id_suborden
+inner join orden on suborden.id_orden = orden.id_orden
+inner join clase on orden.id_clase = clase.id_clase 
+inner join tipo on ave.id_estado = tipo.id_tipo
+inner join avistamiento on ave.id_ave = avistamiento.id_ave
 
-
-
-SELECT  id_puntaje, COUNT(*) id_persona FROM puntaje 
-WHERE ROWNUM <= 10 GROUP BY id_puntaje HAVING COUNT(*) > 0  order by id_persona
-
-
-
-
-
-
-
-
+ 

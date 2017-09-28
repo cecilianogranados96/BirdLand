@@ -67,7 +67,11 @@ body {
     margin-bottom: 60px;
     position: relative;
 }
-
+.traductor{
+    position: absolute;
+    margin-left: 5%;
+    
+}
 .profile-img
 {
     width: 96px;

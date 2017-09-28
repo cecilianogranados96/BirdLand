@@ -43,7 +43,7 @@ oci_execute($stid);
 
 }
 
-$stid = oci_parse($conn, 'select * from canton');
+$stid = oci_parse($conn, 'select * from canton order by id_provincia,nombre');
 oci_execute($stid);
 $filas = "";
 while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {

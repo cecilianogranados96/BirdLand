@@ -1,100 +1,79 @@
-        <div class="breadcumb-area two twooo">
-                <div class="breadcumb-two-overlay">
-                    <div class="container">
-                        <div class="row">
-                            <div class="breadcumb">
-                                <center><h2>Aves</h2></center>
-                            </div>
-                        </div>
-                    </div>
+<div class="breadcumb-area two twooo">
+    <div class="breadcumb-two-overlay">
+        <div class="container">
+            <div class="row">
+                <div class="breadcumb">
+                    <center>
+                        <h2>Aves</h2>
+                    </center>
                 </div>
+            </div>
         </div>
-        <div class="our-video-content-area">
-            <div class="container">
-                <div class="row latest-news">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
-                        <div class="section-title">  <br><br>
-                            <h2>Filtrar aves</h2>
-                        </div>
-                    </div>
-                    
-                    
-                    <form action="" method="post" enctype="multipart/form-data">
-                        <table class="table">           
-                               <tr>
-                                    <td>
-                                        <center>
-                                            <label class="col-md-4 control-label" for="selectbasic">Nombre</label>
-                                        </center>
-                                    </td>
-                                    <td>
-                                        <center>
-                                            <label class="col-md-4 control-label" for="selectbasic">Clase</label>
-                                        </center>
-                                    </td>
-                                    <td>
-                                        <center>
-                                            <label class="col-md-4 control-label" for="selectbasic">Orden</label>
-                                        </center>
-                                    </td>
-                                    <td>
-                                        <center>
-                                            <label class="col-md-4 control-label" for="selectbasic">SubOrden</label>
-                                        </center>
-                                    </td>
-                                    <td>
-                                        <center>
-                                            <label class="col-md-4 control-label" for="selectbasic">Familia</label>
-                                        </center>
-                                    </td>
-                                    <td>
-                                        <center>
-                                            <label class="col-md-4 control-label" for="selectbasic">Genero</label>
-                                        </center>
-                                    </td>
-                                    <td>
-                                        <center>
-                                            <label class="col-md-4 control-label" for="selectbasic">Especie</label>
-                                        </center>
-                                    </td>
-                            </tr>
-                                <tr>
-                                <td>
-                                    <input id="textinput" name="textinput" type="text" placeholder="Nombre del ave" class="form-control input-md">
-                                </td>
-                                <td>
+    </div>
+</div>
+<div class="our-video-content-area">
+    <div class="container">
+        <div class="row latest-news">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                <div class="section-title"> <br><br>
+                    <h2>Filtrar aves</h2>
+                </div>
+            </div>
 
-                                    
-                                    
-                                    <?php 
-                                    
-                                    $url_base = "?pag=".$_GET['pag']."";
-                                    
-                                    if(isset($_GET['clase'])){
-                                         $url_base = "?pag=".$_GET['pag']."&clase=".$_GET['clase']."";
-                                    }
-                                    if(isset($_GET['orden'])){
-                                         $url_base = "?pag=".$_GET['pag']."&clase=".$_GET['clase']."&orden=".$_GET['orden']."";
-                                    }
-                                    if(isset($_GET['suborden'])){
-                                         $url_base = "?pag=".$_GET['pag']."&clase=".$_GET['clase']."&orden=".$_GET['orden']."&suborden=".$_GET['suborden']."";
-                                    }
-                                    if(isset($_GET['familia'])){
-                                         
-                                         $url_base = "?pag=".$_GET['pag']."&clase=".$_GET['clase']."&orden=".$_GET['orden']."&suborden=".$_GET['suborden']."&familia=".$_GET['familia']."";
-                                     }
-                                    if(isset($_GET['genero'])){     
-                                         $url_base = "?pag=".$_GET['pag']."&clase=".$_GET['clase']."&orden=".$_GET['orden']."&suborden=".$_GET['suborden']."&familia=".$_GET['familia']."&genero=".$_GET['genero']."";
-                                     }
-                                      if(isset($_GET['especie'])){
-                                         $url_base = "?pag=".$_GET['pag']."&clase=".$_GET['clase']."&orden=".$_GET['orden']."&suborden=".$_GET['suborden']."&familia=".$_GET['clase']."&genero=".$_GET['genero']."&especie=".$_GET['especie']."";
-                                     }
-                                    
-                                    ?>
-                                    
-                                    
-                                  
-                                    <select class="form-control" onchange="window.location.href='<?php echo $url_base; ?>&clase='+this.value;">
+            <form action="" method="post" enctype="multipart/form-data">
+                <table class="table">
+                    <tr>
+                        <!--<td>
+                            <center>
+                                <label class="col-md-4 control-label" for="selectbasic"><center>Nombre</center></label>
+                            </center>
+                        </td>-->
+                        <td>
+                            <center>
+                                <label class="col-md-4 control-label" for="selectbasic"><center>Clase</center></label>
+                            </center>
+                        </td>
+                        <td>
+                            <center>
+                                <label class="col-md-4 control-label" for="selectbasic"><center>Orden</center></label>
+                            </center>
+                        </td>
+                        <td>
+                            <center>
+                                <label class="col-md-4 control-label" for="selectbasic"><center>SubOrden</center></label>
+                            </center>
+                        </td>
+                        <td>
+                            <center>
+                                <label class="col-md-4 control-label" for="selectbasic"><center>Familia</center></label>
+                            </center>
+                        </td>
+                        <td>
+                            <center>
+                                <label class="col-md-4 control-label" for="selectbasic"><center>Genero</center></label>
+                            </center>
+                        </td>
+                        <td>
+                            <center>
+                                <label class="col-md-4 control-label" for="selectbasic"><center>Especie</center></label>
+                            </center>
+                        </td>
+                        <td>
+                            <center>
+                                <label class="col-md-4 control-label" for="selectbasic"><center>Tamaño</center></label>
+                            </center>
+                        </td>
+                    </tr>
+                    <tr>
+                        <!--<td>
+                            <input id="textinput" name="textinput" type="text" placeholder="Nombre del ave" class="form-control input-md">
+                        </td>-->
+                        
+                        <td>
+                
+
+
+                            <select class="form-control" onchange="window.location.href='<?php echo $url_base; ?>&clase='+this.value;">
                                     <?php
                                         echo  '<option value="0">Selecciona una opcion</option>';  
                                         $stid = oci_parse($conn, 'select * from clase order by nombre');
@@ -113,9 +92,9 @@
                                         }
                                     ?>
                                     </select>
-                                </td>
-                                <td>
-                                    <select onchange="window.location.href='<?php echo $url_base; ?>&orden='+this.value;" class="form-control" <?php if(!isset($_GET['clase'])) {echo "disabled"; }?>>
+                        </td>
+                        <td>
+                            <select onchange="window.location.href='<?php echo $url_base; ?>&orden='+this.value;" class="form-control" <?php if(!isset($_GET[ 'clase'])) {echo "disabled"; }?>>
                                     <?php
                                         echo  '<option value="0">Selecciona una opcion</option>';  
                                          if(isset($_GET['clase'])){
@@ -136,9 +115,9 @@
                                          }
                                     ?>
                                     </select>
-                                </td>
-                                <td>
-                                    <select onchange="window.location.href='<?php echo $url_base; ?>&suborden='+this.value;" class="form-control" <?php if(!isset($_GET['orden'])) {echo "disabled"; }?>>
+                        </td>
+                        <td>
+                            <select onchange="window.location.href='<?php echo $url_base; ?>&suborden='+this.value;" class="form-control" <?php if(!isset($_GET[ 'orden'])) {echo "disabled"; }?>>
                                     <?php
                                         echo  '<option value="0">Selecciona una opcion</option>';  
                                          if(isset($_GET['orden'])){
@@ -159,9 +138,9 @@
                                          }
                                     ?>
                                     </select>
-                                </td>
-                                <td>
-                                    <select onchange="window.location.href='<?php echo $url_base; ?>&familia='+this.value;" class="form-control" <?php if(!isset($_GET['suborden'])) {echo "disabled"; }?> >
+                        </td>
+                        <td>
+                            <select onchange="window.location.href='<?php echo $url_base; ?>&familia='+this.value;" class="form-control" <?php if(!isset($_GET[ 'suborden'])) {echo "disabled"; }?> >
                                     <?php
                                         echo  '<option value="0">Selecciona una opcion</option>';  
                                          if(isset($_GET['suborden'])){
@@ -182,9 +161,9 @@
                                          }
                                     ?>
                                     </select>
-                                </td>
-                                <td>
-                                    <select onchange="window.location.href='<?php echo $url_base; ?>&genero='+this.value;" class="form-control" <?php if(!isset($_GET['familia'])) {echo "disabled"; }?> >
+                        </td>
+                        <td>
+                            <select onchange="window.location.href='<?php echo $url_base; ?>&genero='+this.value;" class="form-control" <?php if(!isset($_GET[ 'familia'])) {echo "disabled"; }?> >
                                     <?php
                                         echo  '<option value="0">Selecciona una opcion</option>';  
                                          if(isset($_GET['familia'])){
@@ -205,11 +184,9 @@
                                          }
                                     ?>
                                     </select>
-                                    
-                                    
-                                </td>
-                                <td>
-                                      <select onchange="window.location.href='<?php echo $url_base; ?>&especie='+this.value;" class="form-control" <?php if(!isset($_GET['genero'])) {echo "disabled"; }?>>
+                        </td>
+                        <td>
+                            <select onchange="window.location.href='<?php echo $url_base; ?>&especie='+this.value;" class="form-control" <?php if(!isset($_GET[ 'genero'])) {echo "disabled"; }?>>
                                     <?php
                                         echo  '<option value="0">Selecciona una opcion</option>';  
                                          if(isset($_GET['genero'])){
@@ -230,41 +207,37 @@
                                          }
                                     ?>
                                     </select>
-                                </td>
-                                    
-                            </tr>
-                        </table>
-                    
-
-                    
-                    <?php
-                        $consulta = "";
-                        if (isset($_GET['clase'])){
-                            $consulta .= "clase = ".$_GET['clase']." ";
-                        }
-                        if (isset($_GET['orden'])){
-                                $consulta .= "and orden = ".$_GET['orden']." ";
-                            }
-                        if (isset($_GET['suborden'])){
-                                $consulta .= "and suborden = ".$_GET['suborden']." ";
-                            }
-                        if (isset($_GET['familia'])){
-                                $consulta .= "and familia = ".$_GET['familia']." ";
-                            }
-                        if (isset($_GET['genero'])){
-                                $consulta .= "and genero = ".$_GET['genero']." ";
-                            }
-                        if (isset($_GET['especie'])){
-                                $consulta .= "and especie = ".$_GET['especie']." ";
-                            }
-                            echo $consulta;
-                    
-                        
-                        
-                        
-                        
-                        $stid = oci_parse($conn, 'select * from ave');
+                        </td>
+                        <td style="width:19%">
+                            <div class="col-md-5">
+                                <input type="num" name="t1" class="form-control" placeholder="Min" onchange="window.location.href='<?php echo $url_base; ?>&min='+this.value+'#map'" <?php if(isset($_GET[ 'min'])){ echo 'value="'.$_GET[ 'min']. '"';}?>>
+                            </div>
+                            <div class="col-md-2">
+                                <center>y</center>
+                            </div>
+                            <div class="col-md-5">
+                                <input type="num" name="t1" class="form-control" placeholder="Max" onchange="window.location.href='<?php echo $url_base; ?>&max='+this.value+'#map'" <?php if(isset($_GET[ 'max'])){ echo 'value="'.$_GET[ 'max']. '"';}?>>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
+                <?php
+ 
+                               
+                        $stid = oci_parse($conn, "select ave.id_ave,ave.imagen,ave.nombre_comun,genero.nombre ||' ' || especie.nombre nombre_cientifico, avistamiento.latitud,avistamiento.longitud
+                        from avistamiento
+                        inner join ave on ave.id_ave = avistamiento.id_ave
+                        inner join especie on ave.id_especie = especie.id_especie
+                        inner join genero on especie.id_genero = genero.id_genero
+                        inner join familia on genero.id_familia = familia.id_familia
+                        inner join suborden on familia.id_suborden = suborden.id_suborden
+                        inner join orden on suborden.id_orden = orden.id_orden
+                        inner join clase on orden.id_clase = clase.id_clase 
+                        inner join tipo on ave.id_estado = tipo.id_tipo ".$where." ");
                         oci_execute($stid);
+  
+                echo "<center><h2>Registros: ".oci_num_rows($stid)."</h2></center>";
                         while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
                             echo '
                                 <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
@@ -276,23 +249,18 @@
                                                     <a href="?pag=ave-detalle&id='.$row['ID_AVE'].'">'.$row['NOMBRE_COMUN'].'</a>
                                                 </h4>
                                                 <a href="?pag=ave-detalle&id='.$row['ID_AVE'].'">
-                                                  <img class="media-object" src="images/aves/'.$row['IMAGEN'].'">
+                                                  <img class="media-object" src="images/aves/'.$row['IMAGEN'].'" style="width: 200px;height: 170px;">
                                                 </a>
                                                 <br>
                                                 <div class="read-more">
-                                                    <a href="?pag=ave-detalle&id='.$row['ID_AVE'].'">Ver Ficha</a>
+                                                    <a href="?pag=ave-detalle&id='.$row['ID_AVE'].'"><i><b><u>'.$row['NOMBRE_CIENTIFICO'].'</u></b></i></a>
                                                 </div>
                                               </center>
                                           </div>
                                         </div>
                                     </div>
                                 </div>';
-                        }
-                        
-                        
-                        
-                                
-                    
+                        }      
                     ?>
                     <!--                
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
@@ -309,7 +277,7 @@
                         </div>
                     </div>
 -->
-                    
-                
-            </div>
+
+
         </div>
+    </div>

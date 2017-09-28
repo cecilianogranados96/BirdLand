@@ -18,7 +18,7 @@
                                 <h1>Datos generales</h1>
                                 <ul class="statas-list">
                                     <li><?php echo $ave['NOMBRE_COMUN']; ?></li>
-                                    <li><?php echo $ave['NOMBRE_CIENTIFICO']; ?></li>
+                                    <li><i><?php echo $ave['NOMBRE_CIENTIFICO']; ?></i></li>
 
                                 </ul>
                             </div>
@@ -81,23 +81,24 @@ select avistamiento.foto,avistamiento.id_ave,persona.nombre,persona.apellido,avi
 oci_execute($stid1);
         
 while ($row = oci_fetch_array($stid1, OCI_ASSOC+OCI_RETURN_NULLS)) {
-    
-    $stid = oci_parse($conn, "select count(*) total from puntaje where id_avistamiento = ".$row['ID_AVISTAMIENTO']." and id_persona = ".$_SESSION['id_persona']." ");
-    oci_execute($stid);
-    $total = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS);
+    if (isset($_SESSION['id_persona'])){
+        $stid = oci_parse($conn, "select count(*) total from puntaje where id_avistamiento = ".$row['ID_AVISTAMIENTO']." and id_persona = ".$_SESSION['id_persona']." ");
+        oci_execute($stid);
+        $total = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS);
+    }
 
     $stid = oci_parse($conn, "select count(*) puntos from puntaje where id_avistamiento = ".$row['ID_AVISTAMIENTO']." ");
     oci_execute($stid);
     $puntos = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS);
-   
-    if ($total['TOTAL'] >= 1){
-        $datos = 'class="btn btn-danger" onclick="votar('.$_SESSION['id_persona'].','.$row['ID_AVISTAMIENTO'].',this,2);"';
-        $label = '<span class="fa fa-heart" aria-hidden="true"></span> NO GUSTA';
-    }else{
-        $datos = 'class="btn btn-default" onclick="votar('.$_SESSION['id_persona'].','.$row['ID_AVISTAMIENTO'].',this,1);" ';
-        $label = '<span class="fa fa-heart" aria-hidden="true"></span> ME GUSTA';
+    if (isset($_SESSION['id_persona'])){
+        if ($total['TOTAL'] >= 1){
+            $datos = 'class="btn btn-danger" onclick="votar('.$_SESSION['id_persona'].','.$row['ID_AVISTAMIENTO'].',this,2);"';
+            $label = '<span class="fa fa-heart" aria-hidden="true"></span> NO GUSTA';
+        }else{
+            $datos = 'class="btn btn-default" onclick="votar('.$_SESSION['id_persona'].','.$row['ID_AVISTAMIENTO'].',this,1);" ';
+            $label = '<span class="fa fa-heart" aria-hidden="true"></span> ME GUSTA';
+        }
     }
-    
     echo '
                                         <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-4 filter hdpe">
                                             <img src="images/avistamientos/'.$row['FOTO'].'" class="img-responsive img-thumbnail">
@@ -107,7 +108,7 @@ while ($row = oci_fetch_array($stid1, OCI_ASSOC+OCI_RETURN_NULLS)) {
                                                 <span class="fa fa-heart" aria-hidden="true" > '.$puntos['PUNTOS'].'</span> </span>
                                               <div class="btn-toolbar demoPadder" role="toolbar">';
                                                 if (isset($_SESSION['id_persona'])){
-                                                echo '<button type="button" id="#p'.$row['ID_AVISTAMIENTO'].'" '.$datos.' >'.$label.'</button>';
+                                                    echo '<button type="button" id="#p'.$row['ID_AVISTAMIENTO'].'" '.$datos.' >'.$label.'</button>';
                                                 }
                                         echo '</div>
                                              </center>

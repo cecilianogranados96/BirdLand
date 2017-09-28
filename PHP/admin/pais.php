@@ -43,7 +43,7 @@ oci_execute($stid);
 
 }
 
-$stid = oci_parse($conn, 'select * from pais');
+$stid = oci_parse($conn, 'select * from pais order by id_continente,nombre');
 oci_execute($stid);
 $filas = "";
 while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {

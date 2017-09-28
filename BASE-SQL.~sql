@@ -592,17 +592,7 @@ CREATE OR REPLACE PACKAGE BODY pck_ubicaciones AS
   -- ********************************************************* --
   -- ********************************************************* --
   -- ********************************************************* --
-select * from puntaje
+select * from avistamiento inner join ave 
 
-
-
-SELECT  id_puntaje, COUNT(*) id_persona FROM puntaje 
-WHERE ROWNUM <= 10 GROUP BY id_puntaje HAVING COUNT(*) > 0  order by id_persona
-
-
-
-
-
-
-
+on avistamiento.ID_AVE = ave.ID_AVE
 
