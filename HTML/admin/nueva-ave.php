@@ -1,36 +1,40 @@
-                                         
+<script src="http://fabianlindfors.se/multijs/multi.min.js">
 
-<script src="http://fabianlindfors.se/multijs/multi.min.js"></script>
+</script>
 <link rel="stylesheet" type="text/css" href="http://fabianlindfors.se/multijs/multi.min.css">
 <div class="breadcumb-area eight">
-            <div class="container">
-                <div class="row">
-                    <div class="breadcumb">
-                        <center><h2>Nueva ave</h2></center>
-                    </div>
-                </div>
+    <div class="container">
+        <div class="row">
+            <div class="breadcumb">
+                <center>
+                    <h2>Nueva ave</h2>
+                </center>
             </div>
         </div>
-        <div class="animal-details">
-            <div class="container">
-                <div class="row">
-                    <?php if (isset($mensaje)) {echo $mensaje;} ?>
+    </div>
+</div>
+<div class="animal-details">
+    <div class="container">
+        <div class="row">
+            <?php if (isset($mensaje)) {echo $mensaje;} ?>
 
-                        <center>
-                            <table class="table" style="width: 35%;">
-                                
-                        
-                                    <?php if (!isset($_GET['especie'])) { ?>                
-                                    <tr>
-                                        <td colspan="3" class="titulo">
-                                            <center><h2>Paso 1 - Clasificacion</h2></center>
-                                        </td>
-                                    </tr>
-                                    
-                                    <tr>
-                                        <td>
-                                       <center>
-                                                <div style="width: 35%;">
+            <center>
+                <table class="table" style="width: 35%;">
+
+
+                    <?php if (!isset($_GET['especie'])) { ?>
+                    <tr>
+                        <td colspan="3" class="titulo">
+                            <center>
+                                <h2>Paso 1 - Clasificacion</h2>
+                            </center>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <center>
+                                <div style="width: 35%;">
                                     <?php 
                                     
                                     $url_base = "?pag=".$_GET['pag']."";
@@ -56,8 +60,8 @@
                                      }
                                     
                                     ?>
-                                    
-                                    
+
+
                                     <center>Clase</center>
                                     <select class="form-control" onchange="window.location.href='<?php echo $url_base; ?>&clase='+this.value;">
                                     <?php
@@ -78,8 +82,8 @@
                                         }
                                     ?>
                                     </select>
-                                 <center>Orden</center>
-                                    <select onchange="window.location.href='<?php echo $url_base; ?>&orden='+this.value;" class="form-control" <?php if(!isset($_GET['clase'])) {echo "disabled"; }?>>
+                                    <center>Orden</center>
+                                    <select onchange="window.location.href='<?php echo $url_base; ?>&orden='+this.value;" class="form-control" <?php if(!isset($_GET[ 'clase'])) {echo "disabled"; }?>>
                                     <?php
                                         echo  '<option value="0">Selecciona una opcion</option>';  
                                          if(isset($_GET['clase'])){
@@ -100,8 +104,8 @@
                                          }
                                     ?>
                                     </select>
-                                <center>SubOrden</center>
-                                    <select onchange="window.location.href='<?php echo $url_base; ?>&suborden='+this.value;" class="form-control" <?php if(!isset($_GET['orden'])) {echo "disabled"; }?>>
+                                    <center>SubOrden</center>
+                                    <select onchange="window.location.href='<?php echo $url_base; ?>&suborden='+this.value;" class="form-control" <?php if(!isset($_GET[ 'orden'])) {echo "disabled"; }?>>
                                     <?php
                                         echo  '<option value="0">Selecciona una opcion</option>';  
                                          if(isset($_GET['orden'])){
@@ -122,8 +126,8 @@
                                          }
                                     ?>
                                     </select>
-                                 <center>Familia</center>
-                                    <select onchange="window.location.href='<?php echo $url_base; ?>&familia='+this.value;" class="form-control" <?php if(!isset($_GET['suborden'])) {echo "disabled"; }?> >
+                                    <center>Familia</center>
+                                    <select onchange="window.location.href='<?php echo $url_base; ?>&familia='+this.value;" class="form-control" <?php if(!isset($_GET[ 'suborden'])) {echo "disabled"; }?> >
                                     <?php
                                         echo  '<option value="0">Selecciona una opcion</option>';  
                                          if(isset($_GET['suborden'])){
@@ -144,8 +148,8 @@
                                          }
                                     ?>
                                     </select>
-                                 <center>Genero</center>
-                                    <select onchange="window.location.href='<?php echo $url_base; ?>&genero='+this.value;" class="form-control" <?php if(!isset($_GET['familia'])) {echo "disabled"; }?> >
+                                    <center>Genero</center>
+                                    <select onchange="window.location.href='<?php echo $url_base; ?>&genero='+this.value;" class="form-control" <?php if(!isset($_GET[ 'familia'])) {echo "disabled"; }?> >
                                     <?php
                                         echo  '<option value="0">Selecciona una opcion</option>';  
                                          if(isset($_GET['familia'])){
@@ -166,9 +170,9 @@
                                          }
                                     ?>
                                     </select>
-                                    
-                                 <center>Especie</center>
-                                      <select onchange="window.location.href='<?php echo $url_base; ?>&especie='+this.value;" class="form-control" <?php if(!isset($_GET['genero'])) {echo "disabled"; }?>>
+
+                                    <center>Especie</center>
+                                    <select onchange="window.location.href='<?php echo $url_base; ?>&especie='+this.value;" class="form-control" <?php if(!isset($_GET[ 'genero'])) {echo "disabled"; }?>>
                                     <?php
                                         echo  '<option value="0">Selecciona una opcion</option>';  
                                          if(isset($_GET['genero'])){
@@ -189,92 +193,82 @@
                                          }
                                     ?>
                                     </select>
-                                                </div>
-                                                </center>
-                                        </td>            
-                                    </tr>
-                                    
-                                    <?php } else { ?>
-                                <form action='?pag=<?php echo $_GET['pag']; ?>&nuevo=1' method="POST" enctype="multipart/form-data"  >
-                                
-                                    <tr>
-                                        <td colspan="3" class="titulo">
-                                            <center><h2>2 - Datos generales</h2></center>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            Nombre Comun:
-                                            <input name="nombre" type="text" placeholder="Nombre Comun" class="form-control" required> 
-                                            <input name="especie" type="hidden" value="<?php echo $_GET['especie'];?>" class="form-control" > 
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            Imagen de referencia:
-                                            <input name="foto" type="file" class="form-control" required> 
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            Color:
-                                            <select name="color" class="form-control" required>
+                                </div>
+                            </center>
+                        </td>
+                    </tr>
+                    <?php } else { ?>
+                    <form action='?pag=<?php echo $_GET['pag']; ?>&nuevo=1' method="POST" enctype="multipart/form-data">
+
+                        <tr>
+                            <td colspan="3" class="titulo">
+                                <center>
+                                    <h2>2 - Datos generales</h2>
+                                </center>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Nombre Comun:
+                                <input name="nombre" type="text" placeholder="Nombre Comun" class="form-control" required>
+                                <input name="especie" type="hidden" value="<?php echo $_GET['especie'];?>" class="form-control">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Imagen de referencia:
+                                <input name="foto" type="file" class="form-control" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Color:
+                                <select name="color" class="form-control" required>
                                                 <?php echo $colores; ?>
                                             </select>
-                                            
-                                        </td>
-                                    </tr>
-                                     <tr>
-                                        <td>
-                                            Tipo:
-                                            <select name="tipo" class="form-control" required>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Tipo:
+                                <select name="tipo" class="form-control" required>
                                                 <?php echo $tipos; ?>
                                             </select>
-                                            
-                                        </td>
-                                    </tr>
-                                    
-                                    <tr>
-                                        <td>
-                                            Tamaño (CM):
-                                            <input  name="tamano" type="number" placeholder="Tamaño del ave" class="form-control" required> 
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            Ubicaciones:
-                                            <select multiple="multiple" name="ubicaciones[]" id="ubicaciones">
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Tamaño (CM):
+                                <input name="tamano" type="number" placeholder="Tamaño del ave" class="form-control" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Ubicaciones:
+                                <select multiple="multiple" name="ubicaciones[]" id="ubicaciones">
                                                 <?php echo $ubicaciones; ?>
                                             </select>
-                                        </td>
-                                    </tr>
-                                    
-                        
-                                    
-                                    <tr>
-                                        <td> 
-                                            <center>
-                                                <button type="submit" class="btn btn-lg btn-success">Nuevo</button>
-                                            </center>
-                                        </td>
-                                    </tr>
-                                    
-              
-                                    	<script>
-                                            var select = document.getElementById( 'ubicaciones' );
-                                            multi( select, {
-                                                search_placeholder: 'Buscar ciudades...',
-                                            });
-                                        </script>
-
-                                    
-                                    <?php } ?>
-                                    
-                                    
-                                   
-                                </table>
-                            </form>
-                        </center>
-                </div>
-            </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <center>
+                                    <button type="submit" class="btn btn-lg btn-success">Nuevo</button>
+                                </center>
+                            </td>
+                        </tr>
+                        <script>
+                            var select = document.getElementById('ubicaciones');
+                            multi(select, {
+                                search_placeholder: 'Buscar ciudades...',
+                            });
+                        </script>
+                        <?php } ?>
+                </table>
+                </form>
+            </center>
         </div>
+    </div>
+</div>

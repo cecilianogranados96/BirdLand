@@ -592,7 +592,26 @@ CREATE OR REPLACE PACKAGE BODY pck_ubicaciones AS
   -- ********************************************************* --
   -- ********************************************************* --
   -- ********************************************************* --
-select * from avistamiento inner join ave 
+  
 
-on avistamiento.ID_AVE = ave.ID_AVE
-
+  
+ select * from table (get_canton())
+ 
+ select * from bitacora
+ 
+ insert into bitacora (id_bitacora,id_usuario,contrasena) values (sq_bitacora.nextval,14,'admin2')
+   
+ COMMIT
+ 
+ 
+ select * from usuario
+ 
+ 
+ insert into usuario (id_usuario,id_persona,usuario,contrasena,pass) values (1,14,'ceciliano','21232f297a57a5a743894a0e4a801fc3','admin')
+   insert into bitacora (id_bitacora,id_persona,anterior,siguiente)
+   
+   
+               values (sq_bitacora.nextval,14,(select contrasena from usuario where id_persona = 14  ),'jos');
+   select persona.nombre, bitacora.anterior, bitacora.siguiente from bitacora inner join 
+   persona on bitacora.id_persona = persona.id_persona WHERE persona.id_persona =14
+ 

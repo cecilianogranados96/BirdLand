@@ -31,10 +31,11 @@
 </head>
 
 <body>
-    <?php echo $where; ?>
+
     <div id="map"></div>
     <script>
         var marker;
+
         function initMap() {
             var map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 8,
@@ -65,6 +66,7 @@
                 }
             ?>
         }
+
     </script>
     <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWqHd142DIknn374Y48LxrttUsgde0g0Q&callback=initMap"></script>

@@ -592,15 +592,24 @@ CREATE OR REPLACE PACKAGE BODY pck_ubicaciones AS
   -- ********************************************************* --
   -- ********************************************************* --
   -- ********************************************************* --
-select ave.id_ave,ave.nombre_comun,genero.nombre ||' ' || nombre_cientifico
-from ave 
-inner join especie on ave.id_especie = especie.id_especie
-inner join genero on especie.id_genero = genero.id_genero
-inner join familia on genero.id_familia = familia.id_familia
-inner join suborden on familia.id_suborden = suborden.id_suborden
-inner join orden on suborden.id_orden = orden.id_orden
-inner join clase on orden.id_clase = clase.id_clase 
-inner join tipo on ave.id_estado = tipo.id_tipo
-inner join avistamiento on ave.id_ave = avistamiento.id_ave
+  
 
- 
+
+ALTER TABLE employee
+ADD fec_creacion date,
+ADD usuario_ultima_modificacion varchar2(10);
+
+
+GRANT CREATE TRIGGER TO ad;
+
+
+CREATE OR REPLACE TRIGGER BeforeInsertOrUpdateEmployee
+BEFORE INSERT OR UPDATE
+ON employee
+FOR EACH ROW
+BEGIN
+    :new.fec_creacion := SYSDATE;
+    :new.usuario_creacion := USER;
+    :new.usuario_ultima_modificacion := USER;
+END;
+

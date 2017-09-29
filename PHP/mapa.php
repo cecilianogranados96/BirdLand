@@ -2,13 +2,8 @@
                                     $url_base = "?pag=".$_GET['pag']."";
                                     $where = "";
                                     if(isset($_GET['clase'])){
-                                        if(isset($_GET['max'])){
-                                            $where .= "WHERE " ;
-                                        }else{
-                                              $where .= " " ;
-                                         }
                                          $url_base .= "&clase=".$_GET['clase']."";
-                                         $where .= "clase.id_clase = ".$_GET['clase']." " ;
+                                         $where .= "WHERE clase.id_clase = ".$_GET['clase']." " ;
                                     }
                                     
                                     if(isset($_GET['orden'])){

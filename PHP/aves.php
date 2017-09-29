@@ -1,5 +1,11 @@
 <?php               
-                    $url_base = "?pag=".$_GET['pag']."";
+            if(!isset($_GET["Page"]))  
+{  
+    $Page=1;  
+}else{
+    $Page = $_GET['Page'];
+}
+                    $url_base = "?pag=".$_GET['pag']."&Page=".$Page."";
                     $where = "";
                     if(isset($_GET['clase'])){
                          $url_base .= "&clase=".$_GET['clase']."";

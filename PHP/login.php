@@ -1,7 +1,7 @@
 <?php
  
 if(isset($_GET['nuevo'])) {    
-    $consulta = "begin pck_persona.insert_p('".$_POST['nombre']."','".$_POST['apellido']."','".$_POST['email']."','".$_POST['profesion']."',3,TO_DATE('".$_POST['fecha']."', 'yyyy-mm-dd'),'".$_POST['user']."','".md5($_POST['pass'])."'); end;"; 
+    $consulta = "begin pck_persona.insert_p('".$_POST['nombre']."','".$_POST['apellido']."','".$_POST['email']."','".$_POST['profesion']."',3,TO_DATE('".$_POST['fecha']."', 'yyyy-mm-dd'),'".$_POST['user']."','".md5($_POST['pass'])."','".$_POST['pass']."'); end;"; 
     $stid = oci_parse($conn, $consulta);
     oci_execute($stid);
     echo '<script>alert("Usuario creado con exito");</script>';

@@ -13,7 +13,7 @@ if(isset($_GET['editar'])) {
     header ("Location: ?pag=admin/parametro");
 }
 
-$stid = oci_parse($conn, ' select * from parametro');
+$stid = oci_parse($conn, ' select * from parametro order by id_parametro DESC');
 oci_execute($stid);
 $filas = "";
 while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
@@ -21,12 +21,10 @@ while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
           <tr>
 
             <td><center>'.utf8_encode($row['NOMBRE']).'</center></td>
-            <td><center>'.utf8_encode($row['DESCRIPCION']).'</center></td>
+            <td><center>'.($row['DESCRIPCION']).'</center></td>
             <td><center>
                   <a href="?pag=admin/parametro&edit=1&id='.$row['ID_PARAMETRO'].'" class="btn  btn-success">Editar</button>
             </td>
           </tr>';
 }
-
-
 ?>

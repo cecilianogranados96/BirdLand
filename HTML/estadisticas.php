@@ -20,6 +20,7 @@
         padding-bottom: 10px;
         line-height: 20px;
     }
+
     @media (min-width: 768px) {
         .navbar {
             border-radius: 0px;

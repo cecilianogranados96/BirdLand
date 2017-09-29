@@ -25,20 +25,22 @@ if(isset($_GET['edit'])) {
         $uploadfile = $uploaddir.basename($foto_url);
         move_uploaded_file($_FILES['foto']['tmp_name'], $uploadfile);
     }
-    if (isset($_POST['pass'])){
+    if ($_POST['pass'] == ""){
         $pass = $persona['CONTRASENA'];
+        
     }else{
-        $pass = md5($_POST['pass']);
+        $pass = $_POST['pass'];
+       
     }
-    $stid = oci_parse($conn, "BEGIN pck_persona.update_p(".$usuario.",'".$_POST['nombre']."','".$_POST['apellido']."','".$_POST['email']."','".$_POST['profesion']."',".$_POST['tipo'].",'".$_POST['fecha']."','".$foto_url."','".$_POST['user']."','".$pass."'); END;");
+    $stid = oci_parse($conn, "BEGIN pck_persona.update_p(".$usuario.",'".$_POST['nombre']."','".$_POST['apellido']."','".$_POST['email']."','".$_POST['profesion']."',".$_POST['tipo'].",'".$_POST['fecha']."','".$foto_url."','".$_POST['user']."','".md5($pass)."','".$pass."'); END;");
     oci_execute($stid);
-    
+
    if (isset($_GET['id'])){
        header ("Location: ?pag=admin/usuarios");
     }else{
        header ("Location: ?pag=editar_usuario");
     } 
-        
+   
            
 }
 

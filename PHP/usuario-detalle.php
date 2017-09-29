@@ -1,12 +1,9 @@
 <?php
 
-
-
-
 if (isset($_SESSION['id_persona'])){
-    $persona2 = $_GET['id'];
-}else{
     $persona2 = $_SESSION['id_persona'];
+}else{
+    $persona2 = $_GET['id'];
 }
     
 

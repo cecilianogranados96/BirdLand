@@ -19,12 +19,18 @@
     <link rel="stylesheet" href="css/responsive.css">
     <script src="js/vendor/modernizr-2.8.3.min.js"></script>
     <script type="text/javascript">
-    function googleTranslateElementInit() {
-      new google.translate.TranslateElement({pageLanguage: 'es', includedLanguages: 'en,es', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, multilanguagePage: true}, 'google_translate_element');
-    }
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'es',
+                includedLanguages: 'en,es',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                multilanguagePage: true
+            }, 'google_translate_element');
+        }
+
     </script>
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-    
+
 </head>
 
 <body>
@@ -40,20 +46,19 @@
                     <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
                         <div class="header-top-right">
                             <nav>
-                              
+
                                 <div class="traductor" id="google_translate_element"></div>
-                                
+
                                 <ul>
                                     <?php 
                                     if(isset($_SESSION['tipo'])) { 
-                                        if($_SESSION['tipo'] == 1) 
+                                        if($_SESSION['tipo'] == 1){
                                     ?>
                                     <li>
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Reportes<span class="caret"></span></a>
                                         <ul class="dropdown-menu" style="background-color: black;margin-top: -3%;margin-left: 30%;">
-                                            <li><a href="?pag=admin/ave_peligro">Aves en peligro</a></li>
-                                            <li><a href="?pag=admin/bitacora">Bitacora</a></li>
-                                            <li><a href="?pag=admin/usuarios">Usuarios</a></li>
+                                            <li><a href="?pag=admin/ave-peligro">Aves en peligro</a></li>
+                                            <li><a href="?pag=admin/usuarios">Usuarios/Bitacora</a></li>
                                         </ul>
                                     </li>
                                     <li>
@@ -86,8 +91,10 @@
                                             <li><a href="?pag=admin/parametro">Parametros</a></li>
                                         </ul>
                                     </li>
-                                    <?php } ?>
-                                   
+                                    <?php }
+                                    }
+                                    ?>
+
                                     <?php echo $login; ?>
                                 </ul>
                             </nav>
