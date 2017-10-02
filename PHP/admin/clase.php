@@ -30,7 +30,7 @@ if(isset($_GET['edit'])) {
     oci_execute($stid);
 }
 
-$stid = oci_parse($conn, 'select * from clase');
+$stid = oci_parse($conn, 'select * from table(get_clase)');
 
 
 oci_execute ($stid,OCI_DEFAULT);  

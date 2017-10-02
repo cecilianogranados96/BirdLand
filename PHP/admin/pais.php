@@ -43,7 +43,7 @@ oci_execute($stid);
 
 }
 
-$stid = oci_parse($conn, 'Select pais.id_pais,pais.nombre, continente.nombre continente from pais inner join continente on continente.id_continente = pais.id_continente order by pais.id_pais,continente.nombre ');
+$stid = oci_parse($conn, 'select * from table(PCK_PAIS.PAIS_CONTINENTE)');
 
 oci_execute ($stid,OCI_DEFAULT);  
 $Num_Rows = oci_fetch_all($stid, $row);  
@@ -100,7 +100,7 @@ for($i=$Page_Start;$i<$Page_End;$i++)
 
 
 
-$stid = oci_parse($conn, 'select * from continente');
+$stid = oci_parse($conn, 'select * from table (get_continente)');
 oci_execute($stid);
 $opciones = "";
 while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {

@@ -42,7 +42,7 @@ oci_bind_by_name($stid, ':r', $nombre_pais, 40);
 oci_execute($stid);
 
 }
-$stid = oci_parse($conn, 'Select provincia.id_provincia,provincia.nombre, pais.nombre pais from provincia inner join pais on provincia.id_pais = pais.id_pais order by pais.id_continente,pais.nombre ');
+$stid = oci_parse($conn, 'select * from table(PCK_PROVINCIA.PROVINCIA_PAIS)');
 
 oci_execute ($stid,OCI_DEFAULT);  
 $Num_Rows = oci_fetch_all($stid, $row);  
@@ -93,7 +93,7 @@ for($i=$Page_Start;$i<$Page_End;$i++)
           </tr>';
 }
 
-$stid = oci_parse($conn, 'select * from pais');
+$stid = oci_parse($conn, 'select * from table(get_pais)');
 oci_execute($stid);
 $opciones = "";
 while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {

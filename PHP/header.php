@@ -5,7 +5,7 @@ session_start();
 $conn = oci_connect('BL', 'BL123', 'BirdLand');
 
 
-$stid1 = oci_parse($conn, "select * from parametro where id_parametro = 6");
+$stid1 = oci_parse($conn, "select * from table(PCK_parametro.parametro_id(6))");
 oci_execute($stid1);
 $total_pagina = oci_fetch_array($stid1, OCI_ASSOC+OCI_RETURN_NULLS)['DESCRIPCION'];
 

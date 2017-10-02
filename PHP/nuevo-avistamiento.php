@@ -1,9 +1,5 @@
 <?php
-$stid = oci_parse($conn, "
-select ave.id_ave,ave.nombre_comun,genero.nombre || ' ' ||  especie.nombre nombre_cientifico from ave 
-inner join especie on ave.id_especie = especie.id_especie
-inner join genero on especie.id_genero = genero.id_genero
-");
+$stid = oci_parse($conn, "select * from table(PCK_AVE.AVE_ESPECIE_GENERO);");
 oci_execute($stid);
 $aves = "";
 while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {

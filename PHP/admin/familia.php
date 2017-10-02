@@ -47,7 +47,7 @@ oci_execute($stid);
 
 
 
-$stid = oci_parse($conn, 'Select familia.id_familia,familia.nombre, suborden.nombre suborden  from familia inner join suborden on suborden.id_suborden = familia.id_suborden order by familia.nombre,suborden.id_suborden ');
+$stid = oci_parse($conn, 'select * from table(PCK_FAMILIA.FAMILIA_SUBORDEN)');
 
 oci_execute ($stid,OCI_DEFAULT);  
 $Num_Rows = oci_fetch_all($stid, $row);  
@@ -104,7 +104,7 @@ for($i=$Page_Start;$i<$Page_End;$i++)
 
 
 
-$stid = oci_parse($conn, 'select * from suborden');
+$stid = oci_parse($conn, 'select * from table (get_suborden)');
 oci_execute($stid);
 $opciones = "";
 while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {

@@ -14,8 +14,9 @@ if(isset($_GET['especie'])) {
     header ("Location: ?pag=".$_GET['pag']."&edit=1&id=".$_GET['id']."");
 }
 
+//?
 if(isset($_GET['edit'])) {
-    $stid = oci_parse($conn, 'select ave.id_ave,especie.nombre especie, ave.nombre_comun nombre, color.nombre color,tipo.nombre tipo, ave.tamano, ave.imagen, color.id_color colorid, tipo.id_tipo tipoid from ave inner join especie on ave.id_especie = especie.id_especie inner join tipo on ave.id_estado = tipo.id_tipo inner join color on ave.id_color = color.id_color where ave.id_ave = '.$_GET['id'].'');
+    $stid = oci_parse($conn, "select * from table(pck_ave.select_ave('".$_GET['id']."'))");
     oci_execute($stid);
     $ave = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS);
 }
@@ -42,8 +43,7 @@ if(isset($_GET['edit_normal'])) {
     header ("Location: ?pag=".$_GET['pag']."&edit=1&id=".$_GET['id']."");
 }
 
-
-
+//?
 if (isset($_POST['busqueda'])){
     $extra = "where especie.nombre LIKE '%".$_POST['busqueda']."%'
     or color.nombre LIKE '%".$_POST['busqueda']."%'
@@ -52,11 +52,8 @@ if (isset($_POST['busqueda'])){
 }else{
     $extra = "";
 }
-$stid = oci_parse($conn, '
-select ave.id_ave,especie.nombre especie, ave.nombre_comun nombre, color.nombre color,tipo.nombre tipo, ave.tamano, ave.imagen from ave 
-inner join especie on ave.id_especie = especie.id_especie
-inner join tipo on ave.id_estado = tipo.id_tipo
-inner join color on ave.id_color = color.id_color '.$extra.'');
+
+$stid = oci_parse($conn, 'select * from table(PCK_AVE.AVE_TIPO(NULL))'.$extra.'');
 oci_execute ($stid,OCI_DEFAULT);  
 $Num_Rows = oci_fetch_all($stid, $row);  
 if(!isset($_GET["Page"]))  
@@ -65,6 +62,7 @@ if(!isset($_GET["Page"]))
 }else{
     $Page = $_GET['Page'];
 }
+
 
 $Prev_Page = $Page-1;  
 $Next_Page = $Page+1;  
@@ -123,17 +121,18 @@ while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
 
 
 if(isset($_GET['edit'])) {
-    $stid = oci_parse($conn, "select pais.nombre || ' ' || provincia.nombre || ' ' || initcap(canton.nombre) ubicacion, canton.id_canton from continente 
-    inner join pais on pais.id_continente = continente.id_continente
-    inner join provincia on pais.id_pais = provincia.id_pais
-    inner join canton on provincia.id_provincia = canton.id_provincia order by provincia.nombre,canton.nombre ASC ");
+    $stid = oci_parse($conn, "select * from table(PCK_CANTON.CANTON_GENERAL) ");
     oci_execute($stid);
     $ubicaciones =  '';
     $tot = 0;
     while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
-        $stid4 = oci_parse($conn, "select count(*) total from ubicacion where id_canton = ".$row['ID_CANTON']." and id_ave = ".$_GET['id']." ");
+		//?????
+		$stid4 = oci_parse($conn, 'BEGIN :r := PCK_UBICACIONES.TOTAL_UBICACION('.$row['ID_CANTON'].', '.$_GET['id'].'  ); END;');
+		oci_bind_by_name($stid4, ':r', $tot, 40);
+		oci_execute($stid4);
+        /*$stid4 = oci_parse($conn, "select count(*) total from ubicacion where id_canton = ".$row['ID_CANTON']." and id_ave = ".$_GET['id']." ");
         oci_execute($stid4);
-        $tot = oci_fetch_array($stid4, OCI_ASSOC+OCI_RETURN_NULLS)['TOTAL'];
+        $tot = oci_fetch_array($stid4, OCI_ASSOC+OCI_RETURN_NULLS)['TOTAL'];*/
         if ($tot != 0){
             $ubicaciones .=  '<option value="'.$row['ID_CANTON'].'" selected>'.$row['UBICACION'].'</option>';
         }else{

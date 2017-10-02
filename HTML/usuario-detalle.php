@@ -47,7 +47,7 @@
                                         <h3><strong>Avistamientos</strong></h3>
                                         <p>
                                             <h1>
-                                                <center><b><?php echo $total['TOTAL']; ?></b></center>
+                                                <center><b><?php echo $total; ?></b></center>
                                             </h1>
                                         </p>
                                         <hr>

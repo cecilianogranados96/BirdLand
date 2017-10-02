@@ -9,11 +9,6 @@ if(isset($_GET['borrar'])) {
 }
 
 
-
-
-
-
-
 if (isset($_POST['busqueda'])){
  $extra = "where ave.nombre_comun = '".$_POST['busqueda']."'
     or persona.nombre = '".$_POST['busqueda']."'
@@ -23,10 +18,7 @@ if (isset($_POST['busqueda'])){
     $extra = "";
 }
 
-$stid = oci_parse($conn, '
-select avistamiento.id_avistamiento,persona.nombre,ave.nombre_comun,avistamiento.foto from avistamiento 
-inner join persona on avistamiento.id_persona = persona.id_persona
-inner join ave on ave.id_ave = avistamiento.id_ave '.$extra.' ');
+$stid = oci_parse($conn, 'select * from table(PCK_AVISTAMIENTO.AVISTAMIENTO_GENERAL) '.$extra.' ');
 
 
 

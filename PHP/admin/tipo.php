@@ -31,7 +31,7 @@ if(isset($_GET['edit'])) {
     oci_execute($stid);
 }
 
-$stid = oci_parse($conn, 'select * from tipo');
+$stid = oci_parse($conn, 'select * from table (get_tipo)');
 oci_execute ($stid,OCI_DEFAULT);  
 $Num_Rows = oci_fetch_all($stid, $row);  
 if(!isset($_GET["Page"]))  

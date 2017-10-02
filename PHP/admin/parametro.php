@@ -2,7 +2,7 @@
 
 
 if(isset($_GET['edit'])) {
-    $stid = oci_parse($conn, 'select * from parametro where id_parametro = '.$_GET['id'].'');
+    $stid = oci_parse($conn, 'select * from table (pck_parametro.parametro_id('.$_GET['id'].'))');
     oci_execute($stid);
     $parametro = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS);
 }
@@ -13,7 +13,7 @@ if(isset($_GET['editar'])) {
     header ("Location: ?pag=admin/parametro");
 }
 
-$stid = oci_parse($conn, ' select * from parametro order by id_parametro DESC');
+$stid = oci_parse($conn, ' select * from table (get_parametro)');
 oci_execute($stid);
 $filas = "";
 while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {

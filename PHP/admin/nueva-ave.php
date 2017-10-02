@@ -10,9 +10,13 @@ if(isset($_GET['nuevo'])) {
     $stid = oci_parse($conn, "BEGIN pck_ave.insert_ave(".$_POST['especie'].",".$_POST['color'].",".$_POST['tipo'].",'".$_POST['nombre']."','".$_POST['tamano']."','".$foto_url."'); END;");
     oci_execute($stid);
     
-    $stid = oci_parse($conn, "select id_ave from ave where id_ave = ( select max(id_ave) from ave )");
+    /*$stid = oci_parse($conn, "PCK_AVE.AVE_ID");
     oci_execute($stid);
-    $max = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS);
+    $max = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS);*/
+	
+	$stid = oci_parse($conn, 'BEGIN :r := PCK_AVE.AVE_ID; END;');
+	oci_bind_by_name($stid, ':r', $max, 40);
+	oci_execute($stid);
 
     foreach ($_POST['ubicaciones'] as $option_value)
     {
@@ -28,10 +32,7 @@ if(isset($_GET['nuevo'])) {
 
 
 
-$stid = oci_parse($conn, "select pais.nombre || ' ' || provincia.nombre || ' ' || canton.nombre ubicacion, canton.id_canton from continente 
-inner join pais on pais.id_continente = continente.id_continente
-inner join provincia on pais.id_pais = provincia.id_pais
-inner join canton on provincia.id_provincia = canton.id_provincia order by provincia.nombre,canton.nombre ASC ");
+$stid = oci_parse($conn, "select * from table (pck_canton.canton_general) ");
 oci_execute($stid);
 $ubicaciones =  '';
 while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
@@ -39,22 +40,18 @@ while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
 }
 
 
-$stid = oci_parse($conn, 'select * from color');
+$stid = oci_parse($conn, 'select * from table (get_color)');
 oci_execute($stid);
 $colores =  '<option value="0">Seleccione una opcion</option>';
 while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
    $colores .=  '<option value="'.$row['ID_COLOR'].'">'.$row['NOMBRE'].'</option>';
 }
 
-$stid = oci_parse($conn, 'select * from tipo');
+$stid = oci_parse($conn, 'select * from table (get_tipo)');
 oci_execute($stid);
 $tipos = '<option value="0">Seleccione una opcion</option>';
 while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
    $tipos .=  '<option value="'.$row['ID_TIPO'].'">'.$row['NOMBRE'].'</option>';
 }
-
-
-
-
 
 ?>

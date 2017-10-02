@@ -44,7 +44,7 @@ oci_execute($stid);
 }
 
 
-$stid = oci_parse($conn, 'Select especie.id_especie,especie.nombre, genero.nombre genero  from especie inner join genero on genero.id_genero = especie.id_genero order by especie.nombre,genero.id_genero ');
+$stid = oci_parse($conn, 'select * from table(PCK_ESPECIE.ESPECIE_GENERO)');
 
 oci_execute ($stid,OCI_DEFAULT);  
 $Num_Rows = oci_fetch_all($stid, $row);  
@@ -98,7 +98,7 @@ for($i=$Page_Start;$i<$Page_End;$i++)
 
 
 
-$stid = oci_parse($conn, 'select * from genero');
+$stid = oci_parse($conn, 'select * from table (get_genero)');
 oci_execute($stid);
 $opciones = "";
 while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {

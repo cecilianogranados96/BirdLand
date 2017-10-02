@@ -45,7 +45,7 @@ oci_execute($stid);
 
 
 
-$stid = oci_parse($conn, 'Select genero.id_genero,genero.nombre, familia.nombre familia  from genero inner join familia on familia.id_familia = genero.id_familia order by genero.nombre,familia.id_familia ');
+$stid = oci_parse($conn, 'select * from table(PCK_GENERO.GENERO_FAMILIA)');
 
 oci_execute ($stid,OCI_DEFAULT);  
 $Num_Rows = oci_fetch_all($stid, $row);  
@@ -100,7 +100,7 @@ for($i=$Page_Start;$i<$Page_End;$i++)
 
 
 
-$stid = oci_parse($conn, 'select * from familia');
+$stid = oci_parse($conn, 'select * from table (gte_familia)');
 oci_execute($stid);
 $opciones = "";
 while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {

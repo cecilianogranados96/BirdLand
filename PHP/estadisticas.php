@@ -1,33 +1,29 @@
 <?php
 
-$stid1 = oci_parse($conn, "select count(*) total from canton");
+$stid1 = oci_parse($conn, 'BEGIN :r := PCK_CANTON.total_canton; END;');
+oci_bind_by_name($stid1, ':r', $ubicaciones, 40);
 oci_execute($stid1);
-$ubicaciones = oci_fetch_array($stid1, OCI_ASSOC+OCI_RETURN_NULLS)['TOTAL'];
 
-
-$stid2 = oci_parse($conn, "select count(*) total from avistamiento");
+$stid2 = oci_parse($conn, 'BEGIN :r := PCK_AVISTAMIENTO.total_avistamiento; END;');
+oci_bind_by_name($stid2, ':r', $avistamientos, 40);
 oci_execute($stid2);
-$avistamientos = oci_fetch_array($stid2, OCI_ASSOC+OCI_RETURN_NULLS)['TOTAL'];
 
-
-$stid3 = oci_parse($conn, "select count(*) total from ave");
+$stid3 = oci_parse($conn, 'BEGIN :r := PCK_AVE.total_ave; END;');
+oci_bind_by_name($stid3, ':r', $aves, 40);
 oci_execute($stid3);
-$aves = oci_fetch_array($stid3, OCI_ASSOC+OCI_RETURN_NULLS)['TOTAL'];
 
-
-$stid4 = oci_parse($conn, "select count(*) total from persona");
+$stid4 = oci_parse($conn, 'BEGIN :r := PCK_PERSONA.total_persona; END;');
+oci_bind_by_name($stid4, ':r', $usuarios, 40);
 oci_execute($stid4);
-$usuarios = oci_fetch_array($stid4, OCI_ASSOC+OCI_RETURN_NULLS)['TOTAL'];
 
-
-$stid5 = oci_parse($conn, "select count(*) total from especie");
+$stid5 = oci_parse($conn, 'BEGIN :r := PCK_especie.total_especie; END;');
+oci_bind_by_name($stid5, ':r', $especies, 40);
 oci_execute($stid5);
-$especies = oci_fetch_array($stid5, OCI_ASSOC+OCI_RETURN_NULLS)['TOTAL'];
 
-
-$stid6 = oci_parse($conn, "select count(*) total from puntaje");
+$stid6 = oci_parse($conn, 'BEGIN :r := PCK_puntaje.total_puntaje; END;');
+oci_bind_by_name($stid6, ':r', $likes, 40);
 oci_execute($stid6);
-$likes = oci_fetch_array($stid6, OCI_ASSOC+OCI_RETURN_NULLS)['TOTAL'];
+
 
 setlocale(LC_TIME, 'es_ES.UTF-8');
 date_default_timezone_set('America/Costa_Rica'); 

@@ -6,6 +6,7 @@ if(isset($_GET['borrar'])) {
             <h2 class="titulo"><br><center>Borrado con exito</center></h2>
            </div>';
 }
+//?
 if(!isset($_GET['bitacora'])) { 
     
     if (isset($_POST['busqueda'])){
@@ -16,7 +17,7 @@ if(!isset($_GET['bitacora'])) {
     $extra = "";
 }
         
-$stid = oci_parse($conn, 'select * from persona '.$extra.' ');
+$stid = oci_parse($conn, 'select * from table(get_persona)'.$extra.' ');
 oci_execute ($stid,OCI_DEFAULT);  
 $Num_Rows = oci_fetch_all($stid, $row);  
 if(!isset($_GET["Page"]))  
@@ -79,9 +80,11 @@ for($i=$Page_Start;$i<$Page_End;$i++)
 }
 
 
+//???
 
 if(isset($_GET['bitacora'])) { 
-    $stid = oci_parse($conn, '  select persona.nombre, bitacora.anterior, bitacora.siguiente from bitacora inner join persona on bitacora.id_persona = persona.id_persona WHERE persona.id_persona = '.$_GET['id'].' order by bitacora.id_bitacora DESC');
+    $stid = oci_parse($conn, 'select persona.nombre, bitacora.anterior, bitacora.siguiente from bitacora inner join persona 
+	on bitacora.id_persona = persona.id_persona WHERE persona.id_persona = '.$_GET['id'].' order by bitacora.id_bitacora DESC');
     oci_execute($stid);
     $filas = "";
     while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {

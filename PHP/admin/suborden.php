@@ -46,7 +46,7 @@ if(isset($_GET['edit'])) {
 
 
 
-$stid = oci_parse($conn, 'Select suborden.id_suborden,suborden.nombre, orden.nombre orden  from suborden inner join orden on orden.id_orden = suborden.id_orden order by suborden.nombre,orden.id_orden ');
+$stid = oci_parse($conn, 'select * from table(PCK_SUBORDEN.SUBORDEN_ORDEN)');
 
 oci_execute ($stid,OCI_DEFAULT);  
 $Num_Rows = oci_fetch_all($stid, $row);  
@@ -101,7 +101,7 @@ for($i=$Page_Start;$i<$Page_End;$i++)
 
 
 
-$stid = oci_parse($conn, 'select * from orden');
+$stid = oci_parse($conn, 'select * from table (get_orden)');
 oci_execute($stid);
 $opciones = "";
 while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {

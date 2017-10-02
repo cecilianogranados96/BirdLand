@@ -46,7 +46,7 @@ oci_execute($stid);
 
 
 
-$stid = oci_parse($conn, 'Select orden.id_orden,orden.nombre, clase.nombre clase  from orden inner join clase on clase.id_clase = orden.id_clase order by orden.nombre,clase.id_clase ');
+$stid = oci_parse($conn, 'select * from table(PCK_ORDEN.ORDEN_CLASE)');
 
 oci_execute ($stid,OCI_DEFAULT);  
 $Num_Rows = oci_fetch_all($stid, $row);  
@@ -101,7 +101,7 @@ for($i=$Page_Start;$i<$Page_End;$i++)
 
 
 
-$stid = oci_parse($conn, 'select * from clase');
+$stid = oci_parse($conn, 'select * from table (get_clase)');
 oci_execute($stid);
 $opciones = "";
 while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {

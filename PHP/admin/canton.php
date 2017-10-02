@@ -45,7 +45,7 @@ oci_execute($stid);
 
 
 
-$stid = oci_parse($conn, 'Select canton.id_canton,canton.nombre, provincia.nombre provincia from canton inner join provincia on canton.id_provincia = provincia.id_provincia order by canton.id_provincia,canton.nombre ');
+$stid = oci_parse($conn, 'select * from table(PCK_CANTON.CANTON_PROVINCIA)');
 
 oci_execute ($stid,OCI_DEFAULT);  
 $Num_Rows = oci_fetch_all($stid, $row);  
@@ -100,7 +100,7 @@ for($i=$Page_Start;$i<$Page_End;$i++)
 
 
 
-$stid = oci_parse($conn, 'select * from provincia');
+$stid = oci_parse($conn, 'select * from table (get_provincia)');
 oci_execute($stid);
 $opciones = "";
 while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {

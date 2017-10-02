@@ -31,7 +31,7 @@ if(isset($_GET['edit'])) {
     oci_execute($stid);
 }
 
-$stid = oci_parse($conn, 'select * from continente');
+$stid = oci_parse($conn, 'select * from table (get_continente)');
 
 
 oci_execute ($stid,OCI_DEFAULT);  

@@ -1,16 +1,13 @@
-    <?php                
-        $stid = oci_parse($conn, " 
-SELECT  id_ave, COUNT(*) cantidad
-FROM avistamiento WHERE ROWNUM <= 10
-GROUP BY id_ave
-HAVING COUNT(*) > 0  order by cantidad ;
-");
+    <?php  
+//?	
+        $stid = oci_parse($conn, "select * from table(PCK_AVISTAMIENTO.AVE_CANTIDAD);");
         oci_execute($stid);
  $avistamientos =  '';
         while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
             
             
-        $stid = oci_parse($conn, " SELECT * avistamiento WHERE id_ave = ".$row['ID_AVE'].";");
+        $stid = oci_parse($conn,"select * from table(PCK_AVISTAMIENTO.avistamiento_ave(".$row['ID_AVE']."));"); 
+		//"SELECT * from avistamiento WHERE id_ave = ".$row['ID_AVE'].";");
         oci_execute($stid);
         $ave = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS);
             
