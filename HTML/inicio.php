@@ -71,13 +71,12 @@
         </div>
     </div>
 </div>
-<!-- Our Animal Start Here -->
 <div class="our-animal-area">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
                 <div class="section-title">
-                    <h2>Algunas aves</h2>
+                    <h2>Todo un mundo de aves</h2>
                 </div>
             </div>
         </div>
@@ -99,7 +98,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <h4><a href="single-animal.html">'.$row['NOMBRE_COMUN'].'</a></h4>
+                                <h4><a href="?pag=ave-detalle&id='.$row['ID_AVE'].'">'.$row['NOMBRE_COMUN'].'</a></h4>
                             </div>';
                         }?>
                 </div>
@@ -128,10 +127,10 @@
                                 <div class="single-plan">
                                      <a href="?pag=ave-detalle&id='.$row['ID_AVE'].'"><img src="images/avistamientos/'.$ave['FOTO'].'" style="width: 200px;height: 150px;" class="img-thumbnail"></a>
                                     <div class="plan-details">
-                                        <h3><a href="plan.html">'.$ave['NOMBRE_COMUN'].'</a></h3>
+                                        <h3><a href="?pag=ave-detalle&id='.$row['ID_AVE'].'">'.$ave['NOMBRE_COMUN'].'</a></h3>
                                         <p>Avistamientos: '.$row['CANTIDAD'].'</p>
                                         <div class="read-more">
-                                            <a href="?page=usuarios">Ver mas</a>
+                                            <a href="?pag=ave-detalle&id='.$row['ID_AVE'].'">Ver mas</a>
                                         </div>
                                     </div>
                                 </div>

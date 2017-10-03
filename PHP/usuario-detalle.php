@@ -1,6 +1,6 @@
 <?php
 
-if (isset($_SESSION['id_persona'])){
+if (!isset($_GET['id'])){
     $persona2 = $_SESSION['id_persona'];
 }else{
     $persona2 = $_GET['id'];

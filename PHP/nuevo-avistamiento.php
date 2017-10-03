@@ -1,5 +1,5 @@
 <?php
-$stid = oci_parse($conn, "select * from table(PCK_AVE.AVE_ESPECIE_GENERO);");
+$stid = oci_parse($conn, "select * from table(PCK_AVE.AVE_ESPECIE_GENERO)");
 oci_execute($stid);
 $aves = "";
 while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
