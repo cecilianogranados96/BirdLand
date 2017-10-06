@@ -2038,6 +2038,7 @@ END;
           FUNCTION avistamiento_id (pid_avistamiento NUMBER) RETURN avistamiento_persona_record;
           FUNCTION avistamiento_cantidad RETURN avistamiento_cantidad_record;
           FUNCTION avistamiento_ave_id (pid_ave NUMBER) RETURN avistamiento_ave_record;
+          FUNCTION avistamiento_persona_id (pid_persona NUMBER) RETURN avistamiento_ave_record;
 END;
 
 /
@@ -2550,6 +2551,19 @@ END Types;
                 END LOOP;
               RETURN  l_avistamientos;
               END avistamiento_ave_id;   
+               -- ********************************************************* --  
+              FUNCTION avistamiento_persona_id (pid_persona NUMBER) RETURN avistamiento_ave_record AS
+              l_avistamientos  avistamiento_ave_record := avistamiento_ave_record();
+              BEGIN
+                 FOR I IN (SELECT id_avistamiento, id_persona,  avistamiento.id_ave, latitud, longitud, foto, id_especie, 
+                            id_color, id_estado, nombre_comun, tamano, imagen 
+                            from avistamiento inner join ave on ave.id_ave = avistamiento.id_ave and avistamiento.ID_PERSONA = pid_persona) LOOP
+                         l_avistamientos.EXTEND;
+                         l_avistamientos(l_avistamientos.COUNT) := (t_avistamiento_ave(i.id_avistamiento, i.id_persona, i.id_ave, 
+                         i.latitud, i.longitud, i.foto, i.id_especie, i.id_color, i.id_estado, i.nombre_comun, i.tamano, i.imagen));
+                END LOOP;
+              RETURN  l_avistamientos;
+              END avistamiento_persona_id;   
               
  END;
 
@@ -3375,7 +3389,6 @@ END Types;
                     Delete from puntaje where id_persona = pid_persona and id_avistamiento =pid_avistamiento;
                     Commit;
               END;
-
              -- ********************************************************* --
               PROCEDURE insert_puntaje (pid_persona NUMBER,pid_avistamiento NUMBER) is
               BEGIN
@@ -3387,17 +3400,15 @@ END Types;
               FUNCTION total_puntaje RETURN VARCHAR2 IS
               total VARCHAR2(11) ;
               BEGIN
-              SELECT COUNT(id_puntaje) into total FROM puntaje;              
-              RETURN total;
-             
+                SELECT COUNT(id_puntaje) into total FROM puntaje;              
+              RETURN total;             
               END total_puntaje;
               -- ********************************************************* -- 
               FUNCTION total_puntaje_avistamiento (pid_avistamiento NUMBER, pid_persona NUMBER) RETURN VARCHAR2 IS
               total VARCHAR2(11) ;
               BEGIN
-              SELECT COUNT(id_puntaje) into total FROM puntaje where id_avistamiento = pid_avistamiento  and id_persona = nvl(pid_persona, id_persona);              
-              RETURN total;
-             
+                SELECT COUNT(id_puntaje) into total FROM puntaje where id_avistamiento = pid_avistamiento  and id_persona = nvl(pid_persona, id_persona);              
+              RETURN total;             
               END total_puntaje_avistamiento;
               -- ********************************************************* --   
               FUNCTION puntaje_avistamiento RETURN puntaje_avistamiento_record AS
@@ -3803,13 +3814,12 @@ END;
     AS
        l_persona persona_record := persona_record();
     BEGIN
-         FOR I IN (SELECT ID_PERSONA, NOMBRE, APELLIDO, FECHA_NACIMIENTO, EMAIL, PROFESION, TIPO, FOTO FROM persona) LOOP
+         FOR I IN (SELECT ID_PERSONA, NOMBRE, APELLIDO, FECHA_NACIMIENTO, EMAIL, PROFESION, TIPO, FOTO FROM persona order by nombre) LOOP
                 l_persona.EXTEND;
                 l_persona(l_persona.COUNT) := (t_persona(i.ID_PERSONA, i.NOMBRE, i.APELLIDO, i.FECHA_NACIMIENTO, i.EMAIL, i.PROFESION, i.TIPO, i.FOTO)) ;
        END LOOP;
         RETURN l_persona;
 END;
-
 
 /
 --------------------------------------------------------

@@ -51,7 +51,7 @@
                                             </h1>
                                         </p>
                                         <hr>
-                                        <h3><strong>Profesion</strong></h3>
+                                        <h3><strong>Profesión</strong></h3>
                                         <p>
                                             <center>
                                                 <?php echo $persona['PROFESION']; ?>
@@ -71,11 +71,11 @@
                     </div>
                     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
                         <?php
-                            $stid = oci_parse($conn, "select * from avistamiento inner join ave on avistamiento.ID_AVE = ave.ID_AVE and avistamiento.ID_PERSONA = ".$persona2." ");
+                            $stid = oci_parse($conn, "select * from table(pck_avistamiento.avistamiento_persona_id(".$persona2." ))");
                             oci_execute($stid);
                             $aves = "";
                             while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
-                                $stid2 = oci_parse($conn, "select count(*) puntos from puntaje where id_avistamiento = ".$row['ID_AVISTAMIENTO']." ");
+                                $stid2 = oci_parse($conn, "select * from table(PCK_PUNTAJE.TOTAL_PUNTAJE_AVISTAMIENTO(".$row['ID_AVISTAMIENTO'].", NULL))");
                                 oci_execute($stid2);
                                 $tot = oci_fetch_array($stid2, OCI_ASSOC+OCI_RETURN_NULLS);
                                 echo ' <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-4 filter hdpe">

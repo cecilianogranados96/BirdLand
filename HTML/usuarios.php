@@ -47,7 +47,7 @@
             <div class="container">
                 <div class="row">
                     <?php 
-                              $stid = oci_parse($conn, 'select * from persona order by nombre');
+                              $stid = oci_parse($conn, 'select * from table(GET_PERSONA)');
                                             oci_execute($stid);
                                             while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
                                                 echo '
