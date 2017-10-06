@@ -117,10 +117,10 @@
         </div>
         <div class="row">
             <?php                
-                $stid = oci_parse($conn, " SELECT  id_ave, COUNT(*) cantidad FROM avistamiento WHERE ROWNUM <= 10 GROUP BY id_ave HAVING COUNT(*) > 0  order by cantidad");
+                $stid = oci_parse($conn, 'select * from table(pck_avistamiento.avistamiento_cantidad)');
                 oci_execute($stid);
                 while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
-                    $stid1 = oci_parse($conn, "SELECT * from avistamiento inner join ave on ave.id_ave = avistamiento.id_ave WHERE avistamiento.id_ave = ".$row['ID_AVE']." ");
+                    $stid1 = oci_parse($conn, 'select * from table(pck_avistamiento.avistamiento_ave_id('.$row['ID_AVE'].'))');
                     oci_execute($stid1);
                     $ave = oci_fetch_array($stid1, OCI_ASSOC+OCI_RETURN_NULLS);
                    echo  '<div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">

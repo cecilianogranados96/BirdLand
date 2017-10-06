@@ -1,5 +1,5 @@
 --------------------------------------------------------
--- Archivo creado  - jueves-octubre-05-2017   
+-- Archivo creado  - viernes-octubre-06-2017   
 --------------------------------------------------------
 DROP TYPE "BL"."AVE_CANTIDAD_RECORD";
 DROP TYPE "BL"."AVE_ESPECIE_GENERO_RECORD";
@@ -7,6 +7,8 @@ DROP TYPE "BL"."AVE_GENERAL_RECORD";
 DROP TYPE "BL"."AVE_RECORD";
 DROP TYPE "BL"."AVE_TIPO_RECORD";
 DROP TYPE "BL"."AVE_1_RECORD";
+DROP TYPE "BL"."AVISTAMIENTO_AVE_RECORD";
+DROP TYPE "BL"."AVISTAMIENTO_CANTIDAD_RECORD";
 DROP TYPE "BL"."AVISTAMIENTO_COMPLETO_RECORD";
 DROP TYPE "BL"."AVISTAMIENTO_GENERAL_RECORD";
 DROP TYPE "BL"."AVISTAMIENTO_PERSONA_RECORD";
@@ -45,6 +47,8 @@ DROP TYPE "BL"."T_AVE_GENERAL";
 DROP TYPE "BL"."T_AVE_TIPO";
 DROP TYPE "BL"."T_AVE_1";
 DROP TYPE "BL"."T_AVISTAMIENTO";
+DROP TYPE "BL"."T_AVISTAMIENTO_AVE";
+DROP TYPE "BL"."T_AVISTAMIENTO_CANTIDAD";
 DROP TYPE "BL"."T_AVISTAMIENTO_COMPLETO";
 DROP TYPE "BL"."T_AVISTAMIENTO_GENERAL";
 DROP TYPE "BL"."T_AVISTAMIENTO_PERSONA";
@@ -83,27 +87,27 @@ DROP TYPE "BL"."T_USUARIO";
 DROP TYPE "BL"."UBICACION_CANTON_RECORD";
 DROP TYPE "BL"."UBICACION_RECORD";
 DROP TYPE "BL"."USUARIO_RECORD";
-DROP TABLE "BL"."AVE";
-DROP TABLE "BL"."AVISTAMIENTO";
-DROP TABLE "BL"."BITACORA";
-DROP TABLE "BL"."CANTON";
-DROP TABLE "BL"."CLASE";
-DROP TABLE "BL"."COLOR";
-DROP TABLE "BL"."CONTINENTE";
-DROP TABLE "BL"."ESPECIE";
-DROP TABLE "BL"."FAMILIA";
-DROP TABLE "BL"."FOTO";
-DROP TABLE "BL"."GENERO";
-DROP TABLE "BL"."ORDEN";
-DROP TABLE "BL"."PAIS";
-DROP TABLE "BL"."PARAMETRO";
-DROP TABLE "BL"."PERSONA";
-DROP TABLE "BL"."PROVINCIA";
-DROP TABLE "BL"."PUNTAJE";
-DROP TABLE "BL"."SUBORDEN";
-DROP TABLE "BL"."TIPO";
-DROP TABLE "BL"."UBICACION";
-DROP TABLE "BL"."USUARIO";
+DROP TABLE "BL"."AVE" cascade constraints;
+DROP TABLE "BL"."AVISTAMIENTO" cascade constraints;
+DROP TABLE "BL"."BITACORA" cascade constraints;
+DROP TABLE "BL"."CANTON" cascade constraints;
+DROP TABLE "BL"."CLASE" cascade constraints;
+DROP TABLE "BL"."COLOR" cascade constraints;
+DROP TABLE "BL"."CONTINENTE" cascade constraints;
+DROP TABLE "BL"."ESPECIE" cascade constraints;
+DROP TABLE "BL"."FAMILIA" cascade constraints;
+DROP TABLE "BL"."FOTO" cascade constraints;
+DROP TABLE "BL"."GENERO" cascade constraints;
+DROP TABLE "BL"."ORDEN" cascade constraints;
+DROP TABLE "BL"."PAIS" cascade constraints;
+DROP TABLE "BL"."PARAMETRO" cascade constraints;
+DROP TABLE "BL"."PERSONA" cascade constraints;
+DROP TABLE "BL"."PROVINCIA" cascade constraints;
+DROP TABLE "BL"."PUNTAJE" cascade constraints;
+DROP TABLE "BL"."SUBORDEN" cascade constraints;
+DROP TABLE "BL"."TIPO" cascade constraints;
+DROP TABLE "BL"."UBICACION" cascade constraints;
+DROP TABLE "BL"."USUARIO" cascade constraints;
 DROP SEQUENCE "BL"."SQ_AVE";
 DROP SEQUENCE "BL"."SQ_AVISTAMIENTO";
 DROP SEQUENCE "BL"."SQ_BITACORA";
@@ -228,6 +232,22 @@ AS TABLE OF T_AVE_TIPO;
 
   CREATE OR REPLACE TYPE "BL"."AVE_1_RECORD" 
 AS TABLE OF T_AVE_1;
+
+/
+--------------------------------------------------------
+--  DDL for Type AVISTAMIENTO_AVE_RECORD
+--------------------------------------------------------
+
+  CREATE OR REPLACE TYPE "BL"."AVISTAMIENTO_AVE_RECORD" 
+AS TABLE OF T_AVISTAMIENTO_AVE;
+
+/
+--------------------------------------------------------
+--  DDL for Type AVISTAMIENTO_CANTIDAD_RECORD
+--------------------------------------------------------
+
+  CREATE OR REPLACE TYPE "BL"."AVISTAMIENTO_CANTIDAD_RECORD" 
+AS TABLE OF T_AVISTAMIENTO_CANTIDAD;
 
 /
 --------------------------------------------------------
@@ -582,6 +602,38 @@ AS TABLE OF T_SUBORDEN_ORDEN;
 	"LONGITUD" VARCHAR2(100 BYTE), 
 	"FOTO" VARCHAR2(20 BYTE)
 );
+
+/
+--------------------------------------------------------
+--  DDL for Type T_AVISTAMIENTO_AVE
+--------------------------------------------------------
+
+  CREATE OR REPLACE TYPE "BL"."T_AVISTAMIENTO_AVE" AS OBJECT 
+(
+    "ID_AVISTAMIENTO" NUMBER(11,0), 
+	"ID_PERSONA" NUMBER(11,0), 
+	"ID_AVE" NUMBER(11,0), 
+	"LATITUD" VARCHAR2(100 BYTE), 
+	"LONGITUD" VARCHAR2(100 BYTE), 
+	"FOTO" VARCHAR2(20 BYTE),
+    "ID_ESPECIE" NUMBER(11,0), 
+    "ID_COLOR" NUMBER(11,0), 
+    "ID_ESTADO" NUMBER(11,0),     
+    "NOMBRE_COMUN" VARCHAR2(100 BYTE),     
+    "TAMANO" VARCHAR2(100 BYTE), 
+    "IMAGEN" VARCHAR2(100 BYTE)	
+)
+
+/
+--------------------------------------------------------
+--  DDL for Type T_AVISTAMIENTO_CANTIDAD
+--------------------------------------------------------
+
+  CREATE OR REPLACE TYPE "BL"."T_AVISTAMIENTO_CANTIDAD" AS OBJECT 
+( 
+    "ID_AVE" NUMBER (11,0),
+    "CANTIDAD" NUMBER (20,0)
+)
 
 /
 --------------------------------------------------------
@@ -1984,6 +2036,8 @@ END;
           FUNCTION avistamiento_persona (pid_persona NUMBER) RETURN avistamiento_persona_record;
           FUNCTION avistamiento_completo RETURN avistamiento_completo_record;
           FUNCTION avistamiento_id (pid_avistamiento NUMBER) RETURN avistamiento_persona_record;
+          FUNCTION avistamiento_cantidad RETURN avistamiento_cantidad_record;
+          FUNCTION avistamiento_ave_id (pid_ave NUMBER) RETURN avistamiento_ave_record;
 END;
 
 /
@@ -2472,6 +2526,31 @@ END Types;
                 END LOOP;
               RETURN  l_avistamiento_ids;
               END avistamiento_id; 
+              -- ********************************************************* --  
+              FUNCTION avistamiento_cantidad RETURN avistamiento_cantidad_record AS
+              l_avistamiento_cantidades  avistamiento_cantidad_record := avistamiento_cantidad_record();
+              BEGIN
+                 FOR I IN (SELECT  id_ave, COUNT(*) cantidad FROM avistamiento WHERE ROWNUM <= 10 GROUP BY id_ave 
+                            HAVING COUNT(*) > 0  order by cantidad) LOOP
+                         l_avistamiento_cantidades.EXTEND;
+                         l_avistamiento_cantidades(l_avistamiento_cantidades.COUNT) := (t_avistamiento_cantidad(i.id_ave, i.cantidad)) ;
+                END LOOP;
+              RETURN  l_avistamiento_cantidades;
+              END avistamiento_cantidad; 
+               -- ********************************************************* --  
+              FUNCTION avistamiento_ave_id (pid_ave NUMBER) RETURN avistamiento_ave_record AS
+              l_avistamientos  avistamiento_ave_record := avistamiento_ave_record();
+              BEGIN
+                 FOR I IN (SELECT id_avistamiento, id_persona,  avistamiento.id_ave, latitud, longitud, foto, id_especie, 
+                            id_color, id_estado, nombre_comun, tamano, imagen 
+                            from avistamiento inner join ave on ave.id_ave = avistamiento.id_ave WHERE avistamiento.id_ave = pid_ave) LOOP
+                         l_avistamientos.EXTEND;
+                         l_avistamientos(l_avistamientos.COUNT) := (t_avistamiento_ave(i.id_avistamiento, i.id_persona, i.id_ave, 
+                         i.latitud, i.longitud, i.foto, i.id_especie, i.id_color, i.id_estado, i.nombre_comun, i.tamano, i.imagen));
+                END LOOP;
+              RETURN  l_avistamientos;
+              END avistamiento_ave_id;   
+              
  END;
 
 /
