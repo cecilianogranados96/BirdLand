@@ -39,7 +39,7 @@
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
                 <div class="section-title">
-                    <h2>Mas votados</h2>
+                    <h2>Más votados</h2>
                 </div>
             </div>
         </div>
@@ -48,9 +48,7 @@
         $stid = oci_parse($conn, ' select * from table(pck_puntaje.puntaje_avistamiento)');
         oci_execute($stid);
         while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
-            $stid1 = oci_parse($conn, "select persona.id_persona,persona.nombre,persona.apellido,avistamiento.foto,avistamiento.id_avistamiento,
-			avistamiento.id_ave from avistamiento inner join persona on avistamiento.id_persona = persona.id_persona where 
-			id_avistamiento =  ".$row['ID_AVISTAMIENTO']." ");
+            $stid1 = oci_parse($conn, 'select * from table(PCK_AVISTAMIENTO.AVISTAMIENTO_ID('.$row['ID_AVISTAMIENTO'].'))');
             oci_execute($stid1);
             $per = oci_fetch_array($stid1, OCI_ASSOC+OCI_RETURN_NULLS);
                echo '
