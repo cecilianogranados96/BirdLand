@@ -3,7 +3,7 @@
         <div class="row">
             <div class="breadcumb">
                 <center>
-                    <h2>Administracion: Cantones</h2>
+                    <h2>Administración: Cantones</h2>
                 </center>
             </div>
         </div>

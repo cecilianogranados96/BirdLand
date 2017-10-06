@@ -16,7 +16,7 @@
 
 
             <?php 
-$stid = oci_parse ($conn, "SELECT * FROM CANTON ORDER BY ID_CANTON ASC");  
+$stid = oci_parse ($conn, "SELECT * FROM TABLE (GET_CANTON)");  
 oci_execute ($stid,OCI_DEFAULT);  
 $Num_Rows = oci_fetch_all($stid, $row);  
 if(!isset($_GET["Page"]))  

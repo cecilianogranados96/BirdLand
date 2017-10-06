@@ -93,7 +93,7 @@
                         <select class="form-control" onchange="window.location.href='<?php echo $url_base; ?>&clase='+this.value;">
                                     <?php
                                         echo  '<option value="0">Selecciona una opcion</option>';  
-                                        $stid = oci_parse($conn, 'select * from clase order by nombre');
+                                        $stid = oci_parse($conn, 'sselect * from table(GET_CLASE)');
                                         oci_execute($stid);
                                         while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
                                             if(isset($_GET['clase'])){
@@ -114,7 +114,7 @@
                                     <?php
                                         echo  '<option value="0">Selecciona una opcion</option>';  
                                          if(isset($_GET['clase'])){
-                                            $stid = oci_parse($conn, 'select * from orden where id_clase = '.$_GET['clase'].' order by nombre');
+                                            $stid = oci_parse($conn, 'select * from table(PCK_ORDEN.ORDEN_CLASE_ID( '.$_GET['clase'].'))');
                                             oci_execute($stid);
                                             while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
                                                 if(isset($_GET['orden'])){
@@ -136,7 +136,7 @@
                                     <?php
                                         echo  '<option value="0">Selecciona una opcion</option>';  
                                          if(isset($_GET['orden'])){
-                                            $stid = oci_parse($conn, 'select * from suborden where id_orden = '.$_GET['orden'].' order by nombre');
+                                            $stid = oci_parse($conn, 'select * from table(PCK_SUBORDEN.SUBORDEN_ORDEN_ID( '.$_GET['orden'].'))');
                                             oci_execute($stid);
                                             while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
                                                 if(isset($_GET['suborden'])){
@@ -158,7 +158,7 @@
                                     <?php
                                         echo  '<option value="0">Selecciona una opcion</option>';  
                                          if(isset($_GET['suborden'])){
-                                            $stid = oci_parse($conn, 'select * from familia where id_suborden = '.$_GET['suborden'].' order by nombre');
+                                            $stid = oci_parse($conn, 'select * from table(PCK_familia.familia_suborden_ID( '.$_GET['suborden'].'))');
                                             oci_execute($stid);
                                             while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
                                                 if(isset($_GET['familia'])){
@@ -180,7 +180,7 @@
                                     <?php
                                         echo  '<option value="0">Selecciona una opcion</option>';  
                                          if(isset($_GET['familia'])){
-                                            $stid = oci_parse($conn, 'select * from genero where id_familia = '.$_GET['familia'].' order by nombre');
+                                            $stid = oci_parse($conn, 'select * from table(PCK_GENERO.GENERO_FAMILIA_ID( '.$_GET['familia'].'))');
                                             oci_execute($stid);
                                             while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
                                                 if(isset($_GET['genero'])){
@@ -203,7 +203,7 @@
                                     <?php
                                         echo  '<option value="0">Selecciona una opcion</option>';  
                                          if(isset($_GET['genero'])){
-                                            $stid = oci_parse($conn, 'select * from especie where id_genero = '.$_GET['genero'].' order by nombre');
+                                            $stid = oci_parse($conn, 'select * from table(pck_especie.especie_genero_id ( '.$_GET['genero'].'))');
                                             oci_execute($stid);
                                             while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
                                                 if(isset($_GET['especie'])){

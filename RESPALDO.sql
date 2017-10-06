@@ -3629,13 +3629,12 @@ END;
     AS
        l_canton canton_record := canton_record();
     BEGIN
-         FOR I IN (SELECT ID_CANTON, ID_PROVINCIA, NOMBRE FROM canton) LOOP
+         FOR I IN (SELECT ID_CANTON, ID_PROVINCIA, NOMBRE FROM canton ORDER BY ID_CANTON ASC) LOOP
                 l_canton.EXTEND;
                 l_canton(l_canton.COUNT) := (t_canton(i.ID_CANTON, i.ID_PROVINCIA, i.NOMBRE)) ;
        END LOOP;
         RETURN l_canton;
 END;
-
 
 /
 --------------------------------------------------------
