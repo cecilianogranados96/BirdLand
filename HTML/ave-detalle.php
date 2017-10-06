@@ -97,24 +97,22 @@
 
                 <?php 
                         
-$stid1 = oci_parse($conn, "
-select avistamiento.foto,avistamiento.id_ave,persona.nombre,persona.apellido,avistamiento.id_avistamiento,avistamiento.id_persona from avistamiento INNER JOIN persona on avistamiento.ID_PERSONA = persona.ID_PERSONA where id_ave = ".$_GET['id']." ");
-oci_execute($stid1);
-        
+$stid1 = oci_parse($conn, " select * from table(pck_avistamiento.avistamiento_persona(".$_GET['id'].")) ");
+oci_execute($stid1);        
 while ($row = oci_fetch_array($stid1, OCI_ASSOC+OCI_RETURN_NULLS)) {
     if (isset($_SESSION['id_persona'])){
-        $stid = oci_parse($conn, "select count(*) total from puntaje where id_avistamiento = ".$row['ID_AVISTAMIENTO']." and id_persona = ".$_SESSION['id_persona']." ");
-        oci_execute($stid);
-        $total = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS);
+		$stid1 = oci_parse($conn, 'BEGIN :r := pck_puntaje.total_puntaje_avistamiento('.$row['ID_AVISTAMIENTO'].', '.$_SESSION['id_persona'].'); END;');
+		oci_bind_by_name($stid1, ':r', $total, 40);
+		oci_execute($stid1);
     }
 
-    $stid = oci_parse($conn, "select count(*) puntos from puntaje where id_avistamiento = ".$row['ID_AVISTAMIENTO']." ");
-    oci_execute($stid);
-    $puntos = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS);
+	$stid1 = oci_parse($conn, 'BEGIN :r := pck_puntaje.total_puntaje_avistamiento('.$row['ID_AVISTAMIENTO'].', NULL); END;');
+	oci_bind_by_name($stid1, ':r', $puntos, 40);
+	oci_execute($stid1);
     if (isset($_SESSION['id_persona'])){
         if ($total['TOTAL'] >= 1){
             $datos = 'class="btn btn-danger" onclick="votar('.$_SESSION['id_persona'].','.$row['ID_AVISTAMIENTO'].',this,2);"';
-            $label = '<span class="fa fa-heart" aria-hidden="true"></span> NO GUSTA';
+            $label = '<span class="fa fa-heart" aria-hidden="true"></span> NO ME GUSTA';
         }else{
             $datos = 'class="btn btn-default" onclick="votar('.$_SESSION['id_persona'].','.$row['ID_AVISTAMIENTO'].',this,1);" ';
             $label = '<span class="fa fa-heart" aria-hidden="true"></span> ME GUSTA';

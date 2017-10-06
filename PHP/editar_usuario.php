@@ -8,16 +8,10 @@ if (isset($_GET['id'])){
     $url = '';
 }
 
-//?
 $consul = 'select * from table(pck_persona.persona_usuario('.$usuario.'))';
 $stid = oci_parse($conn, $consul);
 oci_execute($stid);
 $persona = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS);
-/*$consul = 'select * from persona inner join usuario on usuario.id_persona = persona.id_persona and persona.id_persona = '.$usuario.' ';
-$stid = oci_parse($conn, $consul);
-oci_execute($stid);
-$persona = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS);
-*/
 
 if(isset($_GET['edit'])) {
     $foto_url = $persona['FOTO'];

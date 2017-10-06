@@ -72,7 +72,7 @@
                             <select class="form-control" onchange="window.location.href='<?php echo $url_base; ?>&clase='+this.value;">
                                     <?php
                                         echo  '<option value="0">Selecciona una opcion</option>';  
-                                        $stid = oci_parse($conn, 'select * from clase order by nombre');
+                                        $stid = oci_parse($conn, 'select * from table(get_clase)');
                                         oci_execute($stid);
                                         while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
                                             if(isset($_GET['clase'])){
@@ -93,8 +93,8 @@
                             <select onchange="window.location.href='<?php echo $url_base; ?>&orden='+this.value;" class="form-control" <?php if(!isset($_GET[ 'clase'])) {echo "disabled"; }?>>
                                     <?php
                                         echo  '<option value="0">Selecciona una opcion</option>';  
-                                         if(isset($_GET['clase'])){
-                                            $stid = oci_parse($conn, 'select * from orden where id_clase = '.$_GET['clase'].' order by nombre');
+                                         if(isset($_GET['clase'])){											
+                                            $stid = oci_parse($conn, 'select * from table('.$_GET['clase'].')');
                                             oci_execute($stid);
                                             while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
                                                 if(isset($_GET['orden'])){
@@ -117,7 +117,7 @@
                                     <?php
                                         echo  '<option value="0">Selecciona una opcion</option>';  
                                          if(isset($_GET['orden'])){
-                                            $stid = oci_parse($conn, 'select * from suborden where id_orden = '.$_GET['orden'].' order by nombre');
+                                            $stid = oci_parse($conn, 'select * from table(pck_suborden.suborden_orden_id('.$_GET['orden'].'))');
                                             oci_execute($stid);
                                             while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
                                                 if(isset($_GET['suborden'])){
@@ -140,7 +140,7 @@
                                     <?php
                                         echo  '<option value="0">Selecciona una opcion</option>';  
                                          if(isset($_GET['suborden'])){
-                                            $stid = oci_parse($conn, 'select * from familia where id_suborden = '.$_GET['suborden'].' order by nombre');
+                                            $stid = oci_parse($conn, 'select * from table(pck_familia.familia_suborden_id('.$_GET['suborden'].'))');
                                             oci_execute($stid);
                                             while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
                                                 if(isset($_GET['familia'])){
@@ -163,7 +163,7 @@
                                     <?php
                                         echo  '<option value="0">Selecciona una opcion</option>';  
                                          if(isset($_GET['familia'])){
-                                            $stid = oci_parse($conn, 'select * from genero where id_familia = '.$_GET['familia'].' order by nombre');
+                                            $stid = oci_parse($conn, 'select * from table(pck_genero.genero_familia_id('.$_GET['familia'].'))');
                                             oci_execute($stid);
                                             while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
                                                 if(isset($_GET['genero'])){
@@ -186,7 +186,7 @@
                                     <?php
                                         echo  '<option value="0">Selecciona una opcion</option>';  
                                          if(isset($_GET['genero'])){
-                                            $stid = oci_parse($conn, 'select * from especie where id_genero = '.$_GET['genero'].' order by nombre');
+                                            $stid = oci_parse($conn, 'select * from table(pck_especie.especie_genero_id('.$_GET['genero'].'))');
                                             oci_execute($stid);
                                             while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
                                                 if(isset($_GET['especie'])){
@@ -221,16 +221,7 @@
                 <?php
  
                                
-                        $stid = oci_parse($conn, "select ave.id_ave,ave.imagen,ave.nombre_comun,genero.nombre ||' ' || especie.nombre nombre_cientifico, avistamiento.latitud,avistamiento.longitud
-                        from avistamiento
-                        inner join ave on ave.id_ave = avistamiento.id_ave
-                        inner join especie on ave.id_especie = especie.id_especie
-                        inner join genero on especie.id_genero = genero.id_genero
-                        inner join familia on genero.id_familia = familia.id_familia
-                        inner join suborden on familia.id_suborden = suborden.id_suborden
-                        inner join orden on suborden.id_orden = orden.id_orden
-                        inner join clase on orden.id_clase = clase.id_clase 
-                        inner join tipo on ave.id_estado = tipo.id_tipo ".$where." ");
+                        $stid = oci_parse($conn, "select * from table(pck_avistamiento.avistamiento_completo)".$where." ");
                         oci_execute($stid);
                 
                 
@@ -326,6 +317,5 @@ for($i=$Page_Start;$i<$Page_End;$i++)
                             </ul>
                         </div>
                     </div>
-
         </div>
     </div>

@@ -83,8 +83,7 @@ for($i=$Page_Start;$i<$Page_End;$i++)
 //???
 
 if(isset($_GET['bitacora'])) { 
-    $stid = oci_parse($conn, 'select persona.nombre, bitacora.anterior, bitacora.siguiente from bitacora inner join persona 
-	on bitacora.id_persona = persona.id_persona WHERE persona.id_persona = '.$_GET['id'].' order by bitacora.id_bitacora DESC');
+    $stid = oci_parse($conn, 'select * from table(pck_persona.persona_bitacora('.$_GET['id'].')');
     oci_execute($stid);
     $filas = "";
     while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {

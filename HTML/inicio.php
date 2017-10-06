@@ -45,10 +45,12 @@
         </div>
         <div class="row">
             <?php             
-        $stid = oci_parse($conn, ' Select * from (SELECT a.id_avistamiento, a.id_persona, COUNT(*) as "likes" FROM (avistamiento a INNER JOIN puntaje p ON a.ID_AVISTAMIENTO = p.ID_AVISTAMIENTO) GROUP BY a.id_avistamiento, a.id_persona ORDER BY "likes" desc) where rownum <= 10');
+        $stid = oci_parse($conn, ' select * from table(pck_puntaje.puntaje_avistamiento)');
         oci_execute($stid);
         while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
-            $stid1 = oci_parse($conn, "select persona.id_persona,persona.nombre,persona.apellido,avistamiento.foto,avistamiento.id_avistamiento,avistamiento.id_ave from avistamiento inner join persona on avistamiento.id_persona = persona.id_persona where id_avistamiento =  ".$row['ID_AVISTAMIENTO']." ");
+            $stid1 = oci_parse($conn, "select persona.id_persona,persona.nombre,persona.apellido,avistamiento.foto,avistamiento.id_avistamiento,
+			avistamiento.id_ave from avistamiento inner join persona on avistamiento.id_persona = persona.id_persona where 
+			id_avistamiento =  ".$row['ID_AVISTAMIENTO']." ");
             oci_execute($stid1);
             $per = oci_fetch_array($stid1, OCI_ASSOC+OCI_RETURN_NULLS);
                echo '
@@ -84,7 +86,7 @@
             <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 col-md-offset-1">
                 <div class="total-area">
                     <?php        
-                        $stid = oci_parse($conn, 'select * from ave ');
+                        $stid = oci_parse($conn, 'select * from table(get_ave)');
                         oci_execute($stid);
                         while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
                             echo '
