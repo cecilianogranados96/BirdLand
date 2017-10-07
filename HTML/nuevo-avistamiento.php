@@ -39,7 +39,7 @@
                         <tr>
                             <td colspan="3" class="titulo">
                                 <center>
-                                    <h2>2- Sube una imagen</h2>
+                                    <h2>2- Suba una imagen</h2>
                                 </center>
                             </td>
                         </tr>

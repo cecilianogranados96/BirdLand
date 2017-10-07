@@ -71,11 +71,7 @@
 
                             <select class="form-control" onchange="window.location.href='<?php echo $url_base; ?>&clase='+this.value;">
                                     <?php
-<<<<<<< HEAD
                                         echo  '<option value="0">Seleccione una opción</option>';  
-=======
-                                        echo  '<option value="0">Selecciona una opcion</option>';  
->>>>>>> origin/master
                                         $stid = oci_parse($conn, 'select * from table(get_clase)');
                                         oci_execute($stid);
                                         while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
@@ -96,13 +92,9 @@
                         <td>
                             <select onchange="window.location.href='<?php echo $url_base; ?>&orden='+this.value;" class="form-control" <?php if(!isset($_GET[ 'clase'])) {echo "disabled"; }?>>
                                     <?php
-<<<<<<< HEAD
                                         echo  '<option value="0">Seleccione una opción</option>';  
-=======
-                                        echo  '<option value="0">Selecciona una opcion</option>';  
->>>>>>> origin/master
                                          if(isset($_GET['clase'])){											
-                                            $stid = oci_parse($conn, 'select * from table('.$_GET['clase'].')');
+                                            $stid = oci_parse($conn, 'select * from table(pck_orden.orden_clase_id('.$_GET['clase'].'))');
                                             oci_execute($stid);
                                             while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
                                                 if(isset($_GET['orden'])){
@@ -228,67 +220,76 @@
 
                 <?php
  
-                               
-                        $stid = oci_parse($conn, "select * from table(pck_avistamiento.avistamiento_completo)".$where." ");
+                        //$stid = oci_parse($conn, "select * from table(pck_avistamiento.avistamiento_completo)".$where." ");
+                        //oci_execute($stid);
+
+						$stid = oci_parse($conn, "select ave.id_ave,ave.imagen,ave.nombre_comun,genero.nombre ||' ' || especie.nombre nombre_cientifico, avistamiento.latitud,avistamiento.longitud
+                        from avistamiento
+                        inner join ave on ave.id_ave = avistamiento.id_ave
+                        inner join especie on ave.id_especie = especie.id_especie
+                        inner join genero on especie.id_genero = genero.id_genero
+                        inner join familia on genero.id_familia = familia.id_familia
+                        inner join suborden on familia.id_suborden = suborden.id_suborden
+                        inner join orden on suborden.id_orden = orden.id_orden
+                        inner join clase on orden.id_clase = clase.id_clase 
+                        inner join tipo on ave.id_estado = tipo.id_tipo ".$where." ");
                         oci_execute($stid);
-                
-                
-                
-                
-oci_execute ($stid,OCI_DEFAULT);  
-$Num_Rows = oci_fetch_all($stid, $row);  
+						
+						oci_execute ($stid,OCI_DEFAULT);  
+						$Num_Rows = oci_fetch_all($stid, $row);  
 
+						
 
-$Prev_Page = $Page-1;  
-$Next_Page = $Page+1;  
-  
-$Page_Start = (($total_pagina*$Page)-$total_pagina);  
-    
-if($Num_Rows<=$total_pagina)  
-{  
-    $Num_Pages =1;  
-}  
-else if(($Num_Rows % $total_pagina)==0)  
-{  
-    $Num_Pages =($Num_Rows/$total_pagina) ;  
-}  
-else  
-{  
-    $Num_Pages =($Num_Rows/$total_pagina)+1;  
-    $Num_Pages = (int)$Num_Pages;  
-}  
-$Page_End = $total_pagina * $Page;  
-if ($Page_End > $Num_Rows)  
-{  
-    $Page_End = $Num_Rows;  
-}  
-$registros = oci_num_rows($stid);
-$filas = "";
-                   echo "<center><h2>Registros: ".oci_num_rows($stid)."</h2></center>";
-for($i=$Page_Start;$i<$Page_End;$i++)  
-{  
+						$Prev_Page = $Page-1;  
+						$Next_Page = $Page+1;  
+						  
+						$Page_Start = (($total_pagina*$Page)-$total_pagina);  
+							
+						if($Num_Rows<=$total_pagina)  
+						{  
+							$Num_Pages =1;  
+						}  
+						else if(($Num_Rows % $total_pagina)==0)  
+						{  
+							$Num_Pages =($Num_Rows/$total_pagina) ;  
+						}  
+						else  
+						{  
+							$Num_Pages =($Num_Rows/$total_pagina)+1;  
+							$Num_Pages = (int)$Num_Pages;  
+						}  
+						$Page_End = $total_pagina * $Page;  
+						if ($Page_End > $Num_Rows)  
+						{  
+							$Page_End = $Num_Rows;  
+						}  
+						$registros = oci_num_rows($stid);
+						$filas = "";
+										   echo "<center><h2>Registros: ".oci_num_rows($stid)."</h2></center>";
+						for($i=$Page_Start;$i<$Page_End;$i++)  
+						{  
 
-     echo '
-                                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                                    <div class="single-news-area">
-                                        <div class="media">
-                                          <div class="media-body">
-                                            <center>
-                                                <h4 class="media-heading">
-                                                    <a href="?pag=ave-detalle&id='.$row['ID_AVE'][$i].'">'.$row['NOMBRE_COMUN'][$i].'</a>
-                                                </h4>
-                                                <a href="?pag=ave-detalle&id='.$row['ID_AVE'][$i].'">
-                                                  <img class="media-object" src="images/aves/'.$row['IMAGEN'][$i].'" style="width: 200px;height: 170px;">
-                                                </a>
-                                                <br>
-                                                <div class="read-more">
-                                                    <a href="?pag=ave-detalle&id='.$row['ID_AVE'][$i].'"><i><b><u>'.$row['NOMBRE_CIENTIFICO'][$i].'</u></b></i></a>
-                                                </div>
-                                              </center>
-                                          </div>
-                                        </div>
-                                    </div>
-                                </div>';
+							 echo '
+														<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+															<div class="single-news-area">
+																<div class="media">
+																  <div class="media-body">
+																	<center>
+																		<h4 class="media-heading">
+																			<a href="?pag=ave-detalle&id='.$row['ID_AVE'][$i].'">'.$row['NOMBRE_COMUN'][$i].'</a>
+																		</h4>
+																		<a href="?pag=ave-detalle&id='.$row['ID_AVE'][$i].'">
+																		  <img class="media-object" src="images/aves/'.$row['IMAGEN'][$i].'" style="width: 200px;height: 170px;">
+																		</a>
+																		<br>
+																		<div class="read-more">
+																			<a href="?pag=ave-detalle&id='.$row['ID_AVE'][$i].'"><i><b><u>'.$row['NOMBRE_CIENTIFICO'][$i].'</u></b></i></a>
+																		</div>
+																	  </center>
+																  </div>
+																</div>
+															</div>
+														</div>';
 }
                 
                 

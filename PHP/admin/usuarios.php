@@ -17,7 +17,8 @@ if(!isset($_GET['bitacora'])) {
     $extra = "";
 }
         
-$stid = oci_parse($conn, 'select * from table(get_persona)'.$extra.' ');
+//$stid = oci_parse($conn, 'select * from table(get_persona)'.$extra.' ');
+$stid = oci_parse($conn, 'select * from persona '.$extra.' ');
 oci_execute ($stid,OCI_DEFAULT);  
 $Num_Rows = oci_fetch_all($stid, $row);  
 if(!isset($_GET["Page"]))  
@@ -81,7 +82,7 @@ for($i=$Page_Start;$i<$Page_End;$i++)
 
 
 if(isset($_GET['bitacora'])) { 
-    $stid = oci_parse($conn, 'select * from table(pck_persona.persona_bitacora('.$_GET['id'].')');
+    $stid = oci_parse($conn, 'select * from table(pck_persona.persona_bitacora('.$_GET['id'].'))');
     oci_execute($stid);
     $filas = "";
     while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {

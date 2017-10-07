@@ -45,15 +45,9 @@
         </div>
         <div class="row">
             <?php             
-<<<<<<< HEAD
         $stid = oci_parse($conn, 'select * from table(pck_puntaje.puntaje_avistamiento)');
         oci_execute($stid);
         while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {			
-=======
-        $stid = oci_parse($conn, ' select * from table(pck_puntaje.puntaje_avistamiento)');
-        oci_execute($stid);
-        while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
->>>>>>> origin/master
             $stid1 = oci_parse($conn, 'select * from table(PCK_AVISTAMIENTO.AVISTAMIENTO_ID('.$row['ID_AVISTAMIENTO'].'))');
             oci_execute($stid1);
             $per = oci_fetch_array($stid1, OCI_ASSOC+OCI_RETURN_NULLS);

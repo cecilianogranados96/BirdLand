@@ -65,11 +65,7 @@
                                     <center>Clase</center>
                                     <select class="form-control" onchange="window.location.href='<?php echo $url_base; ?>&clase='+this.value;">
                                     <?php
-<<<<<<< HEAD
                                         echo  '<option value="0">Seleccione una opción</option>';  
-=======
-                                        echo  '<option value="0">Selecciona una opcion</option>';  
->>>>>>> origin/master
                                         $stid = oci_parse($conn, 'select * from table(get_clase)');
                                         oci_execute($stid);
                                         while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {

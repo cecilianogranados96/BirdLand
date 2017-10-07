@@ -75,18 +75,12 @@
                             oci_execute($stid);
                             $aves = "";
                             while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
-<<<<<<< HEAD
 								$stid2 = oci_parse($conn, 'BEGIN :r := PCK_PUNTAJE.TOTAL_PUNTAJE_AVISTAMIENTO('.$row['ID_AVISTAMIENTO'].', NULL); END;');
 								oci_bind_by_name($stid2, ':r', $tot, 40);
 								oci_execute($stid2);
-=======
-                                $stid2 = oci_parse($conn, "select * from table(PCK_PUNTAJE.TOTAL_PUNTAJE_AVISTAMIENTO(".$row['ID_AVISTAMIENTO'].", NULL))");
-                                oci_execute($stid2);
-                                $tot = oci_fetch_array($stid2, OCI_ASSOC+OCI_RETURN_NULLS);
->>>>>>> origin/master
                                 echo ' <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-4 filter hdpe">
                                         <a href="?pag=ave-detalle&id='.$row['ID_AVE'].'"><img src="images/avistamientos/'.$row['FOTO'].'" class="img-responsive img-thumbnail" style="width: 500px;height: 230px;">
-                                        <center><span class="label label-success"> '.$row['NOMBRE_COMUN'].' <span class="fa fa-heart" aria-hidden="true"></span> '.$tot['PUNTOS'].'</span>
+                                        <center><span class="label label-success"> '.$row['NOMBRE_COMUN'].' <span class="fa fa-heart" aria-hidden="true"></span> '.$tot.'</span>
                                         </a>
                                         </center>
                                     </div>

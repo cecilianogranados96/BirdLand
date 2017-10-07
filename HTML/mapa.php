@@ -1,7 +1,7 @@
 <div class="breadcumb-area">
     <div class="container">
         <div class="row">
-            <div class="breadcumb">
+            <div class="breadcumb3">
                 <center>
                     <h2>Mapa de avistamientos</h2>
                 </center>
@@ -44,9 +44,20 @@
                     lng: -83.891521
                 }
             });
-            <?php                
-                $stid = oci_parse($conn, "select * from table(PCK_AVISTAMIENTO.AVISTAMIENTO_COMPLETO) ".$where."");
+            <?php     			
+				$stid = oci_parse($conn, "Select ave.id_ave,ave.nombre_comun,genero.nombre ||' ' || especie.nombre nombre_cientifico, avistamiento.latitud,avistamiento.longitud
+                from avistamiento
+                inner join ave on ave.id_ave = avistamiento.id_ave
+                inner join especie on ave.id_especie = especie.id_especie
+                inner join genero on especie.id_genero = genero.id_genero
+                inner join familia on genero.id_familia = familia.id_familia
+                inner join suborden on familia.id_suborden = suborden.id_suborden
+                inner join orden on suborden.id_orden = orden.id_orden
+                inner join clase on orden.id_clase = clase.id_clase 
+                inner join tipo on ave.id_estado = tipo.id_tipo ".$where."");
                 oci_execute($stid);
+                /*$stid = oci_parse($conn, "select * from table(PCK_AVISTAMIENTO.AVISTAMIENTO_COMPLETO) ".$where."");
+                oci_execute($stid);*/
                 while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
                     echo '  
                     marker = new google.maps.Marker({
@@ -85,11 +96,7 @@
 
                                         <select class="form-control" onchange="window.location.href='<?php echo $url_base; ?>&clase='+this.value+'#map'">
                                     <?php
-<<<<<<< HEAD
-                                        echo  '<option value="0">Seleccione una opción</option>';  
-=======
-                                        echo  '<option value="0">Selecciona una opcion</option>';  
->>>>>>> origin/master
+                                        echo  '<option value="0">Seleccione una opción</option>'; 									
                                         $stid = oci_parse($conn, 'select * from table(GET_CLASE)');
                                         oci_execute($stid);
                                         while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
@@ -200,11 +207,7 @@
 
                                         <select onchange="window.location.href='<?php echo $url_base; ?>&genero='+this.value+'#map'" class="form-control" <?php if(!isset($_GET[ 'familia'])) {echo "disabled"; }?> >
                                     <?php
-<<<<<<< HEAD
                                         echo  '<option value="0">Seleccione una opción</option>';  
-=======
-                                        echo  '<option value="0">Selecciona una opción</option>';  
->>>>>>> origin/master
                                          if(isset($_GET['familia'])){
                                             $stid = oci_parse($conn, 'select * from table(PCK_GENERO.GENERO_FAMILIA_ID( '.$_GET['familia'].'))');
                                             oci_execute($stid);
