@@ -26,7 +26,7 @@
                     <tr>
                         <td colspan="3" class="titulo">
                             <center>
-                                <h2>Paso 1 - Clasificacion</h2>
+                                <h2>Paso 1 - Clasificación</h2>
                             </center>
                         </td>
                     </tr>
@@ -65,7 +65,11 @@
                                     <center>Clase</center>
                                     <select class="form-control" onchange="window.location.href='<?php echo $url_base; ?>&clase='+this.value;">
                                     <?php
+<<<<<<< HEAD
+                                        echo  '<option value="0">Seleccione una opción</option>';  
+=======
                                         echo  '<option value="0">Selecciona una opcion</option>';  
+>>>>>>> origin/master
                                         $stid = oci_parse($conn, 'select * from table(get_clase)');
                                         oci_execute($stid);
                                         while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
@@ -85,7 +89,7 @@
                                     <center>Orden</center>
                                     <select onchange="window.location.href='<?php echo $url_base; ?>&orden='+this.value;" class="form-control" <?php if(!isset($_GET[ 'clase'])) {echo "disabled"; }?>>
                                     <?php
-                                        echo  '<option value="0">Selecciona una opcion</option>';  
+                                        echo  '<option value="0">Seleccione una opción</option>';  
                                          if(isset($_GET['clase'])){
                                             $stid = oci_parse($conn, 'select * from table(PCK_ORDEN.ORDEN_CLASE_ID( '.$_GET['clase'].'))');
                                             oci_execute($stid);
@@ -107,7 +111,7 @@
                                     <center>SubOrden</center>
                                     <select onchange="window.location.href='<?php echo $url_base; ?>&suborden='+this.value;" class="form-control" <?php if(!isset($_GET[ 'orden'])) {echo "disabled"; }?>>
                                     <?php
-                                        echo  '<option value="0">Selecciona una opcion</option>';  
+                                        echo  '<option value="0">Seleccione una opción</option>';  
                                          if(isset($_GET['orden'])){
                                             $stid = oci_parse($conn, 'select * from table(PCK_SUBORDEN.SUBORDEN_ORDEN_ID( '.$_GET['orden'].'))');
                                             oci_execute($stid);
@@ -129,7 +133,7 @@
                                     <center>Familia</center>
                                     <select onchange="window.location.href='<?php echo $url_base; ?>&familia='+this.value;" class="form-control" <?php if(!isset($_GET[ 'suborden'])) {echo "disabled"; }?> >
                                     <?php
-                                        echo  '<option value="0">Selecciona una opcion</option>';  
+                                        echo  '<option value="0">Seleccione una opción</option>';  
                                          if(isset($_GET['suborden'])){
                                             $stid = oci_parse($conn, 'select * from table(PCK_familia.familia_suborden_ID( '.$_GET['suborden'].'))');
                                             oci_execute($stid);
@@ -151,7 +155,7 @@
                                     <center>Genero</center>
                                     <select onchange="window.location.href='<?php echo $url_base; ?>&genero='+this.value;" class="form-control" <?php if(!isset($_GET[ 'familia'])) {echo "disabled"; }?> >
                                     <?php
-                                        echo  '<option value="0">Selecciona una opcion</option>';  
+                                        echo  '<option value="0">Seleccione una opción</option>';  
                                          if(isset($_GET['familia'])){
                                             $stid = oci_parse($conn, 'select * from table(PCK_GENERO.GENERO_FAMILIA_ID( '.$_GET['familia'].'))');
                                             oci_execute($stid);
@@ -174,7 +178,7 @@
                                     <center>Especie</center>
                                     <select onchange="window.location.href='<?php echo $url_base; ?>&especie='+this.value;" class="form-control" <?php if(!isset($_GET[ 'genero'])) {echo "disabled"; }?>>
                                     <?php
-                                        echo  '<option value="0">Selecciona una opcion</option>';  
+                                        echo  '<option value="0">Seleccione una opción</option>';  
                                          if(isset($_GET['genero'])){
                                             $stid = oci_parse($conn, 'select * from table(pck_especie.especie_genero_id ( '.$_GET['genero'].'))');
                                             oci_execute($stid);
@@ -209,7 +213,7 @@
                         </tr>
                         <tr>
                             <td>
-                                Nombre Comun:
+                                Nombre común:
                                 <input name="nombre" type="text" placeholder="Nombre Comun" class="form-control" required>
                                 <input name="especie" type="hidden" value="<?php echo $_GET['especie'];?>" class="form-control">
                             </td>
@@ -240,7 +244,7 @@
                         </tr>
                         <tr>
                             <td>
-                                Tamaño (CM):
+                                Tamaño (cm):
                                 <input name="tamano" type="number" placeholder="Tamaño del ave" class="form-control" required>
                             </td>
                         </tr>

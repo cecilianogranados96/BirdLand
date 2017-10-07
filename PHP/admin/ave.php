@@ -4,7 +4,7 @@ if(isset($_GET['borrar'])) {
     oci_execute($stid);
     $mensaje = ' 
             <div class="alert alert-danger"> 
-                <h2 class="titulo"><br><center>Borrado con exito</center></h2>
+                <h2 class="titulo"><br><center>Borrado con éxito</center></h2>
            </div>';
 }
 
@@ -126,13 +126,9 @@ if(isset($_GET['edit'])) {
     $ubicaciones =  '';
     $tot = 0;
     while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
-		//?????
 		$stid4 = oci_parse($conn, 'BEGIN :r := PCK_UBICACIONES.TOTAL_UBICACION('.$row['ID_CANTON'].', '.$_GET['id'].'  ); END;');
 		oci_bind_by_name($stid4, ':r', $tot, 40);
 		oci_execute($stid4);
-        /*$stid4 = oci_parse($conn, "select count(*) total from ubicacion where id_canton = ".$row['ID_CANTON']." and id_ave = ".$_GET['id']." ");
-        oci_execute($stid4);
-        $tot = oci_fetch_array($stid4, OCI_ASSOC+OCI_RETURN_NULLS)['TOTAL'];*/
         if ($tot != 0){
             $ubicaciones .=  '<option value="'.$row['ID_CANTON'].'" selected>'.$row['UBICACION'].'</option>';
         }else{

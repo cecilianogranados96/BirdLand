@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>BirdLand - Un mundo completo que observar</title>
+    <title>BirdLand - Un mundo que observar</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/x-icon" href="images/logo.png">
@@ -58,7 +58,7 @@
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Reportes<span class="caret"></span></a>
                                         <ul class="dropdown-menu" style="background-color: black;margin-top: -3%;margin-left: 30%;">
                                             <li><a href="?pag=admin/ave-peligro">Aves en peligro</a></li>
-                                            <li><a href="?pag=admin/usuarios">Usuarios/Bitacora</a></li>
+                                            <li><a href="?pag=admin/usuarios">Usuarios/Bitácora</a></li>
                                         </ul>
                                     </li>
                                     <li>
@@ -71,24 +71,24 @@
                                         </ul>
                                     </li>
                                     <li>
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Catalogos<span class="caret"></span></a>
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Catálogos<span class="caret"></span></a>
                                         <ul class="dropdown-menu" style="background-color: black;margin-top: -3%;margin-left: 30%;">
                                             <li><a href="?pag=admin/clase">Clase</a></li>
                                             <li><a href="?pag=admin/orden">Orden</a></li>
-                                            <li><a href="?pag=admin/suborden">SubOrden</a></li>
+                                            <li><a href="?pag=admin/suborden">Suborden</a></li>
                                             <li><a href="?pag=admin/familia">Familia</a></li>
-                                            <li><a href="?pag=admin/genero">Genero</a></li>
+                                            <li><a href="?pag=admin/genero">Género</a></li>
                                             <li><a href="?pag=admin/especie">Especie</a></li>
                                             <br>
                                             <li><a href="?pag=admin/continente">Continentes</a></li>
-                                            <li><a href="?pag=admin/pais">Pais</a></li>
+                                            <li><a href="?pag=admin/pais">País</a></li>
                                             <li><a href="?pag=admin/provincia">Provincia</a></li>
-                                            <li><a href="?pag=admin/canton">Canton</a></li>
+                                            <li><a href="?pag=admin/canton">Cantón</a></li>
                                             <br>
                                             <li><a href="?pag=admin/color">Color</a></li>
                                             <li><a href="?pag=admin/tipo">Tipo</a></li>
                                             <br>
-                                            <li><a href="?pag=admin/parametro">Parametros</a></li>
+                                            <li><a href="?pag=admin/parametro">Parámetros</a></li>
                                         </ul>
                                     </li>
                                     <?php }

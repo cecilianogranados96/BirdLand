@@ -12,7 +12,7 @@
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
                 <div class="section-title">
-                    <h2>Contactenos</h2>
+                    <h2>Contáctenos</h2>
                 </div>
             </div>
         </div>
@@ -56,8 +56,8 @@
                         <img class="media-object" src="images/map/6.png" alt="Generic placeholder image">
                       </a>
                         <div class="media-body">
-                            <h4 class="media-heading">Direccion:</h4>
-                            <p>San Jose, Costa Rica, Tecnologico de Costa Rica <br/>Barrio Amon</p>
+                            <h4 class="media-heading">Dirección:</h4>
+                            <p>San José, Costa Rica, Instituto Tecnológico de Costa Rica <br/>Barrio Amón</p>
                         </div>
                     </div>
                 </div>
@@ -69,7 +69,7 @@
                         <img class="media-object" src="images/map/7.png" alt="Generic placeholder image">
                       </a>
                         <div class="media-body">
-                            <h4 class="media-heading">Telefono</h4>
+                            <h4 class="media-heading">Teléfono</h4>
                             <p>(506) 2550 5000 </p>
                         </div>
                     </div>

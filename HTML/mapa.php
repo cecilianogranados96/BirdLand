@@ -85,7 +85,11 @@
 
                                         <select class="form-control" onchange="window.location.href='<?php echo $url_base; ?>&clase='+this.value+'#map'">
                                     <?php
+<<<<<<< HEAD
+                                        echo  '<option value="0">Seleccione una opción</option>';  
+=======
                                         echo  '<option value="0">Selecciona una opcion</option>';  
+>>>>>>> origin/master
                                         $stid = oci_parse($conn, 'select * from table(GET_CLASE)');
                                         oci_execute($stid);
                                         while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
@@ -112,7 +116,7 @@
 
                                         <select onchange="window.location.href='<?php echo $url_base; ?>&orden='+this.value+'#map'" class="form-control" <?php if(!isset($_GET[ 'clase'])) {echo "disabled"; }?>>
                                     <?php
-                                        echo  '<option value="0">Selecciona una opcion</option>';  
+                                        echo  '<option value="0">Seleccione una opción</option>';  
                                          if(isset($_GET['clase'])){
                                             $stid = oci_parse($conn, 'select * from table(PCK_ORDEN.ORDEN_CLASE_ID( '.$_GET['clase'].'))');
                                             oci_execute($stid);
@@ -140,7 +144,7 @@
 
                                         <select onchange="window.location.href='<?php echo $url_base; ?>&suborden='+this.value+'#map'" class="form-control" <?php if(!isset($_GET[ 'orden'])) {echo "disabled"; }?>>
                                     <?php
-                                        echo  '<option value="0">Selecciona una opcion</option>';  
+                                        echo  '<option value="0">Seleccione una opción</option>';  
                                          if(isset($_GET['orden'])){
                                             $stid = oci_parse($conn, 'select * from table(PCK_SUBORDEN.SUBORDEN_ORDEN_ID( '.$_GET['orden'].'))');
                                             oci_execute($stid);
@@ -167,7 +171,7 @@
 
                                         <select onchange="window.location.href='<?php echo $url_base; ?>&familia='+this.value+'#map'" class="form-control" <?php if(!isset($_GET[ 'suborden'])) {echo "disabled"; }?> >
                                     <?php
-                                        echo  '<option value="0">Selecciona una opcion</option>';  
+                                        echo  '<option value="0">Seleccione una opción</option>';  
                                          if(isset($_GET['suborden'])){
                                             $stid = oci_parse($conn, 'select * from table(PCK_familia.familia_suborden_ID( '.$_GET['suborden'].'))');
                                             oci_execute($stid);
@@ -196,7 +200,11 @@
 
                                         <select onchange="window.location.href='<?php echo $url_base; ?>&genero='+this.value+'#map'" class="form-control" <?php if(!isset($_GET[ 'familia'])) {echo "disabled"; }?> >
                                     <?php
+<<<<<<< HEAD
+                                        echo  '<option value="0">Seleccione una opción</option>';  
+=======
                                         echo  '<option value="0">Selecciona una opción</option>';  
+>>>>>>> origin/master
                                          if(isset($_GET['familia'])){
                                             $stid = oci_parse($conn, 'select * from table(PCK_GENERO.GENERO_FAMILIA_ID( '.$_GET['familia'].'))');
                                             oci_execute($stid);
@@ -224,7 +232,7 @@
 
                                         <select onchange="window.location.href='<?php echo $url_base; ?>&especie='+this.value+'#map'" class="form-control" <?php if(!isset($_GET[ 'genero'])) {echo "disabled"; }?>>
                                     <?php
-                                        echo  '<option value="0">Selecciona una opcion</option>';  
+                                        echo  '<option value="0">Seleccione una opción</option>';  
                                          if(isset($_GET['genero'])){
                                             $stid = oci_parse($conn, 'select * from table(pck_especie.especie_genero_id ( '.$_GET['genero'].'))');
                                             oci_execute($stid);

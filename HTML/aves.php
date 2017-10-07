@@ -36,7 +36,7 @@
                         </td>
                         <td>
                             <center>
-                                <label class="col-md-4 control-label" for="selectbasic"><center>SubOrden</center></label>
+                                <label class="col-md-4 control-label" for="selectbasic"><center>Suborden</center></label>
                             </center>
                         </td>
                         <td>
@@ -46,7 +46,7 @@
                         </td>
                         <td>
                             <center>
-                                <label class="col-md-4 control-label" for="selectbasic"><center>Genero</center></label>
+                                <label class="col-md-4 control-label" for="selectbasic"><center>Género</center></label>
                             </center>
                         </td>
                         <td>
@@ -71,7 +71,11 @@
 
                             <select class="form-control" onchange="window.location.href='<?php echo $url_base; ?>&clase='+this.value;">
                                     <?php
+<<<<<<< HEAD
+                                        echo  '<option value="0">Seleccione una opción</option>';  
+=======
                                         echo  '<option value="0">Selecciona una opcion</option>';  
+>>>>>>> origin/master
                                         $stid = oci_parse($conn, 'select * from table(get_clase)');
                                         oci_execute($stid);
                                         while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
@@ -92,7 +96,11 @@
                         <td>
                             <select onchange="window.location.href='<?php echo $url_base; ?>&orden='+this.value;" class="form-control" <?php if(!isset($_GET[ 'clase'])) {echo "disabled"; }?>>
                                     <?php
+<<<<<<< HEAD
+                                        echo  '<option value="0">Seleccione una opción</option>';  
+=======
                                         echo  '<option value="0">Selecciona una opcion</option>';  
+>>>>>>> origin/master
                                          if(isset($_GET['clase'])){											
                                             $stid = oci_parse($conn, 'select * from table('.$_GET['clase'].')');
                                             oci_execute($stid);
@@ -115,7 +123,7 @@
                         <td>
                             <select onchange="window.location.href='<?php echo $url_base; ?>&suborden='+this.value;" class="form-control" <?php if(!isset($_GET[ 'orden'])) {echo "disabled"; }?>>
                                     <?php
-                                        echo  '<option value="0">Selecciona una opcion</option>';  
+                                        echo  '<option value="0">Seleccione una opción</option>';  
                                          if(isset($_GET['orden'])){
                                             $stid = oci_parse($conn, 'select * from table(pck_suborden.suborden_orden_id('.$_GET['orden'].'))');
                                             oci_execute($stid);
@@ -138,7 +146,7 @@
                         <td>
                             <select onchange="window.location.href='<?php echo $url_base; ?>&familia='+this.value;" class="form-control" <?php if(!isset($_GET[ 'suborden'])) {echo "disabled"; }?> >
                                     <?php
-                                        echo  '<option value="0">Selecciona una opcion</option>';  
+                                        echo  '<option value="0">Seleccione una opción</option>';  
                                          if(isset($_GET['suborden'])){
                                             $stid = oci_parse($conn, 'select * from table(pck_familia.familia_suborden_id('.$_GET['suborden'].'))');
                                             oci_execute($stid);
@@ -161,7 +169,7 @@
                         <td>
                             <select onchange="window.location.href='<?php echo $url_base; ?>&genero='+this.value;" class="form-control" <?php if(!isset($_GET[ 'familia'])) {echo "disabled"; }?> >
                                     <?php
-                                        echo  '<option value="0">Selecciona una opcion</option>';  
+                                        echo  '<option value="0">Seleccione una opción</option>';  
                                          if(isset($_GET['familia'])){
                                             $stid = oci_parse($conn, 'select * from table(pck_genero.genero_familia_id('.$_GET['familia'].'))');
                                             oci_execute($stid);
@@ -184,7 +192,7 @@
                         <td>
                             <select onchange="window.location.href='<?php echo $url_base; ?>&especie='+this.value;" class="form-control" <?php if(!isset($_GET[ 'genero'])) {echo "disabled"; }?>>
                                     <?php
-                                        echo  '<option value="0">Selecciona una opcion</option>';  
+                                        echo  '<option value="0">Seleccione una opción</option>';  
                                          if(isset($_GET['genero'])){
                                             $stid = oci_parse($conn, 'select * from table(pck_especie.especie_genero_id('.$_GET['genero'].'))');
                                             oci_execute($stid);

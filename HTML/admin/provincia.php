@@ -3,7 +3,7 @@
         <div class="row">
             <div class="breadcumb">
                 <center>
-                    <h2>Administracion: Provicia</h2>
+                    <h2>Administración: Provicia</h2>
                 </center>
             </div>
         </div>
@@ -21,7 +21,7 @@
                         <tr>
                             <td colspan="3" class="titulo">
                                 <center>
-                                    <h2>Editar Provincia</h2>
+                                    <h2>Editar provincia</h2>
                                 </center>
                             </td>
                         </tr>
@@ -62,7 +62,7 @@
                         <tr>
                             <td colspan="3" class="titulo">
                                 <center>
-                                    <h2>Nueva Provincia</h2>
+                                    <h2>Nueva provincia</h2>
                                 </center>
                             </td>
                         </tr>
@@ -98,7 +98,7 @@
                         <center>Nombre</center>
                     </td>
                     <td class="titulo">
-                        <center>Pais</center>
+                        <center>País</center>
                     </td>
                     <td class="titulo">
                         <center>Editar/Borrar</center>

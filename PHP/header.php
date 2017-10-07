@@ -18,7 +18,7 @@ if (!$conn) {
     $e = oci_error();
     trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
 }
-$array = ["Inicio:index","Mapa:mapa", "Aves:aves","Usuarios:usuarios","Estadisticas:estadisticas"];
+$array = ["Inicio:index","Mapa:mapa", "Aves:aves","Usuarios:usuarios","Estadísticas:estadisticas"];
 $menu  = "";
 foreach ($array as $i => $value) {    
     $pag = explode(":", $array[$i]); 
@@ -38,7 +38,7 @@ foreach ($array as $i => $value) {
 $login = '';
 if(!isset($_SESSION['id_persona'])) { 
     $login .= '  <li class="schedule"><a href="?pag=login">
-        <i class="fa fa-sign-in" aria-hidden="true"></i> Login
+        <i class="fa fa-sign-in" aria-hidden="true"></i>Sesión
     </a></li>';
 }else{
     $stid = oci_parse($conn, "begin :r := pck_persona.obtener_nombre(".$_SESSION['id_persona']."); end;");

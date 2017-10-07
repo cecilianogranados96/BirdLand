@@ -3,7 +3,7 @@
         <div class="row">
             <div class="breadcumb">
                 <center>
-                    <h2>Ficha Tecnica</h2>
+                    <h2>Ficha Técnica</h2>
                 </center>
             </div>
         </div>
@@ -27,7 +27,7 @@
                         </ul>
                     </div>
                     <div class="statas">
-                        <h1>Datos tecnicos</h1>
+                        <h1>Datos técnicos</h1>
                         <ul class="statas-list">
                             <li>Clase:
                                 <?php echo $ave['CLASE']; ?>
@@ -35,13 +35,13 @@
                             <li>Orden:
                                 <?php echo $ave['ORDEN']; ?>
                             </li><br><br>
-                            <li>SubOrden:
+                            <li>Suborden:
                                 <?php echo $ave['SUBORDEN']; ?>
                             </li>
                             <li>Familia:
                                 <?php echo $ave['FAMILIA']; ?>
                             </li><br><br>
-                            <li>Genero:
+                            <li>Género:
                                 <?php echo $ave['GENERO']; ?>
                             </li>
                             <li>Especie:
@@ -91,7 +91,7 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
                 <br><br>
                 <hr>
-                <h2 class="titulo">Fotografias de Avistamientos</h2>
+                <h2 class="titulo">Fotografías de Avistamientos</h2>
             </div>
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:3%;">
 

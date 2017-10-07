@@ -28,7 +28,7 @@
                                     <fieldset>
                                         <div class="col-sm-12">
                                             <div class="form-group">
-                                                <input type="email" class="form-control" placeholder="Ingresa el nombre o el nick">
+                                                <input type="email" class="form-control" placeholder="Ingresa el nombre o el usuario">
                                             </div>
                                         </div>
 

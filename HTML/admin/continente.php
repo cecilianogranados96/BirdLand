@@ -3,7 +3,7 @@
         <div class="row">
             <div class="breadcumb">
                 <center>
-                    <h2>Administracion: Continentes</h2>
+                    <h2>Administración: Continente</h2>
                 </center>
             </div>
         </div>
@@ -21,7 +21,7 @@
                         <tr>
                             <td colspan="3" class="titulo">
                                 <center>
-                                    <h2>Editar Contiente</h2>
+                                    <h2>Editar contiente</h2>
                                 </center>
                             </td>
                         </tr>
@@ -51,7 +51,7 @@
                         <tr>
                             <td colspan="3" class="titulo">
                                 <center>
-                                    <h2>Nuevo Continente</h2>
+                                    <h2>Nuevo continente</h2>
                                 </center>
                             </td>
                         </tr>

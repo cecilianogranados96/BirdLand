@@ -3,7 +3,7 @@
         <div class="row">
             <div class="breadcumb">
                 <center>
-                    <h2>Administracion: Usuarios</h2>
+                    <h2>Administración: Usuarios</h2>
                 </center>
             </div>
         </div>
@@ -73,7 +73,7 @@
                         <center>Editar/Borrar</center>
                     </td>
                     <td class="titulo">
-                        <center>Bitacora</center>
+                        <center>Bitácora</center>
                     </td>
                 </tr>
                 <?php echo $filas; ?>

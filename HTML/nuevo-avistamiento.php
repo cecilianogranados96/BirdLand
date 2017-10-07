@@ -27,7 +27,7 @@
                             <td>
                                 <center>
                                     <select id="ave" name="ave" class="form-control" style="width: 35%;">
-                                                <option>Selecciona una opcion</option>
+                                                <option>Seleccione una opción</option>
                                                 <?php
                                                 echo $aves;
                                                 ?>
@@ -54,7 +54,7 @@
 
                         <td colspan="3" class="titulo">
                             <center>
-                                <h2>3- Mueva la posicion</h2>
+                                <h2>3- Elija la posición</h2>
                             </center>
                         </td>
                     </table>
@@ -69,7 +69,7 @@
 
 
                     <center>
-                        <button type="submit" class="btn btn-lg btn-success">Enviar</button>
+                        <button type="submit" class="btn btn-lg btn-success">Publicar</button>
                     </center>
 
                 </form>

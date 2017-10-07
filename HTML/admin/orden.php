@@ -3,7 +3,7 @@
         <div class="row">
             <div class="breadcumb">
                 <center>
-                    <h2>Administracion: Orden</h2>
+                    <h2>Administración: Orden</h2>
                 </center>
             </div>
         </div>
@@ -21,7 +21,7 @@
                         <tr>
                             <td colspan="3" class="titulo">
                                 <center>
-                                    <h2>Editar Orden</h2>
+                                    <h2>Editar orden</h2>
                                 </center>
                             </td>
                         </tr>
@@ -62,7 +62,7 @@
                         <tr>
                             <td colspan="3" class="titulo">
                                 <center>
-                                    <h2>Nuevo Orden</h2>
+                                    <h2>Nuevo orden</h2>
                                 </center>
                             </td>
                         </tr>

@@ -3,7 +3,7 @@
         <div class="row">
             <div class="breadcumb">
                 <center>
-                    <h2>Administracion: Pais</h2>
+                    <h2>Administración: País</h2>
                 </center>
             </div>
         </div>
@@ -21,7 +21,7 @@
                         <tr>
                             <td colspan="3" class="titulo">
                                 <center>
-                                    <h2>Editar Pais</h2>
+                                    <h2>Editar país</h2>
                                 </center>
                             </td>
                         </tr>
@@ -62,7 +62,7 @@
                         <tr>
                             <td colspan="3" class="titulo">
                                 <center>
-                                    <h2>Nuevo Pais</h2>
+                                    <h2>Nuevo país</h2>
                                 </center>
                             </td>
                         </tr>
@@ -98,7 +98,7 @@
                         <center>Nombre</center>
                     </td>
                     <td class="titulo">
-                        <center>Contiente</center>
+                        <center>Continente</center>
                     </td>
                     <td class="titulo">
                         <center>Editar/Borrar</center>

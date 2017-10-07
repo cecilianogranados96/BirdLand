@@ -467,7 +467,7 @@
         <div class="row latest-news">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
                 <div class="section-title"> <br><br>
-                    <h2>Estadisticas</h2>
+                    <h2>Estadísticas</h2>
                     <div id="reportrange" class="btn btn-green btn-square date-picker" style="margin-top: -4%;">
                         <span class="date-range"><i class="fa fa-calendar"></i> <?php echo $fecha; ?></span>
                     </div>

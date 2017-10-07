@@ -20,7 +20,7 @@ if(isset($_GET['nuevo'])) {
     
     $stid = oci_parse($conn, "BEGIN pck_avistamiento.insert_avistamiento('".$_SESSION['id_persona']."','".$_POST['ave']."','".$_POST['lat']."','".$_POST['lon']."','".$foto_url."'); END;");
     oci_execute($stid);
-    echo "<script>alert('Insertado con exito');</script>";      
+    echo "<script>alert('Insertado con éxito');</script>";      
     header ("Location: ?pag=usuario-detalle");
     
     

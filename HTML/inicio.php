@@ -4,8 +4,8 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <h2 class="span3 span33 wow bounceInDown center" style="visibility: visible; animation-delay: 0.1s; animation-name: bounceInDown;">BirdLand</h2>
-                    <p data-wow-delay="0.2s" class="span3 wow bounceIn center" style="visibility: visible; animation-delay: 0.2s; animation-name: bounceIn;">Un pequeño rincon de avistamientos!</p>
-                    <a href="?page=mapa" data-wow-delay="0.3s" class="span3 wow bounceInDown center" style="visibility: visible; animation-delay: 0.3s; animation-name: bounceInDown;">Mapa</a>
+                    <p data-wow-delay="0.2s" class="span3 wow bounceIn center" style="visibility: visible; animation-delay: 0.2s; animation-name: bounceIn;">¡Un pequeño rincón de avistamientos!</p>
+                    <a href="?page=mapa" data-wow-delay="0.2s" class="span3 wow bounceInDown center" style="visibility: visible; animation-delay: 0.2s; animation-name: bounceInDown;">Mapa</a>
                 </div>
             </div>
         </div>
@@ -14,9 +14,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <h2 data-wow-delay="0.5s" class="span3 wow bounceInUp center" style="visibility: visible; animation-delay: 0.5s; animation-name: bounceInUp;">Avistamientos</h2>
-                    <p>Observa y subi en el ranking al tener mas avistamientos!</p>
-                    <a href="?page=estadisticas">Estadisticas</a>
+                    <h2 class="span3 span33 wow bounceInDown center" style="visibility: visible; animation-delay: 0.1s; animation-name: bounceInDown;">Avistamientos</h2>
+                    <p  data-wow-delay="0.2s" class="span3 wow bounceIn center" style="visibility: visible; animation-delay: 0.2s; animation-name: bounceIn;">¡Observá y subí en el ranking al tener más avistamientos!</p>
+                    <a href="?page=estadisticas"data-wow-delay="0.3s" class="span3 wow bounceInDown center" style="visibility: visible; animation-delay: 0.3s; animation-name: bounceInDown;">Estadísticas</a>
                 </div>
             </div>
         </div>
@@ -45,9 +45,15 @@
         </div>
         <div class="row">
             <?php             
+<<<<<<< HEAD
+        $stid = oci_parse($conn, 'select * from table(pck_puntaje.puntaje_avistamiento)');
+        oci_execute($stid);
+        while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {			
+=======
         $stid = oci_parse($conn, ' select * from table(pck_puntaje.puntaje_avistamiento)');
         oci_execute($stid);
         while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
+>>>>>>> origin/master
             $stid1 = oci_parse($conn, 'select * from table(PCK_AVISTAMIENTO.AVISTAMIENTO_ID('.$row['ID_AVISTAMIENTO'].'))');
             oci_execute($stid1);
             $per = oci_fetch_array($stid1, OCI_ASSOC+OCI_RETURN_NULLS);
@@ -60,7 +66,7 @@
                                         <div class="plan-details">
                                             <h3><a href="?pag=usuario-detalle&id='.$per['ID_PERSONA'].'">'.$per['NOMBRE'].' '.$per['APELLIDO'].'</a></h3>
                                            
-                                            <span class="label label-success" style="font-size: 120%;"><span class="fa fa-heart" aria-hidden="true" > '.$row['likes'].' </span> </span>
+                                            <span class="label label-success" style="font-size: 120%;"><span class="fa fa-heart" aria-hidden="true" > '.$row['LIKES'].' </span> </span>
                                      
                                         </div>
                                     </div>
@@ -109,9 +115,9 @@
 <div class="home-plan-area">
     <div class="container">
         <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
                 <div class="section-title">
-                    <h2>Top - avistamientos</h2>
+                    <h2>Top: Avistamientos</h2>
                 </div>
             </div>
         </div>
@@ -130,11 +136,11 @@
                                         <h3><a href="?pag=ave-detalle&id='.$row['ID_AVE'].'">'.$ave['NOMBRE_COMUN'].'</a></h3>
                                         <p>Avistamientos: '.$row['CANTIDAD'].'</p>
                                         <div class="read-more">
-                                            <a href="?pag=ave-detalle&id='.$row['ID_AVE'].'">Ver mas</a>
+                                            <a href="?pag=ave-detalle&id='.$row['ID_AVE'].'">Ver más</a>
                                         </div>
                                     </div>
                                 </div>
-                          </div>';
+                          </div>';						  
                 }
             ?>
         </div>

@@ -3,7 +3,7 @@
         <div class="row">
             <div class="breadcumb">
                 <center>
-                    <h2>Administracion: Colores aves</h2>
+                    <h2>Administración: Colores de las aves</h2>
                 </center>
             </div>
         </div>
@@ -21,7 +21,7 @@
                         <tr>
                             <td colspan="3" class="titulo">
                                 <center>
-                                    <h2>Editar Color</h2>
+                                    <h2>Editar color</h2>
                                 </center>
                             </td>
                         </tr>
@@ -51,7 +51,7 @@
                         <tr>
                             <td colspan="3" class="titulo">
                                 <center>
-                                    <h2>Nuevo Color</h2>
+                                    <h2>Nuevo color</h2>
                                 </center>
                             </td>
                         </tr>

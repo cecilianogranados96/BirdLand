@@ -4,7 +4,7 @@ if(isset($_GET['borrar'])) {
     $stid = oci_parse($conn, 'BEGIN pck_tipo.delete_tipo('.$_GET['borrar'].'); END;');
     oci_execute($stid);
     $mensaje = ' <div class="alert alert-danger"> 
-            <h2 class="titulo"><br><center>Borrado con exito</center></h2>
+            <h2 class="titulo"><br><center>Borrado con éxito</center></h2>
            </div>';
 }
 
@@ -12,7 +12,7 @@ if(isset($_GET['nuevo'])) {
     $stid = oci_parse($conn, "BEGIN pck_tipo.insert_tipo('".$_POST['nombre']."'); END;");
     oci_execute($stid);
     $mensaje = ' <div class="alert alert-success"> 
-            <h2 class="titulo"><br><center>Insertado con exito</center></h2>
+            <h2 class="titulo"><br><center>Insertado con éxito</center></h2>
            </div>';
 }
 
@@ -20,7 +20,7 @@ if(isset($_GET['editar'])) {
     $stid = oci_parse($conn, "BEGIN pck_tipo.update_tipo('".$_GET['id']."','".$_POST['nombre']."'); END;");
     oci_execute($stid);
     $mensaje = ' <div class="alert alert-success"> 
-            <h2 class="titulo"><br><center>Actualizado con exito</center></h2>
+            <h2 class="titulo"><br><center>Actualizado con éxito</center></h2>
            </div>';
 }
 

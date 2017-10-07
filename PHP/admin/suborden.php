@@ -5,7 +5,7 @@ if(isset($_GET['borrar'])) {
     oci_execute($stid);
     $mensaje = ' 
             <div class="alert alert-danger"> 
-                <h2 class="titulo"><br><center>Borrado con exito</center></h2>
+                <h2 class="titulo"><br><center>Borrado con éxito</center></h2>
            </div>';
 }
 
@@ -14,7 +14,7 @@ if(isset($_GET['nuevo'])) {
     oci_execute($stid);
     $mensaje = ' 
             <div class="alert alert-success"> 
-                <h2 class="titulo"><br><center>Insertado con exito</center></h2>
+                <h2 class="titulo"><br><center>Insertado con éxito</center></h2>
            </div>';
 }
 
@@ -23,7 +23,7 @@ if(isset($_GET['editar'])) {
     oci_execute($stid);
     $mensaje = '
             <div class="alert alert-success"> 
-                <h2 class="titulo"><br><center>Actualizado con exito</center></h2>
+                <h2 class="titulo"><br><center>Actualizado con éxito</center></h2>
            </div>';
 }
 

@@ -3,7 +3,7 @@
         <div class="row">
             <div class="breadcumb">
                 <center>
-                    <h2>PARAMETROS</h2>
+                    <h2>Administración: parámetros</h2>
                 </center>
             </div>
         </div>

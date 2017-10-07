@@ -66,7 +66,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="breadcumb">
-                                <center><h2>Login</h2></center>
+                                <center><h2>¡Bienvenido a Birdland!</h2></center>
                             </div>
                         </div>
                     </div>
@@ -77,7 +77,7 @@
                 <div class="row latest-news">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
                         <div class="section-title">  <br><br>
-                            <h2>Registrese o Ingresa</h2>
+                            <h2>Regístrate o Inicia sesión</h2>
                         </div>
                     </div>
                     <section clas="main-container">
@@ -99,11 +99,10 @@
                                                 <input type="email" class="form-control" placeholder="Email" name="email" required>
                                             </div>
                                             <div class="form-group">
-                                                Fecha de Nacimiento:
-                                                <input type="date" class="form-control" placeholder="fecha" name="fecha" required>
+                                                <input type="date" class="form-control" placeholder="Fecha de nacimiento" name="fecha" required>
                                             </div>
                                             <div class="form-group">
-                                                <input type="text" class="form-control" placeholder="Profecion" name="profesion" required>
+                                                <input type="text" class="form-control" placeholder="Profesión" name="profesion" required>
                                             </div>
                                             <div class="form-group">
                                                 <input type="text" class="form-control" placeholder="Usuario" name="user" required>
@@ -113,14 +112,14 @@
                                                 <input type="password" class="form-control" placeholder="Contraseña" name="pass" required>
                                             </div>
                                             
-                                            <button type="submit" class="btn btn-default custom-btn">Enviar</button>
+                                            <button type="submit" class="btn btn-default custom-btn">Registrarse</button>
                                         </form>
                                       </div>
                                     </div>
                                 </div>
                                 <div class="col-md-5">
                                     <div class="form-block">
-                                       <h2>Login</h2>
+                                       <h2>Iniciar sesión</h2>
                                        <div class="form">
                                            <form action="?pag=<?php echo $_GET['pag']; ?>&verificar=1" method="post" >
                                             <div class="form-group">

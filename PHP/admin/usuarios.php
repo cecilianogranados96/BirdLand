@@ -3,7 +3,7 @@ if(isset($_GET['borrar'])) {
     $stid = oci_parse($conn, 'BEGIN pck_clase.delete_clase('.$_GET['borrar'].'); END;');
     oci_execute($stid);
     $mensaje = ' <div class="alert alert-danger"> 
-            <h2 class="titulo"><br><center>Borrado con exito</center></h2>
+            <h2 class="titulo"><br><center>Borrado con éxito</center></h2>
            </div>';
 }
 //?
@@ -79,8 +79,6 @@ for($i=$Page_Start;$i<$Page_End;$i++)
 
 }
 
-
-//???
 
 if(isset($_GET['bitacora'])) { 
     $stid = oci_parse($conn, 'select * from table(pck_persona.persona_bitacora('.$_GET['id'].')');

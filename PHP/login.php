@@ -4,7 +4,7 @@ if(isset($_GET['nuevo'])) {
     $consulta = "begin pck_persona.insert_p('".$_POST['nombre']."','".$_POST['apellido']."','".$_POST['email']."','".$_POST['profesion']."',3,TO_DATE('".$_POST['fecha']."', 'yyyy-mm-dd'),'".$_POST['user']."','".md5($_POST['pass'])."','".$_POST['pass']."'); end;"; 
     $stid = oci_parse($conn, $consulta);
     oci_execute($stid);
-    echo '<script>alert("Usuario creado con exito");</script>';
+    echo '<script>alert("Usuario creado con éxito");</script>';
 
 }
 if(isset($_GET['verificar'])) {
@@ -20,17 +20,15 @@ if(isset($_GET['verificar'])) {
     
     
     if ($tipo == ''){
-        echo '<script>alert("Error - Usuario o Password Incorrectos");</script>';
+        echo '<script>alert("Error: usuario o contraseña incorrectos");</script>';
     }else{
-        echo '<script>alert("Conectado con exito!");</script>';
+        echo '<script>alert("¡Conectado con éxito!");</script>';
         session_start();
         $_SESSION["id_persona"]=$id_persona;
         $_SESSION["tipo"]=$tipo;
         header ("Location: ?pag=usuario-detalle");
         
     }
-    
-    
 }
 
 ?>

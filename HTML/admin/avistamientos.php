@@ -3,7 +3,7 @@
         <div class="row">
             <div class="breadcumb">
                 <center>
-                    <h2>Administracion: Avistamientos</h2>
+                    <h2>Administración: Avistamientos</h2>
                 </center>
             </div>
         </div>

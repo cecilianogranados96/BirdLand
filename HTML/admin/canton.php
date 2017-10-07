@@ -21,7 +21,7 @@
                         <tr>
                             <td colspan="3" class="titulo">
                                 <center>
-                                    <h2>Editar Canton</h2>
+                                    <h2>Editar cantón</h2>
                                 </center>
                             </td>
                         </tr>
@@ -62,7 +62,7 @@
                         <tr>
                             <td colspan="3" class="titulo">
                                 <center>
-                                    <h2>Nueva Provincia</h2>
+                                    <h2>Nueva cantón</h2>
                                 </center>
                             </td>
                         </tr>

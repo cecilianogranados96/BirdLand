@@ -9,10 +9,6 @@ if(isset($_GET['nuevo'])) {
 
     $stid = oci_parse($conn, "BEGIN pck_ave.insert_ave(".$_POST['especie'].",".$_POST['color'].",".$_POST['tipo'].",'".$_POST['nombre']."','".$_POST['tamano']."','".$foto_url."'); END;");
     oci_execute($stid);
-    
-    /*$stid = oci_parse($conn, "PCK_AVE.AVE_ID");
-    oci_execute($stid);
-    $max = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS);*/
 	
 	$stid = oci_parse($conn, 'BEGIN :r := PCK_AVE.AVE_ID; END;');
 	oci_bind_by_name($stid, ':r', $max, 40);
@@ -26,7 +22,7 @@ if(isset($_GET['nuevo'])) {
     
     $mensaje = ' 
             <div class="alert alert-success"> 
-                <h2 class="titulo"><br><center>Insertado con exito</center></h2>
+                <h2 class="titulo"><br><center>Insertado con éxito</center></h2>
            </div>';
 }
 
@@ -42,14 +38,14 @@ while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
 
 $stid = oci_parse($conn, 'select * from table (get_color)');
 oci_execute($stid);
-$colores =  '<option value="0">Seleccione una opcion</option>';
+$colores =  '<option value="0">Seleccione una opción</option>';
 while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
    $colores .=  '<option value="'.$row['ID_COLOR'].'">'.$row['NOMBRE'].'</option>';
 }
 
 $stid = oci_parse($conn, 'select * from table (get_tipo)');
 oci_execute($stid);
-$tipos = '<option value="0">Seleccione una opcion</option>';
+$tipos = '<option value="0">Seleccione una opción</option>';
 while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
    $tipos .=  '<option value="'.$row['ID_TIPO'].'">'.$row['NOMBRE'].'</option>';
 }

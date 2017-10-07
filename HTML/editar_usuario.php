@@ -113,7 +113,7 @@
                                             <input type="text" class="form-control" value="<?php echo $persona['FECHA_NACIMIENTO']; ?>" name="fecha" required>
                                         </div>
                                         <div class="form-group">
-                                            Profesion:
+                                            Profesión:
                                             <input type="text" class="form-control" value="<?php echo $persona['PROFESION']; ?>" name="profesion" required>
                                         </div>
                                     </div>

@@ -3,7 +3,7 @@
         <div class="row">
             <div class="breadcumb">
                 <center>
-                    <h2>Administracion: Tipo de clasificacion</h2>
+                    <h2>Administración: Tipo de clasificación</h2>
                 </center>
             </div>
         </div>

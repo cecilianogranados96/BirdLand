@@ -3,7 +3,7 @@
         <div class="row">
             <div class="breadcumb">
                 <center>
-                    <h2>Administracion: Especie</h2>
+                    <h2>Administración: Especie</h2>
                 </center>
             </div>
         </div>
@@ -21,7 +21,7 @@
                         <tr>
                             <td colspan="3" class="titulo">
                                 <center>
-                                    <h2>Editar Especie</h2>
+                                    <h2>Editar especie</h2>
                                 </center>
                             </td>
                         </tr>
@@ -62,7 +62,7 @@
                         <tr>
                             <td colspan="3" class="titulo">
                                 <center>
-                                    <h2>Nueva Especie</h2>
+                                    <h2>Nueva especie</h2>
                                 </center>
                             </td>
                         </tr>
@@ -98,7 +98,7 @@
                         <center>Nombre</center>
                     </td>
                     <td class="titulo">
-                        <center>Genero</center>
+                        <center>Género</center>
                     </td>
                     <td class="titulo">
                         <center>Editar/Borrar</center>

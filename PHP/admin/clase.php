@@ -6,12 +6,12 @@ if(isset($_GET['borrar'])) {
     $r = oci_execute($stid);
     if (!$r) {
         $mensaje = ' <div class="alert alert-danger"> 
-            <h2 class="titulo"><br><center>ERROR OTROS DATOS DEPENDEN DE ESTE</center></h2>
+            <h2 class="titulo"><br><center>Error: este dato es forma parte de otros catálogos</center></h2>
            </div>';    
         
     }else{
     $mensaje = ' <div class="alert alert-danger"> 
-            <h2 class="titulo"><br><center>Borrado con exito</center></h2>
+            <h2 class="titulo"><br><center>Borrado con éxito</center></h2>
            </div>';        
     }
     
@@ -21,7 +21,7 @@ if(isset($_GET['nuevo'])) {
     $stid = oci_parse($conn, "BEGIN pck_clase.insert_clase('".$_POST['nombre']."'); END;");
     oci_execute($stid);
     $mensaje = ' <div class="alert alert-success"> 
-            <h2 class="titulo"><br><center>Insertado con exito</center></h2>
+            <h2 class="titulo"><br><center>Insertado con éxito</center></h2>
            </div>';
 }
 
@@ -29,7 +29,7 @@ if(isset($_GET['editar'])) {
     $stid = oci_parse($conn, "BEGIN pck_clase.update_clase('".$_GET['id']."','".$_POST['nombre']."'); END;");
     oci_execute($stid);
     $mensaje = '<div class="alert alert-success"> 
-            <h2 class="titulo"><br><center>Actualizado con exito</center></h2>
+            <h2 class="titulo"><br><center>Actualizado con éxito</center></h2>
            </div>';
 }
 

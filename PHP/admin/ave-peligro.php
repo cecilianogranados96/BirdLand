@@ -1,6 +1,4 @@
 <?php 
-
-//?
 if (isset($_POST['busqueda'])){
     $extra = "and especie.nombre LIKE '%".$_POST['busqueda']."%'
     or color.nombre LIKE '%".$_POST['busqueda']."%'

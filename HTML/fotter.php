@@ -17,7 +17,7 @@
                             <li><a href="#"><i class="fa fa-youtube" aria-hidden="true" style="margin-top: 20px;"></i></a></li>
                         </ul>
                     </div>
-                    <p>Diseño y programación : Jose Ceciliano & Silvia Calderón - Tecnológico de Costa Rica - 2017</p>
+                    <p>Diseño y programación : José Ceciliano & Silvia Calderón - Instituto Tecnológico de Costa Rica - 2017</p>
                 </div>
             </div>
         </div>
