@@ -6,7 +6,7 @@ if(isset($_GET['borrar'])) {
     $r = oci_execute($stid);
     if (!$r) {
         $mensaje = ' <div class="alert alert-danger"> 
-            <h2 class="titulo"><br><center>Error: este dato es forma parte de otros catálogos</center></h2>
+            <h2 class="titulo"><br><center>Error: este dato forma parte de otros catálogos</center></h2>
            </div>';    
         
     }else{

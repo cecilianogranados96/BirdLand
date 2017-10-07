@@ -53,7 +53,12 @@ if (isset($_POST['busqueda'])){
     $extra = "";
 }
 
-$stid = oci_parse($conn, 'select * from table(PCK_AVE.AVE_TIPO(NULL))'.$extra.'');
+//$stid = oci_parse($conn, 'select * from table(PCK_AVE.AVE_TIPO(NULL))'.$extra.'');
+$stid = oci_parse($conn, '
+select ave.id_ave,especie.nombre especie, ave.nombre_comun nombre, color.nombre color,tipo.nombre tipo, ave.tamano, ave.imagen from ave 
+inner join especie on ave.id_especie = especie.id_especie
+inner join tipo on ave.id_estado = tipo.id_tipo
+inner join color on ave.id_color = color.id_color '.$extra.'');
 oci_execute ($stid,OCI_DEFAULT);  
 $Num_Rows = oci_fetch_all($stid, $row);  
 if(!isset($_GET["Page"]))  

@@ -104,7 +104,7 @@
                                          }
                                     ?>
                                     </select>
-                                    <center>SubOrden</center>
+                                    <center>Suborden</center>
                                     <select onchange="window.location.href='<?php echo $url_base; ?>&suborden='+this.value;" class="form-control" <?php if(!isset($_GET[ 'orden'])) {echo "disabled"; }?>>
                                     <?php
                                         echo  '<option value="0">Seleccione una opción</option>';  
@@ -148,7 +148,7 @@
                                          }
                                     ?>
                                     </select>
-                                    <center>Genero</center>
+                                    <center>Género</center>
                                     <select onchange="window.location.href='<?php echo $url_base; ?>&genero='+this.value;" class="form-control" <?php if(!isset($_GET[ 'familia'])) {echo "disabled"; }?> >
                                     <?php
                                         echo  '<option value="0">Seleccione una opción</option>';  

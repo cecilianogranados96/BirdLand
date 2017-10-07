@@ -2,10 +2,17 @@
 
 if(isset($_GET['borrar'])) {
     $stid = oci_parse($conn, 'BEGIN pck_clase.delete_clase('.$_GET['borrar'].'); END;');
-    oci_execute($stid);
+    $r = oci_execute($stid);
+    if (!$r) {
+        $mensaje = ' <div class="alert alert-danger"> 
+            <h2 class="titulo"><br><center>Error: este dato forma parte de otros catálogos</center></h2>
+           </div>';    
+        
+    }else{
     $mensaje = ' <div class="alert alert-danger"> 
-            <h2 class="titulo"><br><center>Borrado con exito</center></h2>
-           </div>';
+            <h2 class="titulo"><br><center>Borrado con éxito</center></h2>
+           </div>';        
+    }
 }
 
 

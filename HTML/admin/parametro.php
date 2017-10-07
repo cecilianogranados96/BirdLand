@@ -19,7 +19,7 @@
             <?php if(isset($_GET['edit'])) { ?>
 
             <CENTER>
-                <form action='?pag=<?php echo $_GET['pag']; ?>&edit=1&id=<?php echo $_GET['id ']; ?>&editar=1' method="POST" enctype="multipart/form-data">
+                <form action="?pag=<?php echo $_GET['pag']; ?>&editar=1&id=<?php echo $_GET['id']; ?>" method="post" enctype="multipart/form-data" style="width: 35%;">
                     <table class="table" style="width: 35%;">
 
                         <tr>
