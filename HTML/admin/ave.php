@@ -300,6 +300,8 @@
                         <td>
                             <center>
                                 <button type="submit" class="btn btn-lg btn-success">Guardar</button>
+                                <a href="?pag=<?php echo $_GET['pag']; ?>&borrar=<?php echo $_GET['id']; ?>" class="btn btn-lg btn-danger">Eliminar</a>
+                                
                             </center>
                         </td>
                     </tr>

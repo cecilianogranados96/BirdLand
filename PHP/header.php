@@ -2,7 +2,7 @@
 
 
 session_start();
-$conn = oci_connect('BL', 'BL123', 'BirdLand');
+$conn = oci_connect('BL', 'BL123', 'Proyecto');
 
 
 $stid1 = oci_parse($conn, "select * from table(PCK_parametro.parametro_id(6))");

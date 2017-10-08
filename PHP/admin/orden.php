@@ -19,6 +19,7 @@ if(isset($_GET['nuevo'])) {
 }
 
 if(isset($_GET['editar'])) {
+    error_reporting(0);
     $stid = oci_parse($conn, "BEGIN pck_orden.update_orden(".$_GET['id'].",'".$_POST['nombre']."',".$_POST['clase']."); END;");
     oci_execute($stid);
     $mensaje = '
@@ -28,18 +29,18 @@ if(isset($_GET['editar'])) {
 }
 
 if(isset($_GET['edit'])) {    
-    
-$stid = oci_parse($conn, "begin :r := pck_orden.orden_nombre(".$_GET['id']."); end;");
-oci_bind_by_name($stid, ':r', $nombre, 40);
-oci_execute($stid);
-    
-$stid = oci_parse($conn, "begin :r := pck_orden.clase_id(".$_GET['id']."); end;");
-oci_bind_by_name($stid, ':r', $id_clase, 40);
-oci_execute($stid);
+    error_reporting(0);
+    $stid = oci_parse($conn, "begin :r := pck_orden.orden_nombre(".$_GET['id']."); end;");
+    oci_bind_by_name($stid, ':r', $nombre, 40);
+    oci_execute($stid);
 
-$stid = oci_parse($conn, "begin :r := pck_clase.clase_nombre(".$id_clase."); end;");
-oci_bind_by_name($stid, ':r', $nombre_clase, 40);
-oci_execute($stid);
+    $stid = oci_parse($conn, "begin :r := pck_orden.clase_id(".$_GET['id']."); end;");
+    oci_bind_by_name($stid, ':r', $id_clase, 40);
+    oci_execute($stid);
+
+    $stid = oci_parse($conn, "begin :r := pck_clase.clase_nombre(".$id_clase."); end;");
+    oci_bind_by_name($stid, ':r', $nombre_clase, 40);
+    oci_execute($stid);
 
 }
 

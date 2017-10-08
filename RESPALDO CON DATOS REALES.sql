@@ -1,5 +1,5 @@
 --------------------------------------------------------
--- Archivo creado  - sábado-octubre-07-2017   
+-- Archivo creado  - sÃ¡bado-octubre-07-2017   
 --------------------------------------------------------
 DROP TYPE "BL"."AVE_CANTIDAD_RECORD";
 DROP TYPE "BL"."AVE_ESPECIE_GENERO_RECORD";
@@ -96,6 +96,7 @@ DROP TABLE "BL"."COLOR" cascade constraints;
 DROP TABLE "BL"."CONTINENTE" cascade constraints;
 DROP TABLE "BL"."ESPECIE" cascade constraints;
 DROP TABLE "BL"."FAMILIA" cascade constraints;
+DROP TABLE "BL"."FOTO" cascade constraints;
 DROP TABLE "BL"."GENERO" cascade constraints;
 DROP TABLE "BL"."ORDEN" cascade constraints;
 DROP TABLE "BL"."PAIS" cascade constraints;
@@ -1190,7 +1191,7 @@ AS TABLE OF T_UBICACION_CANTON;
 	"TAMANO" VARCHAR2(100 BYTE), 
 	"IMAGEN" VARCHAR2(100 BYTE), 
 	"FECHA_MODIFICACION" DATE, 
-	"USER_MODIFICACION" VARCHAR2(10 BYTE)
+	"USER_MODIFICACION" VARCHAR2(100 BYTE)
    ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
@@ -1198,17 +1199,17 @@ AS TABLE OF T_UBICACION_CANTON;
   TABLESPACE "BL_DATA" ;
  
 
-   COMMENT ON COLUMN "BL"."AVE"."ID_AVE" IS 'Identificador único del ave';
+   COMMENT ON COLUMN "BL"."AVE"."ID_AVE" IS 'Identificador Â¿nico del ave';
  
-   COMMENT ON COLUMN "BL"."AVE"."ID_ESPECIE" IS 'Llave foránea que relaciona el ave con la especie a la que pertenece';
+   COMMENT ON COLUMN "BL"."AVE"."ID_ESPECIE" IS 'Llave forÂ¿nea que relaciona el ave con la especie a la que pertenece';
  
-   COMMENT ON COLUMN "BL"."AVE"."ID_COLOR" IS 'Llave foránea que relaciona el ave con el color de su plumaje';
+   COMMENT ON COLUMN "BL"."AVE"."ID_COLOR" IS 'Llave forÂ¿nea que relaciona el ave con el color de su plumaje';
  
-   COMMENT ON COLUMN "BL"."AVE"."ID_ESTADO" IS 'Llave foránea que relaciona el ave con su estado, respecto a la cantidad de población';
+   COMMENT ON COLUMN "BL"."AVE"."ID_ESTADO" IS 'Llave forÂ¿nea que relaciona el ave con su estado, respecto a la cantidad de poblaciÂ¿n';
  
-   COMMENT ON COLUMN "BL"."AVE"."NOMBRE_COMUN" IS 'Nombre común con el cuál se le conoce al ave';
+   COMMENT ON COLUMN "BL"."AVE"."NOMBRE_COMUN" IS 'Nombre comÂ¿n con el cuÂ¿l se le conoce al ave';
  
-   COMMENT ON COLUMN "BL"."AVE"."TAMANO" IS 'Tamaño promedio del ave';
+   COMMENT ON COLUMN "BL"."AVE"."TAMANO" IS 'TamaÂ¿o promedio del ave';
  
    COMMENT ON COLUMN "BL"."AVE"."IMAGEN" IS 'Imagen de referencia del ave';
  
@@ -1221,11 +1222,11 @@ AS TABLE OF T_UBICACION_CANTON;
    (	"ID_AVISTAMIENTO" NUMBER(11,0), 
 	"ID_PERSONA" NUMBER(11,0), 
 	"ID_AVE" NUMBER(11,0), 
-	"LATITUD" VARCHAR2(50 BYTE), 
-	"LONGITUD" VARCHAR2(50 BYTE), 
+	"LATITUD" VARCHAR2(100 BYTE), 
+	"LONGITUD" VARCHAR2(100 BYTE), 
 	"FOTO" VARCHAR2(20 BYTE), 
 	"FECHA_MODIFICACION" DATE, 
-	"USER_MODIFICACION" VARCHAR2(10 BYTE)
+	"USER_MODIFICACION" VARCHAR2(100 BYTE)
    ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
@@ -1233,15 +1234,15 @@ AS TABLE OF T_UBICACION_CANTON;
   TABLESPACE "BL_DATA" ;
  
 
-   COMMENT ON COLUMN "BL"."AVISTAMIENTO"."ID_AVISTAMIENTO" IS 'Identificador único del avistamiento';
+   COMMENT ON COLUMN "BL"."AVISTAMIENTO"."ID_AVISTAMIENTO" IS 'Identificador Â¿nico del avistamiento';
  
-   COMMENT ON COLUMN "BL"."AVISTAMIENTO"."ID_PERSONA" IS 'Llave foránea que relaciona el avistamiento con la persona que la realizó';
+   COMMENT ON COLUMN "BL"."AVISTAMIENTO"."ID_PERSONA" IS 'Llave forÂ¿nea que relaciona el avistamiento con la persona que la realizÂ¿';
  
-   COMMENT ON COLUMN "BL"."AVISTAMIENTO"."ID_AVE" IS 'Llave foránea que relaciona el avistamiento con el ave vista';
+   COMMENT ON COLUMN "BL"."AVISTAMIENTO"."ID_AVE" IS 'Llave forÂ¿nea que relaciona el avistamiento con el ave vista';
  
-   COMMENT ON COLUMN "BL"."AVISTAMIENTO"."LATITUD" IS 'Es la latitud de la localización donde se hizo el avistamiento';
+   COMMENT ON COLUMN "BL"."AVISTAMIENTO"."LATITUD" IS 'Es la latitud de la localizaciÂ¿n donde se hizo el avistamiento';
  
-   COMMENT ON COLUMN "BL"."AVISTAMIENTO"."LONGITUD" IS 'Es la longitud de la localización donde se hizo el avistamiento';
+   COMMENT ON COLUMN "BL"."AVISTAMIENTO"."LONGITUD" IS 'Es la longitud de la localizaciÂ¿n donde se hizo el avistamiento';
  
    COMMENT ON COLUMN "BL"."AVISTAMIENTO"."FOTO" IS 'Fotografia del avistamiento';
  
@@ -1253,10 +1254,10 @@ AS TABLE OF T_UBICACION_CANTON;
   CREATE TABLE "BL"."BITACORA" 
    (	"ID_BITACORA" NUMBER(11,0), 
 	"ID_PERSONA" NUMBER(11,0), 
-	"ANTERIOR" VARCHAR2(100 BYTE), 
 	"SIGUIENTE" VARCHAR2(100 BYTE), 
+	"ANTERIOR" VARCHAR2(100 BYTE), 
 	"FECHA_MODIFICACION" DATE, 
-	"USER_MODIFICACION" VARCHAR2(10 BYTE)
+	"USER_MODIFICACION" VARCHAR2(100 BYTE)
    ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
@@ -1264,11 +1265,13 @@ AS TABLE OF T_UBICACION_CANTON;
   TABLESPACE "BL_DATA" ;
  
 
-   COMMENT ON COLUMN "BL"."BITACORA"."ID_BITACORA" IS 'Identificador único de la bitácora';
+   COMMENT ON COLUMN "BL"."BITACORA"."ID_BITACORA" IS 'Identificador Â¿nico de la bitÂ¿cora';
  
-   COMMENT ON COLUMN "BL"."BITACORA"."ID_PERSONA" IS 'Llave foránea que relaciona la bitácora con el usuario que realizó el cambió';
+   COMMENT ON COLUMN "BL"."BITACORA"."ID_PERSONA" IS 'Llave forÂ¿nea que relaciona la bitÂ¿cora con el usuario que realizÂ¿ el cambiÂ¿';
  
-   COMMENT ON COLUMN "BL"."BITACORA"."ANTERIOR" IS 'Nueva contraseña del usuario';
+   COMMENT ON COLUMN "BL"."BITACORA"."SIGUIENTE" IS 'Nueva contraseÂ¿a del usuario';
+ 
+   COMMENT ON COLUMN "BL"."BITACORA"."ANTERIOR" IS 'ContraseÂ¿a anterior al cambio';
  
    COMMENT ON TABLE "BL"."BITACORA"  IS 'Bitacora de los cambios de clave por usuario';
 --------------------------------------------------------
@@ -1280,7 +1283,7 @@ AS TABLE OF T_UBICACION_CANTON;
 	"ID_PROVINCIA" NUMBER(11,0), 
 	"NOMBRE" VARCHAR2(100 BYTE), 
 	"FECHA_MODIFICACION" DATE, 
-	"USER_MODIFICACION" VARCHAR2(10 BYTE)
+	"USER_MODIFICACION" VARCHAR2(100 BYTE)
    ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
@@ -1288,11 +1291,11 @@ AS TABLE OF T_UBICACION_CANTON;
   TABLESPACE "BL_DATA" ;
  
 
-   COMMENT ON COLUMN "BL"."CANTON"."ID_CANTON" IS 'Identificador único del cantón';
+   COMMENT ON COLUMN "BL"."CANTON"."ID_CANTON" IS 'Identificador Â¿nico del cantÂ¿n';
  
-   COMMENT ON COLUMN "BL"."CANTON"."ID_PROVINCIA" IS 'Llave foránea que relaciona la provincia con el cantón';
+   COMMENT ON COLUMN "BL"."CANTON"."ID_PROVINCIA" IS 'Llave forÂ¿nea que relaciona la provincia con el cantÂ¿n';
  
-   COMMENT ON COLUMN "BL"."CANTON"."NOMBRE" IS 'Nombre del cantón';
+   COMMENT ON COLUMN "BL"."CANTON"."NOMBRE" IS 'Nombre del cantÂ¿n';
  
    COMMENT ON TABLE "BL"."CANTON"  IS 'Cantones de las provinicias';
 --------------------------------------------------------
@@ -1303,7 +1306,7 @@ AS TABLE OF T_UBICACION_CANTON;
    (	"ID_CLASE" NUMBER(11,0), 
 	"NOMBRE" VARCHAR2(100 BYTE), 
 	"FECHA_MODIFICACION" DATE, 
-	"USER_MODIFICACION" VARCHAR2(10 BYTE)
+	"USER_MODIFICACION" VARCHAR2(100 BYTE)
    ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
@@ -1311,9 +1314,9 @@ AS TABLE OF T_UBICACION_CANTON;
   TABLESPACE "BL_DATA" ;
  
 
-   COMMENT ON COLUMN "BL"."CLASE"."ID_CLASE" IS 'Identificador único de la clase';
+   COMMENT ON COLUMN "BL"."CLASE"."ID_CLASE" IS 'Identificador Â¿nico de la clase';
  
-   COMMENT ON COLUMN "BL"."CLASE"."NOMBRE" IS 'Nombre científico de la clase';
+   COMMENT ON COLUMN "BL"."CLASE"."NOMBRE" IS 'Nombre cientÂ¿fico de la clase';
  
    COMMENT ON TABLE "BL"."CLASE"  IS 'Clases de aves';
 --------------------------------------------------------
@@ -1324,7 +1327,7 @@ AS TABLE OF T_UBICACION_CANTON;
    (	"ID_COLOR" NUMBER(11,0), 
 	"NOMBRE" VARCHAR2(100 BYTE), 
 	"FECHA_MODIFICACION" DATE, 
-	"USER_MODIFICACION" VARCHAR2(10 BYTE)
+	"USER_MODIFICACION" VARCHAR2(100 BYTE)
    ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
@@ -1332,7 +1335,7 @@ AS TABLE OF T_UBICACION_CANTON;
   TABLESPACE "BL_DATA" ;
  
 
-   COMMENT ON COLUMN "BL"."COLOR"."ID_COLOR" IS 'Identificador único del color';
+   COMMENT ON COLUMN "BL"."COLOR"."ID_COLOR" IS 'Identificador Â¿nico del color';
  
    COMMENT ON COLUMN "BL"."COLOR"."NOMBRE" IS 'Nombre del color';
  
@@ -1345,7 +1348,7 @@ AS TABLE OF T_UBICACION_CANTON;
    (	"ID_CONTINENTE" NUMBER(11,0), 
 	"NOMBRE" VARCHAR2(100 BYTE), 
 	"FECHA_MODIFICACION" DATE, 
-	"USER_MODIFICACION" VARCHAR2(10 BYTE)
+	"USER_MODIFICACION" VARCHAR2(100 BYTE)
    ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
@@ -1353,7 +1356,7 @@ AS TABLE OF T_UBICACION_CANTON;
   TABLESPACE "BL_DATA" ;
  
 
-   COMMENT ON COLUMN "BL"."CONTINENTE"."ID_CONTINENTE" IS 'Identificador único del continente';
+   COMMENT ON COLUMN "BL"."CONTINENTE"."ID_CONTINENTE" IS 'Identificador Â¿nico del continente';
  
    COMMENT ON COLUMN "BL"."CONTINENTE"."NOMBRE" IS 'Nombre del continente';
  
@@ -1367,7 +1370,7 @@ AS TABLE OF T_UBICACION_CANTON;
 	"ID_GENERO" NUMBER(11,0), 
 	"NOMBRE" VARCHAR2(100 BYTE), 
 	"FECHA_MODIFICACION" DATE, 
-	"USER_MODIFICACION" VARCHAR2(10 BYTE)
+	"USER_MODIFICACION" VARCHAR2(100 BYTE)
    ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
@@ -1375,11 +1378,11 @@ AS TABLE OF T_UBICACION_CANTON;
   TABLESPACE "BL_DATA" ;
  
 
-   COMMENT ON COLUMN "BL"."ESPECIE"."ID_ESPECIE" IS 'Identificador único de la especie';
+   COMMENT ON COLUMN "BL"."ESPECIE"."ID_ESPECIE" IS 'Identificador Â¿nico de la especie';
  
-   COMMENT ON COLUMN "BL"."ESPECIE"."ID_GENERO" IS 'Llave foránea que relaciona el género con la especie';
+   COMMENT ON COLUMN "BL"."ESPECIE"."ID_GENERO" IS 'Llave forÂ¿nea que relaciona el gÂ¿nero con la especie';
  
-   COMMENT ON COLUMN "BL"."ESPECIE"."NOMBRE" IS 'Nombre científico de la especie';
+   COMMENT ON COLUMN "BL"."ESPECIE"."NOMBRE" IS 'Nombre cientÂ¿fico de la especie';
  
    COMMENT ON TABLE "BL"."ESPECIE"  IS 'Clasificaciones de especies';
 --------------------------------------------------------
@@ -1391,7 +1394,7 @@ AS TABLE OF T_UBICACION_CANTON;
 	"ID_SUBORDEN" NUMBER(11,0), 
 	"NOMBRE" VARCHAR2(100 BYTE), 
 	"FECHA_MODIFICACION" DATE, 
-	"USER_MODIFICACION" VARCHAR2(10 BYTE)
+	"USER_MODIFICACION" VARCHAR2(100 BYTE)
    ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
@@ -1399,13 +1402,33 @@ AS TABLE OF T_UBICACION_CANTON;
   TABLESPACE "BL_DATA" ;
  
 
-   COMMENT ON COLUMN "BL"."FAMILIA"."ID_FAMILIA" IS 'Identificador único de la familia';
+   COMMENT ON COLUMN "BL"."FAMILIA"."ID_FAMILIA" IS 'Identificador Â¿nico de la familia';
  
-   COMMENT ON COLUMN "BL"."FAMILIA"."ID_SUBORDEN" IS 'Llave foránea que relaciona el orden con la familia';
+   COMMENT ON COLUMN "BL"."FAMILIA"."ID_SUBORDEN" IS 'Llave forÂ¿nea que relaciona el orden con la familia';
  
-   COMMENT ON COLUMN "BL"."FAMILIA"."NOMBRE" IS 'Nombre científico de la familia';
+   COMMENT ON COLUMN "BL"."FAMILIA"."NOMBRE" IS 'Nombre cientÂ¿fico de la familia';
  
    COMMENT ON TABLE "BL"."FAMILIA"  IS 'Clasificaciones de familias';
+--------------------------------------------------------
+--  DDL for Table FOTO
+--------------------------------------------------------
+
+  CREATE TABLE "BL"."FOTO" 
+   (	"ID_FOTO" NUMBER(11,0), 
+	"ID_AVISTAMIENTO" NUMBER(11,0), 
+	"URL" VARCHAR2(100 BYTE)
+   ) SEGMENT CREATION DEFERRED 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
+  TABLESPACE "BL_DATA" ;
+ 
+
+   COMMENT ON COLUMN "BL"."FOTO"."ID_FOTO" IS 'Identificador Â¿nico de la foto';
+ 
+   COMMENT ON COLUMN "BL"."FOTO"."ID_AVISTAMIENTO" IS 'Llave forÂ¿nea que relaciona la foto con el avistamiento donde se publicÂ¿';
+ 
+   COMMENT ON COLUMN "BL"."FOTO"."URL" IS 'Es la direcciÂ¿n de donde estÂ¿ guardada la foto afuera de la base';
+ 
+   COMMENT ON TABLE "BL"."FOTO"  IS 'Fotos de las aves por avistamiento';
 --------------------------------------------------------
 --  DDL for Table GENERO
 --------------------------------------------------------
@@ -1415,7 +1438,7 @@ AS TABLE OF T_UBICACION_CANTON;
 	"ID_FAMILIA" NUMBER(11,0), 
 	"NOMBRE" VARCHAR2(100 BYTE), 
 	"FECHA_MODIFICACION" DATE, 
-	"USER_MODIFICACION" VARCHAR2(10 BYTE)
+	"USER_MODIFICACION" VARCHAR2(100 BYTE)
    ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
@@ -1423,11 +1446,11 @@ AS TABLE OF T_UBICACION_CANTON;
   TABLESPACE "BL_DATA" ;
  
 
-   COMMENT ON COLUMN "BL"."GENERO"."ID_GENERO" IS 'Identificador único del género';
+   COMMENT ON COLUMN "BL"."GENERO"."ID_GENERO" IS 'Identificador Â¿nico del gÂ¿nero';
  
-   COMMENT ON COLUMN "BL"."GENERO"."ID_FAMILIA" IS 'Llave foránea que relaciona el género con la familia';
+   COMMENT ON COLUMN "BL"."GENERO"."ID_FAMILIA" IS 'Llave forÂ¿nea que relaciona el gÂ¿nero con la familia';
  
-   COMMENT ON COLUMN "BL"."GENERO"."NOMBRE" IS 'Nombre científico del género';
+   COMMENT ON COLUMN "BL"."GENERO"."NOMBRE" IS 'Nombre cientÂ¿fico del gÂ¿nero';
  
    COMMENT ON TABLE "BL"."GENERO"  IS 'Clasificaciones de generos';
 --------------------------------------------------------
@@ -1439,7 +1462,7 @@ AS TABLE OF T_UBICACION_CANTON;
 	"ID_CLASE" NUMBER(11,0), 
 	"NOMBRE" VARCHAR2(100 BYTE), 
 	"FECHA_MODIFICACION" DATE, 
-	"USER_MODIFICACION" VARCHAR2(10 BYTE)
+	"USER_MODIFICACION" VARCHAR2(100 BYTE)
    ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
@@ -1447,11 +1470,11 @@ AS TABLE OF T_UBICACION_CANTON;
   TABLESPACE "BL_DATA" ;
  
 
-   COMMENT ON COLUMN "BL"."ORDEN"."ID_ORDEN" IS 'Identificador único del orden';
+   COMMENT ON COLUMN "BL"."ORDEN"."ID_ORDEN" IS 'Identificador Â¿nico del orden';
  
-   COMMENT ON COLUMN "BL"."ORDEN"."ID_CLASE" IS 'Llave foránea que relaciona la clase con el orden';
+   COMMENT ON COLUMN "BL"."ORDEN"."ID_CLASE" IS 'Llave forÂ¿nea que relaciona la clase con el orden';
  
-   COMMENT ON COLUMN "BL"."ORDEN"."NOMBRE" IS 'Nombre científico del orden';
+   COMMENT ON COLUMN "BL"."ORDEN"."NOMBRE" IS 'Nombre cientÂ¿fico del orden';
  
    COMMENT ON TABLE "BL"."ORDEN"  IS 'Clasificaciones de ordenes';
 --------------------------------------------------------
@@ -1463,7 +1486,7 @@ AS TABLE OF T_UBICACION_CANTON;
 	"ID_CONTINENTE" NUMBER(11,0), 
 	"NOMBRE" VARCHAR2(100 BYTE), 
 	"FECHA_MODIFICACION" DATE, 
-	"USER_MODIFICACION" VARCHAR2(10 BYTE)
+	"USER_MODIFICACION" VARCHAR2(100 BYTE)
    ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
@@ -1471,13 +1494,13 @@ AS TABLE OF T_UBICACION_CANTON;
   TABLESPACE "BL_DATA" ;
  
 
-   COMMENT ON COLUMN "BL"."PAIS"."ID_PAIS" IS 'Identificador único del país';
+   COMMENT ON COLUMN "BL"."PAIS"."ID_PAIS" IS 'Identificador Â¿nico del paÂ¿s';
  
-   COMMENT ON COLUMN "BL"."PAIS"."ID_CONTINENTE" IS 'Llave foránea que relaciona el continente con el país';
+   COMMENT ON COLUMN "BL"."PAIS"."ID_CONTINENTE" IS 'Llave forÂ¿nea que relaciona el continente con el paÂ¿s';
  
-   COMMENT ON COLUMN "BL"."PAIS"."NOMBRE" IS 'Nombre del país';
+   COMMENT ON COLUMN "BL"."PAIS"."NOMBRE" IS 'Nombre del paÂ¿s';
  
-   COMMENT ON TABLE "BL"."PAIS"  IS 'Países de cada continente';
+   COMMENT ON TABLE "BL"."PAIS"  IS 'PaÂ¿ses de cada continente';
 --------------------------------------------------------
 --  DDL for Table PARAMETRO
 --------------------------------------------------------
@@ -1487,7 +1510,7 @@ AS TABLE OF T_UBICACION_CANTON;
 	"NOMBRE" VARCHAR2(100 BYTE), 
 	"DESCRIPCION" VARCHAR2(1000 BYTE), 
 	"FECHA_MODIFICACION" DATE, 
-	"USER_MODIFICACION" VARCHAR2(10 BYTE)
+	"USER_MODIFICACION" VARCHAR2(100 BYTE)
    ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
@@ -1495,13 +1518,13 @@ AS TABLE OF T_UBICACION_CANTON;
   TABLESPACE "BL_DATA" ;
  
 
-   COMMENT ON COLUMN "BL"."PARAMETRO"."ID_PARAMETRO" IS 'Identificador único del parámetro';
+   COMMENT ON COLUMN "BL"."PARAMETRO"."ID_PARAMETRO" IS 'Identificador Â¿nico del parÂ¿metro';
  
-   COMMENT ON COLUMN "BL"."PARAMETRO"."NOMBRE" IS 'Nombre del parámetro';
+   COMMENT ON COLUMN "BL"."PARAMETRO"."NOMBRE" IS 'Nombre del parÂ¿metro';
  
-   COMMENT ON COLUMN "BL"."PARAMETRO"."DESCRIPCION" IS 'Descripcion del parámetro';
+   COMMENT ON COLUMN "BL"."PARAMETRO"."DESCRIPCION" IS 'Descripcion del parÂ¿metro';
  
-   COMMENT ON TABLE "BL"."PARAMETRO"  IS 'Parámetros del sistema que un administrador puede modificar';
+   COMMENT ON TABLE "BL"."PARAMETRO"  IS 'ParÂ¿metros del sistema que un administrador puede modificar';
 --------------------------------------------------------
 --  DDL for Table PERSONA
 --------------------------------------------------------
@@ -1516,7 +1539,7 @@ AS TABLE OF T_UBICACION_CANTON;
 	"TIPO" VARCHAR2(100 BYTE), 
 	"FOTO" VARCHAR2(50 BYTE) DEFAULT 'default.png', 
 	"FECHA_MODIFICACION" DATE, 
-	"USER_MODIFICACION" VARCHAR2(10 BYTE)
+	"USER_MODIFICACION" VARCHAR2(100 BYTE)
    ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
@@ -1524,7 +1547,7 @@ AS TABLE OF T_UBICACION_CANTON;
   TABLESPACE "BL_DATA" ;
  
 
-   COMMENT ON COLUMN "BL"."PERSONA"."ID_PERSONA" IS 'Identificador único de la persona';
+   COMMENT ON COLUMN "BL"."PERSONA"."ID_PERSONA" IS 'Identificador Â¿nico de la persona';
  
    COMMENT ON COLUMN "BL"."PERSONA"."NOMBRE" IS 'Primer nombre de la persona';
  
@@ -1532,11 +1555,11 @@ AS TABLE OF T_UBICACION_CANTON;
  
    COMMENT ON COLUMN "BL"."PERSONA"."FECHA_NACIMIENTO" IS 'Fecha de nacimiento de la persona';
  
-   COMMENT ON COLUMN "BL"."PERSONA"."EMAIL" IS 'Email de la persona, debe ser único';
+   COMMENT ON COLUMN "BL"."PERSONA"."EMAIL" IS 'Email de la persona, debe ser Â¿nico';
  
    COMMENT ON COLUMN "BL"."PERSONA"."PROFESION" IS 'Profesion de la persona';
  
-   COMMENT ON COLUMN "BL"."PERSONA"."TIPO" IS 'Tipo de persona, puede ser 1, 2 o 3. El 1 es un administrador, 2 un ornitólogo, y 3 aficionado';
+   COMMENT ON COLUMN "BL"."PERSONA"."TIPO" IS 'Tipo de persona, puede ser 1, 2 o 3. El 1 es un administrador, 2 un ornitÂ¿logo, y 3 aficionado';
  
    COMMENT ON TABLE "BL"."PERSONA"  IS 'Personas registradas en el sistema';
 --------------------------------------------------------
@@ -1548,7 +1571,7 @@ AS TABLE OF T_UBICACION_CANTON;
 	"ID_PAIS" NUMBER(11,0), 
 	"NOMBRE" VARCHAR2(100 BYTE), 
 	"FECHA_MODIFICACION" DATE, 
-	"USER_MODIFICACION" VARCHAR2(10 BYTE)
+	"USER_MODIFICACION" VARCHAR2(100 BYTE)
    ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
@@ -1556,13 +1579,13 @@ AS TABLE OF T_UBICACION_CANTON;
   TABLESPACE "BL_DATA" ;
  
 
-   COMMENT ON COLUMN "BL"."PROVINCIA"."ID_PROVINCIA" IS 'Identificador único de la provincia';
+   COMMENT ON COLUMN "BL"."PROVINCIA"."ID_PROVINCIA" IS 'Identificador Â¿nico de la provincia';
  
-   COMMENT ON COLUMN "BL"."PROVINCIA"."ID_PAIS" IS 'Llave foránea que relaciona la provincia con el país';
+   COMMENT ON COLUMN "BL"."PROVINCIA"."ID_PAIS" IS 'Llave forÂ¿nea que relaciona la provincia con el paÂ¿s';
  
    COMMENT ON COLUMN "BL"."PROVINCIA"."NOMBRE" IS 'Nombre de la provincia';
  
-   COMMENT ON TABLE "BL"."PROVINCIA"  IS 'Provincias de cada país';
+   COMMENT ON TABLE "BL"."PROVINCIA"  IS 'Provincias de cada paÂ¿s';
 --------------------------------------------------------
 --  DDL for Table PUNTAJE
 --------------------------------------------------------
@@ -1572,7 +1595,7 @@ AS TABLE OF T_UBICACION_CANTON;
 	"ID_AVISTAMIENTO" NUMBER(11,0), 
 	"ID_PERSONA" NUMBER(11,0), 
 	"FECHA_MODIFICACION" DATE, 
-	"USER_MODIFICACION" VARCHAR2(10 BYTE)
+	"USER_MODIFICACION" VARCHAR2(100 BYTE)
    ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
@@ -1580,13 +1603,13 @@ AS TABLE OF T_UBICACION_CANTON;
   TABLESPACE "BL_DATA" ;
  
 
-   COMMENT ON COLUMN "BL"."PUNTAJE"."ID_PUNTAJE" IS 'Identificador único del puntaje';
+   COMMENT ON COLUMN "BL"."PUNTAJE"."ID_PUNTAJE" IS 'Identificador Â¿nico del puntaje';
  
-   COMMENT ON COLUMN "BL"."PUNTAJE"."ID_AVISTAMIENTO" IS 'Llave foránea que relaciona el puntaje con el avistamiento calificado';
+   COMMENT ON COLUMN "BL"."PUNTAJE"."ID_AVISTAMIENTO" IS 'Llave forÂ¿nea que relaciona el puntaje con el avistamiento calificado';
  
-   COMMENT ON COLUMN "BL"."PUNTAJE"."ID_PERSONA" IS 'Llave foránea que relaciona el puntaje con la persona que realizóla calificación';
+   COMMENT ON COLUMN "BL"."PUNTAJE"."ID_PERSONA" IS 'Llave forÂ¿nea que relaciona el puntaje con la persona que realizÂ¿la calificaciÂ¿n';
  
-   COMMENT ON TABLE "BL"."PUNTAJE"  IS 'Calificación binaria que una persona da a un avistamiento';
+   COMMENT ON TABLE "BL"."PUNTAJE"  IS 'CalificaciÂ¿n binaria que una persona da a un avistamiento';
 --------------------------------------------------------
 --  DDL for Table SUBORDEN
 --------------------------------------------------------
@@ -1596,7 +1619,7 @@ AS TABLE OF T_UBICACION_CANTON;
 	"ID_ORDEN" NUMBER(11,0), 
 	"NOMBRE" VARCHAR2(100 BYTE), 
 	"FECHA_MODIFICACION" DATE, 
-	"USER_MODIFICACION" VARCHAR2(10 BYTE)
+	"USER_MODIFICACION" VARCHAR2(100 BYTE)
    ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
@@ -1604,11 +1627,11 @@ AS TABLE OF T_UBICACION_CANTON;
   TABLESPACE "BL_DATA" ;
  
 
-   COMMENT ON COLUMN "BL"."SUBORDEN"."ID_SUBORDEN" IS 'Identificador único del suborden';
+   COMMENT ON COLUMN "BL"."SUBORDEN"."ID_SUBORDEN" IS 'Identificador Â¿nico del suborden';
  
-   COMMENT ON COLUMN "BL"."SUBORDEN"."ID_ORDEN" IS 'Llave foránea que relaciona la orden con el suborden';
+   COMMENT ON COLUMN "BL"."SUBORDEN"."ID_ORDEN" IS 'Llave forÂ¿nea que relaciona la orden con el suborden';
  
-   COMMENT ON COLUMN "BL"."SUBORDEN"."NOMBRE" IS 'Nombre científico del suborden';
+   COMMENT ON COLUMN "BL"."SUBORDEN"."NOMBRE" IS 'Nombre cientÂ¿fico del suborden';
  
    COMMENT ON TABLE "BL"."SUBORDEN"  IS 'Clasificaciones de ordenes';
 --------------------------------------------------------
@@ -1619,7 +1642,7 @@ AS TABLE OF T_UBICACION_CANTON;
    (	"ID_TIPO" NUMBER(11,0), 
 	"NOMBRE" VARCHAR2(100 BYTE), 
 	"FECHA_MODIFICACION" DATE, 
-	"USER_MODIFICACION" VARCHAR2(10 BYTE)
+	"USER_MODIFICACION" VARCHAR2(100 BYTE)
    ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
@@ -1627,7 +1650,7 @@ AS TABLE OF T_UBICACION_CANTON;
   TABLESPACE "BL_DATA" ;
  
 
-   COMMENT ON COLUMN "BL"."TIPO"."ID_TIPO" IS 'Identificador único del tipo';
+   COMMENT ON COLUMN "BL"."TIPO"."ID_TIPO" IS 'Identificador Â¿nico del tipo';
  
    COMMENT ON COLUMN "BL"."TIPO"."NOMBRE" IS 'Nombre del tipo de clasificacion del ave';
  
@@ -1641,7 +1664,7 @@ AS TABLE OF T_UBICACION_CANTON;
 	"ID_AVE" NUMBER(11,0), 
 	"ID_CANTON" NUMBER(11,0), 
 	"FECHA_MODIFICACION" DATE, 
-	"USER_MODIFICACION" VARCHAR2(10 BYTE)
+	"USER_MODIFICACION" VARCHAR2(100 BYTE)
    ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
@@ -1649,11 +1672,11 @@ AS TABLE OF T_UBICACION_CANTON;
   TABLESPACE "BL_DATA" ;
  
 
-   COMMENT ON COLUMN "BL"."UBICACION"."ID_UBICACION" IS 'Identificador único de la ubicación del ave';
+   COMMENT ON COLUMN "BL"."UBICACION"."ID_UBICACION" IS 'Identificador Â¿nico de la ubicaciÂ¿n del ave';
  
-   COMMENT ON COLUMN "BL"."UBICACION"."ID_AVE" IS 'Llave foránea que relaciona la ubicación con el ave que habita en la zona';
+   COMMENT ON COLUMN "BL"."UBICACION"."ID_AVE" IS 'Llave forÂ¿nea que relaciona la ubicaciÂ¿n con el ave que habita en la zona';
  
-   COMMENT ON COLUMN "BL"."UBICACION"."ID_CANTON" IS 'Llave foránea que relaciona la ubicación con el cantón';
+   COMMENT ON COLUMN "BL"."UBICACION"."ID_CANTON" IS 'Llave forÂ¿nea que relaciona la ubicaciÂ¿n con el cantÂ¿n';
  
    COMMENT ON TABLE "BL"."UBICACION"  IS 'Ubicaciones en las que se encuentran cada tipo de ave';
 --------------------------------------------------------
@@ -1665,9 +1688,9 @@ AS TABLE OF T_UBICACION_CANTON;
 	"ID_PERSONA" NUMBER(11,0), 
 	"USUARIO" VARCHAR2(100 BYTE), 
 	"CONTRASENA" VARCHAR2(100 BYTE), 
-	"PASS" VARCHAR2(100 BYTE), 
 	"FECHA_MODIFICACION" DATE, 
-	"USER_MODIFICACION" VARCHAR2(10 BYTE)
+	"USER_MODIFICACION" VARCHAR2(100 BYTE), 
+	"PASS" VARCHAR2(100 BYTE)
    ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
@@ -1675,13 +1698,13 @@ AS TABLE OF T_UBICACION_CANTON;
   TABLESPACE "BL_DATA" ;
  
 
-   COMMENT ON COLUMN "BL"."USUARIO"."ID_USUARIO" IS 'Identificador único del usuario';
+   COMMENT ON COLUMN "BL"."USUARIO"."ID_USUARIO" IS 'Identificador Â¿nico del usuario';
  
-   COMMENT ON COLUMN "BL"."USUARIO"."ID_PERSONA" IS 'Llave foránea que relaciona el usuario con la persona a la que le pertenece';
+   COMMENT ON COLUMN "BL"."USUARIO"."ID_PERSONA" IS 'Llave forÂ¿nea que relaciona el usuario con la persona a la que le pertenece';
  
    COMMENT ON COLUMN "BL"."USUARIO"."USUARIO" IS 'Nombre del usuario';
  
-   COMMENT ON COLUMN "BL"."USUARIO"."CONTRASENA" IS 'Contraseña del usuario, debe estar encriptada';
+   COMMENT ON COLUMN "BL"."USUARIO"."CONTRASENA" IS 'ContraseÂ¿a del usuario, debe estar encriptada';
  
    COMMENT ON TABLE "BL"."USUARIO"  IS 'Usuarios de las personas registradas';
 --------------------------------------------------------
@@ -1698,22 +1721,22 @@ AS TABLE OF T_UBICACION_CANTON;
 --  DDL for Sequence SQ_BITACORA
 --------------------------------------------------------
 
-   CREATE SEQUENCE  "BL"."SQ_BITACORA"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 40 CACHE 20 NOORDER  NOCYCLE ;
+   CREATE SEQUENCE  "BL"."SQ_BITACORA"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 0 CACHE 20 NOORDER  NOCYCLE ;
 --------------------------------------------------------
 --  DDL for Sequence SQ_CANTON
 --------------------------------------------------------
 
-   CREATE SEQUENCE  "BL"."SQ_CANTON"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 101 CACHE 20 NOORDER  NOCYCLE ;
+   CREATE SEQUENCE  "BL"."SQ_CANTON"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 20 CACHE 20 NOORDER  NOCYCLE ;
 --------------------------------------------------------
 --  DDL for Sequence SQ_CLASE
 --------------------------------------------------------
 
-   CREATE SEQUENCE  "BL"."SQ_CLASE"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 60 CACHE 20 NOORDER  NOCYCLE ;
+   CREATE SEQUENCE  "BL"."SQ_CLASE"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 40 CACHE 20 NOORDER  NOCYCLE ;
 --------------------------------------------------------
 --  DDL for Sequence SQ_COLOR
 --------------------------------------------------------
 
-   CREATE SEQUENCE  "BL"."SQ_COLOR"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 120 CACHE 20 NOORDER  NOCYCLE ;
+   CREATE SEQUENCE  "BL"."SQ_COLOR"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 40 CACHE 20 NOORDER  NOCYCLE ;
 --------------------------------------------------------
 --  DDL for Sequence SQ_CONTINENTE
 --------------------------------------------------------
@@ -1723,12 +1746,12 @@ AS TABLE OF T_UBICACION_CANTON;
 --  DDL for Sequence SQ_ESPECIE
 --------------------------------------------------------
 
-   CREATE SEQUENCE  "BL"."SQ_ESPECIE"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 40 CACHE 20 NOORDER  NOCYCLE ;
+   CREATE SEQUENCE  "BL"."SQ_ESPECIE"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 20 CACHE 20 NOORDER  NOCYCLE ;
 --------------------------------------------------------
 --  DDL for Sequence SQ_FAMILIA
 --------------------------------------------------------
 
-   CREATE SEQUENCE  "BL"."SQ_FAMILIA"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 40 CACHE 20 NOORDER  NOCYCLE ;
+   CREATE SEQUENCE  "BL"."SQ_FAMILIA"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 20 CACHE 20 NOORDER  NOCYCLE ;
 --------------------------------------------------------
 --  DDL for Sequence SQ_FOTO
 --------------------------------------------------------
@@ -1738,17 +1761,17 @@ AS TABLE OF T_UBICACION_CANTON;
 --  DDL for Sequence SQ_GENERO
 --------------------------------------------------------
 
-   CREATE SEQUENCE  "BL"."SQ_GENERO"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 40 CACHE 20 NOORDER  NOCYCLE ;
+   CREATE SEQUENCE  "BL"."SQ_GENERO"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 20 CACHE 20 NOORDER  NOCYCLE ;
 --------------------------------------------------------
 --  DDL for Sequence SQ_ORDEN
 --------------------------------------------------------
 
-   CREATE SEQUENCE  "BL"."SQ_ORDEN"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 40 CACHE 20 NOORDER  NOCYCLE ;
+   CREATE SEQUENCE  "BL"."SQ_ORDEN"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 20 CACHE 20 NOORDER  NOCYCLE ;
 --------------------------------------------------------
 --  DDL for Sequence SQ_PAIS
 --------------------------------------------------------
 
-   CREATE SEQUENCE  "BL"."SQ_PAIS"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 241 CACHE 20 NOORDER  NOCYCLE ;
+   CREATE SEQUENCE  "BL"."SQ_PAIS"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 20 CACHE 20 NOORDER  NOCYCLE ;
 --------------------------------------------------------
 --  DDL for Sequence SQ_PARAMETRO
 --------------------------------------------------------
@@ -1758,22 +1781,22 @@ AS TABLE OF T_UBICACION_CANTON;
 --  DDL for Sequence SQ_PERSONA
 --------------------------------------------------------
 
-   CREATE SEQUENCE  "BL"."SQ_PERSONA"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 80 CACHE 20 NOORDER  NOCYCLE ;
+   CREATE SEQUENCE  "BL"."SQ_PERSONA"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 40 CACHE 20 NOORDER  NOCYCLE ;
 --------------------------------------------------------
 --  DDL for Sequence SQ_PROVINCIA
 --------------------------------------------------------
 
-   CREATE SEQUENCE  "BL"."SQ_PROVINCIA"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 40 CACHE 20 NOORDER  NOCYCLE ;
+   CREATE SEQUENCE  "BL"."SQ_PROVINCIA"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 20 CACHE 20 NOORDER  NOCYCLE ;
 --------------------------------------------------------
 --  DDL for Sequence SQ_PUNTOS
 --------------------------------------------------------
 
-   CREATE SEQUENCE  "BL"."SQ_PUNTOS"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 120 CACHE 20 NOORDER  NOCYCLE ;
+   CREATE SEQUENCE  "BL"."SQ_PUNTOS"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 20 CACHE 20 NOORDER  NOCYCLE ;
 --------------------------------------------------------
 --  DDL for Sequence SQ_SUBORDEN
 --------------------------------------------------------
 
-   CREATE SEQUENCE  "BL"."SQ_SUBORDEN"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 60 CACHE 20 NOORDER  NOCYCLE ;
+   CREATE SEQUENCE  "BL"."SQ_SUBORDEN"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 40 CACHE 20 NOORDER  NOCYCLE ;
 --------------------------------------------------------
 --  DDL for Sequence SQ_TIPO
 --------------------------------------------------------
@@ -1783,27 +1806,21 @@ AS TABLE OF T_UBICACION_CANTON;
 --  DDL for Sequence SQ_UBICACION
 --------------------------------------------------------
 
-   CREATE SEQUENCE  "BL"."SQ_UBICACION"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 60 CACHE 20 NOORDER  NOCYCLE ;
+   CREATE SEQUENCE  "BL"."SQ_UBICACION"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 40 CACHE 20 NOORDER  NOCYCLE ;
 --------------------------------------------------------
 --  DDL for Sequence SQ_USUARIO
 --------------------------------------------------------
 
-   CREATE SEQUENCE  "BL"."SQ_USUARIO"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 60 CACHE 20 NOORDER  NOCYCLE ;
+   CREATE SEQUENCE  "BL"."SQ_USUARIO"  MINVALUE 0 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 40 CACHE 20 NOORDER  NOCYCLE ;
 REM INSERTING into BL.AVE
 SET DEFINE OFF;
-Insert into BL.AVE (ID_AVE,ID_ESPECIE,ID_COLOR,ID_ESTADO,NOMBRE_COMUN,TAMANO,IMAGEN,FECHA_MODIFICACION,USER_MODIFICACION) values ('7','8','21','20','NOMBRE COMUN','11','14logo.png',to_date('28/09/17','DD/MM/RR'),'BL');
-Insert into BL.AVE (ID_AVE,ID_ESPECIE,ID_COLOR,ID_ESTADO,NOMBRE_COMUN,TAMANO,IMAGEN,FECHA_MODIFICACION,USER_MODIFICACION) values ('4','9','1','1','NOMBRE','12','14Jose.png',to_date('28/09/17','DD/MM/RR'),'BL');
+Insert into BL.AVE (ID_AVE,ID_ESPECIE,ID_COLOR,ID_ESTADO,NOMBRE_COMUN,TAMANO,IMAGEN,FECHA_MODIFICACION,USER_MODIFICACION) values ('29','27','87','20','Trepadorcito Pico de CuÃƒâ€™a','14','14coereba flaveola.jpg',to_date('07/10/17','DD/MM/RR'),'BL');
 REM INSERTING into BL.AVISTAMIENTO
 SET DEFINE OFF;
-Insert into BL.AVISTAMIENTO (ID_AVISTAMIENTO,ID_PERSONA,ID_AVE,LATITUD,LONGITUD,FOTO,FECHA_MODIFICACION,USER_MODIFICACION) values ('2','14','7','9.521189760201944','-84.53971435937501','14159logo.png',null,null);
-Insert into BL.AVISTAMIENTO (ID_AVISTAMIENTO,ID_PERSONA,ID_AVE,LATITUD,LONGITUD,FOTO,FECHA_MODIFICACION,USER_MODIFICACION) values ('3','14','7','9.521189760201944','-83.53971435937501','1426092logo.png',null,null);
-Insert into BL.AVISTAMIENTO (ID_AVISTAMIENTO,ID_PERSONA,ID_AVE,LATITUD,LONGITUD,FOTO,FECHA_MODIFICACION,USER_MODIFICACION) values ('4','14','4','9.939431129748815','-84.08103516015626','1426146logo2.png',null,null);
+Insert into BL.AVISTAMIENTO (ID_AVISTAMIENTO,ID_PERSONA,ID_AVE,LATITUD,LONGITUD,FOTO,FECHA_MODIFICACION,USER_MODIFICACION) values ('6','20','29','9.942136476507335','-84.07966186914064','20177511.jpg',null,null);
 REM INSERTING into BL.BITACORA
 SET DEFINE OFF;
-Insert into BL.BITACORA (ID_BITACORA,ID_PERSONA,ANTERIOR,SIGUIENTE,FECHA_MODIFICACION,USER_MODIFICACION) values ('32','41','--','admin',to_date('28/09/17','DD/MM/RR'),'BL');
-Insert into BL.BITACORA (ID_BITACORA,ID_PERSONA,ANTERIOR,SIGUIENTE,FECHA_MODIFICACION,USER_MODIFICACION) values ('23','14','--','admin',null,null);
-Insert into BL.BITACORA (ID_BITACORA,ID_PERSONA,ANTERIOR,SIGUIENTE,FECHA_MODIFICACION,USER_MODIFICACION) values ('30','14','admin','jose1996',null,null);
-Insert into BL.BITACORA (ID_BITACORA,ID_PERSONA,ANTERIOR,SIGUIENTE,FECHA_MODIFICACION,USER_MODIFICACION) values ('31','14','admin','admin',null,null);
+Insert into BL.BITACORA (ID_BITACORA,ID_PERSONA,SIGUIENTE,ANTERIOR,FECHA_MODIFICACION,USER_MODIFICACION) values ('32','41','admin','--',to_date('28/09/17','DD/MM/RR'),'BL');
 REM INSERTING into BL.CANTON
 SET DEFINE OFF;
 Insert into BL.CANTON (ID_CANTON,ID_PROVINCIA,NOMBRE,FECHA_MODIFICACION,USER_MODIFICACION) values ('1','1','SAN JOSE',null,null);
@@ -1864,7 +1881,7 @@ Insert into BL.CANTON (ID_CANTON,ID_PROVINCIA,NOMBRE,FECHA_MODIFICACION,USER_MOD
 Insert into BL.CANTON (ID_CANTON,ID_PROVINCIA,NOMBRE,FECHA_MODIFICACION,USER_MODIFICACION) values ('56','5','SANTA CRUZ',null,null);
 Insert into BL.CANTON (ID_CANTON,ID_PROVINCIA,NOMBRE,FECHA_MODIFICACION,USER_MODIFICACION) values ('57','5','BAGACES',null,null);
 Insert into BL.CANTON (ID_CANTON,ID_PROVINCIA,NOMBRE,FECHA_MODIFICACION,USER_MODIFICACION) values ('58','5','CARRILLO',null,null);
-Insert into BL.CANTON (ID_CANTON,ID_PROVINCIA,NOMBRE,FECHA_MODIFICACION,USER_MODIFICACION) values ('59','5','CAÑAS',null,null);
+Insert into BL.CANTON (ID_CANTON,ID_PROVINCIA,NOMBRE,FECHA_MODIFICACION,USER_MODIFICACION) values ('59','5','CAÂ¿AS',null,null);
 Insert into BL.CANTON (ID_CANTON,ID_PROVINCIA,NOMBRE,FECHA_MODIFICACION,USER_MODIFICACION) values ('60','5','ABANGARES',null,null);
 Insert into BL.CANTON (ID_CANTON,ID_PROVINCIA,NOMBRE,FECHA_MODIFICACION,USER_MODIFICACION) values ('61','5','TILARAN',null,null);
 Insert into BL.CANTON (ID_CANTON,ID_PROVINCIA,NOMBRE,FECHA_MODIFICACION,USER_MODIFICACION) values ('62','5','NANDAYURE',null,null);
@@ -1890,8 +1907,6 @@ Insert into BL.CANTON (ID_CANTON,ID_PROVINCIA,NOMBRE,FECHA_MODIFICACION,USER_MOD
 REM INSERTING into BL.CLASE
 SET DEFINE OFF;
 Insert into BL.CLASE (ID_CLASE,NOMBRE,FECHA_MODIFICACION,USER_MODIFICACION) values ('40','Aves',null,null);
-Insert into BL.CLASE (ID_CLASE,NOMBRE,FECHA_MODIFICACION,USER_MODIFICACION) values ('20','CLASE #2',null,null);
-Insert into BL.CLASE (ID_CLASE,NOMBRE,FECHA_MODIFICACION,USER_MODIFICACION) values ('5','CLASE #1',null,null);
 REM INSERTING into BL.COLOR
 SET DEFINE OFF;
 Insert into BL.COLOR (ID_COLOR,NOMBRE,FECHA_MODIFICACION,USER_MODIFICACION) values ('40','Rojo',null,null);
@@ -1945,7 +1960,7 @@ Insert into BL.COLOR (ID_COLOR,NOMBRE,FECHA_MODIFICACION,USER_MODIFICACION) valu
 Insert into BL.COLOR (ID_COLOR,NOMBRE,FECHA_MODIFICACION,USER_MODIFICACION) values ('58','Azul cobalto ',null,null);
 Insert into BL.COLOR (ID_COLOR,NOMBRE,FECHA_MODIFICACION,USER_MODIFICACION) values ('61','Azur',null,null);
 Insert into BL.COLOR (ID_COLOR,NOMBRE,FECHA_MODIFICACION,USER_MODIFICACION) values ('62','Zafiro',null,null);
-Insert into BL.COLOR (ID_COLOR,NOMBRE,FECHA_MODIFICACION,USER_MODIFICACION) values ('63','Ã?ndigo',null,null);
+Insert into BL.COLOR (ID_COLOR,NOMBRE,FECHA_MODIFICACION,USER_MODIFICACION) values ('63','Â¿?ndigo',null,null);
 Insert into BL.COLOR (ID_COLOR,NOMBRE,FECHA_MODIFICACION,USER_MODIFICACION) values ('66','Azul Klein',null,null);
 Insert into BL.COLOR (ID_COLOR,NOMBRE,FECHA_MODIFICACION,USER_MODIFICACION) values ('67','Azul acero claro',null,null);
 Insert into BL.COLOR (ID_COLOR,NOMBRE,FECHA_MODIFICACION,USER_MODIFICACION) values ('70','Malva',null,null);
@@ -1953,7 +1968,7 @@ Insert into BL.COLOR (ID_COLOR,NOMBRE,FECHA_MODIFICACION,USER_MODIFICACION) valu
 Insert into BL.COLOR (ID_COLOR,NOMBRE,FECHA_MODIFICACION,USER_MODIFICACION) values ('72','SalmÃ³n',null,null);
 Insert into BL.COLOR (ID_COLOR,NOMBRE,FECHA_MODIFICACION,USER_MODIFICACION) values ('77','Celeste',null,null);
 Insert into BL.COLOR (ID_COLOR,NOMBRE,FECHA_MODIFICACION,USER_MODIFICACION) values ('82','Oro',null,null);
-Insert into BL.COLOR (ID_COLOR,NOMBRE,FECHA_MODIFICACION,USER_MODIFICACION) values ('83','Ã?mbar',null,null);
+Insert into BL.COLOR (ID_COLOR,NOMBRE,FECHA_MODIFICACION,USER_MODIFICACION) values ('83','Â¿?mbar',null,null);
 Insert into BL.COLOR (ID_COLOR,NOMBRE,FECHA_MODIFICACION,USER_MODIFICACION) values ('84','MarrÃ³n',null,null);
 Insert into BL.COLOR (ID_COLOR,NOMBRE,FECHA_MODIFICACION,USER_MODIFICACION) values ('89','Violeta',null,null);
 Insert into BL.COLOR (ID_COLOR,NOMBRE,FECHA_MODIFICACION,USER_MODIFICACION) values ('90','Lavanda floral',null,null);
@@ -1970,7 +1985,7 @@ Insert into BL.CONTINENTE (ID_CONTINENTE,NOMBRE,FECHA_MODIFICACION,USER_MODIFICA
 Insert into BL.CONTINENTE (ID_CONTINENTE,NOMBRE,FECHA_MODIFICACION,USER_MODIFICACION) values ('2','Europa',null,null);
 Insert into BL.CONTINENTE (ID_CONTINENTE,NOMBRE,FECHA_MODIFICACION,USER_MODIFICACION) values ('3','Asia',null,null);
 Insert into BL.CONTINENTE (ID_CONTINENTE,NOMBRE,FECHA_MODIFICACION,USER_MODIFICACION) values ('4','OceanÃ­a',null,null);
-Insert into BL.CONTINENTE (ID_CONTINENTE,NOMBRE,FECHA_MODIFICACION,USER_MODIFICACION) values ('5','Ã?frica',null,null);
+Insert into BL.CONTINENTE (ID_CONTINENTE,NOMBRE,FECHA_MODIFICACION,USER_MODIFICACION) values ('5','Â¿?frica',null,null);
 REM INSERTING into BL.ESPECIE
 SET DEFINE OFF;
 Insert into BL.ESPECIE (ID_ESPECIE,ID_GENERO,NOMBRE,FECHA_MODIFICACION,USER_MODIFICACION) values ('27','27','Maximus',null,null);
@@ -1981,15 +1996,13 @@ Insert into BL.ESPECIE (ID_ESPECIE,ID_GENERO,NOMBRE,FECHA_MODIFICACION,USER_MODI
 Insert into BL.ESPECIE (ID_ESPECIE,ID_GENERO,NOMBRE,FECHA_MODIFICACION,USER_MODIFICACION) values ('22','22','Souleyetii',null,null);
 Insert into BL.ESPECIE (ID_ESPECIE,ID_GENERO,NOMBRE,FECHA_MODIFICACION,USER_MODIFICACION) values ('24','24','Ochrolaemus',null,null);
 Insert into BL.ESPECIE (ID_ESPECIE,ID_GENERO,NOMBRE,FECHA_MODIFICACION,USER_MODIFICACION) values ('25','25','Brachyura',null,null);
-Insert into BL.ESPECIE (ID_ESPECIE,ID_GENERO,NOMBRE,FECHA_MODIFICACION,USER_MODIFICACION) values ('8','1','Especie #1',null,null);
-Insert into BL.ESPECIE (ID_ESPECIE,ID_GENERO,NOMBRE,FECHA_MODIFICACION,USER_MODIFICACION) values ('9','2','Especie #2',null,null);
 Insert into BL.ESPECIE (ID_ESPECIE,ID_GENERO,NOMBRE,FECHA_MODIFICACION,USER_MODIFICACION) values ('26','26','Flaveola',null,null);
 REM INSERTING into BL.FAMILIA
 SET DEFINE OFF;
 Insert into BL.FAMILIA (ID_FAMILIA,ID_SUBORDEN,NOMBRE,FECHA_MODIFICACION,USER_MODIFICACION) values ('21','41','Incertae sedis',null,null);
-Insert into BL.FAMILIA (ID_FAMILIA,ID_SUBORDEN,NOMBRE,FECHA_MODIFICACION,USER_MODIFICACION) values ('2','24','Familia #1',null,null);
-Insert into BL.FAMILIA (ID_FAMILIA,ID_SUBORDEN,NOMBRE,FECHA_MODIFICACION,USER_MODIFICACION) values ('3','23','Familia #2',null,null);
 Insert into BL.FAMILIA (ID_FAMILIA,ID_SUBORDEN,NOMBRE,FECHA_MODIFICACION,USER_MODIFICACION) values ('20','40','Furnariidae',null,null);
+REM INSERTING into BL.FOTO
+SET DEFINE OFF;
 REM INSERTING into BL.GENERO
 SET DEFINE OFF;
 Insert into BL.GENERO (ID_GENERO,ID_FAMILIA,NOMBRE,FECHA_MODIFICACION,USER_MODIFICACION) values ('27','21','Saltator',null,null);
@@ -1998,15 +2011,11 @@ Insert into BL.GENERO (ID_GENERO,ID_FAMILIA,NOMBRE,FECHA_MODIFICACION,USER_MODIF
 Insert into BL.GENERO (ID_GENERO,ID_FAMILIA,NOMBRE,FECHA_MODIFICACION,USER_MODIFICACION) values ('23','20','Xenops',null,null);
 Insert into BL.GENERO (ID_GENERO,ID_FAMILIA,NOMBRE,FECHA_MODIFICACION,USER_MODIFICACION) values ('25','20','Synallaxis',null,null);
 Insert into BL.GENERO (ID_GENERO,ID_FAMILIA,NOMBRE,FECHA_MODIFICACION,USER_MODIFICACION) values ('24','20','Automolus',null,null);
-Insert into BL.GENERO (ID_GENERO,ID_FAMILIA,NOMBRE,FECHA_MODIFICACION,USER_MODIFICACION) values ('1','2','Genero #1',null,null);
-Insert into BL.GENERO (ID_GENERO,ID_FAMILIA,NOMBRE,FECHA_MODIFICACION,USER_MODIFICACION) values ('2','3','Genero #2',null,null);
 Insert into BL.GENERO (ID_GENERO,ID_FAMILIA,NOMBRE,FECHA_MODIFICACION,USER_MODIFICACION) values ('20','20','Glyphorynchus',null,null);
 Insert into BL.GENERO (ID_GENERO,ID_FAMILIA,NOMBRE,FECHA_MODIFICACION,USER_MODIFICACION) values ('26','21','Coereba',null,null);
 REM INSERTING into BL.ORDEN
 SET DEFINE OFF;
 Insert into BL.ORDEN (ID_ORDEN,ID_CLASE,NOMBRE,FECHA_MODIFICACION,USER_MODIFICACION) values ('20','40','Passeriformes',null,null);
-Insert into BL.ORDEN (ID_ORDEN,ID_CLASE,NOMBRE,FECHA_MODIFICACION,USER_MODIFICACION) values ('1','5','Orden #1',null,null);
-Insert into BL.ORDEN (ID_ORDEN,ID_CLASE,NOMBRE,FECHA_MODIFICACION,USER_MODIFICACION) values ('2','20','Orden #2',null,null);
 REM INSERTING into BL.PAIS
 SET DEFINE OFF;
 Insert into BL.PAIS (ID_PAIS,ID_CONTINENTE,NOMBRE,FECHA_MODIFICACION,USER_MODIFICACION) values ('1','3','Afghanistan',null,null);
@@ -2235,9 +2244,9 @@ Insert into BL.PAIS (ID_PAIS,ID_CONTINENTE,NOMBRE,FECHA_MODIFICACION,USER_MODIFI
 Insert into BL.PAIS (ID_PAIS,ID_CONTINENTE,NOMBRE,FECHA_MODIFICACION,USER_MODIFICACION) values ('224','5','Zimbabwe',null,null);
 REM INSERTING into BL.PARAMETRO
 SET DEFINE OFF;
-Insert into BL.PARAMETRO (ID_PARAMETRO,NOMBRE,DESCRIPCION,FECHA_MODIFICACION,USER_MODIFICACION) values ('5','Email de cumpleaños','Hola, 
+Insert into BL.PARAMETRO (ID_PARAMETRO,NOMBRE,DESCRIPCION,FECHA_MODIFICACION,USER_MODIFICACION) values ('5','Email','Hola, 
 
-BirdLand, te desea un excelente cumpleaÃ±os y te recuerda que toda la comunidad de avisadores de aves, esta para celebrar esta importante fecha.
+BirdLand, te desea un excelente cumpleaÃƒÂ±os y te recuerda que toda la comunidad de avisadores de aves, esta para celebrar esta importante fecha.
 
 No olvides avistar un ave, y celebrar de la mejor manera, 
 
@@ -2245,11 +2254,12 @@ Sinceramente
 
 BirdLand Team. 
 ',to_date('28/09/17','DD/MM/RR'),'BL');
-Insert into BL.PARAMETRO (ID_PARAMETRO,NOMBRE,DESCRIPCION,FECHA_MODIFICACION,USER_MODIFICACION) values ('6','Cantidad por pagina','10',to_date('28/09/17','DD/MM/RR'),'BL');
+Insert into BL.PARAMETRO (ID_PARAMETRO,NOMBRE,DESCRIPCION,FECHA_MODIFICACION,USER_MODIFICACION) values ('6','Cantidad por pagina','20',to_date('07/10/17','DD/MM/RR'),'BL');
 REM INSERTING into BL.PERSONA
 SET DEFINE OFF;
 Insert into BL.PERSONA (ID_PERSONA,NOMBRE,APELLIDO,FECHA_NACIMIENTO,EMAIL,PROFESION,TIPO,FOTO,FECHA_MODIFICACION,USER_MODIFICACION) values ('41','Usuario','Usuario',to_date('12/11/96','DD/MM/RR'),'usuario@gmail.com','Ornitologo','3','default.png',to_date('28/09/17','DD/MM/RR'),'BL');
 Insert into BL.PERSONA (ID_PERSONA,NOMBRE,APELLIDO,FECHA_NACIMIENTO,EMAIL,PROFESION,TIPO,FOTO,FECHA_MODIFICACION,USER_MODIFICACION) values ('14','Jose Andres','Ceciliano Granados',to_date('15/11/96','DD/MM/RR'),'cecilianogranados96@hotmail.com','In Compu','1','14logo.png',null,null);
+Insert into BL.PERSONA (ID_PERSONA,NOMBRE,APELLIDO,FECHA_NACIMIENTO,EMAIL,PROFESION,TIPO,FOTO,FECHA_MODIFICACION,USER_MODIFICACION) values ('20','Silvia','Calderon',to_date('12/11/96','DD/MM/RR'),'silvi_luc@hotmail.com','Ing.Compu','3','default.png',to_date('07/10/17','DD/MM/RR'),'BL');
 REM INSERTING into BL.PROVINCIA
 SET DEFINE OFF;
 Insert into BL.PROVINCIA (ID_PROVINCIA,ID_PAIS,NOMBRE,FECHA_MODIFICACION,USER_MODIFICACION) values ('1','46','San Jose',null,null);
@@ -2261,12 +2271,9 @@ Insert into BL.PROVINCIA (ID_PROVINCIA,ID_PAIS,NOMBRE,FECHA_MODIFICACION,USER_MO
 Insert into BL.PROVINCIA (ID_PROVINCIA,ID_PAIS,NOMBRE,FECHA_MODIFICACION,USER_MODIFICACION) values ('7','46','Limon',null,null);
 REM INSERTING into BL.PUNTAJE
 SET DEFINE OFF;
-Insert into BL.PUNTAJE (ID_PUNTAJE,ID_AVISTAMIENTO,ID_PERSONA,FECHA_MODIFICACION,USER_MODIFICACION) values ('100','4','14',to_date('28/09/17','DD/MM/RR'),'BL');
-Insert into BL.PUNTAJE (ID_PUNTAJE,ID_AVISTAMIENTO,ID_PERSONA,FECHA_MODIFICACION,USER_MODIFICACION) values ('81','2','14',null,null);
+Insert into BL.PUNTAJE (ID_PUNTAJE,ID_AVISTAMIENTO,ID_PERSONA,FECHA_MODIFICACION,USER_MODIFICACION) values ('0','6','14',to_date('07/10/17','DD/MM/RR'),'BL');
 REM INSERTING into BL.SUBORDEN
 SET DEFINE OFF;
-Insert into BL.SUBORDEN (ID_SUBORDEN,ID_ORDEN,NOMBRE,FECHA_MODIFICACION,USER_MODIFICACION) values ('23','2','SubOrden #2',null,null);
-Insert into BL.SUBORDEN (ID_SUBORDEN,ID_ORDEN,NOMBRE,FECHA_MODIFICACION,USER_MODIFICACION) values ('24','1','SubOrden #1',null,null);
 Insert into BL.SUBORDEN (ID_SUBORDEN,ID_ORDEN,NOMBRE,FECHA_MODIFICACION,USER_MODIFICACION) values ('40','20','Tyranni',null,null);
 Insert into BL.SUBORDEN (ID_SUBORDEN,ID_ORDEN,NOMBRE,FECHA_MODIFICACION,USER_MODIFICACION) values ('41','20','Passeri',null,null);
 REM INSERTING into BL.TIPO
@@ -2275,14 +2282,17 @@ Insert into BL.TIPO (ID_TIPO,NOMBRE,FECHA_MODIFICACION,USER_MODIFICACION) values
 Insert into BL.TIPO (ID_TIPO,NOMBRE,FECHA_MODIFICACION,USER_MODIFICACION) values ('20','Estable',null,null);
 REM INSERTING into BL.UBICACION
 SET DEFINE OFF;
-Insert into BL.UBICACION (ID_UBICACION,ID_AVE,ID_CANTON,FECHA_MODIFICACION,USER_MODIFICACION) values ('40','4','34',to_date('28/09/17','DD/MM/RR'),'BL');
-Insert into BL.UBICACION (ID_UBICACION,ID_AVE,ID_CANTON,FECHA_MODIFICACION,USER_MODIFICACION) values ('38','4','31',to_date('28/09/17','DD/MM/RR'),'BL');
-Insert into BL.UBICACION (ID_UBICACION,ID_AVE,ID_CANTON,FECHA_MODIFICACION,USER_MODIFICACION) values ('39','4','35',to_date('28/09/17','DD/MM/RR'),'BL');
-Insert into BL.UBICACION (ID_UBICACION,ID_AVE,ID_CANTON,FECHA_MODIFICACION,USER_MODIFICACION) values ('41','7','6',to_date('28/09/17','DD/MM/RR'),'BL');
+Insert into BL.UBICACION (ID_UBICACION,ID_AVE,ID_CANTON,FECHA_MODIFICACION,USER_MODIFICACION) values ('4',null,'21',to_date('07/10/17','DD/MM/RR'),'BL');
+Insert into BL.UBICACION (ID_UBICACION,ID_AVE,ID_CANTON,FECHA_MODIFICACION,USER_MODIFICACION) values ('5',null,'31',to_date('07/10/17','DD/MM/RR'),'BL');
+Insert into BL.UBICACION (ID_UBICACION,ID_AVE,ID_CANTON,FECHA_MODIFICACION,USER_MODIFICACION) values ('6',null,'25',to_date('07/10/17','DD/MM/RR'),'BL');
+Insert into BL.UBICACION (ID_UBICACION,ID_AVE,ID_CANTON,FECHA_MODIFICACION,USER_MODIFICACION) values ('20','29','21',to_date('07/10/17','DD/MM/RR'),'BL');
+Insert into BL.UBICACION (ID_UBICACION,ID_AVE,ID_CANTON,FECHA_MODIFICACION,USER_MODIFICACION) values ('21','29','31',to_date('07/10/17','DD/MM/RR'),'BL');
+Insert into BL.UBICACION (ID_UBICACION,ID_AVE,ID_CANTON,FECHA_MODIFICACION,USER_MODIFICACION) values ('22','29','25',to_date('07/10/17','DD/MM/RR'),'BL');
 REM INSERTING into BL.USUARIO
 SET DEFINE OFF;
-Insert into BL.USUARIO (ID_USUARIO,ID_PERSONA,USUARIO,CONTRASENA,PASS,FECHA_MODIFICACION,USER_MODIFICACION) values ('41','41','user','21232f297a57a5a743894a0e4a801fc3','admin',to_date('28/09/17','DD/MM/RR'),'BL');
-Insert into BL.USUARIO (ID_USUARIO,ID_PERSONA,USUARIO,CONTRASENA,PASS,FECHA_MODIFICACION,USER_MODIFICACION) values ('1','14','ceciliano','21232f297a57a5a743894a0e4a801fc3','admin',null,null);
+Insert into BL.USUARIO (ID_USUARIO,ID_PERSONA,USUARIO,CONTRASENA,FECHA_MODIFICACION,USER_MODIFICACION,PASS) values ('41','41','user','21232f297a57a5a743894a0e4a801fc3',to_date('28/09/17','DD/MM/RR'),'BL','admin');
+Insert into BL.USUARIO (ID_USUARIO,ID_PERSONA,USUARIO,CONTRASENA,FECHA_MODIFICACION,USER_MODIFICACION,PASS) values ('1','14','ceciliano','21232f297a57a5a743894a0e4a801fc3',null,null,'admin');
+Insert into BL.USUARIO (ID_USUARIO,ID_PERSONA,USUARIO,CONTRASENA,FECHA_MODIFICACION,USER_MODIFICACION,PASS) values ('20','20','silvia','21232f297a57a5a743894a0e4a801fc3',to_date('07/10/17','DD/MM/RR'),'BL','admin');
 --------------------------------------------------------
 --  DDL for Index PK_COLOR
 --------------------------------------------------------
@@ -2354,6 +2364,15 @@ Insert into BL.USUARIO (ID_USUARIO,ID_PERSONA,USUARIO,CONTRASENA,PASS,FECHA_MODI
   PCTFREE 20 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
   STORAGE(INITIAL 16384 NEXT 16384 MINEXTENTS 1 MAXEXTENTS 2147483645
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "BL_IND" ;
+--------------------------------------------------------
+--  DDL for Index PK_FOTO
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "BL"."PK_FOTO" ON "BL"."FOTO" ("ID_FOTO") 
+  PCTFREE 20 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS NOCOMPRESS LOGGING
+  STORAGE( INITIAL 16384 NEXT 16384
+  PCTINCREASE 0)
   TABLESPACE "BL_IND" ;
 --------------------------------------------------------
 --  DDL for Index PK_TIPO
@@ -2472,6 +2491,272 @@ Insert into BL.USUARIO (ID_USUARIO,ID_PERSONA,USUARIO,CONTRASENA,PASS,FECHA_MODI
   STORAGE(INITIAL 16384 NEXT 16384 MINEXTENTS 1 MAXEXTENTS 2147483645
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "BL_IND" ;
+--------------------------------------------------------
+--  DDL for Trigger BEFOREINSERTORUPDATEAVE
+--------------------------------------------------------
+
+  CREATE OR REPLACE TRIGGER "BL"."BEFOREINSERTORUPDATEAVE" 
+BEFORE INSERT OR UPDATE
+ON ave
+FOR EACH ROW
+BEGIN
+    :new.FECHA_MODIFICACION := SYSDATE;
+    :new.USER_MODIFICACION := USER;
+END;
+/
+ALTER TRIGGER "BL"."BEFOREINSERTORUPDATEAVE" ENABLE;
+--------------------------------------------------------
+--  DDL for Trigger BEFOREINSERTORUPDATEBITACORA
+--------------------------------------------------------
+
+  CREATE OR REPLACE TRIGGER "BL"."BEFOREINSERTORUPDATEBITACORA" 
+BEFORE INSERT OR UPDATE
+ON bitacora
+FOR EACH ROW
+BEGIN
+    :new.FECHA_MODIFICACION := SYSDATE;
+    :new.USER_MODIFICACION := USER;
+END;
+/
+ALTER TRIGGER "BL"."BEFOREINSERTORUPDATEBITACORA" ENABLE;
+--------------------------------------------------------
+--  DDL for Trigger BEFOREINSERTORUPDATECANTON
+--------------------------------------------------------
+
+  CREATE OR REPLACE TRIGGER "BL"."BEFOREINSERTORUPDATECANTON" 
+BEFORE INSERT OR UPDATE
+ON canton
+FOR EACH ROW
+BEGIN
+    :new.FECHA_MODIFICACION := SYSDATE;
+    :new.USER_MODIFICACION := USER;
+END;
+/
+ALTER TRIGGER "BL"."BEFOREINSERTORUPDATECANTON" ENABLE;
+--------------------------------------------------------
+--  DDL for Trigger BEFOREINSERTORUPDATECLASE
+--------------------------------------------------------
+
+  CREATE OR REPLACE TRIGGER "BL"."BEFOREINSERTORUPDATECLASE" 
+BEFORE INSERT OR UPDATE
+ON clase
+FOR EACH ROW
+BEGIN
+    :new.FECHA_MODIFICACION := SYSDATE;
+    :new.USER_MODIFICACION := USER;
+END;
+/
+ALTER TRIGGER "BL"."BEFOREINSERTORUPDATECLASE" ENABLE;
+--------------------------------------------------------
+--  DDL for Trigger BEFOREINSERTORUPDATECOLOR
+--------------------------------------------------------
+
+  CREATE OR REPLACE TRIGGER "BL"."BEFOREINSERTORUPDATECOLOR" 
+BEFORE INSERT OR UPDATE
+ON color
+FOR EACH ROW
+BEGIN
+    :new.FECHA_MODIFICACION := SYSDATE;
+    :new.USER_MODIFICACION := USER;
+END;
+/
+ALTER TRIGGER "BL"."BEFOREINSERTORUPDATECOLOR" ENABLE;
+--------------------------------------------------------
+--  DDL for Trigger BEFOREINSERTORUPDATECONTINENTE
+--------------------------------------------------------
+
+  CREATE OR REPLACE TRIGGER "BL"."BEFOREINSERTORUPDATECONTINENTE" 
+BEFORE INSERT OR UPDATE
+ON continente
+FOR EACH ROW
+BEGIN
+    :new.FECHA_MODIFICACION := SYSDATE;
+    :new.USER_MODIFICACION := USER;
+END;
+/
+ALTER TRIGGER "BL"."BEFOREINSERTORUPDATECONTINENTE" ENABLE;
+--------------------------------------------------------
+--  DDL for Trigger BEFOREINSERTORUPDATEESPECIE
+--------------------------------------------------------
+
+  CREATE OR REPLACE TRIGGER "BL"."BEFOREINSERTORUPDATEESPECIE" 
+BEFORE INSERT OR UPDATE
+ON especie
+FOR EACH ROW
+BEGIN
+    :new.FECHA_MODIFICACION := SYSDATE;
+    :new.USER_MODIFICACION := USER;
+END;
+/
+ALTER TRIGGER "BL"."BEFOREINSERTORUPDATEESPECIE" ENABLE;
+--------------------------------------------------------
+--  DDL for Trigger BEFOREINSERTORUPDATEFAMILIA
+--------------------------------------------------------
+
+  CREATE OR REPLACE TRIGGER "BL"."BEFOREINSERTORUPDATEFAMILIA" 
+BEFORE INSERT OR UPDATE
+ON familia
+FOR EACH ROW
+BEGIN
+    :new.FECHA_MODIFICACION := SYSDATE;
+    :new.USER_MODIFICACION := USER;
+END;
+/
+ALTER TRIGGER "BL"."BEFOREINSERTORUPDATEFAMILIA" ENABLE;
+--------------------------------------------------------
+--  DDL for Trigger BEFOREINSERTORUPDATEGENERO
+--------------------------------------------------------
+
+  CREATE OR REPLACE TRIGGER "BL"."BEFOREINSERTORUPDATEGENERO" 
+BEFORE INSERT OR UPDATE
+ON genero
+FOR EACH ROW
+BEGIN
+    :new.FECHA_MODIFICACION := SYSDATE;
+    :new.USER_MODIFICACION := USER;
+END;
+/
+ALTER TRIGGER "BL"."BEFOREINSERTORUPDATEGENERO" ENABLE;
+--------------------------------------------------------
+--  DDL for Trigger BEFOREINSERTORUPDATEORDEN
+--------------------------------------------------------
+
+  CREATE OR REPLACE TRIGGER "BL"."BEFOREINSERTORUPDATEORDEN" 
+BEFORE INSERT OR UPDATE
+ON orden
+FOR EACH ROW
+BEGIN
+    :new.FECHA_MODIFICACION := SYSDATE;
+    :new.USER_MODIFICACION := USER;
+END;
+/
+ALTER TRIGGER "BL"."BEFOREINSERTORUPDATEORDEN" ENABLE;
+--------------------------------------------------------
+--  DDL for Trigger BEFOREINSERTORUPDATEPAIS
+--------------------------------------------------------
+
+  CREATE OR REPLACE TRIGGER "BL"."BEFOREINSERTORUPDATEPAIS" 
+BEFORE INSERT OR UPDATE
+ON pais
+FOR EACH ROW
+BEGIN
+    :new.FECHA_MODIFICACION := SYSDATE;
+    :new.USER_MODIFICACION := USER;
+END;
+/
+ALTER TRIGGER "BL"."BEFOREINSERTORUPDATEPAIS" ENABLE;
+--------------------------------------------------------
+--  DDL for Trigger BEFOREINSERTORUPDATEPARAMETRO
+--------------------------------------------------------
+
+  CREATE OR REPLACE TRIGGER "BL"."BEFOREINSERTORUPDATEPARAMETRO" 
+BEFORE INSERT OR UPDATE
+ON parametro
+FOR EACH ROW
+BEGIN
+    :new.FECHA_MODIFICACION := SYSDATE;
+    :new.USER_MODIFICACION := USER;
+END;
+/
+ALTER TRIGGER "BL"."BEFOREINSERTORUPDATEPARAMETRO" ENABLE;
+--------------------------------------------------------
+--  DDL for Trigger BEFOREINSERTORUPDATEPERSONA
+--------------------------------------------------------
+
+  CREATE OR REPLACE TRIGGER "BL"."BEFOREINSERTORUPDATEPERSONA" 
+BEFORE INSERT OR UPDATE
+ON persona
+FOR EACH ROW
+BEGIN
+    :new.FECHA_MODIFICACION := SYSDATE;
+    :new.USER_MODIFICACION := USER;
+END;
+/
+ALTER TRIGGER "BL"."BEFOREINSERTORUPDATEPERSONA" ENABLE;
+--------------------------------------------------------
+--  DDL for Trigger BEFOREINSERTORUPDATEPROVINCIA
+--------------------------------------------------------
+
+  CREATE OR REPLACE TRIGGER "BL"."BEFOREINSERTORUPDATEPROVINCIA" 
+BEFORE INSERT OR UPDATE
+ON provincia
+FOR EACH ROW
+BEGIN
+    :new.FECHA_MODIFICACION := SYSDATE;
+    :new.USER_MODIFICACION := USER;
+END;
+/
+ALTER TRIGGER "BL"."BEFOREINSERTORUPDATEPROVINCIA" ENABLE;
+--------------------------------------------------------
+--  DDL for Trigger BEFOREINSERTORUPDATEPUNTAJE
+--------------------------------------------------------
+
+  CREATE OR REPLACE TRIGGER "BL"."BEFOREINSERTORUPDATEPUNTAJE" 
+BEFORE INSERT OR UPDATE
+ON puntaje
+FOR EACH ROW
+BEGIN
+    :new.FECHA_MODIFICACION := SYSDATE;
+    :new.USER_MODIFICACION := USER;
+END;
+/
+ALTER TRIGGER "BL"."BEFOREINSERTORUPDATEPUNTAJE" ENABLE;
+--------------------------------------------------------
+--  DDL for Trigger BEFOREINSERTORUPDATESUBORDEN
+--------------------------------------------------------
+
+  CREATE OR REPLACE TRIGGER "BL"."BEFOREINSERTORUPDATESUBORDEN" 
+BEFORE INSERT OR UPDATE
+ON suborden
+FOR EACH ROW
+BEGIN
+    :new.FECHA_MODIFICACION := SYSDATE;
+    :new.USER_MODIFICACION := USER;
+END;
+/
+ALTER TRIGGER "BL"."BEFOREINSERTORUPDATESUBORDEN" ENABLE;
+--------------------------------------------------------
+--  DDL for Trigger BEFOREINSERTORUPDATETIPO
+--------------------------------------------------------
+
+  CREATE OR REPLACE TRIGGER "BL"."BEFOREINSERTORUPDATETIPO" 
+BEFORE INSERT OR UPDATE
+ON tipo
+FOR EACH ROW
+BEGIN
+    :new.FECHA_MODIFICACION := SYSDATE;
+    :new.USER_MODIFICACION := USER;
+END;
+/
+ALTER TRIGGER "BL"."BEFOREINSERTORUPDATETIPO" ENABLE;
+--------------------------------------------------------
+--  DDL for Trigger BEFOREINSERTORUPDATEUBICACION
+--------------------------------------------------------
+
+  CREATE OR REPLACE TRIGGER "BL"."BEFOREINSERTORUPDATEUBICACION" 
+BEFORE INSERT OR UPDATE
+ON ubicacion
+FOR EACH ROW
+BEGIN
+    :new.FECHA_MODIFICACION := SYSDATE;
+    :new.USER_MODIFICACION := USER;
+END;
+/
+ALTER TRIGGER "BL"."BEFOREINSERTORUPDATEUBICACION" ENABLE;
+--------------------------------------------------------
+--  DDL for Trigger BEFOREINSERTORUPDATEUSUARIO
+--------------------------------------------------------
+
+  CREATE OR REPLACE TRIGGER "BL"."BEFOREINSERTORUPDATEUSUARIO" 
+BEFORE INSERT OR UPDATE
+ON usuario
+FOR EACH ROW
+BEGIN
+    :new.FECHA_MODIFICACION := SYSDATE;
+    :new.USER_MODIFICACION := USER;
+END;
+/
+ALTER TRIGGER "BL"."BEFOREINSERTORUPDATEUSUARIO" ENABLE;
 --------------------------------------------------------
 --  DDL for Procedure get_ave_especie_total
 --------------------------------------------------------
@@ -2716,6 +3001,7 @@ END;
           FUNCTION persona_bitacora (pid_persona NUMBER) RETURN bitacora_record;
 END;
 
+
 /
 --------------------------------------------------------
 --  DDL for Package PCK_PROVINCIA
@@ -2809,6 +3095,10 @@ END Types;
              -- ********************************************************* --
               PROCEDURE delete_ave (pId NUMBER) is
               BEGIN
+                    Delete from ubicacion where id_ave = pId;
+                    Commit;
+                    Delete from avistamiento where id_ave = pId;
+                    Commit;
                     Delete from ave where id_ave = pId;
                     Commit;
               END delete_ave;
@@ -2824,7 +3114,6 @@ END Types;
                     WHERE id_ave = pid_ave;
                     Commit;
               END update_ave;
-
              -- ********************************************************* --
               PROCEDURE update_ave_especie (pid_ave NUMBER,pid_especie NUMBER) is
               BEGIN
@@ -2839,9 +3128,85 @@ END Types;
                     Commit;
               END insert_ave;
               -- ********************************************************* --
+              FUNCTION select_ave (pid_ave NUMBER) RETURN ave_record AS
+              l_aves  ave_record := ave_record();
+              BEGIN
+                 FOR I IN (select ave.id_ave,especie.nombre especie, ave.nombre_comun nombre, color.nombre color,tipo.nombre tipo, 
+                            ave.tamano, ave.imagen, color.id_color colorid, tipo.id_tipo tipoid 
+                            from ave inner join especie on ave.id_especie = especie.id_especie 
+                            inner join tipo on ave.id_estado = tipo.id_tipo 
+                            inner join color on ave.id_color = color.id_color 
+                            where ave.id_ave = pid_ave) LOOP
+                        l_aves.EXTEND;
+                        l_aves(l_aves.COUNT) := (t_ave(i.id_ave, i.especie, i.nombre, i.color, i.tipo, i.tamano, i.imagen, i.colorid, i.tipoid)) ;
+                END LOOP;
+              RETURN l_aves;
+              END select_ave;       
+              -- ********************************************************* --              
+              FUNCTION total_ave  RETURN VARCHAR2 IS
+              total VARCHAR2(11) ;
+              BEGIN
+              SELECT COUNT(id_ave) into total FROM ave;              
+              RETURN total;
 
- END;
+              END total_ave;
+              -- ********************************************************* --   
+              FUNCTION ave_especie_genero RETURN ave_especie_genero_record AS
+              l_ave_especie_generos ave_especie_genero_record := ave_especie_genero_record();
+              BEGIN
+                 FOR I IN (select ave.id_ave,ave.nombre_comun,genero.nombre || ' ' ||  especie.nombre nombre_cientifico from ave 
+                            inner join especie on ave.id_especie = especie.id_especie
+                            inner join genero on especie.id_genero = genero.id_genero) LOOP
+                         l_ave_especie_generos.EXTEND;
+                         l_ave_especie_generos(l_ave_especie_generos.COUNT) := (t_ave_especie_genero(i.id_ave, i.nombre_comun, i.nombre_cientifico)) ;
+                END LOOP;
+              RETURN  l_ave_especie_generos;
+              END ave_especie_genero;   
+              -- ********************************************************* --   
+              FUNCTION ave_general (pid_ave NUMBER) RETURN ave_general_record AS
+              l_ave_generales ave_general_record := ave_general_record();
+              BEGIN
+                 FOR I IN (select ave.id_ave,ave.nombre_comun,genero.nombre ||' ' || especie.nombre nombre_cientifico, genero.nombre genero, 
+                            especie.nombre especie, familia.nombre familia,
+                            suborden.nombre suborden, orden.nombre orden,clase.nombre clase, tipo.nombre tipo,ave.imagen
+                            from ave 
+                            inner join especie on ave.id_especie = especie.id_especie
+                            inner join genero on especie.id_genero = genero.id_genero
+                            inner join familia on genero.id_familia = familia.id_familia
+                            inner join suborden on familia.id_suborden = suborden.id_suborden
+                            inner join orden on suborden.id_orden = orden.id_orden
+                            inner join clase on orden.id_clase = clase.id_clase 
+                            inner join tipo on ave.id_estado = tipo.id_tipo
+                            where ave.id_ave = pid_ave) LOOP
+                         l_ave_generales.EXTEND;
+                         l_ave_generales(l_ave_generales.COUNT) := (t_ave_general(i.id_ave, i.nombre_comun, i.nombre_cientifico, i.genero, 
+                         i.especie, i.familia, i.suborden, i.orden, i.clase, i.tipo, i.imagen)) ;
+                END LOOP;
+              RETURN  l_ave_generales;
+              END ave_general;  
+              -- ********************************************************* --   
+              FUNCTION ave_tipo (pid_tipo NUMBER) RETURN ave_tipo_record AS
+              l_ave_tipos ave_tipo_record := ave_tipo_record();
+              BEGIN
+                 FOR I IN (select ave.id_ave,especie.nombre especie, ave.nombre_comun nombre, color.nombre color,tipo.nombre tipo,
+                            ave.tamano, ave.imagen from ave 
+                            inner join especie on ave.id_especie = especie.id_especie
+                            inner join tipo on ave.id_estado = tipo.id_tipo
+                            inner join color on ave.id_color = color.id_color and ave.id_estado = nvl(pid_tipo, ave.id_estado)) LOOP
+                         l_ave_tipos.EXTEND;
+                         l_ave_tipos(l_ave_tipos.COUNT) := (t_ave_tipo(i.id_ave, i.especie, i.nombre, i.color, i.tipo, i.tamano, i.imagen)) ;
+                END LOOP;
+              RETURN  l_ave_tipos;
+              END ave_tipo;
+              -- ********************************************************* --              
+              FUNCTION ave_id RETURN VARCHAR2 IS
+              id VARCHAR2(11) ;
+              BEGIN
+              select id_ave into id from ave where id_ave = ( select max(id_ave) from ave );             
+              RETURN id;
 
+              END ave_id;
+ END pck_ave;
 
 
 /
@@ -2853,6 +3218,8 @@ END Types;
              -- ********************************************************* --
               PROCEDURE delete_avistamiento (pId NUMBER) is
               BEGIN
+                    Delete from puntaje where id_avistamiento = pId;
+                    Commit;
                     Delete from avistamiento where id_avistamiento = pId;
                     Commit;
               END;
@@ -2915,7 +3282,7 @@ END Types;
               RETURN  l_avistamientos;
               END avistamiento_ave;    
               -- ********************************************************* --  
-              FUNCTION avistamiento_general RETURN avistamiento_general_record AS
+              FUNCTION avistamiento_general  RETURN avistamiento_general_record AS
               l_avistamiento_generales  avistamiento_general_record := avistamiento_general_record();
               BEGIN
                  FOR I IN (select avistamiento.id_avistamiento, persona.nombre, ave.nombre_comun, avistamiento.foto from avistamiento 
@@ -3676,18 +4043,12 @@ END Types;
                     Commit;
               END;
              -- ********************************************************* --
-              PROCEDURE update_p (pid_persona NUMBER,pnombre VARCHAR2,papellido VARCHAR2,pemail VARCHAR2,pprofesion VARCHAR2,ptipo NUMBER,pfecha_nacimiento date,pfoto VARCHAR2,puser VARCHAR2,ppass VARCHAR2,ppass_s varchar2) is
+              PROCEDURE update_p (pid_persona NUMBER,pnombre VARCHAR2,papellido VARCHAR2,pemail VARCHAR2,pprofesion VARCHAR2,ptipo NUMBER,pfecha_nacimiento date,pfoto VARCHAR2,puser VARCHAR2,ppass VARCHAR2,ppass_s VARCHAR2) is
               BEGIN
                 UPDATE persona SET nombre = pnombre,apellido= papellido,fecha_nacimiento = pfecha_nacimiento,email = pemail,profesion = pprofesion, foto = pfoto,tipo = ptipo
                 WHERE id_persona = pid_persona;
-               
-               UPDATE usuario SET usuario = puser,contrasena= ppass
+                UPDATE usuario SET usuario = puser,contrasena= ppass, pass = ppass_s
                 WHERE id_persona = pid_persona;
-                Commit;
-               insert into bitacora (id_bitacora,id_persona,anterior,siguiente)
-               values (sq_bitacora.nextval,pid_persona,(select pass from usuario where id_persona = pid_persona  ),ppass_s);
-               
-                
                 Commit;
               END;
              -- ********************************************************* --
@@ -3695,13 +4056,9 @@ END Types;
               BEGIN
                     INSERT INTO persona (id_persona, nombre,apellido,fecha_nacimiento,email,profesion,tipo) 
                     VALUES (sq_persona.NEXTVAL,pnombre,papellido,pfecha_nacimiento,pemail,pprofesion,ptipo);
-                    
                     INSERT INTO usuario (id_Usuario,id_persona,usuario,contrasena,pass) VALUES
                     (sq_usuario.nextval,sq_persona.currval,puser,ppass,ppass_s);
-              
-                    insert into bitacora (id_bitacora,id_persona,anterior,siguiente)
-               values (sq_bitacora.nextval,sq_persona.currval,'--',ppass_s);
-               
+
                     Commit;
               END;
               -- ********************************************************* --
@@ -3711,7 +4068,7 @@ END Types;
               BEGIN
                     select tipo into vtipo from persona where id_persona = 
                     (select id_persona from usuario where usuario = pusuario and contrasena = pcontrasena);
-                     
+
                     RETURN(vtipo);
               END;
               -- ********************************************************* --
@@ -3719,10 +4076,10 @@ END Types;
               IS
                     vpersona number(11);
               BEGIN
-                    
+
                     select id_persona into vpersona  from usuario 
                     where usuario = pusuario and contrasena = pcontrasena;
-                     
+
                     RETURN(vpersona);
               END;
               -- ********************************************************* --
@@ -3730,10 +4087,10 @@ END Types;
               IS
                     vpersona VARCHAR2(50);
               BEGIN
-                    
+
                     select nombre into vpersona  from persona 
                     where id_persona = pId;
-                     
+
                     RETURN(vpersona);
               END;
                -- ********************************************************* --           
@@ -3770,6 +4127,7 @@ END Types;
               RETURN l_persona_bitacoras;
               END persona_bitacora; 
  END;
+
 
 /
 --------------------------------------------------------
@@ -4109,6 +4467,7 @@ END;
 END;
 
 
+
 /
 --------------------------------------------------------
 --  DDL for Function GET_CANTON
@@ -4444,14 +4803,29 @@ END;
 
 /
 --------------------------------------------------------
---  Constraints for Table PUNTAJE
+--  Constraints for Table PARAMETRO
 --------------------------------------------------------
 
-  ALTER TABLE "BL"."PUNTAJE" ADD CONSTRAINT "PK_PUNTAJE" PRIMARY KEY ("ID_PUNTAJE")
+  ALTER TABLE "BL"."PARAMETRO" MODIFY ("DESCRIPCION" CONSTRAINT "PARAMETRO_DESCRIPCION_NN" NOT NULL ENABLE);
+ 
+  ALTER TABLE "BL"."PARAMETRO" MODIFY ("NOMBRE" CONSTRAINT "PARAMETRO_NOMBRE_NN" NOT NULL ENABLE);
+ 
+  ALTER TABLE "BL"."PARAMETRO" ADD CONSTRAINT "PK_PARAMETRO" PRIMARY KEY ("ID_PARAMETRO")
   USING INDEX PCTFREE 20 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
   STORAGE(INITIAL 16384 NEXT 16384 MINEXTENTS 1 MAXEXTENTS 2147483645
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "BL_IND"  ENABLE;
+--------------------------------------------------------
+--  Constraints for Table SUBORDEN
+--------------------------------------------------------
+
+  ALTER TABLE "BL"."SUBORDEN" ADD CONSTRAINT "PK_SUBORDEN" PRIMARY KEY ("ID_SUBORDEN")
+  USING INDEX PCTFREE 20 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 16384 NEXT 16384 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "BL_IND"  ENABLE;
+ 
+  ALTER TABLE "BL"."SUBORDEN" MODIFY ("NOMBRE" CONSTRAINT "SUBORDEN_NOMBRE_NN" NOT NULL ENABLE);
 --------------------------------------------------------
 --  Constraints for Table UBICACION
 --------------------------------------------------------
@@ -4462,23 +4836,34 @@ END;
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "BL_IND"  ENABLE;
 --------------------------------------------------------
---  Constraints for Table BITACORA
+--  Constraints for Table COLOR
 --------------------------------------------------------
 
-  ALTER TABLE "BL"."BITACORA" MODIFY ("ANTERIOR" CONSTRAINT "BITACORA_CONTRASENA_NN" NOT NULL ENABLE);
+  ALTER TABLE "BL"."COLOR" MODIFY ("NOMBRE" CONSTRAINT "COLOR_NOMBRE_NN" NOT NULL ENABLE);
  
-  ALTER TABLE "BL"."BITACORA" ADD CONSTRAINT "PK_BITACORA" PRIMARY KEY ("ID_BITACORA")
+  ALTER TABLE "BL"."COLOR" ADD CONSTRAINT "PK_COLOR" PRIMARY KEY ("ID_COLOR")
   USING INDEX PCTFREE 20 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
   STORAGE(INITIAL 16384 NEXT 16384 MINEXTENTS 1 MAXEXTENTS 2147483645
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "BL_IND"  ENABLE;
 --------------------------------------------------------
---  Constraints for Table CANTON
+--  Constraints for Table PAIS
 --------------------------------------------------------
 
-  ALTER TABLE "BL"."CANTON" MODIFY ("NOMBRE" CONSTRAINT "CANTON_NOMBRE_NN" NOT NULL ENABLE);
+  ALTER TABLE "BL"."PAIS" MODIFY ("NOMBRE" CONSTRAINT "PAIS_NOMBRE_NN" NOT NULL ENABLE);
  
-  ALTER TABLE "BL"."CANTON" ADD CONSTRAINT "PK_CANTON" PRIMARY KEY ("ID_CANTON")
+  ALTER TABLE "BL"."PAIS" ADD CONSTRAINT "PK_PAIS" PRIMARY KEY ("ID_PAIS")
+  USING INDEX PCTFREE 20 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 16384 NEXT 16384 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "BL_IND"  ENABLE;
+--------------------------------------------------------
+--  Constraints for Table ORDEN
+--------------------------------------------------------
+
+  ALTER TABLE "BL"."ORDEN" MODIFY ("NOMBRE" CONSTRAINT "ORDEN_NOMBRE_NN" NOT NULL ENABLE);
+ 
+  ALTER TABLE "BL"."ORDEN" ADD CONSTRAINT "PK_ORDEN" PRIMARY KEY ("ID_ORDEN")
   USING INDEX PCTFREE 20 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
   STORAGE(INITIAL 16384 NEXT 16384 MINEXTENTS 1 MAXEXTENTS 2147483645
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
@@ -4499,23 +4884,21 @@ END;
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "BL_IND"  ENABLE;
 --------------------------------------------------------
---  Constraints for Table CLASE
+--  Constraints for Table CONTINENTE
 --------------------------------------------------------
 
-  ALTER TABLE "BL"."CLASE" MODIFY ("NOMBRE" CONSTRAINT "CLASE_NOMBRE_NN" NOT NULL ENABLE);
+  ALTER TABLE "BL"."CONTINENTE" MODIFY ("NOMBRE" CONSTRAINT "CONTINENTE_NOMBRE_NN" NOT NULL ENABLE);
  
-  ALTER TABLE "BL"."CLASE" ADD CONSTRAINT "PK_CLASE" PRIMARY KEY ("ID_CLASE")
+  ALTER TABLE "BL"."CONTINENTE" ADD CONSTRAINT "PK_CONTINENTE" PRIMARY KEY ("ID_CONTINENTE")
   USING INDEX PCTFREE 20 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
   STORAGE(INITIAL 16384 NEXT 16384 MINEXTENTS 1 MAXEXTENTS 2147483645
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "BL_IND"  ENABLE;
 --------------------------------------------------------
---  Constraints for Table ORDEN
+--  Constraints for Table PUNTAJE
 --------------------------------------------------------
 
-  ALTER TABLE "BL"."ORDEN" MODIFY ("NOMBRE" CONSTRAINT "ORDEN_NOMBRE_NN" NOT NULL ENABLE);
- 
-  ALTER TABLE "BL"."ORDEN" ADD CONSTRAINT "PK_ORDEN" PRIMARY KEY ("ID_ORDEN")
+  ALTER TABLE "BL"."PUNTAJE" ADD CONSTRAINT "PK_PUNTAJE" PRIMARY KEY ("ID_PUNTAJE")
   USING INDEX PCTFREE 20 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
   STORAGE(INITIAL 16384 NEXT 16384 MINEXTENTS 1 MAXEXTENTS 2147483645
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
@@ -4531,109 +4914,6 @@ END;
   TABLESPACE "BL_IND"  ENABLE;
  
   ALTER TABLE "BL"."TIPO" MODIFY ("NOMBRE" CONSTRAINT "TIPO_NOMBRE_NN" NOT NULL ENABLE);
---------------------------------------------------------
---  Constraints for Table SUBORDEN
---------------------------------------------------------
-
-  ALTER TABLE "BL"."SUBORDEN" ADD CONSTRAINT "PK_SUBORDEN" PRIMARY KEY ("ID_SUBORDEN")
-  USING INDEX PCTFREE 20 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
-  STORAGE(INITIAL 16384 NEXT 16384 MINEXTENTS 1 MAXEXTENTS 2147483645
-  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
-  TABLESPACE "BL_IND"  ENABLE;
- 
-  ALTER TABLE "BL"."SUBORDEN" MODIFY ("NOMBRE" CONSTRAINT "SUBORDEN_NOMBRE_NN" NOT NULL ENABLE);
---------------------------------------------------------
---  Constraints for Table CONTINENTE
---------------------------------------------------------
-
-  ALTER TABLE "BL"."CONTINENTE" MODIFY ("NOMBRE" CONSTRAINT "CONTINENTE_NOMBRE_NN" NOT NULL ENABLE);
- 
-  ALTER TABLE "BL"."CONTINENTE" ADD CONSTRAINT "PK_CONTINENTE" PRIMARY KEY ("ID_CONTINENTE")
-  USING INDEX PCTFREE 20 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
-  STORAGE(INITIAL 16384 NEXT 16384 MINEXTENTS 1 MAXEXTENTS 2147483645
-  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
-  TABLESPACE "BL_IND"  ENABLE;
---------------------------------------------------------
---  Constraints for Table FAMILIA
---------------------------------------------------------
-
-  ALTER TABLE "BL"."FAMILIA" MODIFY ("NOMBRE" CONSTRAINT "FAMILIA_NOMBRE_NN" NOT NULL ENABLE);
- 
-  ALTER TABLE "BL"."FAMILIA" ADD CONSTRAINT "PK_FAMILIA" PRIMARY KEY ("ID_FAMILIA")
-  USING INDEX PCTFREE 20 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
-  STORAGE(INITIAL 16384 NEXT 16384 MINEXTENTS 1 MAXEXTENTS 2147483645
-  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
-  TABLESPACE "BL_IND"  ENABLE;
---------------------------------------------------------
---  Constraints for Table PROVINCIA
---------------------------------------------------------
-
-  ALTER TABLE "BL"."PROVINCIA" ADD CONSTRAINT "PK_PROVINCIA" PRIMARY KEY ("ID_PROVINCIA")
-  USING INDEX PCTFREE 20 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
-  STORAGE(INITIAL 16384 NEXT 16384 MINEXTENTS 1 MAXEXTENTS 2147483645
-  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
-  TABLESPACE "BL_IND"  ENABLE;
- 
-  ALTER TABLE "BL"."PROVINCIA" MODIFY ("NOMBRE" CONSTRAINT "PROVINCIA_NOMBRE_NN" NOT NULL ENABLE);
---------------------------------------------------------
---  Constraints for Table GENERO
---------------------------------------------------------
-
-  ALTER TABLE "BL"."GENERO" MODIFY ("NOMBRE" CONSTRAINT "GENERO_NOMBRE_NN" NOT NULL ENABLE);
- 
-  ALTER TABLE "BL"."GENERO" ADD CONSTRAINT "PK_GENERO" PRIMARY KEY ("ID_GENERO")
-  USING INDEX PCTFREE 20 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
-  STORAGE(INITIAL 16384 NEXT 16384 MINEXTENTS 1 MAXEXTENTS 2147483645
-  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
-  TABLESPACE "BL_IND"  ENABLE;
---------------------------------------------------------
---  Constraints for Table USUARIO
---------------------------------------------------------
-
-  ALTER TABLE "BL"."USUARIO" ADD CONSTRAINT "NOMBRE" CHECK ("USUARIO" IS NOT NULL) ENABLE;
- 
-  ALTER TABLE "BL"."USUARIO" ADD CONSTRAINT "PK_USUARIO" PRIMARY KEY ("ID_USUARIO")
-  USING INDEX PCTFREE 20 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
-  STORAGE(INITIAL 16384 NEXT 16384 MINEXTENTS 1 MAXEXTENTS 2147483645
-  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
-  TABLESPACE "BL_IND"  ENABLE;
- 
-  ALTER TABLE "BL"."USUARIO" MODIFY ("CONTRASENA" CONSTRAINT "USUARIO_CONTRASENA_NN" NOT NULL ENABLE);
---------------------------------------------------------
---  Constraints for Table PAIS
---------------------------------------------------------
-
-  ALTER TABLE "BL"."PAIS" MODIFY ("NOMBRE" CONSTRAINT "PAIS_NOMBRE_NN" NOT NULL ENABLE);
- 
-  ALTER TABLE "BL"."PAIS" ADD CONSTRAINT "PK_PAIS" PRIMARY KEY ("ID_PAIS")
-  USING INDEX PCTFREE 20 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
-  STORAGE(INITIAL 16384 NEXT 16384 MINEXTENTS 1 MAXEXTENTS 2147483645
-  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
-  TABLESPACE "BL_IND"  ENABLE;
---------------------------------------------------------
---  Constraints for Table PARAMETRO
---------------------------------------------------------
-
-  ALTER TABLE "BL"."PARAMETRO" MODIFY ("DESCRIPCION" CONSTRAINT "PARAMETRO_DESCRIPCION_NN" NOT NULL ENABLE);
- 
-  ALTER TABLE "BL"."PARAMETRO" MODIFY ("NOMBRE" CONSTRAINT "PARAMETRO_NOMBRE_NN" NOT NULL ENABLE);
- 
-  ALTER TABLE "BL"."PARAMETRO" ADD CONSTRAINT "PK_PARAMETRO" PRIMARY KEY ("ID_PARAMETRO")
-  USING INDEX PCTFREE 20 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
-  STORAGE(INITIAL 16384 NEXT 16384 MINEXTENTS 1 MAXEXTENTS 2147483645
-  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
-  TABLESPACE "BL_IND"  ENABLE;
---------------------------------------------------------
---  Constraints for Table ESPECIE
---------------------------------------------------------
-
-  ALTER TABLE "BL"."ESPECIE" MODIFY ("NOMBRE" CONSTRAINT "ESPECIE_NOMBRE_NN" NOT NULL ENABLE);
- 
-  ALTER TABLE "BL"."ESPECIE" ADD CONSTRAINT "PK_ESPECIE" PRIMARY KEY ("ID_ESPECIE")
-  USING INDEX PCTFREE 20 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
-  STORAGE(INITIAL 16384 NEXT 16384 MINEXTENTS 1 MAXEXTENTS 2147483645
-  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
-  TABLESPACE "BL_IND"  ENABLE;
 --------------------------------------------------------
 --  Constraints for Table PERSONA
 --------------------------------------------------------
@@ -4666,6 +4946,56 @@ END;
  
   ALTER TABLE "BL"."PERSONA" MODIFY ("FOTO" NOT NULL ENABLE);
 --------------------------------------------------------
+--  Constraints for Table BITACORA
+--------------------------------------------------------
+
+  ALTER TABLE "BL"."BITACORA" MODIFY ("SIGUIENTE" CONSTRAINT "BITACORA_CONTRASENA_NN" NOT NULL ENABLE);
+ 
+  ALTER TABLE "BL"."BITACORA" ADD CONSTRAINT "PK_BITACORA" PRIMARY KEY ("ID_BITACORA")
+  USING INDEX PCTFREE 20 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 16384 NEXT 16384 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "BL_IND"  ENABLE;
+ 
+  ALTER TABLE "BL"."BITACORA" MODIFY ("ANTERIOR" NOT NULL ENABLE);
+ 
+  ALTER TABLE "BL"."BITACORA" MODIFY ("ID_PERSONA" NOT NULL ENABLE);
+--------------------------------------------------------
+--  Constraints for Table USUARIO
+--------------------------------------------------------
+
+  ALTER TABLE "BL"."USUARIO" ADD CONSTRAINT "NOMBRE" CHECK ("USUARIO" IS NOT NULL) ENABLE;
+ 
+  ALTER TABLE "BL"."USUARIO" ADD CONSTRAINT "PK_USUARIO" PRIMARY KEY ("ID_USUARIO")
+  USING INDEX PCTFREE 20 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 16384 NEXT 16384 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "BL_IND"  ENABLE;
+ 
+  ALTER TABLE "BL"."USUARIO" MODIFY ("CONTRASENA" CONSTRAINT "USUARIO_CONTRASENA_NN" NOT NULL ENABLE);
+--------------------------------------------------------
+--  Constraints for Table FAMILIA
+--------------------------------------------------------
+
+  ALTER TABLE "BL"."FAMILIA" MODIFY ("NOMBRE" CONSTRAINT "FAMILIA_NOMBRE_NN" NOT NULL ENABLE);
+ 
+  ALTER TABLE "BL"."FAMILIA" ADD CONSTRAINT "PK_FAMILIA" PRIMARY KEY ("ID_FAMILIA")
+  USING INDEX PCTFREE 20 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 16384 NEXT 16384 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "BL_IND"  ENABLE;
+--------------------------------------------------------
+--  Constraints for Table CLASE
+--------------------------------------------------------
+
+  ALTER TABLE "BL"."CLASE" MODIFY ("NOMBRE" CONSTRAINT "CLASE_NOMBRE_NN" NOT NULL ENABLE);
+ 
+  ALTER TABLE "BL"."CLASE" ADD CONSTRAINT "PK_CLASE" PRIMARY KEY ("ID_CLASE")
+  USING INDEX PCTFREE 20 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 16384 NEXT 16384 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "BL_IND"  ENABLE;
+--------------------------------------------------------
 --  Constraints for Table AVISTAMIENTO
 --------------------------------------------------------
 
@@ -4680,13 +5010,61 @@ END;
   TABLESPACE "BL_IND"  ENABLE;
  
   ALTER TABLE "BL"."AVISTAMIENTO" MODIFY ("FOTO" NOT NULL ENABLE);
+ 
+  ALTER TABLE "BL"."AVISTAMIENTO" MODIFY ("ID_PERSONA" NOT NULL ENABLE);
+ 
+  ALTER TABLE "BL"."AVISTAMIENTO" MODIFY ("ID_AVE" NOT NULL ENABLE);
 --------------------------------------------------------
---  Constraints for Table COLOR
+--  Constraints for Table PROVINCIA
 --------------------------------------------------------
 
-  ALTER TABLE "BL"."COLOR" MODIFY ("NOMBRE" CONSTRAINT "COLOR_NOMBRE_NN" NOT NULL ENABLE);
+  ALTER TABLE "BL"."PROVINCIA" ADD CONSTRAINT "PK_PROVINCIA" PRIMARY KEY ("ID_PROVINCIA")
+  USING INDEX PCTFREE 20 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 16384 NEXT 16384 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "BL_IND"  ENABLE;
  
-  ALTER TABLE "BL"."COLOR" ADD CONSTRAINT "PK_COLOR" PRIMARY KEY ("ID_COLOR")
+  ALTER TABLE "BL"."PROVINCIA" MODIFY ("NOMBRE" CONSTRAINT "PROVINCIA_NOMBRE_NN" NOT NULL ENABLE);
+--------------------------------------------------------
+--  Constraints for Table CANTON
+--------------------------------------------------------
+
+  ALTER TABLE "BL"."CANTON" MODIFY ("NOMBRE" CONSTRAINT "CANTON_NOMBRE_NN" NOT NULL ENABLE);
+ 
+  ALTER TABLE "BL"."CANTON" ADD CONSTRAINT "PK_CANTON" PRIMARY KEY ("ID_CANTON")
+  USING INDEX PCTFREE 20 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 16384 NEXT 16384 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "BL_IND"  ENABLE;
+--------------------------------------------------------
+--  Constraints for Table FOTO
+--------------------------------------------------------
+
+  ALTER TABLE "BL"."FOTO" MODIFY ("URL" CONSTRAINT "FOTO_URL_NN" NOT NULL ENABLE);
+ 
+  ALTER TABLE "BL"."FOTO" ADD CONSTRAINT "PK_FOTO" PRIMARY KEY ("ID_FOTO")
+  USING INDEX PCTFREE 20 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS NOCOMPRESS LOGGING
+  STORAGE( INITIAL 16384 NEXT 16384
+  PCTINCREASE 0)
+  TABLESPACE "BL_IND"  ENABLE;
+--------------------------------------------------------
+--  Constraints for Table ESPECIE
+--------------------------------------------------------
+
+  ALTER TABLE "BL"."ESPECIE" MODIFY ("NOMBRE" CONSTRAINT "ESPECIE_NOMBRE_NN" NOT NULL ENABLE);
+ 
+  ALTER TABLE "BL"."ESPECIE" ADD CONSTRAINT "PK_ESPECIE" PRIMARY KEY ("ID_ESPECIE")
+  USING INDEX PCTFREE 20 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 16384 NEXT 16384 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "BL_IND"  ENABLE;
+--------------------------------------------------------
+--  Constraints for Table GENERO
+--------------------------------------------------------
+
+  ALTER TABLE "BL"."GENERO" MODIFY ("NOMBRE" CONSTRAINT "GENERO_NOMBRE_NN" NOT NULL ENABLE);
+ 
+  ALTER TABLE "BL"."GENERO" ADD CONSTRAINT "PK_GENERO" PRIMARY KEY ("ID_GENERO")
   USING INDEX PCTFREE 20 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
   STORAGE(INITIAL 16384 NEXT 16384 MINEXTENTS 1 MAXEXTENTS 2147483645
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
@@ -4717,7 +5095,7 @@ END;
 --------------------------------------------------------
 
   ALTER TABLE "BL"."BITACORA" ADD CONSTRAINT "FK_USUARIO" FOREIGN KEY ("ID_PERSONA")
-	  REFERENCES "BL"."PERSONA" ("ID_PERSONA") ENABLE;
+	  REFERENCES "BL"."USUARIO" ("ID_USUARIO") ENABLE;
 --------------------------------------------------------
 --  Ref Constraints for Table CANTON
 --------------------------------------------------------
@@ -4736,6 +5114,12 @@ END;
 
   ALTER TABLE "BL"."FAMILIA" ADD CONSTRAINT "FK_SUBORDEN_F" FOREIGN KEY ("ID_SUBORDEN")
 	  REFERENCES "BL"."SUBORDEN" ("ID_SUBORDEN") ENABLE;
+--------------------------------------------------------
+--  Ref Constraints for Table FOTO
+--------------------------------------------------------
+
+  ALTER TABLE "BL"."FOTO" ADD CONSTRAINT "FK_AVISTAMIENTO" FOREIGN KEY ("ID_AVISTAMIENTO")
+	  REFERENCES "BL"."AVISTAMIENTO" ("ID_AVISTAMIENTO") ENABLE;
 --------------------------------------------------------
 --  Ref Constraints for Table GENERO
 --------------------------------------------------------

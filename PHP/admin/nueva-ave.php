@@ -10,14 +10,18 @@ if(isset($_GET['nuevo'])) {
     $stid = oci_parse($conn, "BEGIN pck_ave.insert_ave(".$_POST['especie'].",".$_POST['color'].",".$_POST['tipo'].",'".$_POST['nombre']."','".$_POST['tamano']."','".$foto_url."'); END;");
     oci_execute($stid);
 	
-	$stid = oci_parse($conn, 'BEGIN :r := PCK_AVE.AVE_ID; END;');
-	oci_bind_by_name($stid, ':r', $max, 40);
-	oci_execute($stid);
+	$stid2 = oci_parse($conn, 'select id_ave from ave where id_ave = ( select max(id_ave) from ave )');
+	
+	oci_execute($stid2);
+    $max = oci_fetch_array($stid2, OCI_ASSOC+OCI_RETURN_NULLS);
+
 
     foreach ($_POST['ubicaciones'] as $option_value)
     {
-        $stid = oci_parse($conn, "BEGIN pck_ubicaciones.insert_ubicacion(".$max['ID_AVE'].",".$option_value."); END;");
-        oci_execute($stid);        
+       
+        $stid1 = oci_parse($conn, "BEGIN pck_ubicaciones.insert_ubicacion('".$stid2['ID_AVE']."','".$option_value."'); END;");
+        oci_execute($stid1);
+        
     }
     
     $mensaje = ' 

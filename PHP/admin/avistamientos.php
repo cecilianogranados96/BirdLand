@@ -1,10 +1,10 @@
 <?php 
 
 if(isset($_GET['borrar'])) {
-    $stid = oci_parse($conn, 'BEGIN pck_clase.delete_clase('.$_GET['borrar'].'); END;');
+    $stid = oci_parse($conn, 'BEGIN pck_avistamiento.delete_avistamiento('.$_GET['borrar'].'); END;');
     $r = oci_execute($stid);
     if (!$r) {
-        $mensaje = ' <div class="alert alert-danger"> 
+        $mensaje = '<div class="alert alert-danger"> 
             <h2 class="titulo"><br><center>Error: este dato forma parte de otros catálogos</center></h2>
            </div>';    
         
@@ -71,7 +71,7 @@ for($i=$Page_Start;$i<$Page_End;$i++)
             <td><center><img src="images/avistamientos/'.$row['FOTO'][$i].'" style="width: 30%;" class="img-thumbnail"></center></td>
             <td><center>'.$row['NOMBRE_COMUN'][$i].'</center></td>
             <td><center>'.$row['NOMBRE'][$i].'</center></td>
-            <td><center><a href="?pag=admin/avistamientos&id='.$row['ID_AVISTAMIENTO'][$i].'" class="btn  btn-danger">Eliminar</button></center></td>
+            <td><center><a href="?pag=admin/avistamientos&borrar='.$row['ID_AVISTAMIENTO'][$i].'" class="btn  btn-danger">Eliminar</button></center></td>
         </tr>';
 }
 

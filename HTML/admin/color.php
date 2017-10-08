@@ -27,7 +27,7 @@
                         </tr>
                         <tr>
                             <td>Nombre:
-                                <input id="textinput" name="nombre" type="text" value="<?php echo $nombre; ?>" class="form-control">
+                                <input id="textinput" name="nombre" type="text" value="<?php echo utf8_encode($nombre); ?>" class="form-control">
                             </td>
                         </tr>
                         <tr>

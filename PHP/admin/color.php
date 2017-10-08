@@ -71,7 +71,7 @@ for($i=$Page_Start;$i<$Page_End;$i++)
 
            $filas .=  '<tr>
             <td><center>
-                '.$row['NOMBRE'][$i].'
+                '.utf8_encode($row['NOMBRE'][$i]).'
             </td>
             <!--<td><center>CLASE</td> -->
             <td><center>

@@ -223,9 +223,8 @@
                         //$stid = oci_parse($conn, "select * from table(pck_avistamiento.avistamiento_completo)".$where." ");
                         //oci_execute($stid);
 
-						$stid = oci_parse($conn, "select ave.id_ave,ave.imagen,ave.nombre_comun,genero.nombre ||' ' || especie.nombre nombre_cientifico, avistamiento.latitud,avistamiento.longitud
-                        from avistamiento
-                        inner join ave on ave.id_ave = avistamiento.id_ave
+						$stid = oci_parse($conn, "select ave.id_ave,ave.imagen,ave.nombre_comun,genero.nombre ||' ' || especie.nombre nombre_cientifico
+                        from ave
                         inner join especie on ave.id_especie = especie.id_especie
                         inner join genero on especie.id_genero = genero.id_genero
                         inner join familia on genero.id_familia = familia.id_familia

@@ -9,7 +9,7 @@ if(isset($_GET['nuevo'])) {
 
 }
 if(isset($_GET['verificar'])) {
-    error_reporting (0);
+    //error_reporting (0);
     
         $stid = oci_parse($conn, "begin :r := pck_persona.tipo_persona('".$_POST['user']."','".md5($_POST['pass'])."'); end;");
         oci_bind_by_name($stid, ':r', $tipo, 40);

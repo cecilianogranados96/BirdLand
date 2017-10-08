@@ -73,8 +73,9 @@
             </div>
             <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
                 <div class="animal-image">
-                    <div class="image">
-                        <img src="images/aves/<?php echo $ave['IMAGEN']; ?>" alt="">
+                    <div class="image"><center>
+                        <img src="images/aves/<?php echo $ave['IMAGEN']; ?>" style="    width: 75%;
+                                                                                    margin-top: 20%;"></center>
 
                     </div>
                 </div>

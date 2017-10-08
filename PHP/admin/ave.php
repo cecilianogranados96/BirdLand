@@ -104,6 +104,7 @@ for($i=$Page_Start;$i<$Page_End;$i++)
             <td><center>'.$row['TAMANO'][$i].'CM</center></td>
             <td><center>
                   <a href="?pag=admin/ave&edit=1&id='.$row['ID_AVE'][$i].'" class="btn  btn-success">Editar</button>
+                 
             </td>
           </tr>';
 }
