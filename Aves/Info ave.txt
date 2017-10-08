@@ -1,0 +1,63 @@
+Glyphorhynchus spirurus
+Nombre comun: Trepadorcito Pico de Cuña
+Color: siena
+Tamaño: 14.5
+Estado: Normal
+Zonas de vida:
+Vertiente del atlántico, y del pacífico (menos las partes secas de Guanacaste)
+
+Dendrocolaptes sanctithomae
+Nombre comun: Trepador Barreteado
+Color: marrón
+Tamaño: 27
+Estado: Normal
+Zonas de vida: Zona tropical
+
+Lepidocolaptes souleyetii
+Nombre comun: Trepador Cabecirrayado
+Color: marrón
+Tamaño: 19
+Estado: Normal
+Zonas de vida: Zona tropical
+
+Xenops minutus
+Nombre comun: Xenops Común
+Color: siena
+Tamaño: 12
+Estado: Normal
+Zonas de vida: Golfo de nicoya, Costa del atlantico
+
+Automolus ochrolaemus
+Nombre comun: Hojarrasquero Gorgianteado
+Color: siena
+Tamaño: 18
+Estado: Normal
+Zonas de vida: Zona tropical húmeda
+
+Synallaxis brachyura
+Nombre comun: Arquitecto Plomizo
+Color: gris
+Tamaño: 16
+Estado: Normal
+Zonas de vida: Caribe, Cartago, San Isidro
+
+Coereba flaveola
+Nombre comun: Reinita Mielera
+Color: Amarillo
+Tamaño: 11
+Estado: Normal
+Zonas de vida: A lo largo de la vertiente del Caribe y en el lado del Pacífico
+
+Saltator maximus
+Nombre comun: Saltator Gorgianteado
+Color: Verde Oliva
+Tamaño: 20
+Estado: Normal
+Zonas de vida: todo el país menos el valle central
+
+Saltator striatipectus
+Nombre comun: Saltator Listado
+Color: Verde Oliva
+Tamaño: 18
+Estado: Normal
+Zonas de vida: General-Térraba-Coto Brus
