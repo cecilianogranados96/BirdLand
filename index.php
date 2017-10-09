@@ -1,18 +1,22 @@
 <?php 
-    include "PHP/header.php";
-    include "HTML/header.php";
+
+
+    include "Controller/header.php";
+
+
+    include "View/header.php";
 
     if(isset($_GET['pag'])){
-        if (file_exists("PHP/".$_GET['pag'].".php")) {
-           include "PHP/".$_GET['pag'].".php";
+        if (file_exists("Controller/".$_GET['pag'].".php")) {
+           include "Controller/".$_GET['pag'].".php";
         }
-        if (file_exists("HTML/".$_GET['pag'].".php")) {
-           include "HTML/".$_GET['pag'].".php";
+        if (file_exists("View/".$_GET['pag'].".php")) {
+           include "View/".$_GET['pag'].".php";
         }else{
-            include "HTML/inicio.php";
+            include "View/inicio.php";
         }  
     }else{
-        include "HTML/inicio.php";    
+        include "View/inicio.php";    
     }
-    include "HTML/fotter.php";
+    include "View/fotter.php";
 ?>
