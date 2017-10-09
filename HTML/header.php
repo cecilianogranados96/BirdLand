@@ -50,6 +50,12 @@
                                 <div class="traductor" id="google_translate_element"></div>
 
                                 <ul>
+                                        <li>
+                                        <a href="Manual/" target="_blank" role="button" aria-haspopup="true" aria-expanded="false">Manual</a>
+                                        
+                                    </li>
+                                    
+                                    
                                     <?php 
                                     if(isset($_SESSION['tipo'])) { 
                                         if($_SESSION['tipo'] == 1){

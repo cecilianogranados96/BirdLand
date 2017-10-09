@@ -98,7 +98,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <h4><a href="?pag=ave-detalle&id='.$row['ID_AVE'].'">'.$row['NOMBRE_COMUN'].'</a></h4>
+                                <h4><a href="?pag=ave-detalle&id='.$row['ID_AVE'].'">'.utf8_encode($row['NOMBRE_COMUN']).'</a></h4>
                             </div>';
                         }?>
                 </div>
@@ -127,7 +127,7 @@
                                 <div class="single-plan">
                                      <a href="?pag=ave-detalle&id='.$row['ID_AVE'].'"><img src="images/avistamientos/'.$ave['FOTO'].'" style="width: 200px;height: 150px;" class="img-thumbnail"></a>
                                     <div class="plan-details">
-                                        <h3><a href="?pag=ave-detalle&id='.$row['ID_AVE'].'">'.$ave['NOMBRE_COMUN'].'</a></h3>
+                                        <h3><a href="?pag=ave-detalle&id='.$row['ID_AVE'].'">'.utf8_encode($ave['NOMBRE_COMUN']).'</a></h3>
                                         <p>Avistamientos: '.$row['CANTIDAD'].'</p>
                                         <div class="read-more">
                                             <a href="?pag=ave-detalle&id='.$row['ID_AVE'].'">Ver más</a>

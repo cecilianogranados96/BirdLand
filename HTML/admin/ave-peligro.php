@@ -14,7 +14,6 @@
 <div class="animal-details">
     <div class="container">
         <div class="row">
-
             <div class="contact-form " style="padding: 0px 0;">
                 <div class="contact">
                     <form action="?pag=<?php echo $_GET['pag']; ?>&b=1" method="POST" enctype="multipart/form-data">
@@ -35,66 +34,63 @@
                     </form>
                 </div>
             </div>
-
             <?php if (!isset($_GET['edit']) and !isset($_GET['cespecie']) ) {?>
-            <table class="table table-striped" style="background-color: #FFFFFF;" id="table">
-                <tr>
-                    <td class="titulo">
-                        <center>Imagen</center>
-                    </td>
-                    <td class="titulo">
-                        <center>Nombre</center>
-                    </td>
-                    <td class="titulo">
-                        <center>Especie</center>
-                    </td>
-                    <td class="titulo">
-                        <center>Color</center>
-                    </td>
-                    <td class="titulo">
-                        <center>Tipo</center>
-                    </td>
-                    <td class="titulo">
-                        <center>Tamaño</center>
-                    </td>
-                    <td class="titulo">
-                        <center>Ficha</center>
-                    </td>
-                </tr>
-                <?php echo $filas; ?>
-            </table>
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
-                <div class="container">
-                    <ul class="pagination">
-                        <?php
-                        if($Prev_Page)  
-                        {  
-
-                             echo '<li><a href="?pag='.$_GET['pag'].'&'.$Prev_Page.'#table">»</a></li>';
-                        }  
-
-                        for($i=1; $i<=$Num_Pages; $i++){  
-                            if($i != $Page)  
+                <table class="table table-striped" style="background-color: #FFFFFF;" id="table">
+                    <tr>
+                        <td class="titulo">
+                            <center>Imagen</center>
+                        </td>
+                        <td class="titulo">
+                            <center>Nombre</center>
+                        </td>
+                        <td class="titulo">
+                            <center>Especie</center>
+                        </td>
+                        <td class="titulo">
+                            <center>Color</center>
+                        </td>
+                        <td class="titulo">
+                            <center>Tipo</center>
+                        </td>
+                        <td class="titulo">
+                            <center>Tamaño</center>
+                        </td>
+                        <td class="titulo">
+                            <center>Ficha</center>
+                        </td>
+                    </tr>
+                    <?php echo $filas; ?>
+                </table>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                    <div class="container">
+                        <ul class="pagination">
+                            <?php
+                            if($Prev_Page)  
                             {  
-                                echo '<li><a href="?pag='.$_GET['pag'].'&Page='.$i.'#table">'.$i.'</a></li>';
+
+                                 echo '<li><a href="?pag='.$_GET['pag'].'&'.$Prev_Page.'#table">»</a></li>';
                             }  
-                            else  
+                            for($i=1; $i<=$Num_Pages; $i++){  
+                                if($i != $Page)  
+                                {  
+                                    echo '<li><a href="?pag='.$_GET['pag'].'&Page='.$i.'#table">'.$i.'</a></li>';
+                                }  
+                                else  
+                                {  
+                                    echo '<li class="active"><a href="#">'.$i.' <span class="sr-only">(current)</span></a></li>';
+                                }  
+                            } 
+
+                            if($Page!=$Num_Pages)  
                             {  
-                                echo '<li class="active"><a href="#">'.$i.' <span class="sr-only">(current)</span></a></li>';
+
+                                echo '<li><a href="?pag='.$_GET['pag'].'&'.$Next_Page.'#table">»</a></li>';
                             }  
-                        } 
-
-                        if($Page!=$Num_Pages)  
-                        {  
-
-                            echo '<li><a href="?pag='.$_GET['pag'].'&'.$Next_Page.'#table">»</a></li>';
-                        }  
-                        ?>
-                    </ul>
+                            ?>
+                        </ul>
+                    </div>
                 </div>
-            </div>
             <?php } ?>
-
         </div>
     </div>
 </div>

@@ -7,20 +7,16 @@ if(isset($_GET['borrar'])) {
                 <h2 class="titulo"><br><center>Borrado con éxito</center></h2>
            </div>';
 }
-
 if(isset($_GET['especie'])) {
     $stid = oci_parse($conn, "BEGIN pck_ave.update_ave_especie(".$_GET['id'].",'".$_GET['especie']."'); END;");
     oci_execute($stid);
     header ("Location: ?pag=".$_GET['pag']."&edit=1&id=".$_GET['id']."");
 }
-
-//?
 if(isset($_GET['edit'])) {
     $stid = oci_parse($conn, "select * from table(pck_ave.select_ave('".$_GET['id']."'))");
     oci_execute($stid);
     $ave = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS);
 }
-
 if(isset($_GET['edit_normal'])) {
     $foto_url = $ave['IMAGEN'];
     if ($_FILES['foto']['name'] != ''){
@@ -42,8 +38,6 @@ if(isset($_GET['edit_normal'])) {
     oci_execute($stid);
     header ("Location: ?pag=".$_GET['pag']."&edit=1&id=".$_GET['id']."");
 }
-
-//?
 if (isset($_POST['busqueda'])){
     $extra = "where especie.nombre LIKE '%".$_POST['busqueda']."%'
     or color.nombre LIKE '%".$_POST['busqueda']."%'
@@ -52,8 +46,6 @@ if (isset($_POST['busqueda'])){
 }else{
     $extra = "";
 }
-
-//$stid = oci_parse($conn, 'select * from table(PCK_AVE.AVE_TIPO(NULL))'.$extra.'');
 $stid = oci_parse($conn, '
 select ave.id_ave,especie.nombre especie, ave.nombre_comun nombre, color.nombre color,tipo.nombre tipo, ave.tamano, ave.imagen from ave 
 inner join especie on ave.id_especie = especie.id_especie
@@ -67,8 +59,6 @@ if(!isset($_GET["Page"]))
 }else{
     $Page = $_GET['Page'];
 }
-
-
 $Prev_Page = $Page-1;  
 $Next_Page = $Page+1;  
 $Page_Start = (($total_pagina*$Page)-$total_pagina);  
@@ -97,9 +87,9 @@ for($i=$Page_Start;$i<$Page_End;$i++)
      $filas .=  '
           <tr>
             <td><center><img src="images/aves/'.$row['IMAGEN'][$i].'" style="    width: 30%;" class="img-rounded"></center></td>
-            <td class="text-center"><center>'.$row['NOMBRE'][$i].'</center></td>
+            <td class="text-center"><center>'.utf8_encode($row['NOMBRE'][$i]).'</center></td>
             <td><center>'.$row['ESPECIE'][$i].'</center></td>
-            <td><center>'.$row['COLOR'][$i].'</center></td>
+            <td><center>'.($row['COLOR'][$i]).'</center></td>
             <td><center>'.$row['TIPO'][$i].'</center></td>
             <td><center>'.$row['TAMANO'][$i].'CM</center></td>
             <td><center>

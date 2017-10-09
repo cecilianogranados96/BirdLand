@@ -63,7 +63,7 @@
                     marker = new google.maps.Marker({
                         map: map,
                         position: {lat: '.$row['LATITUD'].', lng: '.$row['LONGITUD'].'},
-                        label: "'.$row['NOMBRE_COMUN'].'"
+                        label: "'.utf8_encode($row['NOMBRE_COMUN']).'"
                       });';
                 }
             ?>

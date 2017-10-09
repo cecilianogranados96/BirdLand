@@ -15,9 +15,7 @@
     <div class="container">
         <div class="row">
             <?php if (isset($mensaje)) {echo $mensaje;} ?>
-
             <?php if (!isset($_GET['edit']) and !isset($_GET['cespecie']) ) {?>
-
             <div class="contact-form " style="padding: 0px 0;">
                 <div class="contact">
                     <form action="?pag=<?php echo $_GET['pag']; ?>&b=1" method="POST" enctype="multipart/form-data">

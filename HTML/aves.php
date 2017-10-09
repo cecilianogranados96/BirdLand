@@ -270,15 +270,15 @@
 
 							 echo '
 														<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-															<div class="single-news-area">
+															<div class="single-news-area" style="height: 52%">
 																<div class="media">
 																  <div class="media-body">
 																	<center>
 																		<h4 class="media-heading">
-																			<a href="?pag=ave-detalle&id='.$row['ID_AVE'][$i].'">'.$row['NOMBRE_COMUN'][$i].'</a>
+																			<a href="?pag=ave-detalle&id='.$row['ID_AVE'][$i].'">'.utf8_encode($row['NOMBRE_COMUN'][$i]).'</a>
 																		</h4>
 																		<a href="?pag=ave-detalle&id='.$row['ID_AVE'][$i].'">
-																		  <img class="media-object" src="images/aves/'.$row['IMAGEN'][$i].'" style="width: 200px;height: 170px;">
+																		  <img class="img-thumbnail" src="images/aves/'.$row['IMAGEN'][$i].'" style="width: 200px;height: 170px;" >
 																		</a>
 																		<br>
 																		<div class="read-more">

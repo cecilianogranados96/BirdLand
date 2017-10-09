@@ -13,14 +13,15 @@
 <div class="animal-details">
     <div class="container">
         <div class="row">
+            <center> <i> <h2><?php echo $ave['NOMBRE_CIENTIFICO']; ?></h2></i></center>
             <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
                 <div class="animal-content">
-
+                   
                     <div class="statas">
                         <h1>Datos generales</h1>
                         <ul class="statas-list">
                             <li>
-                                <?php echo $ave['NOMBRE_COMUN']; ?>
+                                <?php echo utf8_encode($ave['NOMBRE_COMUN']); ?>
                             </li>
                             <li><i><?php echo $ave['NOMBRE_CIENTIFICO']; ?></i></li>
 
