@@ -106,7 +106,6 @@
                         oci_execute($stid);
                         while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
                             echo '
-                                
                             <div class="singla-animal">
                                 <div class="image">
                                     <a href="?pag=ave-detalle&id='.$row['ID_AVE'].'"><img src="images/aves/'.$row['IMAGEN'].'" ></a>

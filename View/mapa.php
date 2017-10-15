@@ -63,19 +63,9 @@
                     }
                 });
                 <?php     			
-				$stid = oci_parse($conn, "Select ave.id_ave,ave.nombre_comun,genero.nombre ||' ' || especie.nombre nombre_cientifico, avistamiento.latitud,avistamiento.longitud
-                from avistamiento
-                inner join ave on ave.id_ave = avistamiento.id_ave
-                inner join especie on ave.id_especie = especie.id_especie
-                inner join genero on especie.id_genero = genero.id_genero
-                inner join familia on genero.id_familia = familia.id_familia
-                inner join suborden on familia.id_suborden = suborden.id_suborden
-                inner join orden on suborden.id_orden = orden.id_orden
-                inner join clase on orden.id_clase = clase.id_clase 
-                inner join tipo on ave.id_estado = tipo.id_tipo ".$where."");
+				$stid = oci_parse($conn, "select * from table(GET_MAPA_FILTRO) ".$where." ");
                 oci_execute($stid);
-                /*$stid = oci_parse($conn, "select * from table(PCK_AVISTAMIENTO.AVISTAMIENTO_COMPLETO) ".$where."");
-                oci_execute($stid);*/
+
                 while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
                     echo '  
                     marker = new google.maps.Marker({

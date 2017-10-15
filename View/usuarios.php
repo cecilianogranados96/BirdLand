@@ -37,35 +37,47 @@
                         <h2>Filtro de usuarios</h2>
                     </div>
                 </div>
-                <div class="contact-form">
+                <div class="contact-form" style="    padding: 0px 0;" id="user">
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="contact">
-                                    <form>
+
+
+                                    <form action="?pag=<?php echo $_GET['pag']; ?>&b=1#user" method="POST" enctype="multipart/form-data">
                                         <fieldset>
                                             <div class="col-sm-12">
                                                 <div class="form-group">
-                                                    <input type="email" class="form-control" placeholder="Ingresa el nombre o el usuario">
+                                                    <input type="text" name="busqueda" class="form-control" placeholder="Busque cualquier campo">
                                                 </div>
                                             </div>
 
                                             <div class="col-sm-12 text-center">
                                                 <div class="form-group">
-                                                    <a href="#" class="btn-send">Filtrar</a>
+                                                    <button type="submit" class="btn-send">Filtrar</button>
+                                                    <a href="?pag=<?php echo $_GET['pag']; ?>" class="btn-send">Limpiar</a>
                                                 </div>
                                             </div>
                                         </fieldset>
                                     </form>
+
+
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                </div>
+                </div>
                 <div class="container">
                     <div class="row">
                         <?php 
-                            $stid = oci_parse($conn, 'select * from table(GET_PERSONA)');
+                            if (isset($_POST['busqueda'])){
+                                $extra = "where nombre LIKE '%".$_POST['busqueda']."%' or apellido LIKE '%".$_POST['busqueda']."%'";    
+                            }else{
+                                $extra = "";
+                            }
+                            $stid = oci_parse($conn, 'select * from table(GET_PERSONA) '.$extra.' ');
                             oci_execute($stid);
                             while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
                                 echo '<div class="col-xs-2">
@@ -81,7 +93,6 @@
                         ?>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>

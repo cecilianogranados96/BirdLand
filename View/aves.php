@@ -79,10 +79,6 @@
                             </td>
                         </tr>
                         <tr>
-                            <!--<td>
-                            <input id="textinput" name="textinput" type="text" placeholder="Nombre del ave" class="form-control input-md">
-                        </td>-->
-
                             <td>
 
 
@@ -238,18 +234,7 @@
 
                     <?php
  
-                        //$stid = oci_parse($conn, "select * from table(pck_avistamiento.avistamiento_completo)".$where." ");
-                        //oci_execute($stid);
-
-						$stid = oci_parse($conn, "select ave.id_ave,ave.imagen,ave.nombre_comun,genero.nombre ||' ' || especie.nombre nombre_cientifico
-                        from ave
-                        inner join especie on ave.id_especie = especie.id_especie
-                        inner join genero on especie.id_genero = genero.id_genero
-                        inner join familia on genero.id_familia = familia.id_familia
-                        inner join suborden on familia.id_suborden = suborden.id_suborden
-                        inner join orden on suborden.id_orden = orden.id_orden
-                        inner join clase on orden.id_clase = clase.id_clase 
-                        inner join tipo on ave.id_estado = tipo.id_tipo ".$where." ");
+						$stid = oci_parse($conn, "select * from table(GET_AVE_FILTRO) ".$where." ");
                         oci_execute($stid);
 						
 						oci_execute ($stid,OCI_DEFAULT);  

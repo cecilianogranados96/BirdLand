@@ -120,7 +120,8 @@
 
 				
 $stid1 = oci_parse($conn, "
-select avistamiento.foto,avistamiento.id_ave,persona.nombre,persona.apellido,avistamiento.id_avistamiento,avistamiento.id_persona from avistamiento INNER JOIN persona on avistamiento.ID_PERSONA = persona.ID_PERSONA where id_ave = ".$_GET['id']." ");
+select avistamiento.foto,avistamiento.id_ave,persona.nombre,persona.apellido,avistamiento.id_avistamiento,avistamiento.id_persona,avistamiento.id_avistamiento
+from avistamiento INNER JOIN persona on avistamiento.ID_PERSONA = persona.ID_PERSONA where id_ave = ".$_GET['id']." ");
 oci_execute($stid1);
         
 while ($row = oci_fetch_array($stid1, OCI_ASSOC+OCI_RETURN_NULLS)) {
@@ -135,20 +136,22 @@ while ($row = oci_fetch_array($stid1, OCI_ASSOC+OCI_RETURN_NULLS)) {
     $puntos = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS);
     if (isset($_SESSION['id_persona'])){
         if ($total['TOTAL'] >= 1){
-            $datos = 'class="btn btn-danger" onclick="votar('.$_SESSION['id_persona'].','.$row['ID_AVISTAMIENTO'].',this,2);"';
+            $datos = 'class="btn btn-danger" onclick="votar('.$_SESSION['id_persona'].','.$row['ID_AVISTAMIENTO'].',this,2,'.$row['ID_AVISTAMIENTO'].');"';
             $label = '<span class="fa fa-heart" aria-hidden="true"></span> NO GUSTA';
         }else{
-            $datos = 'class="btn btn-default" onclick="votar('.$_SESSION['id_persona'].','.$row['ID_AVISTAMIENTO'].',this,1);" ';
+            $datos = 'class="btn btn-default" onclick="votar('.$_SESSION['id_persona'].','.$row['ID_AVISTAMIENTO'].',this,1,'.$row['ID_AVISTAMIENTO'].');" ';
             $label = '<span class="fa fa-heart" aria-hidden="true"></span> ME GUSTA';
         }
     }
-    echo '
-                                        <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-4 filter hdpe">
+    echo '<div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-4 filter hdpe">
                                             <img src="images/avistamientos/'.$row['FOTO'].'" class="img-responsive img-thumbnail">
                                              <center>
                                              <span class="label label-success">'.$row['NOMBRE'].' '.$row['APELLIDO'].' </span><br><br>
                                               <span class="label label-success" style="font-size: 120%;"> 
-                                                <span class="fa fa-heart" aria-hidden="true" > '.$puntos['PUNTOS'].'</span> </span>
+                                              
+                                                <span class="fa fa-heart" aria-hidden="true" id="'.$row['ID_AVISTAMIENTO'].'" > '.$puntos['PUNTOS'].'</span> 
+                                                
+                                             </span>
                                               <div class="btn-toolbar demoPadder" role="toolbar">';
                                                 if (isset($_SESSION['id_persona'])){
                                                     echo '<button type="button" id="#p'.$row['ID_AVISTAMIENTO'].'" '.$datos.' >'.$label.'</button>';
@@ -161,23 +164,33 @@ while ($row = oci_fetch_array($stid1, OCI_ASSOC+OCI_RETURN_NULLS)) {
                 </div>
                 <hr>
                 <script>
-                    function votar(ppersona, pavistamiento, id, ptipo) {
+                    function votar(ppersona, pavistamiento, id, ptipo,id_avistamiento) {
                         $.post("?pag=registrar_voto", {
                             persona: ppersona,
                             avistamiento: pavistamiento,
                             tipo: ptipo
                         });
+                        x = 0;
+                        try {
+                            x = document.getElementById(id_avistamiento).innerHTML;
+                        }catch(err) {
+                            document.getElementById("demo").innerHTML = err.message;
+                        }
+
+                        
                         if (ptipo == 1) {
                             $(id).removeClass("btn-default");
                             $(id).addClass("btn-danger");
-                            $(id).attr("onclick", "votar(" + ppersona + "," + pavistamiento + ",this,2);");
+                            $(id).attr("onclick", "votar(" + ppersona + "," + pavistamiento + ",this,2," + id_avistamiento + ");");
                             $(id).html('<span class="fa fa-heart" aria-hidden="true"></span> NO GUSTA');
-
+                            document.getElementById(id_avistamiento).innerHTML = " " + (parseInt(x) + 1);
+                     
                         } else {
                             $(id).removeClass("btn-danger");
                             $(id).addClass("btn-default");
-                            $(id).attr("onclick", "votar(" + ppersona + "," + pavistamiento + ",this,1);");
+                            $(id).attr("onclick", "votar(" + ppersona + "," + pavistamiento + ",this,1," + id_avistamiento + ");");
                             $(id).html('<span class="fa fa-heart" aria-hidden="true"></span> ME GUSTA');
+                            document.getElementById(id_avistamiento).innerHTML = " " + (parseInt(x) - 1);
                         }
                     }
 

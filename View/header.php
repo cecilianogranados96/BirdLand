@@ -77,6 +77,7 @@
                                             <ul class="dropdown-menu" style="background-color: black;margin-top: -3%;margin-left: 30%;">
                                                 <li><a href="?pag=admin/ave-peligro">Aves en peligro</a></li>
                                                 <li><a href="?pag=admin/usuarios">Usuarios/Bitácora</a></li>
+                                                <li><a href="?pag=admin/job">JOB</a></li>
                                             </ul>
                                         </li>
                                         <li>

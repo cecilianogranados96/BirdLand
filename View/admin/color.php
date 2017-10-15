@@ -64,7 +64,7 @@
                 <!--NUEVO-->
                 <?php if(!isset($_GET['edit'])) { ?>
                 <center>
-                    <form action='?pag=<?php echo $_GET[' pag ']; ?>&nuevo=1' method="POST" enctype="multipart/form-data" style="width: 35%;">
+                    <form action='?pag=<?php echo $_GET['pag']; ?>&nuevo=1' method="POST" enctype="multipart/form-data" style="width: 35%;">
                         <table class="table">
                             <tr>
                                 <td colspan="3" class="titulo">

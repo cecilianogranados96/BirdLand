@@ -243,7 +243,7 @@
                     <?php } else { ?>
 
 
-                    <form action='?pag=<?php echo $_GET[' pag ']; ?>&edit=1&id=<?php echo $_GET['id ']; ?>&edit_normal=1' method="POST" enctype="multipart/form-data">
+                    <form action='?pag=<?php echo $_GET['pag']; ?>&edit=1&id=<?php echo $_GET['id']; ?>&edit_normal=1' method="POST" enctype="multipart/form-data">
 
                         <tr>
                             <td colspan="3" class="titulo">
@@ -271,7 +271,7 @@
 
                         <tr>
                             <td>
-                                <img src="images/aves/<?php echo $ave['IMAGEN']; ?>" class="img-rounded"> Cambiar:
+                                <center> <img src="images/aves/<?php echo $ave['IMAGEN']; ?>" class="img-rounded"></center> <br> Cambiar:
 
                                 <input name="foto" type="file" class="form-control">
                             </td>
