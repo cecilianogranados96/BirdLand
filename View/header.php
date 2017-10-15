@@ -65,7 +65,14 @@
 
                                     <ul>
                                         <li>
-                                            <a href="Manual/" target="_blank" role="button" aria-haspopup="true" aria-expanded="false">Manual</a>
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Manual<span class="caret"></span></a>
+                                            <ul class="dropdown-menu" style="background-color: black;margin-top: -3%;margin-left: 30%;">
+                                                <li><a href="Manual/" target="_blank">Manual de Usuario</a></li>
+                                                <li><a href="Docs/Diccionario/" target="_blank">Diccionario de Datos</a></li>
+                                                
+                                            </ul>
+                                            
+                                            
 
                                         </li>
                                         <?php 
